@@ -43,7 +43,7 @@ Supported components:
 <script src="path/to/grapesjs-mjml.min.js"></script>
 
 <div id="gjs">
-  <!-- Your body MJML here -->
+  <!-- Your MJML body here -->
   <mj-container>
         <mj-section>
           <mj-column>
