@@ -6,7 +6,10 @@
     <link rel="stylesheet" href="./node_modules/grapesjs/dist/css/grapes.min.css">
 
     <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <!--
     <script src="./dist/grapes.min.js"></script>
+    -->
+    <script src="./node_modules/grapesjs/dist/grapes.min.js"></script>
     <script src="./dist/grapesjs-mjml.min.js"></script>
     <style>
       body, html{ height: 100%; margin: 0;}
@@ -105,7 +108,7 @@
         storageManager:{autoload: 0},
         container : '#gjs',
         fromElement: true,
-        
+
         plugins: ['gjs-mjml'],
         pluginsOpts: {
           'gjs-mjml': {}
