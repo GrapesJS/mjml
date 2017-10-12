@@ -25,7 +25,7 @@ module.exports = {
       {
         test: /\.jsx?$/,
         loader: 'babel-loader',
-        exclude: /node_modules/,
+        exclude: /node_modules\/(?!(grapesjs)\/).*/,
         include: /src/,
         query: {
           presets: ['es2015']

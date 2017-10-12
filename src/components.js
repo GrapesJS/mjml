@@ -1,4 +1,5 @@
 import { mjml2html } from 'mjml'
+const $ = grapesjs.$;
 
 export default (editor, opt = {}) => {
   let domc = editor.DomComponents;
