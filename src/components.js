@@ -486,7 +486,6 @@ export default (editor, opt = {}) => {
 
         Object.keys(mjmlResult.attributes).forEach((key,index) => this.el.setAttribute(key, mjmlResult.attributes[key]));
 
-        this.$el.attr(mjmlResult.attributes);
         editor.addComponents(`<style>${mjmlResult.style}</style>`);
         this.getChildrenContainer().innerHTML = this.model.get('content');
         this.renderChildren();
