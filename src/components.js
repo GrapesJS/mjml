@@ -1,5 +1,4 @@
 import { mjml2html } from 'mjml'
-const $ = grapesjs.$;
 
 export default (editor, opt = {}) => {
   let domc = editor.DomComponents;
@@ -177,9 +176,9 @@ export default (editor, opt = {}) => {
           defaultTypes: this.opts.defaultTypes,
           componentTypes: this.opts.componentTypes,
         });
-        this.childNodes = this.componentsView.render($(container)).el.childNodes;
+        this.childNodes = this.componentsView.render(container).el.childNodes;
       } else {
-        this.componentsView.$parent = $(container);
+        this.componentsView.parent = container;
       }
 
       var childNodes = Array.prototype.slice.call(this.childNodes);
@@ -484,6 +483,9 @@ export default (editor, opt = {}) => {
         this.renderAttributes();
         const mjmlResult = this.getTemplateFromMjml();
         this.el.innerHTML = mjmlResult.content;
+
+        Object.keys(mjmlResult.attributes).forEach((key,index) => this.el.setAttribute(key, mjmlResult.attributes[key]));
+
         this.$el.attr(mjmlResult.attributes);
         editor.addComponents(`<style>${mjmlResult.style}</style>`);
         this.getChildrenContainer().innerHTML = this.model.get('content');
