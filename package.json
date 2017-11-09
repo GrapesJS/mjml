@@ -1,6 +1,6 @@
 {
   "name": "grapesjs-mjml",
-  "version": "0.0.8",
+  "version": "0.0.24",
   "description": "MJML Componenets integration in GrapesJS",
   "main": "dist/grapesjs-mjml.min.js",
   "scripts": {
@@ -15,24 +15,29 @@
     "mjml",
     "wysiwyg"
   ],
+  "babel": {
+    "presets": [
+      "es2015",
+      "stage-3"
+    ]
+  },
   "author": "Artur Arseniev",
   "license": "BSD-3-Clause",
   "devDependencies": {
-    "babel-cli": "^6.11.4",
-    "babel-core": "^6.13.2",
-    "babel-eslint": "^6.1.2",
-    "babel-loader": "^6.2.4",
-    "babel-preset-es2015": "^6.13.2",
-    "eslint": "^3.2.2",
-    "grapesjs": "^0.5.37",
-    "jquery": "^3.2.1",
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-3": "^6.24.1",
+    "cross-env": "^5.0.5",
+    "eslint": "^4.1.1",
+    "node-sass": "^4.5.3",
+    "grapesjs": "^0.9.32",
     "json-loader": "^0.5.4",
     "mocha": "^3.2.0",
-    "node-sass": "^3.13.0",
-    "webpack": "^1.13.1",
-    "webpack-dev-server": "^1.14.1"
+    "webpack": "^3.5.5",
+    "webpack-dev-server": "^2.7.1"
   },
   "dependencies": {
-    "mjml": "^3.3.2"
+    "mjml": "^3.3.5"
   }
 }
