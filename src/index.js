@@ -1,3 +1,5 @@
+import grapesjs from 'grapesjs';
+
 export default grapesjs.plugins.add('gjs-mjml', (editor, opts = {}) => {
   let c = opts;
 

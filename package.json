@@ -23,6 +23,9 @@
   },
   "author": "Artur Arseniev",
   "license": "BSD-3-Clause",
+  "peerDependencies": {
+    "grapesjs": "0.x"
+  },
   "devDependencies": {
     "babel-core": "^6.24.1",
     "babel-loader": "^7.0.0",
@@ -31,7 +34,6 @@
     "cross-env": "^5.0.5",
     "eslint": "^4.1.1",
     "node-sass": "^4.5.3",
-    "grapesjs": "^0.9.32",
     "json-loader": "^0.5.4",
     "mocha": "^3.2.0",
     "webpack": "^3.5.5",
