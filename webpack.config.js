@@ -1,13 +1,19 @@
-var path = require('path');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var fs = require('fs');
 var webpack = require('webpack');
 var pkg = require('./package.json');
 var name = pkg.name;
-var env = process.env.WEBPACK_ENV;
 var plugins = [];
 
-if(env !== 'dev'){
+if (process.env.WEBPACK_ENV !== 'dev') {
   //plugins.push(new webpack.optimize.UglifyJsPlugin({compressor: { warnings: false }}));
   plugins.push(new webpack.BannerPlugin(name + ' - ' + pkg.version));
+} else {
+  var index = 'index.html';
+  var indexDev = '_' + index;
+  plugins.push(new HtmlWebpackPlugin({
+    template: fs.existsSync(indexDev) ? indexDev : index
+  }));
 }
 
 module.exports = {

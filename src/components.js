@@ -15,7 +15,8 @@ export default (editor, opt = {}) => {
   let linkModel = linkType.model;
   let linkView = linkType.view;
 
-  const ComponentsView = require('grapesjs/src/dom_components/view/ComponentsView');
+  //const ComponentsView = require('grapesjs/src/dom_components/view/ComponentsView');
+  const ComponentsView = domc.ComponentsView;
   const sandboxEl = document.createElement('div');
 
 
