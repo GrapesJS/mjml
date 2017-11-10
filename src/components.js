@@ -292,6 +292,7 @@ export default (editor, opt = {}) => {
         ],
         style: {
           width: '600px',
+          height: '100%'
         },
       }),
     }),{
