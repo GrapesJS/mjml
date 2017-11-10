@@ -45,7 +45,7 @@ Supported components:
 ```html
 <link href="path/to/grapes.min.css" rel="stylesheet"/>
 <script src="path/to/grapes.min.js"></script>
-<script src="path/to/grapesjs-mjml.min.js"></script>
+<script src="path/to/grapesjs-mjml-default.min.js"></script>
 
 <div id="gjs">
   <!-- Your MJML body here -->
@@ -69,8 +69,6 @@ Supported components:
   });
 </script>
 ```
-
-
 
 ## Development
 
