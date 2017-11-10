@@ -17,9 +17,12 @@ if (process.env.WEBPACK_ENV !== 'dev') {
 }
 
 module.exports = {
-  entry: './src',
+  entry: {
+    default: './src/index.js',
+    callable: './src/index.callable.js'
+  },
   output: {
-      filename: './dist/' + name + '.min.js',
+      filename: './dist/' + name + '-[name].min.js',
       library: name,
       libraryTarget: 'umd',
   },
