@@ -5,9 +5,9 @@
   "main": "dist/grapesjs-mjml.min.js",
   "scripts": {
     "lint": "eslint src",
-    "build": "cross-env WEBPACK_ENV=prod && npm run v:patch && webpack",
     "v:patch": "npm version --no-git-tag-version patch",
-    "start": "cross-env WEBPACK_ENV=dev ./node_modules/.bin/webpack-dev-server --progress --colors"
+    "build": "npm run v:patch && webpack --env.production",
+    "start": "webpack-dev-server --open --progress --colors"
   },
   "repository": {
     "type": "git",
@@ -21,17 +21,7 @@
   ],
   "babel": {
     "presets": [
-      [
-        "env",
-        {
-          "targets": [
-            "> 1%",
-            "ie 11",
-            "safari 8"
-          ],
-          "useBuiltIns": true
-        }
-      ]
+      "env"
     ],
     "plugins": [
       "transform-object-rest-spread"
@@ -40,21 +30,18 @@
   "author": "Artur Arseniev",
   "license": "BSD-3-Clause",
   "peerDependencies": {
-    "grapesjs": "0.x"
+    "grapesjs": "0.x",
+    "mjml": "3.3.5"
   },
   "devDependencies": {
-    "babel-core": "^6.24.1",
-    "babel-loader": "^7.0.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
-    "html-webpack-plugin": "^2.30.1",
-    "cross-env": "^5.0.5",
     "eslint": "^4.1.1",
-    "node-sass": "^4.5.3",
-    "webpack": "^3.5.5",
-    "webpack-dev-server": "^2.7.1"
-  },
-  "dependencies": {
-    "mjml": "^3.3.5"
+    "html-webpack-plugin": "^2.30.1",
+    "node-sass": "^4.7.1",
+    "webpack": "^3.8.1",
+    "webpack-dev-server": "^2.9.4"
   }
 }
