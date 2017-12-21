@@ -20,19 +20,21 @@ Supported components:
 
 ## Options
 
-* `categoryLabel` Category for blocks, default: '',
-* `importPlaceholder` Import placeholder MJML, default: '',
-* `modalTitleImport` Title for the import modal, default: 'Import MJML',
-* `modalBtnImport` Test for the import button, default: 'Import',
-* `modalLabelImport` Description for the import modal, default: '',
-* `modalTitleExport` Title for the export modal, default: 'Export MJML',
-* `modalLabelExport` Description for the export modal, default: '',
-* `overwriteExport` Overwrite default export command, default: 'true',
-* `preMjml` String before the MJML in export code, default: '<mjml><mj-body>',
-* `postMjml` String after the MJML in export code, default: '</mj-body></mjml>',
-* `resetBlocks` Clean all previous blocks if true, default: 'true',
-* `resetBlocks` Clean all previous devices and set a new one for mobile, default: 'true',
-* `resetStyleManager` Reset the Style Manager and add new properties for MJML, default: 'true',
+|Option|Description|Default|
+|-|-|-
+|`categoryLabel`|Category for blocks|`''`|
+|`importPlaceholder`|Import placeholder MJML|`''`|
+|`modalTitleImport`|Title for the import modal|`Import MJML`|
+|`modalBtnImport`|Test for the import button|`Import`|
+|`modalLabelImport`|Description for the import modal|`''`|
+|`modalTitleExport`|Title for the export modal|`Export MJML`|
+|`modalLabelExport`|Description for the export modal|`''`|
+|`overwriteExport`|Overwrite default export command|`true`|
+|`preMjml`|String before the MJML in export code|`<mjml><mj-body>`|
+|`postMjml`|String after the MJML in export code|`</mj-body></mjml>`|
+|`resetBlocks`|Clean all previous blocks if true|`true`|
+|`resetDevices`|Clean all previous devices and set a new one for mobile|`true`|,
+|`resetStyleManager`|Reset the Style Manager and add new properties for MJML|`true`|,
 
 
 ## Download
