@@ -11,7 +11,6 @@ export default (editor, opt = {}) => {
   btnImp.className = pfx + 'btn-prim ' + pfx + 'btn-import';
   btnImp.onclick = () => {
     let code = codeViewer.editor.getValue();
-    code = code.replace(/<\/?mj-body>|<\/?mjml>/ig, '');
     editor.DomComponents.getWrapper().set('content', '');
     editor.setComponents(code.trim());
     editor.Modal.close();

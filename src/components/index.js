@@ -1,4 +1,6 @@
-import { mjml2html } from 'mjml'
+import { mjml2html } from 'mjml';
+import loadMjml from './mjml';
+import loadMjmlHead from './mjmlHead';
 
 export default (editor, opt = {}) => {
   let domc = editor.DomComponents;
@@ -14,6 +16,7 @@ export default (editor, opt = {}) => {
   let imageView = imageType.view;
   let linkModel = linkType.model;
   let linkView = linkType.view;
+  const dc = domc;
   const ComponentsView = domc.ComponentsView;
   const sandboxEl = document.createElement('div');
 
@@ -230,26 +233,8 @@ export default (editor, opt = {}) => {
   // MJML Internal view (for elements inside mj-columns)
   let coreMjmlIntView = Object.assign({}, coreMjmlView);
 
-
-
-
-
-  // MJML
-  domc.addType('mjml', {
-    model: defaultModel.extend({
-      defaults: Object.assign({}, defaultModel.prototype.defaults, {
-        droppable: '[data-type=mj-head], [data-type=mj-body]',
-        draggable: false,
-      }),
-    },{
-      isComponent(el) {
-        if (el.tagName == 'MJML') {
-          return {type: 'mjml'};
-        }
-      },
-    }),
-    view: defaultView,
-  });
+  loadMjml(editor, { dc, defaultModel, defaultView });
+  loadMjmlHead(editor, { dc, defaultModel, defaultView });
 
 
 
