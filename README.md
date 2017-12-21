@@ -30,8 +30,8 @@ Supported components:
 |`modalTitleExport`|Title for the export modal|`Export MJML`|
 |`modalLabelExport`|Description for the export modal|`''`|
 |`overwriteExport`|Overwrite default export command|`true`|
-|`preMjml`|String before the MJML in export code|`<mjml><mj-body>`|
-|`postMjml`|String after the MJML in export code|`</mj-body></mjml>`|
+|`preMjml`|String before the MJML in export code|`''`|
+|`postMjml`|String after the MJML in export code|`''`|
 |`resetBlocks`|Clean all previous blocks if true|`true`|
 |`resetDevices`|Clean all previous devices and set a new one for mobile|`true`|,
 |`resetStyleManager`|Reset the Style Manager and add new properties for MJML|`true`|,
