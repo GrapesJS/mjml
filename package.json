@@ -30,8 +30,10 @@
   "author": "Artur Arseniev",
   "license": "BSD-3-Clause",
   "peerDependencies": {
-    "grapesjs": "0.x",
-    "mjml": "3.3.5"
+    "grapesjs": "0.x"
+  },
+  "dependencies": {
+    "mjml": "^3.3.5"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

@@ -1,9 +1,11 @@
 import grapesjs from 'grapesjs';
 
 export default grapesjs.plugins.add('gjs-mjml', (editor, opts = {}) => {
-  let c = opts;
 
-  let defaults = {
+  const opt = {
+
+    categoryLabel: '',
+
     // Code viewer theme
     codeViewerTheme: 'hopscotch',
 
@@ -48,13 +50,9 @@ export default grapesjs.plugins.add('gjs-mjml', (editor, opts = {}) => {
 
     // Column padding (this way it's easier select columns)
     columnsPadding: '10px 0',
-  };
 
-  // Load defaults
-  for (let name in defaults) {
-    if (!(name in c))
-      c[name] = defaults[name];
-  }
+    ...opts,
+  };
 
   let config = editor.getConfig();
 
@@ -66,22 +64,22 @@ export default grapesjs.plugins.add('gjs-mjml', (editor, opts = {}) => {
   config.devicePreviewMode = 1;
 
   // Add Blocks
-  require('./blocks').default(editor, c);
+  require('./blocks').default(editor, opt);
 
   // Add Components
-  require('./components').default(editor, c);
+  require('./components').default(editor, opt);
 
   // Add Commands
-  require('./commands').default(editor, c);
+  require('./commands').default(editor, opt);
 
   // Add Buttons
-  require('./buttons').default(editor, c);
+  require('./buttons').default(editor, opt);
 
   // Extend Style Manager
-  require('./style').default(editor, c);
+  require('./style').default(editor, opt);
 
   // Update devices
-  if (c.resetDevices) {
+  if (opt.resetDevices) {
     const dm = editor.DeviceManager;
     dm.getAll().reset();
     dm.add('Desktop', '');

@@ -33,10 +33,7 @@ module.exports = (env = {}) => {
           include: /src/,
       }],
     },
-    externals: {
-      'grapesjs': 'grapesjs',
-      'mjml': 'mjml'
-    },
+    externals: { 'grapesjs': 'grapesjs' },
     plugins: plugins,
   };
 }

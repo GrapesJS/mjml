@@ -20,6 +20,7 @@ Supported components:
 
 ## Options
 
+* `categoryLabel` Category for blocks, default: '',
 * `importPlaceholder` Import placeholder MJML, default: '',
 * `modalTitleImport` Title for the import modal, default: 'Import MJML',
 * `modalBtnImport` Test for the import button, default: 'Import',
