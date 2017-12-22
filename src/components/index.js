@@ -5,6 +5,7 @@ import loadBody from './Body';
 import loadContainer from './Container';
 import loadSection from './Section';
 import loadColumn from './Column';
+import loadText from './Text';
 
 export default (editor, opt = {}) => {
   let domc = editor.DomComponents;
@@ -236,7 +237,7 @@ export default (editor, opt = {}) => {
 
   // MJML Internal view (for elements inside mj-columns)
   let coreMjmlIntView = Object.assign({}, coreMjmlView);
-  const compOpts = { dc, defaultModel, defaultView, opt, sandboxEl };
+  const compOpts = { dc, defaultModel, defaultView, textModel, textView, opt, sandboxEl };
   const compCoreOpts = { ...compOpts, coreMjmlModel, coreMjmlView };
 
   loadMjml(editor, compOpts);
@@ -245,6 +246,7 @@ export default (editor, opt = {}) => {
   loadContainer(editor, compCoreOpts);
   loadSection(editor, compCoreOpts);
   loadColumn(editor, compCoreOpts);
+  loadText(editor, compCoreOpts);
 
 
 
@@ -268,88 +270,6 @@ export default (editor, opt = {}) => {
     view: defaultView,
   });
 */
-
-
-
-
-  // Text
-  domc.addType('mj-text', {
-    model: textModel.extend(Object.assign({}, coreMjmlModel, {
-      defaults: Object.assign({}, textModel.prototype.defaults, {
-        'custom-name': 'Text',
-        draggable: '[data-type=mj-column]',
-        highlightable: false,
-        stylable: [
-          'height', 'font-style', 'font-size', 'font-weight', 'font-family', 'color',
-          'line-height', 'letter-spacing', 'text-decoration', 'align', 'text-transform',
-          'padding', 'padding-top', 'padding-left', 'padding-right', 'padding-bottom',
-          'container-background-color'
-        ],
-        style: {
-          'padding-top': '10px',
-          'padding-bottom': '10px',
-          'padding-right': '25px',
-          'padding-left': '25px',
-          'font-size': '13px',
-          'line-height': '22px',
-          'align': 'left',
-        },
-      }),
-    }), {
-      isComponent(el) {
-        if (el.tagName == 'MJ-TEXT') {
-          return {
-            type: 'mj-text',
-            content: el.innerHTML,
-            components: [],
-          };
-        }
-      },
-    }),
-    view: textView.extend(Object.assign({}, coreMjmlView, {
-      tagName: 'tr',
-
-      attributes: {
-        style: 'pointer-events: all; display: table; width: 100%',
-      },
-
-      getMjmlTemplate() {
-        return {
-          start: `<mjml><mj-body><mj-column>`,
-          end: `</mj-column></mj-body></mjml>`,
-        };
-      },
-
-      getTemplateFromEl(sandboxEl) {
-        return sandboxEl.querySelector('tr').innerHTML;
-      },
-
-      getChildrenSelector() {
-        return 'div';
-      },
-
-      /**
-       * Prevent content repeating
-       */
-      renderChildren() {
-        coreMjmlView.renderChildren.call(this);
-      },
-
-      /**
-       * Need to make text selectable.
-       */
-      enableEditing() {
-        textView.prototype.enableEditing.apply(this, arguments);
-        this.getChildrenContainer().style.pointerEvents = 'all';
-      },
-
-      disableEditing() {
-        textView.prototype.disableEditing.apply(this, arguments);
-        this.getChildrenContainer().style.pointerEvents = 'none';
-      },
-    })),
-  });
-
 
 
 
