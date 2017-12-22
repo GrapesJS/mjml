@@ -12,7 +12,7 @@ export default (editor, { dc, defaultModel, defaultView }) => {
       },
     },{
       isComponent(el) {
-        if (el.tagName == 'MJ-BODY') {
+        if (el.tagName == type.toUpperCase()) {
           return { type };
         }
       },
