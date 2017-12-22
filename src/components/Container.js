@@ -44,7 +44,7 @@ export default (editor, {
       tagName: 'div',
 
       attributes: {
-        style: 'width: 100%',
+        style: 'width: 100%; min-height: 100%',
         'data-type': 'mj-container',
       },
 
