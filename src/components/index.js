@@ -7,6 +7,7 @@ import loadSection from './Section';
 import loadColumn from './Column';
 import loadText from './Text';
 import loadButton from './Button';
+import loadImage from './Image';
 
 export default (editor, opt = {}) => {
   let domc = editor.DomComponents;
@@ -240,7 +241,7 @@ export default (editor, opt = {}) => {
   let coreMjmlIntView = Object.assign({}, coreMjmlView);
   const compOpts = {
       dc, coreMjmlModel, coreMjmlView, opt, sandboxEl, defaultModel, defaultView,
-      textModel, textView, linkModel, linkView
+      textModel, textView, linkModel, linkView, imageModel, imageView
   };
 
   loadMjml(editor, compOpts);
@@ -251,6 +252,7 @@ export default (editor, opt = {}) => {
   loadColumn(editor, compOpts);
   loadText(editor, compOpts);
   loadButton(editor, compOpts);
+  loadImage(editor, compOpts);
 
 
 
@@ -274,67 +276,6 @@ export default (editor, opt = {}) => {
     view: defaultView,
   });
 */
-
-
-
-
-  // Image
-  domc.addType('mj-image', {
-    model: imageModel.extend(Object.assign({}, coreMjmlModel, {
-      defaults: Object.assign({}, imageModel.prototype.defaults, {
-        'custom-name': 'Image',
-        resizable: false,
-        highlightable: false,
-        draggable: '[data-type=mj-column]',
-        stylable: [
-          'width', 'height',
-          'padding', 'padding-top', 'padding-left', 'padding-right', 'padding-bottom',
-          'border-radius', 'border-top-left-radius', 'border-top-right-radius', 'border-bottom-left-radius', 'border-bottom-right-radius',
-          'border', 'border-width', 'border-style', 'border-color',
-          'container-background-color', 'align',
-        ],
-        style: {
-          'padding-top': '10px',
-          'padding-bottom': '10px',
-          'padding-right': '25px',
-          'padding-left': '25px',
-          'align': 'center',
-        },
-        traits: ['href', 'rel', 'alt', 'title'],
-        void: true,
-      }),
-    }), {
-      isComponent(el) {
-        if (el.tagName == 'MJ-IMAGE') {
-          return {type: 'mj-image'};
-        }
-      },
-    }),
-
-    view: imageView.extend(Object.assign({}, coreMjmlView, {
-      tagName: 'tr',
-
-      attributes: {
-        style: 'pointer-events: all; display: table; width: 100%; user-select: none;',
-      },
-
-      getMjmlTemplate() {
-        return {
-          start: `<mjml><mj-body><mj-column>`,
-          end: `</mj-column></mj-body></mjml>`,
-        };
-      },
-
-      getTemplateFromEl(sandboxEl) {
-        return sandboxEl.querySelector('tr').innerHTML;
-      },
-
-      getChildrenSelector() {
-        return 'img';
-      },
-    })),
-  });
-
 
 
 
