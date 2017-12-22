@@ -2,6 +2,7 @@ import { mjml2html } from 'mjml';
 import loadMjml from './mjml';
 import loadHead from './Head';
 import loadBody from './Body';
+import loadContainer from './Container';
 
 export default (editor, opt = {}) => {
   let domc = editor.DomComponents;
@@ -238,68 +239,7 @@ export default (editor, opt = {}) => {
   loadMjml(editor, compOpts);
   loadHead(editor, compOpts);
   loadBody(editor, compOpts);
-
-
-
-
-
-  // Container
-  domc.addType('mj-container', {
-    model: defaultModel.extend(Object.assign({}, coreMjmlModel, {
-      defaults: Object.assign({}, defaultModel.prototype.defaults, {
-        'custom-name': 'Container',
-        draggable: false,
-        copyable: false,
-        removable: false,
-        droppable: '[data-type=mj-section], [data-type=mj-wrapper]',
-        stylable: [
-          // Currently the UX sucks too much with the heavy rendering
-          // approach, service workers might help
-          'width',
-          'background-color'
-        ],
-        style: {
-          width: '600px',
-        },
-      }),
-    }),{
-      isComponent(el) {
-        if (el.tagName == 'MJ-CONTAINER') {
-          return {type: 'mj-container'};
-        }
-      },
-    }),
-    view: defaultView.extend(Object.assign({}, coreMjmlView, {
-      tagName: 'div',
-
-      attributes: {
-        style: 'width: 100%',
-        'data-type': 'mj-container',
-      },
-
-      getChildrenSelector() {
-        return 'div';
-      },
-
-      getInnerMjmlTemplate() {
-        let orig = coreMjmlView.getInnerMjmlTemplate.call(this);
-        return {
-          start: `${orig.start}<mj-section></mj-section>`,
-          end: `${orig.end}`,
-        };
-      },
-
-      renderStyle() {
-        this.el.style = this.el.getAttribute('style') + this.attributes.style;
-      },
-
-      renderContent() {
-        this.getChildrenContainer().innerHTML = this.model.get('content');
-      },
-
-    })),
-  });
-
+  loadContainer(editor, { ...compOpts, coreMjmlModel, coreMjmlView });
 
 
 
