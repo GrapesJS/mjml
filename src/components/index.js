@@ -1,6 +1,7 @@
 import { mjml2html } from 'mjml';
 import loadMjml from './mjml';
-import loadMjmlHead from './mjmlHead';
+import loadHead from './Head';
+import loadBody from './Body';
 
 export default (editor, opt = {}) => {
   let domc = editor.DomComponents;
@@ -26,7 +27,7 @@ export default (editor, opt = {}) => {
   // MJML Core model
   let coreMjmlModel = {
     init() {
-      let attrs = Object.assign({}, this.get('attributes'));
+      let attrs = { ...this.get('attributes') };
       let style = this.get('style');
       this.defaultStyle = style;
 
@@ -42,7 +43,7 @@ export default (editor, opt = {}) => {
     },
 
     handleStyleChange() {
-      let style = Object.assign({}, this.get('attributes'), this.get('style'));
+      const style = { ...this.get('attributes'), ...this.get('style') };
       this.set('attributes', style);
     },
 
@@ -232,29 +233,11 @@ export default (editor, opt = {}) => {
 
   // MJML Internal view (for elements inside mj-columns)
   let coreMjmlIntView = Object.assign({}, coreMjmlView);
+  const compOpts = { dc, defaultModel, defaultView };
 
-  loadMjml(editor, { dc, defaultModel, defaultView });
-  loadMjmlHead(editor, { dc, defaultModel, defaultView });
-
-
-
-
-
-  // Body
-  domc.addType('mj-body', {
-    model: defaultModel.extend({
-      defaults: Object.assign({}, defaultModel.prototype.defaults, {
-        draggable: false,
-      }),
-    },{
-      isComponent(el) {
-        if (el.tagName == 'MJ-BODY') {
-          return {type: 'mj-body'};
-        }
-      },
-    }),
-    view: defaultView,
-  });
+  loadMjml(editor, compOpts);
+  loadHead(editor, compOpts);
+  loadBody(editor, compOpts);
 
 
 

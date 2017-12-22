@@ -1,3 +1,5 @@
+// Specs: https://mjml.io/documentation/#mj-head
+
 export default (editor, { dc, defaultModel, defaultView }) => {
   const type = 'mj-head';
   const droppable = [
