@@ -4,7 +4,6 @@ export default (editor, {
   dc, opt, textModel, textView, coreMjmlModel, coreMjmlView
 }) => {
   const type = 'mj-text';
-  const clmPadd = opt.columnsPadding;
 
   dc.addType(type, {
 
