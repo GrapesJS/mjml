@@ -9,6 +9,7 @@ import loadText from './Text';
 import loadButton from './Button';
 import loadImage from './Image';
 import loadSocial from './Social';
+import loadDivider from './Divider';
 
 export default (editor, opt = {}) => {
   let domc = editor.DomComponents;
@@ -251,10 +252,11 @@ export default (editor, opt = {}) => {
   loadContainer(editor, compOpts);
   loadSection(editor, compOpts);
   loadColumn(editor, compOpts);
-  loadText(editor, compOpts);
   loadButton(editor, compOpts);
+  loadText(editor, compOpts);
   loadImage(editor, compOpts);
   loadSocial(editor, compOpts);
+  loadDivider(editor, compOpts);
 
 
 
@@ -278,61 +280,4 @@ export default (editor, opt = {}) => {
     view: defaultView,
   });
 */
-
-
-  // Divider
-  domc.addType('mj-divider', {
-    model: defaultModel.extend(Object.assign({}, coreMjmlModel, {
-      defaults: Object.assign({}, defaultModel.prototype.defaults, {
-        'custom-name': 'Divider',
-        draggable: '[data-type=mj-column]',
-        droppable: false,
-        style: {
-          'width': '100%',
-          'border-width': '4px',
-          'border-style': 'solid',
-          'border-color': '#000000',
-          'padding-top': '10px',
-          'padding-bottom': '10px',
-          'padding-right': '25px',
-          'padding-left': '25px',
-        },
-        stylable: [
-          'padding', 'padding-top', 'padding-left', 'padding-right', 'padding-bottom',
-          'width', 'container-background-color',
-          'border-detached', 'border-width', 'border-style', 'border-color'
-        ],
-      }),
-    }), {
-      isComponent(el) {
-        if (el.tagName == 'MJ-DIVIDER') {
-          return {type: 'mj-divider'};
-        }
-      },
-    }),
-    view: defaultView.extend(Object.assign({}, coreMjmlView, {
-      tagName: 'tr',
-
-      attributes: {
-        style: 'pointer-events: all; display: table; width: 100%; user-select: none;',
-      },
-
-      getMjmlTemplate() {
-        return {
-          start: `<mjml><mj-body><mj-column>`,
-          end: `</mj-column></mj-body></mjml>`,
-        };
-      },
-
-      getTemplateFromEl(sandboxEl) {
-        return sandboxEl.querySelector('tr').innerHTML;
-      },
-
-      getChildrenSelector() {
-        return 'p';
-      },
-    })),
-
-  });
-
 }
