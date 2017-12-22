@@ -8,7 +8,7 @@ export default (editor, { dc, defaultModel, defaultView }) => {
     'mj-style',
     'mj-font',
     'mj-title',
-  ].map(tag => `[data-type=${tag}]`).join(' ');
+  ].map(tag => `[data-type=${tag}]`).join(', ');
 
   dc.addType(type, {
 
@@ -20,7 +20,7 @@ export default (editor, { dc, defaultModel, defaultView }) => {
       },
     },{
       isComponent(el) {
-        if (el.tagName == 'MJ-HEAD') {
+        if (el.tagName == type.toUpperCase()) {
           return { type };
         }
       },

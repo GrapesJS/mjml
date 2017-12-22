@@ -26,7 +26,7 @@ export default (editor, {
     },{
 
       isComponent(el) {
-        if (el.tagName == 'MJ-COLUMN') {
+        if (el.tagName == type.toUpperCase()) {
           return { type };
         }
       },

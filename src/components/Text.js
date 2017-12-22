@@ -33,7 +33,7 @@ export default (editor, {
     },{
 
       isComponent(el) {
-        if (el.tagName == 'MJ-TEXT') {
+        if (el.tagName == type.toUpperCase()) {
           return {
             type,
             content: el.innerHTML,

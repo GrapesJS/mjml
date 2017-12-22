@@ -32,7 +32,7 @@ export default (editor, {
     },{
 
       isComponent(el) {
-        if (el.tagName == 'MJ-SECTION') {
+        if (el.tagName == type.toUpperCase()) {
           return { type };
         }
       },

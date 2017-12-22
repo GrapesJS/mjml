@@ -13,7 +13,7 @@ export default (editor, { dc, defaultModel, defaultView }) => {
       },
     },{
       isComponent(el) {
-        if (el.tagName == 'MJML') {
+        if (el.tagName == type.toUpperCase()) {
           return { type };
         }
       },
