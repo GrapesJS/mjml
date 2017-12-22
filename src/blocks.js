@@ -73,4 +73,11 @@ export default (editor, opt = {}) => {
     attributes: { class: 'fa fa-share-alt' },
     ...allBlocks,
   });
+
+  bm.add('mj-spacer', {
+    label: 'Spacer',
+    content: '<mj-spacer/>',
+    attributes: { class: 'fa fa-arrows-v' },
+    ...allBlocks,
+  });
 }

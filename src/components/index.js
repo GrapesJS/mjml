@@ -10,6 +10,7 @@ import loadButton from './Button';
 import loadImage from './Image';
 import loadSocial from './Social';
 import loadDivider from './Divider';
+import loadSpacer from './Spacer';
 
 export default (editor, opt = {}) => {
   let domc = editor.DomComponents;
@@ -257,6 +258,7 @@ export default (editor, opt = {}) => {
   loadImage(editor, compOpts);
   loadSocial(editor, compOpts);
   loadDivider(editor, compOpts);
+  loadSpacer(editor, compOpts);
 
 
 

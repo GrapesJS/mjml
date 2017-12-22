@@ -16,6 +16,7 @@ Supported components:
 `mj-button`
 `mj-social`
 `mj-divider`
+`mj-spacer`
 
 
 ## Options
