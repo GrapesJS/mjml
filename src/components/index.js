@@ -3,6 +3,7 @@ import loadMjml from './mjml';
 import loadHead from './Head';
 import loadBody from './Body';
 import loadContainer from './Container';
+import loadSection from './Section';
 
 export default (editor, opt = {}) => {
   let domc = editor.DomComponents;
@@ -235,11 +236,13 @@ export default (editor, opt = {}) => {
   // MJML Internal view (for elements inside mj-columns)
   let coreMjmlIntView = Object.assign({}, coreMjmlView);
   const compOpts = { dc, defaultModel, defaultView };
+  const compCoreOpts = { ...compOpts, coreMjmlModel, coreMjmlView };
 
   loadMjml(editor, compOpts);
   loadHead(editor, compOpts);
   loadBody(editor, compOpts);
-  loadContainer(editor, { ...compOpts, coreMjmlModel, coreMjmlView });
+  loadContainer(editor, compCoreOpts);
+  loadSection(editor, { ...compOpts, coreMjmlModel, coreMjmlView });
 
 
 
@@ -263,59 +266,6 @@ export default (editor, opt = {}) => {
     view: defaultView,
   });
 */
-
-
-
-
-
-  // Section
-  domc.addType('mj-section', {
-    model: defaultModel.extend(Object.assign({}, coreMjmlModel, {
-      defaults: Object.assign({}, defaultModel.prototype.defaults, {
-        'custom-name': 'Section',
-        draggable: '[data-type=mj-container]',
-        droppable: '[data-type=mj-column]',
-        style: {
-          'padding-top': '10px',
-          'padding-bottom': '10px',
-          'vertical-align': 'top',
-          'text-align': 'center',
-        },
-        stylable: [
-          'vertical-align', 'text-align',
-          'padding', 'padding-top', 'padding-left', 'padding-right', 'padding-bottom',
-          'background-color', 'background-url', 'background-repeat', 'background-size',
-          'border-radius', 'border-top-left-radius', 'border-top-right-radius', 'border-bottom-left-radius', 'border-bottom-right-radius',
-          'border', 'border-width', 'border-style', 'border-color'
-        ],
-      }),
-    }), {
-      isComponent(el) {
-        if (el.tagName == 'MJ-SECTION') {
-          return {type: 'mj-section'};
-        }
-      },
-    }),
-    // Section view
-    view: defaultView.extend(Object.assign({}, coreMjmlView, {
-      tagName: 'div',
-
-      attributes: {
-        style: 'pointer-events: all;',
-        'data-type': 'mj-section',
-      },
-
-      getChildrenSelector() {
-        return 'tbody > tr > td';
-      },
-
-      init() {
-        coreMjmlView.init.call(this);
-        this.listenTo(this.model.get('components'), 'add remove', this.render);
-      },
-    })),
-  });
-
 
 
 
