@@ -8,8 +8,7 @@ export default (editor, {
   dc.addType(type, {
 
 
-    model: defaultModel.extend({
-      ...coreMjmlModel,
+    model: defaultModel.extend({ ...coreMjmlModel,
 
       defaults: {
         ...defaultModel.prototype.defaults,
@@ -31,6 +30,7 @@ export default (editor, {
         ],
       },
     },{
+
       isComponent(el) {
         if (el.tagName == 'MJ-SECTION') {
           return { type };
@@ -39,8 +39,7 @@ export default (editor, {
     }),
 
 
-    view: defaultView.extend({
-      ...coreMjmlView,
+    view: defaultView.extend({ ...coreMjmlView,
 
       tagName: 'div',
 
@@ -57,7 +56,6 @@ export default (editor, {
         coreMjmlView.init.call(this);
         this.listenTo(this.model.get('components'), 'add remove', this.render);
       },
-
     }),
   });
 }
