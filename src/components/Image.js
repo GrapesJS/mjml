@@ -22,7 +22,7 @@ export default (editor, {
           'border', 'border-width', 'border-style', 'border-color',
           'container-background-color', 'align',
         ],
-        style: {
+        'style-default': {
           'padding-top': '10px',
           'padding-bottom': '10px',
           'padding-right': '25px',

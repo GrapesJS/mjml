@@ -36,9 +36,8 @@ export default (editor, opt = {}) => {
   // MJML Core model
   let coreMjmlModel = {
     init() {
-      let attrs = { ...this.get('attributes') };
-      let style = this.get('style');
-      this.defaultStyle = style;
+      const attrs = { ...this.get('attributes') };
+      const style = { ...this.get('style') };
 
       for (let prop in style) {
         if (!(prop in attrs)) {
@@ -51,10 +50,12 @@ export default (editor, opt = {}) => {
       this.listenTo(this, 'change:style', this.handleStyleChange);
     },
 
+
     handleStyleChange() {
       const style = { ...this.get('attributes'), ...this.get('style') };
       this.set('attributes', style);
     },
+
 
     getMjmlAttributes() {
       let attr = this.get('attributes') || {};
@@ -65,23 +66,27 @@ export default (editor, opt = {}) => {
       return attr;
     },
 
+
     /**
      * This will avoid rendering default attributes
      * @return {Object}
      */
     getAttrToHTML() {
-      let attr = Object.assign({}, this.get('attributes') || {});
-      let style = Object.assign({}, this.defaultStyle || {});
+      const attr = { ...this.get('attributes') };
+      const style = { ...this.get('style-default') };
       delete attr.style;
 
       for (let prop in attr) {
-        if (attr[prop] == style[prop]) {
+        const value = attr[prop];
+
+        if (value && value === style[prop]) {
           delete attr[prop];
         }
       }
 
       return attr;
     },
+
 
     /**
      * Rhave to change few things for hte MJML's xml (no id, style, class)
@@ -121,14 +126,17 @@ export default (editor, opt = {}) => {
 
   // MJML Core view
   let coreMjmlView = {
+
     init() {
       this.stopListening(this.model, 'change:style');
       this.listenTo(this.model, 'change:attributes change:src', this.rerender);
     },
 
+
     rerender() {
       this.render(null, null, {}, 1);
     },
+
 
     getMjmlTemplate() {
       return {
@@ -136,6 +144,7 @@ export default (editor, opt = {}) => {
         end: `</mj-body></mjml>`,
       };
     },
+
 
     getInnerMjmlTemplate() {
       const model = this.model;
@@ -155,9 +164,11 @@ export default (editor, opt = {}) => {
       };
     },
 
+
     getTemplateFromEl(sandboxEl) {
       return sandboxEl.firstChild.innerHTML;
     },
+
 
     getTemplateFromMjml() {
       let mjmlTmpl = this.getMjmlTemplate();
@@ -172,6 +183,7 @@ export default (editor, opt = {}) => {
       sandboxEl.innerHTML = html;
       return this.getTemplateFromEl(sandboxEl);
     },
+
 
     /**
      * Render children components
@@ -213,9 +225,11 @@ export default (editor, opt = {}) => {
       }
     },
 
+
     renderStyle() {
       this.el.style = this.attributes.style;
     },
+
 
     renderContent() {
       let content = this.model.get('content');
@@ -224,6 +238,7 @@ export default (editor, opt = {}) => {
         this.getChildrenContainer().innerHTML = content;
       }
     },
+
 
     render(p, c, opts, appendChildren) {
       this.renderAttributes();
@@ -259,27 +274,4 @@ export default (editor, opt = {}) => {
   loadSocial(editor, compOpts);
   loadDivider(editor, compOpts);
   loadSpacer(editor, compOpts);
-
-
-
-
-/*
-  // Wrapper
-  domc.addType('mj-wrapper', {
-    model: defaultModel.extend({
-      defaults: Object.assign({}, defaultModel.prototype.defaults, {
-        draggable: '[data-type=mj-container]',
-        //border, border-radius, background-color, background-url, background-repeat, background-size, vertical-align
-        //text-align, padding
-      }),
-    },{
-      isComponent(el) {
-        if (el.tagName == 'mj-wrapper') {
-          return {type: 'mj-wrapper'};
-        }
-      },
-    }),
-    view: defaultView,
-  });
-*/
 }

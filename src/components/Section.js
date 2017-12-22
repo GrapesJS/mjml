@@ -15,7 +15,7 @@ export default (editor, {
         'custom-name': 'Section',
         draggable: '[data-type=mj-container]',
         droppable: '[data-type=mj-column]',
-        style: {
+        'style-default': {
           'padding-top': '10px',
           'padding-bottom': '10px',
           'vertical-align': 'top',

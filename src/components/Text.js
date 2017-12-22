@@ -20,7 +20,7 @@ export default (editor, {
           'padding', 'padding-top', 'padding-left', 'padding-right', 'padding-bottom',
           'container-background-color'
         ],
-        style: {
+        'style-default': {
           'padding-top': '10px',
           'padding-bottom': '10px',
           'padding-right': '25px',

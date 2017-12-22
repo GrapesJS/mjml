@@ -14,7 +14,7 @@ export default (editor, {
         'custom-name': 'Divider',
         draggable: '[data-type=mj-column]',
         droppable: false,
-        style: {
+        'style-default': {
           'width': '100%',
           'border-width': '4px',
           'border-style': 'solid',

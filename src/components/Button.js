@@ -22,7 +22,7 @@ export default (editor, {
           'padding', 'padding-top', 'padding-left', 'padding-right', 'padding-bottom',
           'border-radius', 'border-top-left-radius', 'border-top-right-radius', 'border-bottom-left-radius', 'border-bottom-right-radius',
           'border', 'border-width', 'border-style', 'border-color',],
-        style: {
+        'style-default': {
           'background-color': '#414141',
           'border-radius': '3px',
           'font-size': '13px',

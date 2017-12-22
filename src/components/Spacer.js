@@ -14,7 +14,7 @@ export default (editor, {
         'custom-name': 'Spacer',
         draggable: '[data-type=mj-column]',
         droppable: false,
-        style: { height: '20px' },
+        'style-default': { height: '20px' },
         stylable: ['height'],
         void: true,
       },

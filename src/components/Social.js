@@ -23,7 +23,7 @@ export default (editor, {
           'facebook-icon-color', 'twitter-icon-color', 'google-icon-color',
           'instagram-icon-color', 'linkedin-icon-color', 'pinterest-icon-color',
         ],
-        style: {
+        'style-default': {
           'align': 'center',
           'icon-size': '20px',
           'font-size': '13px',
@@ -43,37 +43,31 @@ export default (editor, {
             value: 'Share',
           },{
             name: 'facebook-href',
-            value: '[[SHORT_PERMALINK]]',
           },{
             name: 'twitter-content',
             value: 'Tweet',
           },{
             name: 'twitter-href',
-            value: '[[SHORT_PERMALINK]]',
           },{
             name: 'google-content',
             value: '+1',
           },{
             name: 'google-href',
-            value: '[[SHORT_PERMALINK]]',
           },{
             name: 'instagram-content',
             value: 'Share',
           },{
             name: 'instagram-href',
-            value: '[[SHORT_PERMALINK]]',
           },{
             name: 'linkedin-content',
             value: 'Share',
           },{
             name: 'linkedin-href',
-            value: '[[SHORT_PERMALINK]]',
           },{
             name: 'pinterest-content',
             value: 'Pin it',
           },{
             name: 'pinterest-href',
-            value: '[[SHORT_PERMALINK]]',
           },{
             type: 'select',
             label: 'Mode',
