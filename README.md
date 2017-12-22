@@ -91,10 +91,10 @@ Install it
 $ npm i
 ```
 
-The plugin relies on GrapesJS and MJML via `peerDependencies` so you have to install it manually
+The plugin relies on GrapesJS via `peerDependencies` so you have to install it manually
 
 ```sh
-$ npm i grapesjs mjml --no-save
+$ npm i grapesjs --no-save
 ```
 
 Start the dev server
@@ -103,7 +103,25 @@ Start the dev server
 $ npm start
 ```
 
+Alternatively, you can clone the grapesjs repository in a different directory, `npm link` it and use that as the grapesjs dependency. This lets you simultaneously run grapesjs-mjml and grapesjs from source.
 
+Install grapesjs and run the webpack watcher in it:
+```sh
+$ git clone https://github.com/artf/grapesjs
+$ cd grapesjs
+$ npm install
+$ npm link
+$ webpack --watch
+```
+
+Install grapesjs-mjml, link the grapesjs repo from above and start the dev server:
+
+```sh
+$ git clone https://github.com/artf/grapesjs-mjml
+$ npm install
+$ npm link grapesjs
+$ npm run
+```
 
 ## License
 
