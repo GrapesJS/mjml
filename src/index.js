@@ -84,6 +84,7 @@ export default grapesjs.plugins.add('gjs-mjml', (editor, opts = {}) => {
     dm.getAll().reset();
     dm.add('Desktop', '');
     dm.add('Mobile', '320px');
+    dm.add('Tablet', '768px');
   }
 
 });
