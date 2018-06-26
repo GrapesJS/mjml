@@ -9,6 +9,8 @@ export default (editor, { dc, defaultModel, defaultView }) => {
       defaults: {
         ...defaultModel.prototype.defaults,
         draggable: false,
+        copyable: false,
+        removable: false,
       },
     },{
       isComponent(el) {

@@ -10,6 +10,9 @@ export default (editor, { dc, defaultModel, defaultView }) => {
         ...defaultModel.prototype.defaults,
         droppable: '[data-type=mj-head], [data-type=mj-body]',
         draggable: false,
+        draggable: false,
+        copyable: false,
+        removable: false,
       },
     },{
       isComponent(el) {
