@@ -13,7 +13,7 @@ export default (editor, {
       defaults: {
         ...defaultModel.prototype.defaults,
         'custom-name': 'Section',
-        draggable: '[data-type=mj-container]',
+        draggable: '[data-type=mj-body]',
         droppable: '[data-type=mj-column]',
         'style-default': {
           'padding-top': '10px',
