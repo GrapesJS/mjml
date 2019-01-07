@@ -13,7 +13,7 @@ export default (editor, {
       defaults: {
         ...defaultModel.prototype.defaults,
         'custom-name': 'Section',
-        draggable: '[data-type=mj-container]',
+        draggable: '[data-type=mj-body]',
         droppable: '[data-type=mj-column]',
         'style-default': {
           'padding-top': '10px',
@@ -51,7 +51,6 @@ export default (editor, {
       getChildrenSelector() {
         return 'tbody > tr > td';
       },
-
       init() {
         coreMjmlView.init.call(this);
         this.listenTo(this.model.get('components'), 'add remove', this.render);

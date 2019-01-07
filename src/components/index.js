@@ -1,8 +1,7 @@
-import { mjml2html } from 'mjml';
+import mjml2html from 'mjml4-in-browser';
 import loadMjml from './mjml';
 import loadHead from './Head';
 import loadBody from './Body';
-import loadContainer from './Container';
 import loadSection from './Section';
 import loadColumn from './Column';
 import loadText from './Text';
@@ -265,7 +264,6 @@ export default (editor, opt = {}) => {
   loadMjml(editor, compOpts);
   loadHead(editor, compOpts);
   loadBody(editor, compOpts);
-  loadContainer(editor, compOpts);
   loadSection(editor, compOpts);
   loadColumn(editor, compOpts);
   loadButton(editor, compOpts);
