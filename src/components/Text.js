@@ -64,7 +64,7 @@ export default (editor, {
       },
 
       getChildrenSelector() {
-        return 'div';
+        return 'td > div';
       },
 
       /**

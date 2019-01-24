@@ -139,8 +139,8 @@ export default (editor, opt = {}) => {
 
     getMjmlTemplate() {
       return {
-        start: `<mjml><mj-body>`,
-        end: `</mj-body></mjml>`,
+        start: `<mjml>`,
+        end: `</mjml>`,
       };
     },
 

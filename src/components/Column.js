@@ -104,8 +104,8 @@ export default (editor, {
         let addColmn = Array(cols).fill('<mj-column></mj-column>').join('');
 
         return {
-          start: `<mjml><mj-body>`,
-          end: `${addColmn}</mj-body></mjml>`,
+          start: `<mjml><mj-body><mj-section>`,
+          end: `${addColmn}</mj-section/></mj-body></mjml>`,
         };
       },
 
@@ -114,7 +114,7 @@ export default (editor, {
       },
 
       getChildrenSelector() {
-        return 'table > tr > td, table'
+        return 'table'
       },
     }),
   });

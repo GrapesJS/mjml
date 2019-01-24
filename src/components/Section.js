@@ -43,13 +43,21 @@ export default (editor, {
 
       tagName: 'div',
 
+      getMjmlTemplate() {
+        return {
+          start: `<mjml><mj-body>`,
+          end: `</mj-body></mjml>`,
+        };
+      },
+
+
       attributes: {
         style: 'pointer-events: all;',
         'data-type': 'mj-section',
       },
 
       getChildrenSelector() {
-        return 'tbody > tr > td';
+        return 'table > tbody > tr > td';
       },
       init() {
         coreMjmlView.init.call(this);

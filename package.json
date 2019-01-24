@@ -33,7 +33,7 @@
     "grapesjs": "0.x"
   },
   "dependencies": {
-    "mjml": "^4.2.1",
+    "mjml": "^4.3.1",
     "mjml4-in-browser": "^1.0.1"
   },
   "devDependencies": {
