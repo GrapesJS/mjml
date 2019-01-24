@@ -15,6 +15,7 @@ export default (editor, { dc, defaultModel, defaultView, coreMjmlModel, coreMjml
 
       defaults: {
         ...defaultModel.prototype.defaults,
+        droppable,
         draggable: false,
         copyable: false,
         removable: false,

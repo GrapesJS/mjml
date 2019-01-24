@@ -50,7 +50,6 @@ export default (editor, {
         };
       },
 
-
       attributes: {
         style: 'pointer-events: all;',
         'data-type': 'mj-section',
@@ -59,6 +58,7 @@ export default (editor, {
       getChildrenSelector() {
         return 'table > tbody > tr > td';
       },
+
       init() {
         coreMjmlView.init.call(this);
         this.listenTo(this.model.get('components'), 'add remove', this.render);

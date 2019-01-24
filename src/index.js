@@ -31,10 +31,10 @@ export default grapesjs.plugins.add('gjs-mjml', (editor, opts = {}) => {
     overwriteExport: 1,
 
     // String before the MJML in export code
-    preMjml: '',
+    preMjml: '<mjml>',
 
     // String after the MJML in export code
-    postMjml: '',
+    postMjml: '</mjml>',
 
     // Export 'mjml', 'html' or both (leave empty) TODO
     exportOnly: '',

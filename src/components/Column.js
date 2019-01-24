@@ -110,7 +110,7 @@ export default (editor, {
       },
 
       getTemplateFromEl(sandboxEl) {
-        return sandboxEl.firstChild.querySelector('div');
+        return sandboxEl.firstChild.querySelector('div > table > tbody > tr > td > div');
       },
 
       getChildrenSelector() {
