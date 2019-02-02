@@ -6,13 +6,11 @@ export default (editor, {
   const type = 'mj-social';
 
   dc.addType(type, {
-
-
     model: defaultModel.extend({ ...coreMjmlModel,
 
       defaults: { ...defaultModel.prototype.defaults,
         'custom-name': 'Social',
-        draggable: '[data-type=mj-column]',
+        draggable: '[data-gjs-type=mj-column]',
         droppable: false,
         stylable: [
           'text-decoration', 'align', 'font-family', 'font-size', 'line-height',

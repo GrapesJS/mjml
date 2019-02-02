@@ -13,8 +13,8 @@ export default (editor, {
       defaults: {
         ...defaultModel.prototype.defaults,
         'custom-name': 'Section',
-        draggable: '[data-type=mj-container]',
-        droppable: '[data-type=mj-column]',
+        draggable: '[data-gjs-type=mj-container]',
+        droppable: '[data-gjs-type=mj-column]',
         'style-default': {
           'padding-top': '10px',
           'padding-bottom': '10px',
@@ -45,7 +45,7 @@ export default (editor, {
 
       attributes: {
         style: 'pointer-events: all;',
-        'data-type': 'mj-section',
+        'data-gjs-type': 'mj-section',
       },
 
       getChildrenSelector() {

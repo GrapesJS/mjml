@@ -8,7 +8,7 @@ export default (editor, { dc, defaultModel, defaultView }) => {
     model: defaultModel.extend({
       defaults: {
         ...defaultModel.prototype.defaults,
-        droppable: '[data-type=mj-head], [data-type=mj-body]',
+        droppable: '[data-gjs-type=mj-head], [data-gjs-type=mj-body]',
         draggable: false,
       },
     },{
