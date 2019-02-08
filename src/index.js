@@ -1,7 +1,4 @@
-import grapesjs from 'grapesjs';
-
-export default grapesjs.plugins.add('gjs-mjml', (editor, opts = {}) => {
-
+export default (editor, opts = {}) => {
   const opt = {
 
     categoryLabel: '',
@@ -86,4 +83,4 @@ export default grapesjs.plugins.add('gjs-mjml', (editor, opts = {}) => {
     dm.add('Mobile', '320px');
   }
 
-});
+};
