@@ -8,7 +8,7 @@ export default (editor, { dc, defaultModel, defaultView }) => {
     'mj-style',
     'mj-font',
     'mj-title',
-  ].map(tag => `[data-type=${tag}]`).join(', ');
+  ].map(tag => `[data-gjs-type=${tag}]`).join(', ');
 
   dc.addType(type, {
 

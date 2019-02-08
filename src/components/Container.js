@@ -7,7 +7,7 @@ export default (editor, {
   const droppable = [
     'mj-section',
     'mj-wrapper',
-  ].map(tag => `[data-type=${tag}]`).join(', ');
+  ].map(tag => `[data-gjs-type=${tag}]`).join(', ');
 
   dc.addType(type, {
 
@@ -45,7 +45,7 @@ export default (editor, {
 
       attributes: {
         style: 'width: 100%; min-height: 100%',
-        'data-type': 'mj-container',
+        'data-gjs-type': 'mj-container',
       },
 
       getChildrenSelector() {
