@@ -45,7 +45,6 @@ export default (editor, {
 
       attributes: {
         style: 'pointer-events: all;',
-        'data-gjs-type': 'mj-section',
       },
 
       getChildrenSelector() {

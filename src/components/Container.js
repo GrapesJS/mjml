@@ -45,7 +45,6 @@ export default (editor, {
 
       attributes: {
         style: 'width: 100%; min-height: 100%',
-        'data-gjs-type': 'mj-container',
       },
 
       getChildrenSelector() {

@@ -36,7 +36,6 @@ export default (editor, {
       tagName: 'div',
 
       attributes: {
-        'data-gjs-type': 'mj-column',
         style: 'pointer-events: all;' +
           (clmPadd ? `padding: ${clmPadd};` : ''),
       },
