@@ -1,4 +1,4 @@
-import { mjml2html } from 'mjml';
+import { mjml2html } from 'mjml4-in-browser';
 
 export default (editor, opt = {}) => {
   let config = editor.getConfig();

@@ -81,6 +81,7 @@ export default (editor, opts = {}) => {
     dm.getAll().reset();
     dm.add('Desktop', '');
     dm.add('Mobile', '320px');
+    dm.add('Tablet', '820px');
   }
 
 };
