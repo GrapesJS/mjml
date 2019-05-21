@@ -6,14 +6,12 @@ export default (editor, {
   const type = 'mj-social';
 
   dc.addType(type, {
-
-
     model: defaultModel.extend({ ...coreMjmlModel,
 
       defaults: { ...defaultModel.prototype.defaults,
         'custom-name': 'Social',
-        draggable: '[data-type=mj-column]',
-        droppable: false,
+        draggable: '[data-gjs-type=mj-column]',
+        droppable: '[data-gjs-type=mj-social-element]',
         stylable: [
           'text-decoration', 'align', 'font-family', 'font-size', 'line-height',
           'padding', 'padding-top', 'padding-left', 'padding-right', 'padding-bottom',
@@ -36,48 +34,48 @@ export default (editor, {
           'pinterest-icon-color': '#bd081c',
           'display': 'facebook twitter google'
         },
-        traits: [
-          'display', // facebook twitter google
-          {
-            name: 'facebook-content',
-            value: 'Share',
-          },{
-            name: 'facebook-href',
-          },{
-            name: 'twitter-content',
-            value: 'Tweet',
-          },{
-            name: 'twitter-href',
-          },{
-            name: 'google-content',
-            value: '+1',
-          },{
-            name: 'google-href',
-          },{
-            name: 'instagram-content',
-            value: 'Share',
-          },{
-            name: 'instagram-href',
-          },{
-            name: 'linkedin-content',
-            value: 'Share',
-          },{
-            name: 'linkedin-href',
-          },{
-            name: 'pinterest-content',
-            value: 'Pin it',
-          },{
-            name: 'pinterest-href',
-          },{
-            type: 'select',
-            label: 'Mode',
-            name: 'mode',
-            options: [
-              {value: 'horizontal', name: 'Horizontal'},
-              {value: 'vertical', name: 'Vertical'},
-            ]
-          }
-        ],
+        // traits: [
+        //   'display', // facebook twitter google
+        //   {
+        //     name: 'facebook-content',
+        //     value: 'Share',
+        //   },{
+        //     name: 'facebook-href',
+        //   },{
+        //     name: 'twitter-content',
+        //     value: 'Tweet',
+        //   },{
+        //     name: 'twitter-href',
+        //   },{
+        //     name: 'google-content',
+        //     value: '+1',
+        //   },{
+        //     name: 'google-href',
+        //   },{
+        //     name: 'instagram-content',
+        //     value: 'Share',
+        //   },{
+        //     name: 'instagram-href',
+        //   },{
+        //     name: 'linkedin-content',
+        //     value: 'Share',
+        //   },{
+        //     name: 'linkedin-href',
+        //   },{
+        //     name: 'pinterest-content',
+        //     value: 'Pin it',
+        //   },{
+        //     name: 'pinterest-href',
+        //   },{
+        //     type: 'select',
+        //     label: 'Mode',
+        //     name: 'mode',
+        //     options: [
+        //       {value: 'horizontal', name: 'Horizontal'},
+        //       {value: 'vertical', name: 'Vertical'},
+        //     ]
+        //   }
+        // ],
         void: true,
       },
     },{

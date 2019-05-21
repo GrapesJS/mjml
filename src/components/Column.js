@@ -9,14 +9,12 @@ export default (editor, {
   const clmPadd = opt.columnsPadding;
 
   dc.addType(type, {
-
-
     model: defaultModel.extend({ ...coreMjmlModel,
 
       defaults: {
         ...defaultModel.prototype.defaults,
         'custom-name': 'Column',
-        draggable: '[data-type=mj-section]',
+        draggable: '[data-gjs-type=mj-section]',
         stylable: [
           'background-color', 'vertical-align', 'width',
           'border-radius', 'border-top-left-radius', 'border-top-right-radius', 'border-bottom-left-radius', 'border-bottom-right-radius',
@@ -38,7 +36,6 @@ export default (editor, {
       tagName: 'div',
 
       attributes: {
-        'data-type': 'mj-column',
         style: 'pointer-events: all;' +
           (clmPadd ? `padding: ${clmPadd};` : ''),
       },

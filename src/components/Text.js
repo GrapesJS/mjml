@@ -12,7 +12,7 @@ export default (editor, {
 
       defaults: { ...textModel.prototype.defaults,
         'custom-name': 'Text',
-        draggable: '[data-type=mj-column]',
+        draggable: '[data-gjs-type=mj-column]',
         highlightable: false,
         stylable: [
           'height', 'font-style', 'font-size', 'font-weight', 'font-family', 'color',
@@ -77,8 +77,8 @@ export default (editor, {
       /**
        * Need to make text selectable.
        */
-      enableEditing() {
-        textView.prototype.enableEditing.apply(this, arguments);
+      onActive() {
+        textView.prototype.onActive.apply(this, arguments);
         this.getChildrenContainer().style.pointerEvents = 'all';
       },
 

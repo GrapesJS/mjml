@@ -14,7 +14,7 @@ export default (editor, {
         'custom-name': 'Image',
         resizable: false,
         highlightable: false,
-        draggable: '[data-type=mj-column]',
+        draggable: '[data-gjs-type=mj-column],[data-gjs-type=mj-section]',
         stylable: [
           'width', 'height',
           'padding', 'padding-top', 'padding-left', 'padding-right', 'padding-bottom',
