@@ -28,10 +28,10 @@ export default (editor, opts = {}) => {
     overwriteExport: 1,
 
     // String before the MJML in export code
-    preMjml: '<mjml>',
+    preMjml: '',
 
     // String after the MJML in export code
-    postMjml: '</mjml>',
+    postMjml: '',
 
     // Export 'mjml', 'html' or both (leave empty) TODO
     exportOnly: '',
