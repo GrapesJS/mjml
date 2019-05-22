@@ -36,7 +36,6 @@ export default (editor, {
             ]
           }
         ],
-        void: true,
       },
     },{
 
@@ -69,7 +68,7 @@ export default (editor, {
 
       getChildrenSelector() {
         return 'td';
-      }
+      },
     }),
   });
 }

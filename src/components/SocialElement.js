@@ -11,7 +11,6 @@ export default (editor, {
       defaults: { ...defaultModel.prototype.defaults,
         'custom-name': 'SocialElement',
         draggable: '[data-gjs-type=mj-social]',
-        // droppable: '[data-gjs-type=mj-social-element]',
         stylable: [
           'text-decoration', 'align', 'font-family', 'font-size', 'line-height',
           'padding', 'padding-top', 'padding-left', 'padding-right', 'padding-bottom',
@@ -30,7 +29,6 @@ export default (editor, {
           {name: 'src'},
           {name: 'href'},
         ],
-        void: true,
       },
     },{
 

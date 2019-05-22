@@ -69,7 +69,7 @@ export default (editor, opt = {}) => {
 
   bm.add('mj-social-group', {
     label: 'Group Social',
-    content: `<mj-social font-size="12px" icon-size="24px" border-radius="50%" mode="horizontal">
+    content: `<mj-social font-size="12px" icon-size="24px" border-radius="12px" mode="horizontal">
         <mj-social-element src="https://cdn-images.mailchimp.com/icons/social-block-v2/dark-facebook-48.png" href="https://www.facebook.com/tutor.platform.global/?ref=br_rs"></mj-social-element>
         <mj-social-element src="https://cdn-images.mailchimp.com/icons/social-block-v2/dark-link-48.png" href="https://www.tutorbot.io/"></mj-social-element>
         <mj-social-element src="https://cdn-images.mailchimp.com/icons/social-block-v2/dark-linkedin-48.png" href="https://www.linkedin.com/company/tutor-platform/"></mj-social-element>

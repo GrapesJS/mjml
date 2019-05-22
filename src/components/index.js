@@ -115,6 +115,8 @@ export default (editor, opt = {}) => {
       if(!sTag)
         code += `</${tag}>`;
 
+
+      console.log(code);
       return code;
     },
 
