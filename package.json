@@ -1,6 +1,6 @@
 {
   "name": "grapesjs-mjml",
-  "version": "0.0.28",
+  "version": "0.0.32",
   "description": "MJML Componenets integration in GrapesJS",
   "main": "dist/grapesjs-mjml.min.js",
   "scripts": {
@@ -33,8 +33,8 @@
     "grapesjs": "0.x"
   },
   "dependencies": {
-    "mjml": "^4.3.1",
-    "mjml4-in-browser": "^1.0.1"
+    "mjml": "^4.4.0-beta.1",
+    "mjml4-in-browser": "^1.1.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",

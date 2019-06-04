@@ -8,6 +8,7 @@ import loadText from './Text';
 import loadButton from './Button';
 import loadImage from './Image';
 import loadSocial from './Social';
+import loadSocialElement from './SocialElement';
 import loadDivider from './Divider';
 import loadSpacer from './Spacer';
 
@@ -270,6 +271,7 @@ export default (editor, opt = {}) => {
   loadText(editor, compOpts);
   loadImage(editor, compOpts);
   loadSocial(editor, compOpts);
+  loadSocialElement(editor, compOpts);
   loadDivider(editor, compOpts);
   loadSpacer(editor, compOpts);
 }

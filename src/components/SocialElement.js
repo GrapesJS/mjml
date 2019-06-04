@@ -3,15 +3,14 @@
 export default (editor, {
   dc, opt, defaultModel, defaultView, coreMjmlModel, coreMjmlView
 }) => {
-  const type = 'mj-social';
+  const type = 'mj-social-element';
 
   dc.addType(type, {
     model: defaultModel.extend({ ...coreMjmlModel,
 
       defaults: { ...defaultModel.prototype.defaults,
-        'custom-name': 'Social',
-        draggable: '[data-gjs-type=mj-column]',
-        droppable: '[data-gjs-type=mj-social-element]',
+        'custom-name': 'SocialElement',
+        draggable: '[data-gjs-type=mj-social]',
         stylable: [
           'text-decoration', 'align', 'font-family', 'font-size', 'line-height',
           'padding', 'padding-top', 'padding-left', 'padding-right', 'padding-bottom',
@@ -26,15 +25,9 @@ export default (editor, {
           'line-height': '22px',
         },
         traits: [
-          {
-            type: 'select',
-            label: 'Mode',
-            name: 'mode',
-            options: [
-              {value: 'horizontal', name: 'Horizontal'},
-              {value: 'vertical', name: 'Vertical'},
-            ]
-          }
+          {name: 'name'},
+          {name: 'src'},
+          {name: 'href'},
         ],
       },
     },{
@@ -49,26 +42,26 @@ export default (editor, {
 
     view: defaultView.extend({ ...coreMjmlView,
 
-      tagName: 'tr',
+      tagName: 'table',
 
       attributes: {
-        style: 'pointer-events: all; display: table; width: 100%',
+        style: 'pointer-events: all; float: none; display: inline-table;',
       },
 
       getMjmlTemplate() {
         return {
-          start: `<mjml><mj-body><mj-column>`,
-          end: `</mj-column></mj-body></mjml>`,
+          start: `<mjml><mj-body><mj-column><mj-social>`,
+          end: `</mj-social></mj-column></mj-body></mjml`,
         };
       },
 
       getTemplateFromEl(sandboxEl) {
-        return sandboxEl.querySelector('tr').innerHTML;
+        return sandboxEl.querySelector('tr > td > table').innerHTML;
       },
 
       getChildrenSelector() {
-        return 'td';
-      },
+        return 'img';
+      }
     }),
   });
 }

@@ -89,7 +89,7 @@ export default (editor, opt = {}) => {
             property: 'border-detached',
             name: 'Border detached',
             type: 'composite',
-            properties: ['border-width'],
+            // properties: ['border-width'],
             detached: true,
             properties: [
               { name: 'Width', property: 'border-width', type:'integer'},

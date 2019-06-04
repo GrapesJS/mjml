@@ -12,7 +12,7 @@ export default (editor, {
 
       defaults: { ...defaultModel.prototype.defaults,
         'custom-name': 'Spacer',
-        draggable: '[data-type=mj-column]',
+        draggable: '[data-gjs-type=mj-column]',
         droppable: false,
         'style-default': { height: '20px' },
         stylable: ['height'],

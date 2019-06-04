@@ -13,8 +13,8 @@ export default (editor, {
       defaults: {
         ...defaultModel.prototype.defaults,
         'custom-name': 'Section',
-        draggable: '[data-type=mj-body]',
-        droppable: '[data-type=mj-column]',
+        draggable: '[data-gjs-type=mj-body]',
+        droppable: '[data-gjs-type=mj-column]',
         'style-default': {
           'padding-top': '10px',
           'padding-bottom': '10px',

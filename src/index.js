@@ -1,7 +1,4 @@
-import grapesjs from 'grapesjs';
-
-export default grapesjs.plugins.add('gjs-mjml', (editor, opts = {}) => {
-
+export default (editor, opts = {}) => {
   const opt = {
 
     categoryLabel: '',
@@ -31,10 +28,10 @@ export default grapesjs.plugins.add('gjs-mjml', (editor, opts = {}) => {
     overwriteExport: 1,
 
     // String before the MJML in export code
-    preMjml: '<mjml>',
+    preMjml: '',
 
     // String after the MJML in export code
-    postMjml: '</mjml>',
+    postMjml: '',
 
     // Export 'mjml', 'html' or both (leave empty) TODO
     exportOnly: '',
@@ -87,4 +84,4 @@ export default grapesjs.plugins.add('gjs-mjml', (editor, opts = {}) => {
     dm.add('Tablet', '768px');
   }
 
-});
+};
