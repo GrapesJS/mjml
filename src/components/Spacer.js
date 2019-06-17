@@ -1,40 +1,60 @@
-// Specs: https://mjml.io/documentation/#mjml-spacer
+// Specs: https://mjml.io/documentation/#mjml-social
 
 export default (editor, {
-  dc, opt, defaultModel, defaultView, coreMjmlModel, coreMjmlView
+    dc, opt, defaultModel, defaultView, coreMjmlModel, coreMjmlView
 }) => {
-  const type = 'mj-spacer';
+    const type = 'mj-spacer-element';
 
-  dc.addType(type, {
+    dc.addType(type, {
+        model: defaultModel.extend({
+            ...coreMjmlModel,
+
+            defaults: {
+                ...defaultModel.prototype.defaults,
+                'custom-name': 'SpacerElement',
+                draggable: '[data-gjs-type=mj-spacer]',
+                stylable: [
+
+                ],
+                'style-default': {
+
+                },
+                traits: [
+                ],
+            },
+        }, {
+
+            isComponent(el) {
+                if (el.tagName == type.toUpperCase()) {
+                    return {type};
+                }
+            },
+        }),
 
 
-    model: defaultModel.extend({ ...coreMjmlModel,
+        view: defaultView.extend({
+            ...coreMjmlView,
 
-      defaults: { ...defaultModel.prototype.defaults,
-        'custom-name': 'Spacer',
-        draggable: '[data-gjs-type=mj-column]',
-        droppable: false,
-        'style-default': { height: '20px' },
-        stylable: ['height'],
-        void: true,
-      },
-    },{
+            tagName: 'table',
 
-      isComponent(el) {
-        if (el.tagName == type.toUpperCase()) {
-          return { type };
-        }
-      },
-    }),
+            attributes: {
+                style: 'pointer-events: all; display: table; width: 100%;',
+            },
 
+            getMjmlTemplate() {
+                return {
+                    start: `<mj-spacer>`,
+                    end: `</mj-spacer>`,
+                };
+            },
 
-    view: defaultView.extend({ ...coreMjmlView,
+            getTemplateFromEl(sandboxEl) {
+                return sandboxEl.querySelector('tr > td > table').innerHTML;
+            },
 
-      tagName: 'tr',
-
-      attributes: {
-        style: 'pointer-events: all; display: table; width: 100%;',
-      },
-    }),
-  });
+            getChildrenSelector() {
+                return '';
+            }
+        }),
+    });
 }
