@@ -1,6 +1,6 @@
 // Specs: https://mjml.io/documentation/#mjml-column
 
-import { mjml2html } from 'mjml';
+import mjml2html from 'mjml4-in-browser';
 
 export default (editor, {
   dc, opt, defaultModel, defaultView, coreMjmlModel, coreMjmlView, sandboxEl
@@ -86,8 +86,12 @@ export default (editor, {
         editor.addComponents(`<style>${mjmlResult.style}</style>`);
         this.getChildrenContainer().innerHTML = this.model.get('content');
         this.renderChildren();
-        this.el.style = this.el.getAttribute('style') + this.attributes.style;
+        this.renderStyle();
         return this;
+      },
+
+      renderStyle() {
+        this.el.style = this.el.getAttribute('style') + this.attributes.style;
       },
 
       getMjmlTemplate() {
@@ -97,17 +101,17 @@ export default (editor, {
         let addColmn = Array(cols).fill('<mj-column></mj-column>').join('');
 
         return {
-          start: `<mjml><mj-body><mj-container>`,
-          end: `${addColmn}</mj-container></mj-body></mjml>`,
+          start: `<mjml><mj-body><mj-section>`,
+          end: `${addColmn}</mj-section/></mj-body></mjml>`,
         };
       },
 
       getTemplateFromEl(sandboxEl) {
-        return sandboxEl.firstChild.querySelector('div');
+        return sandboxEl.firstChild.querySelector('div > table > tbody > tr > td > div');
       },
 
       getChildrenSelector() {
-        return 'tbody';
+        return 'table'
       },
     }),
   });

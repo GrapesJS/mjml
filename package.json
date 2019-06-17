@@ -1,6 +1,6 @@
 {
   "name": "grapesjs-mjml",
-  "version": "0.0.31",
+  "version": "0.0.32",
   "description": "MJML Componenets integration in GrapesJS",
   "main": "dist/grapesjs-mjml.min.js",
   "scripts": {
@@ -37,12 +37,14 @@
     "mjml4-in-browser": "^1.1.1"
   },
   "devDependencies": {
-    "babel-core": "^6.26.0",
+    "babel-core": "^6.26.3",
     "babel-loader": "^7.1.2",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
+    "babel-preset-env": "^1.7.0",
     "eslint": "^4.1.1",
     "html-webpack-plugin": "^2.30.1",
+    "node-sass": "^4.11.0",
+    "install-peers": "^1.0.3",
     "node-sass": "^4.11.0",
     "webpack": "^3.8.1",
     "webpack-dev-server": "^2.9.4"

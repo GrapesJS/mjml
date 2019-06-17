@@ -1,14 +1,14 @@
-import { mjml2html } from 'mjml4-in-browser';
+import mjml2html from 'mjml4-in-browser';
 import loadMjml from './mjml';
 import loadHead from './Head';
 import loadBody from './Body';
-import loadContainer from './Container';
 import loadSection from './Section';
 import loadColumn from './Column';
 import loadText from './Text';
 import loadButton from './Button';
 import loadImage from './Image';
 import loadSocial from './Social';
+import loadSocialElement from './SocialElement';
 import loadDivider from './Divider';
 import loadSpacer from './Spacer';
 
@@ -140,8 +140,8 @@ export default (editor, opt = {}) => {
 
     getMjmlTemplate() {
       return {
-        start: `<mjml><mj-body>`,
-        end: `</mj-body></mjml>`,
+        start: `<mjml>`,
+        end: `</mjml>`,
       };
     },
 
@@ -265,13 +265,13 @@ export default (editor, opt = {}) => {
   loadMjml(editor, compOpts);
   loadHead(editor, compOpts);
   loadBody(editor, compOpts);
-  loadContainer(editor, compOpts);
   loadSection(editor, compOpts);
   loadColumn(editor, compOpts);
   loadButton(editor, compOpts);
   loadText(editor, compOpts);
   loadImage(editor, compOpts);
   loadSocial(editor, compOpts);
+  loadSocialElement(editor, compOpts);
   loadDivider(editor, compOpts);
   loadSpacer(editor, compOpts);
 }
