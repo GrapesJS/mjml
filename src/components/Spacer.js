@@ -16,7 +16,7 @@ export default (editor, {
                 draggable: '[data-gjs-type=mj-column]',
                 droppable: false,
                 'style-default': {height: '20px'},
-                stylable: ['height'],
+                stylable: ['height', 'container-background-color'],
                 void: true,
             },
         }, {
