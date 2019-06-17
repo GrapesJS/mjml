@@ -81,7 +81,8 @@ export default (editor, opt = {}) => {
   bm.add('mj-spacer', {
     label: 'Spacer',
     content: '<mj-spacer/>',
-    attributes: { class: 'fa fa-arrows-v' },
+    attributes: { class: 'fa fa-arrows-v'},
     ...allBlocks,
   });
+
 }
