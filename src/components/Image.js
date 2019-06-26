@@ -37,7 +37,7 @@ export default (editor, {
         }, {
 
             isComponent(el) {
-                if (el.tagName == type.toUpperCase()) {
+                if (el.tagName === type.toUpperCase()) {
                     return {type};
                 }
             },

@@ -6,7 +6,7 @@ export default (editor, opt = {}) => {
     let container = document.createElement('div');
     container.style = 'display: flex; justify-content: space-between;';
     let pfx = config.stylePrefix || '';
-    var cmdm = editor.Commands;
+    const cmdm = editor.Commands;
 
     // Init code viewer
     codeViewer.set({

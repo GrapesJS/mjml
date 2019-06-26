@@ -1,4 +1,3 @@
-/* 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const pkg = require('./package.json');
 const webpack = require('webpack');
@@ -21,7 +20,6 @@ module.exports = (env = {}) => {
   }
 
   return {
-    mode: "production",	
     entry: './src',
     output: {
         filename: `./dist/${name}.min.js`,
@@ -39,17 +37,17 @@ module.exports = (env = {}) => {
     plugins: plugins,
   };
 }
-*/
 
-const path = require('path');
 
-module.exports = {
-  entry: './src',
-  node: {
-    fs: "empty"
- },
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'
-  }
-};
+// const path = require('path');
+//
+// module.exports = {
+//   entry: './src',
+//   node: {
+//     fs: "empty"
+//  },
+//   output: {
+//     path: path.resolve(__dirname, 'dist'),
+//     filename: 'bundle.js'
+//   }
+// };

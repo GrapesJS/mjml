@@ -7,7 +7,7 @@ export default (editor, opt = {}) => {
 
   const allBlocks = {
     category: opt.categoryLabel,
-  }
+  };
 
   bm.add('mj-1-column', {
     label: '1 Column',
