@@ -35,7 +35,7 @@ export default (editor, {
             tagName: 'tr',
 
             attributes: {
-                style: 'pointer-events: all; display: table; width: 100%;',
+                style: 'pointer-events: all; display: table; width: 100%;user-select: none;',
             },
 
             getMjmlTemplate() {
@@ -51,7 +51,12 @@ export default (editor, {
 
             getChildrenSelector() {
                 return 'td';
+            },
+
+            renderChildren() {
+                coreMjmlView.renderChildren.call(this);
             }
+
         }),
     });
 }
