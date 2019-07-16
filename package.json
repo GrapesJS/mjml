@@ -1,6 +1,6 @@
 {
   "name": "grapesjs-mjml",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "MJML Componenets integration in GrapesJS",
   "main": "dist/grapesjs-mjml.min.js",
   "scripts": {
@@ -30,7 +30,7 @@
   "author": "Artur Arseniev",
   "license": "BSD-3-Clause",
   "peerDependencies": {
-    "grapesjs": "0.x"
+    "grapesjs": "^0.x"
   },
   "dependencies": {
     "mjml": "^4.3.1",
