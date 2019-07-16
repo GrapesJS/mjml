@@ -5,7 +5,6 @@ export default (editor, {dc, defaultModel, defaultView, coreMjmlModel, coreMjmlV
 
     const droppable = [
         'mj-section',
-        'mj-wrapper',
     ].map(tag => `[data-gjs-type=${tag}]`).join(', ');
 
     dc.addType(type, {
