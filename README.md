@@ -1,6 +1,6 @@
 # GrapesJS MJML
 
-This plugin enables the usage of [MJML](https://mjml.io/) components inside the GrapesJS environment. MJML components are rendered in real-time using the official compiler, therefore the result is, almost, the same as using the [MJML Live Editor](https://mjml.io/try-it-live).
+This plugin enables the usage of [MJML](https://mjml.io/) components inside the GrapesJS environment. MJML components are rendered in real-time using a third party compiler ([mjml4-in-browser](https://github.com/bures/mjml4-in-browser)), therefore the result is, almost, the same as using the [MJML Live Editor](https://mjml.io/try-it-live).
 
 
 [Demo](http://grapesjs.com/demo-mjml.html)
@@ -8,7 +8,6 @@ This plugin enables the usage of [MJML](https://mjml.io/) components inside the 
 <br/>
 
 Supported components:
-`mj-container`
 `mj-section`
 `mj-column`
 `mj-text`
