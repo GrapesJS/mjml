@@ -20,19 +20,19 @@ export default (editor, opt = {}) => {
         command: 'mjml-import',
     });
 
-    // let optPanel = pnm.getPanel('options');
-    // if (optPanel) {
-    //     // Fix tooltip position
-    //     let cmdBtns = optPanel.get('buttons');
-    //     cmdBtns.each((btn) => {
-    //         const attrs = btn.get('attributes');
-    //         attrs[tltPosAttr] = 'bottom';
-    //         btn.set('attributes', attrs);
-    //     });
-    //     // Remove preview
-    //     let prvBtn = pnm.addButton('options', 'preview');
-    //     prvBtn && cmdBtns.remove(prvBtn);
-    // }
+    let optPanel = pnm.getPanel('options');
+    if (optPanel) {
+        // Fix tooltip position
+        let cmdBtns = optPanel.get('buttons');
+        cmdBtns.each((btn) => {
+            const attrs = btn.get('attributes');
+            attrs[tltPosAttr] = 'bottom';
+            btn.set('attributes', attrs);
+        });
+        // Remove preview
+        let prvBtn = pnm.addButton('options', 'preview');
+        prvBtn && cmdBtns.remove(prvBtn);
+    }
 
     // Clean commands panel
     let cmdPanel = pnm.getPanel('options');
@@ -62,21 +62,15 @@ export default (editor, opt = {}) => {
         id: 'deviceDesktop',
         command: 'set-device-desktop',
         className: 'fa fa-desktop',
-        attributes: {[tltAttr]: opt.cmdBtnDesktopLabel},
-        active: 1,
     }, {
         id: 'deviceTablet',
         command: 'set-device-tablet',
         className: 'fa fa-tablet',
-        attributes: {[tltAttr]: opt.cmdBtnTabletLabel},
     }, {
         id: 'deviceMobile',
         command: 'set-device-mobile',
         className: 'fa fa-mobile',
-        attributes: {[tltAttr]: opt.cmdBtnMobileLabel},
     }]);
     updateTooltip(deviceBtns);
-    //let viewPanel = pnm.getPanel('views');
-    //viewPanel && updateTooltip(viewPanel.get('buttons'));
 
 }
