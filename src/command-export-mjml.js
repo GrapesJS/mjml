@@ -3,6 +3,7 @@ import { mjml2html } from 'mjml';
 export default (editor, opt = {}) => {
   let config = editor.getConfig();
   let codeViewer = editor.CodeManager.getViewer('CodeMirror').clone();
+  let btnEditMjml = document.createElement('button');
   let container = document.createElement('div');
   container.style = 'display: flex; justify-content: space-between;';
   let pfx = config.stylePrefix || '';
@@ -25,6 +26,13 @@ export default (editor, opt = {}) => {
       return getMjml();
     }
   });
+
+  // Init edit MJML button
+  btnEditMjml.innerHTML = opt.modalBtnEditMjml;
+  btnEditMjml.className = pfx + 'btn-prim ' + pfx + 'btn-import';
+  btnEditMjml.onclick = () => {
+    console.log("Button event WORKS !!!!!!");
+  }
 
   let mjmlCode;
   let htmlCode;
@@ -63,6 +71,7 @@ export default (editor, opt = {}) => {
         let codeViewer = this.buildEditor('MJML');
         mjmlCode = codeViewer.codeEditor;
         container.appendChild(codeViewer.el);
+        container.appendChild(btnEditMjml);
       }
       if (!htmlCode) {
         let codeViewer = this.buildEditor('HTML');

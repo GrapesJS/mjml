@@ -15,6 +15,9 @@ export default (editor, opts = {}) => {
     // Test for the import button
     modalBtnImport: 'Import',
 
+    // Edit MJML button
+    modalBtnEditMjml: 'Edit MJML',
+
     // Description for the import modal
     modalLabelImport: '',
 
