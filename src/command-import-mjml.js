@@ -50,6 +50,8 @@ export default (editor, opt = {}) => {
       modal.setContent('');
       modal.setContent(container);
       codeViewer.setContent(opt.importPlaceholder);
+      // Empty placeholder of import after using its content
+      opt.importPlaceholder = "";
       modal.open();
       viewer.refresh();
       sender.set && sender.set('active', 0);
