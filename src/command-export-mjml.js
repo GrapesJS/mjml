@@ -31,7 +31,8 @@ export default (editor, opt = {}) => {
   btnEditMjml.innerHTML = opt.modalBtnEditMjml;
   btnEditMjml.className = pfx + 'btn-prim ' + pfx + 'btn-import';
   btnEditMjml.onclick = () => {
-    console.log("Button event WORKS !!!!!!");
+    console.log(editor.getHtml());
+    cmdm.run('mjml-import');
   }
 
 
