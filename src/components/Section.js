@@ -32,12 +32,12 @@ export default (editor, {
             },
         }, {
 
-            isComponent(el) {
-                if (el.tagName === type.toUpperCase()) {
-                    return {type};
-                }
-            },
-        }),
+                isComponent(el) {
+                    if (el.tagName === type.toUpperCase()) {
+                        return { type };
+                    }
+                },
+            }),
 
 
         view: defaultView.extend({
@@ -46,10 +46,19 @@ export default (editor, {
             tagName: 'div',
 
             getMjmlTemplate() {
-                return {
-                    start: `<mjml><mj-body>`,
-                    end: `</mj-body></mjml>`,
-                };
+                let parentView = this.model.parent().view;
+                if (parentView.getInnerMjmlTemplate) {
+                    let mjmlBody = coreMjmlView.getInnerMjmlTemplate.call(parentView);
+                    return {
+                        start: `<mjml>${mjmlBody.start}`,
+                        end: `${mjmlBody.end}</mjml>`,
+                    };
+                } else {
+                    return {
+                        start: `<mjml><mj-body>`,
+                        end: `</mj-body></mjml>`,
+                    };
+                }
             },
 
             attributes: {
