@@ -21,7 +21,7 @@ export default (editor, { dc, defaultModel, defaultView, coreMjmlModel, coreMjml
                 'style-default': { width: '600px' },
                 stylable: [
                     // Currently the UX sucks too much with the heavy rendering approach
-                    // 'width',     // TODO: Please fix me
+                    'width',
                     'background-color'
                 ],
             },
