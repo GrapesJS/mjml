@@ -24,12 +24,12 @@ export default (editor, {
             },
         }, {
 
-            isComponent(el) {
-                if (el.tagName === type.toUpperCase()) {
-                    return {type};
-                }
-            },
-        }),
+                isComponent(el) {
+                    if (el.tagName === type.toUpperCase()) {
+                        return { type };
+                    }
+                },
+            }),
 
 
         view: defaultView.extend({
@@ -104,7 +104,7 @@ export default (editor, {
 
                 return {
                     start: `<mjml><mj-body><mj-section>`,
-                    end: `${addColmn}</mj-section/></mj-body></mjml>`,
+                    end: `${addColmn}</mj-section></mj-body></mjml>`,
                 };
             },
 

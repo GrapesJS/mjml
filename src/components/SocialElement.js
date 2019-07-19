@@ -27,19 +27,42 @@ export default (editor, {
                     'line-height': '22px',
                 },
                 traits: [
-                    {name: 'name'},
-                    {name: 'src'},
-                    {name: 'href'},
+                    {
+                        type: 'select',
+                        label: 'Icon',
+                        name: 'name',
+                        options: [
+                            { value: '', name: 'Custom' },
+                            { value: 'facebook', name: 'Facebook' },
+                            { value: 'twitter', name: 'Twitter' },
+                            { value: 'google', name: 'Google' },
+                            { value: 'instagram', name: 'Instagram' },
+                            { value: 'web', name: 'Web' },
+                            { value: 'youtube', name: 'Youtube' },
+                            { value: 'pinterest', name: 'Pinterest' },
+                            { value: 'linkedin', name: 'Linkedin' },
+                            { value: 'snapchat', name: 'Snapchat' },
+                            { value: 'vimeo', name: 'Vimeo' },
+                            { value: 'tumblr', name: 'Tumblr' },
+                            { value: 'github', name: 'Github' },
+                            { value: 'soundcloud', name: 'SoundCloud' },
+                            { value: 'medium', name: 'Medium' },
+                            { value: 'dribbble', name: 'Dribbble' },
+                            { value: 'xing', name: 'Xing' },
+                        ]
+                    },
+                    { name: 'src' },
+                    { name: 'href' },
                 ],
             },
         }, {
 
-            isComponent(el) {
-                if (el.tagName === type.toUpperCase()) {
-                    return {type};
-                }
-            },
-        }),
+                isComponent(el) {
+                    if (el.tagName === type.toUpperCase()) {
+                        return { type };
+                    }
+                },
+            }),
 
 
         view: defaultView.extend({
