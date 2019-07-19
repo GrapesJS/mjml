@@ -79,6 +79,13 @@ export default (editor, opt = {}) => {
   });
 
   bm.add('mj-spacer', {
+    label: 'Social Element',
+    content: '<mj-social-element name="facebook" />',
+    attributes: { class: 'fa fa-share-alt' },
+    ...allBlocks,
+  });
+
+  bm.add('mj-spacer', {
     label: 'Spacer',
     content: '<mj-spacer/>',
     attributes: { class: 'fa fa-arrows-v' },
