@@ -34,8 +34,8 @@ export default (editor, opt = {}) => {
     // MJML Core model
     let coreMjmlModel = {
         init() {
-            const attrs = {...this.get('attributes')};
-            const style = {...this.get('style')};
+            const attrs = { ...this.get('attributes') };
+            const style = { ...this.get('style') };
 
             for (let prop in style) {
                 if (!(prop in attrs)) {
@@ -50,7 +50,7 @@ export default (editor, opt = {}) => {
 
 
         handleStyleChange() {
-            const style = {...this.get('attributes'), ...this.get('style')};
+            const style = { ...this.get('attributes'), ...this.get('style') };
             this.set('attributes', style);
         },
 
@@ -70,8 +70,8 @@ export default (editor, opt = {}) => {
          * @return {Object}
          */
         getAttrToHTML() {
-            const attr = {...this.get('attributes')};
-            const style = {...this.get('style-default')};
+            const attr = { ...this.get('attributes') };
+            const style = { ...this.get('style-default') };
             delete attr.style;
 
             for (let prop in attr) {
@@ -154,7 +154,7 @@ export default (editor, opt = {}) => {
             }
 
             return {
-                start: `<${tagName} ${strAttr}>`,
+                start: `<${tagName}${strAttr}>`,
                 end: `</${tagName}>`,
             };
         },
@@ -197,7 +197,7 @@ export default (editor, opt = {}) => {
                 });
                 this.childNodes = this.componentsView.render(container).el.childNodes;
             } else {
-                this.componentsView.parent = container;
+                this.componentsView.parentEl = container;
             }
 
             var childNodes = Array.prototype.slice.call(this.childNodes);
