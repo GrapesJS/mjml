@@ -82,6 +82,11 @@ export default (editor, {
           item.view.rerender();
         });
       },
+
+      init() {
+        coreMjmlView.init.call(this);
+        this.listenTo(this.model.get('components'), 'add remove', this.render);
+      },
     }),
   });
 }
