@@ -1,5 +1,4 @@
 // Specs: https://mjml.io/documentation/#mjml
-
 import { isComponentType } from './index.js';
 
 export default (editor, { dc }) => {
