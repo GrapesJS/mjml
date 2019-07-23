@@ -1,7 +1,7 @@
 export default (editor, opt = {}) => {
 
   if (opt.resetStyleManager) {
-    let sectors = editor.StyleManager.getSectors();
+    const sectors = editor.StyleManager.getSectors();
 
     editor.on('load', () => {
       sectors.reset();
