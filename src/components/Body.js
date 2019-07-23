@@ -25,6 +25,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
         ],
       },
     },
+
     view: {
       ...coreMjmlView,
       tagName: 'div',
