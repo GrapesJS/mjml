@@ -1,17 +1,16 @@
 // Specs: https://mjml.io/documentation/#mjml-social
+import { isComponentType } from './index.js';
 
-export default (editor, {
-  dc, opt, defaultModel, defaultView, coreMjmlModel, coreMjmlView
-}) => {
+export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
   const type = 'mj-social-element';
 
   dc.addType(type, {
-    model: defaultModel.extend({
-      ...coreMjmlModel,
+    isComponent: isComponentType(type),
 
+    model: {
+      ...coreMjmlModel,
       defaults: {
-        ...defaultModel.prototype.defaults,
-        'custom-name': 'SocialElement',
+        name: 'SocialElement',
         draggable: '[data-gjs-type=mj-social]',
         stylable: [
           'text-decoration', 'align', 'font-family', 'font-size', 'line-height',
@@ -55,21 +54,11 @@ export default (editor, {
           { name: 'href' },
         ],
       },
-    }, {
+    },
 
-        isComponent(el) {
-          if (el.tagName === type.toUpperCase()) {
-            return { type };
-          }
-        },
-      }),
-
-
-    view: defaultView.extend({
+    view: {
       ...coreMjmlView,
-
       tagName: 'table',
-
       attributes: {
         style: 'pointer-events: all; float: none; display: inline-table;',
       },
@@ -88,6 +77,6 @@ export default (editor, {
       getChildrenSelector() {
         return 'img';
       }
-    }),
+    },
   });
 }
