@@ -67,6 +67,14 @@ export default (editor, opt = {}) => {
     ...allBlocks,
   });
 
+  bm.add('mj-spacer', {
+    label: 'Spacer',
+    content: '<mj-spacer/>',
+    attributes: { class: 'gjs-fonts gjs-f-divider' },
+    ...allBlocks,
+  });
+
+
   bm.add('mj-social-group', {
     label: 'Group Social',
     content: `<mj-social font-size="12px" icon-size="24px" border-radius="12px" mode="horizontal">
