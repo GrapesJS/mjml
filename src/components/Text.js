@@ -8,9 +8,11 @@ export default (editor, {
   dc.addType(type, {
 
 
-    model: textModel.extend({ ...coreMjmlModel,
+    model: textModel.extend({
+      ...coreMjmlModel,
 
-      defaults: { ...textModel.prototype.defaults,
+      defaults: {
+        ...textModel.prototype.defaults,
         'custom-name': 'Text',
         draggable: '[data-gjs-type=mj-column]',
         highlightable: false,
@@ -30,21 +32,22 @@ export default (editor, {
           'align': 'left',
         },
       },
-    },{
+    }, {
 
-      isComponent(el) {
-        if (el.tagName == type.toUpperCase()) {
-          return {
-            type,
-            content: el.innerHTML,
-            components: [],
-          };
-        }
-      },
-    }),
+        isComponent(el) {
+          if (el.tagName === type.toUpperCase()) {
+            return {
+              type,
+              content: el.innerHTML,
+              components: [],
+            };
+          }
+        },
+      }),
 
 
-    view: textView.extend({ ...coreMjmlView,
+    view: textView.extend({
+      ...coreMjmlView,
 
       tagName: 'tr',
 
@@ -64,7 +67,7 @@ export default (editor, {
       },
 
       getChildrenSelector() {
-        return 'div';
+        return 'td > div';
       },
 
       /**

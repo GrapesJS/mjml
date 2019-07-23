@@ -1,4 +1,4 @@
-import { mjml2html } from 'mjml';
+import mjml2html from 'mjml4-in-browser';
 
 export default (editor, opt = {}) => {
   let config = editor.getConfig();
@@ -6,7 +6,7 @@ export default (editor, opt = {}) => {
   let container = document.createElement('div');
   container.style = 'display: flex; justify-content: space-between;';
   let pfx = config.stylePrefix || '';
-  var cmdm = editor.Commands;
+  const cmdm = editor.Commands;
 
   // Init code viewer
   codeViewer.set({
@@ -15,7 +15,7 @@ export default (editor, opt = {}) => {
   });
 
   const getMjml = () => {
-    const mjml = opt.preMjml + editor.getHtml()  + opt.postMjml;
+    const mjml = opt.preMjml + editor.getHtml() + opt.postMjml;
     return mjml2html(mjml);
   };
 
@@ -46,10 +46,10 @@ export default (editor, opt = {}) => {
         input: txtarea,
       });
 
-      let elEditor = new ecm.EditorView({model: codeEditor, config  }).render().el;
+      let elEditor = new ecm.EditorView({ model: codeEditor, config }).render().el;
       el.appendChild(elEditor);
       codeEditor.init(txtarea);
-      return {codeEditor, el};
+      return { codeEditor, el };
     },
 
     run(editor, sender = {}) {
@@ -73,13 +73,13 @@ export default (editor, opt = {}) => {
       modal.open();
 
       if (mjmlCode) {
-        mjmlCode.setContent(opt.preMjml + editor.getHtml()  + opt.postMjml);
+        mjmlCode.setContent(opt.preMjml + editor.getHtml() + opt.postMjml);
         //mjmlCode.editor.setOption('lineWrapping', 1);
         mjmlCode.editor.refresh();
       }
       if (htmlCode) {
         let mjml = getMjml();
-        if(mjml.errors.length) {
+        if (mjml.errors.length) {
           mjml.errors.forEach((err) => {
             console.warn(err.formattedMessage);
           });

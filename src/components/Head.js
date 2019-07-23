@@ -18,13 +18,13 @@ export default (editor, { dc, defaultModel, defaultView }) => {
         droppable,
         draggable: false,
       },
-    },{
-      isComponent(el) {
-        if (el.tagName == type.toUpperCase()) {
-          return { type };
-        }
-      },
-    }),
+    }, {
+        isComponent(el) {
+          if (el.tagName === type.toUpperCase()) {
+            return { type };
+          }
+        },
+      }),
 
     view: defaultView,
   });

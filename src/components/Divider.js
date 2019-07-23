@@ -8,9 +8,11 @@ export default (editor, {
   dc.addType(type, {
 
 
-    model: defaultModel.extend({ ...coreMjmlModel,
+    model: defaultModel.extend({
+      ...coreMjmlModel,
 
-      defaults: { ...defaultModel.prototype.defaults,
+      defaults: {
+        ...defaultModel.prototype.defaults,
         'custom-name': 'Divider',
         draggable: '[data-gjs-type=mj-column]',
         droppable: false,
@@ -30,17 +32,18 @@ export default (editor, {
           'border-detached', 'border-width', 'border-style', 'border-color'
         ],
       },
-    },{
+    }, {
 
-      isComponent(el) {
-        if (el.tagName == type.toUpperCase()) {
-          return { type };
-        }
-      },
-    }),
+        isComponent(el) {
+          if (el.tagName === type.toUpperCase()) {
+            return { type };
+          }
+        },
+      }),
 
 
-    view: defaultView.extend({ ...coreMjmlView,
+    view: defaultView.extend({
+      ...coreMjmlView,
 
       tagName: 'tr',
 

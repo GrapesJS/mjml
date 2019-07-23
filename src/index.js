@@ -1,6 +1,21 @@
 export default (editor, opts = {}) => {
-  const opt = {
+  let c = opts || {};
+  let config = editor.getConfig();
+  let pfx = config.stylePrefix;
 
+  let defaults = {
+    editor,
+    cmdBtnMoveLabel: 'Move',
+    cmdBtnUndoLabel: 'Undo',
+    cmdBtnRedoLabel: 'Redo',
+    cmdBtnDesktopLabel: 'Desktop',
+    cmdBtnTabletLabel: 'Tablet',
+    cmdBtnMobileLabel: 'Mobile',
+
+    expTplBtnTitle: c.expTplBtnTitle || 'View Code',
+    fullScrBtnTitle: c.fullScrBtnTitle || 'FullScreen',
+    swichtVwBtnTitle: c.swichtVwBtnTitle || 'View Components',
+    defaultTemplate: '', // Default template in case the canvas is empty
     categoryLabel: '',
 
     // Code viewer theme
@@ -39,9 +54,6 @@ export default (editor, opts = {}) => {
     // Clean all previous blocks if true
     resetBlocks: 1,
 
-    // Clean all previous devices and set a new one for mobile
-    resetDevices: 1,
-
     // Reset the Style Manager and add new properties for MJML
     resetStyleManager: 1,
 
@@ -51,7 +63,14 @@ export default (editor, opts = {}) => {
     ...opts,
   };
 
-  let config = editor.getConfig();
+  // Change some config
+  config.devicePreviewMode = 1;
+
+  // Load defaults
+  for (let name in defaults) {
+    if (!(name in c))
+      c[name] = defaults[name];
+  }
 
   // I need to prevent forced class creation as classes aren't working
   // at the moment
@@ -61,26 +80,28 @@ export default (editor, opts = {}) => {
   config.devicePreviewMode = 1;
 
   // Add Blocks
-  require('./blocks').default(editor, opt);
+  require('./blocks').default(editor, opts);
 
   // Add Components
-  require('./components').default(editor, opt);
+  require('./components').default(editor, opts);
 
   // Add Commands
-  require('./commands').default(editor, opt);
+  require('./commands').default(editor, opts);
 
   // Add Buttons
-  require('./buttons').default(editor, opt);
+  require('./buttons').default(editor, opts);
 
   // Extend Style Manager
-  require('./style').default(editor, opt);
+  require('./style').default(editor, opts);
 
   // Update devices
-  if (opt.resetDevices) {
+  if (opts.resetDevices) {
     const dm = editor.DeviceManager;
     dm.getAll().reset();
     dm.add('Desktop', '');
     dm.add('Mobile', '320px');
+    dm.add('Tablet', '820px');
   }
+
 
 };

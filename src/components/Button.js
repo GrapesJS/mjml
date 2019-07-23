@@ -8,9 +8,11 @@ export default (editor, {
   dc.addType(type, {
 
 
-    model: linkModel.extend({ ...coreMjmlModel,
+    model: linkModel.extend({
+      ...coreMjmlModel,
 
-      defaults: { ...linkModel.prototype.defaults,
+      defaults: {
+        ...linkModel.prototype.defaults,
         'custom-name': 'Button',
         draggable: '[data-gjs-type=mj-column]',
         highlightable: false,
@@ -37,17 +39,18 @@ export default (editor, {
         traits: ['href'],
         // 'container-background-color', 'inner-padding'
       },
-    },{
+    }, {
 
-      isComponent(el) {
-        if (el.tagName == type.toUpperCase()) {
-          return { type };
-        }
-      },
-    }),
+        isComponent(el) {
+          if (el.tagName === type.toUpperCase()) {
+            return { type };
+          }
+        },
+      }),
 
 
-    view: linkView.extend({ ...coreMjmlView,
+    view: linkView.extend({
+      ...coreMjmlView,
 
       tagName: 'tr',
 

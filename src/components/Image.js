@@ -8,9 +8,11 @@ export default (editor, {
   dc.addType(type, {
 
 
-    model: imageModel.extend({ ...coreMjmlModel,
+    model: imageModel.extend({
+      ...coreMjmlModel,
 
-      defaults: { ...imageModel.prototype.defaults,
+      defaults: {
+        ...imageModel.prototype.defaults,
         'custom-name': 'Image',
         resizable: false,
         highlightable: false,
@@ -32,17 +34,18 @@ export default (editor, {
         traits: ['href', 'rel', 'alt', 'title'],
         void: true,
       },
-    },{
+    }, {
 
-      isComponent(el) {
-        if (el.tagName == type.toUpperCase()) {
-          return { type };
-        }
-      },
-    }),
+        isComponent(el) {
+          if (el.tagName === type.toUpperCase()) {
+            return { type };
+          }
+        },
+      }),
 
 
-    view: imageView.extend({ ...coreMjmlView,
+    view: imageView.extend({
+      ...coreMjmlView,
 
       tagName: 'tr',
 

@@ -11,13 +11,13 @@ export default (editor, { dc, defaultModel, defaultView }) => {
         droppable: '[data-gjs-type=mj-head], [data-gjs-type=mj-body]',
         draggable: false,
       },
-    },{
-      isComponent(el) {
-        if (el.tagName == type.toUpperCase()) {
-          return { type };
-        }
-      },
-    }),
+    }, {
+        isComponent(el) {
+          if (el.tagName === type.toUpperCase()) {
+            return { type };
+          }
+        },
+      }),
 
     view: defaultView,
   });

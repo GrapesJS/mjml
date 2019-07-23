@@ -7,34 +7,56 @@ export default (editor, {
 
   dc.addType(type, {
 
+    model: defaultModel.extend({
+      ...coreMjmlModel,
 
-    model: defaultModel.extend({ ...coreMjmlModel,
-
-      defaults: { ...defaultModel.prototype.defaults,
+      defaults: {
+        ...defaultModel.prototype.defaults,
         'custom-name': 'Spacer',
         draggable: '[data-gjs-type=mj-column]',
         droppable: false,
         'style-default': { height: '20px' },
-        stylable: ['height'],
+        stylable: ['height', 'container-background-color'],
         void: true,
       },
-    },{
+    }, {
 
-      isComponent(el) {
-        if (el.tagName == type.toUpperCase()) {
-          return { type };
-        }
-      },
-    }),
+        isComponent(el) {
+          if (el.tagName === type.toUpperCase()) {
+            return { type };
+          }
+        },
+      }),
 
 
-    view: defaultView.extend({ ...coreMjmlView,
+    view: defaultView.extend({
+      ...coreMjmlView,
 
       tagName: 'tr',
 
       attributes: {
-        style: 'pointer-events: all; display: table; width: 100%;',
+        style: 'pointer-events: all; display: table; width: 100%;user-select: none;',
       },
+
+      getMjmlTemplate() {
+        return {
+          start: `<mjml><mj-body><mj-column>`,
+          end: `</mj-column></mj-body></mjml`,
+        };
+      },
+
+      getTemplateFromEl(sandboxEl) {
+        return sandboxEl.querySelector('tr').innerHTML;
+      },
+
+      getChildrenSelector() {
+        return 'td';
+      },
+
+      renderChildren() {
+        coreMjmlView.renderChildren.call(this);
+      }
+
     }),
   });
 }

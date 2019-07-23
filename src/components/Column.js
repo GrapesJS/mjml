@@ -1,6 +1,6 @@
 // Specs: https://mjml.io/documentation/#mjml-column
 
-import { mjml2html } from 'mjml';
+import mjml2html from 'mjml4-in-browser';
 
 export default (editor, {
   dc, opt, defaultModel, defaultView, coreMjmlModel, coreMjmlView, sandboxEl
@@ -9,7 +9,8 @@ export default (editor, {
   const clmPadd = opt.columnsPadding;
 
   dc.addType(type, {
-    model: defaultModel.extend({ ...coreMjmlModel,
+    model: defaultModel.extend({
+      ...coreMjmlModel,
 
       defaults: {
         ...defaultModel.prototype.defaults,
@@ -21,17 +22,18 @@ export default (editor, {
           'border', 'border-width', 'border-style', 'border-color',
         ],
       },
-    },{
+    }, {
 
-      isComponent(el) {
-        if (el.tagName == type.toUpperCase()) {
-          return { type };
-        }
-      },
-    }),
+        isComponent(el) {
+          if (el.tagName === type.toUpperCase()) {
+            return { type };
+          }
+        },
+      }),
 
 
-    view: defaultView.extend({ ...coreMjmlView,
+    view: defaultView.extend({
+      ...coreMjmlView,
 
       tagName: 'div',
 
@@ -67,8 +69,8 @@ export default (editor, {
         const elAttrs = componentEl.attributes;
 
         for (let elAttr, i = 0, len = elAttrs.length; i < len; i++) {
-            elAttr = elAttrs[i];
-            attributes[elAttr.name] = elAttr.value;
+          elAttr = elAttrs[i];
+          attributes[elAttr.name] = elAttr.value;
         }
 
         return {
@@ -86,8 +88,12 @@ export default (editor, {
         editor.addComponents(`<style>${mjmlResult.style}</style>`);
         this.getChildrenContainer().innerHTML = this.model.get('content');
         this.renderChildren();
-        this.el.style = this.el.getAttribute('style') + this.attributes.style;
+        this.renderStyle();
         return this;
+      },
+
+      renderStyle() {
+        this.el.style = this.el.getAttribute('style') + this.attributes.style;
       },
 
       getMjmlTemplate() {
@@ -97,17 +103,17 @@ export default (editor, {
         let addColmn = Array(cols).fill('<mj-column></mj-column>').join('');
 
         return {
-          start: `<mjml><mj-body><mj-container>`,
-          end: `${addColmn}</mj-container></mj-body></mjml>`,
+          start: `<mjml><mj-body><mj-section>`,
+          end: `${addColmn}</mj-section></mj-body></mjml>`,
         };
       },
 
       getTemplateFromEl(sandboxEl) {
-        return sandboxEl.firstChild.querySelector('div');
+        return sandboxEl.firstChild.querySelector('div > table > tbody > tr > td > div');
       },
 
       getChildrenSelector() {
-        return 'tbody';
+        return 'table'
       },
     }),
   });

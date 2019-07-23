@@ -8,12 +8,13 @@ export default (editor, {
   dc.addType(type, {
 
 
-    model: defaultModel.extend({ ...coreMjmlModel,
+    model: defaultModel.extend({
+      ...coreMjmlModel,
 
       defaults: {
         ...defaultModel.prototype.defaults,
         'custom-name': 'Section',
-        draggable: '[data-gjs-type=mj-container]',
+        draggable: '[data-gjs-type=mj-body]',
         droppable: '[data-gjs-type=mj-column]',
         'style-default': {
           'padding-top': '10px',
@@ -29,26 +30,44 @@ export default (editor, {
           'border', 'border-width', 'border-style', 'border-color'
         ],
       },
-    },{
+    }, {
 
-      isComponent(el) {
-        if (el.tagName == type.toUpperCase()) {
-          return { type };
-        }
-      },
-    }),
+        isComponent(el) {
+          if (el.tagName === type.toUpperCase()) {
+            return { type };
+          }
+        },
+      }),
 
 
-    view: defaultView.extend({ ...coreMjmlView,
+    view: defaultView.extend({
+      ...coreMjmlView,
 
       tagName: 'div',
 
+      getMjmlTemplate() {
+        let parentView = this.model.parent().view;
+        if (parentView.getInnerMjmlTemplate) {
+          let mjmlBody = coreMjmlView.getInnerMjmlTemplate.call(parentView);
+          return {
+            start: `<mjml>${mjmlBody.start}`,
+            end: `${mjmlBody.end}</mjml>`,
+          };
+        } else {
+          return {
+            start: `<mjml><mj-body>`,
+            end: `</mj-body></mjml>`,
+          };
+        }
+      },
+
       attributes: {
         style: 'pointer-events: all;',
+        'data-type': 'mj-section',
       },
 
       getChildrenSelector() {
-        return 'tbody > tr > td';
+        return 'table > tbody > tr > td';
       },
 
       init() {

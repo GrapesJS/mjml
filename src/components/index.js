@@ -1,14 +1,14 @@
-import { mjml2html } from 'mjml';
+import mjml2html from 'mjml4-in-browser';
 import loadMjml from './mjml';
 import loadHead from './Head';
 import loadBody from './Body';
-import loadContainer from './Container';
 import loadSection from './Section';
 import loadColumn from './Column';
 import loadText from './Text';
 import loadButton from './Button';
 import loadImage from './Image';
 import loadSocial from './Social';
+import loadSocialElement from './SocialElement';
 import loadDivider from './Divider';
 import loadSpacer from './Spacer';
 
@@ -29,8 +29,6 @@ export default (editor, opt = {}) => {
   const dc = domc;
   const ComponentsView = domc.ComponentsView;
   const sandboxEl = document.createElement('div');
-
-
 
 
   // MJML Core model
@@ -61,7 +59,7 @@ export default (editor, opt = {}) => {
       let attr = this.get('attributes') || {};
       delete attr.style;
       let src = this.get('src');
-      if(src)
+      if (src)
         attr.src = src;
       return attr;
     },
@@ -95,7 +93,7 @@ export default (editor, opt = {}) => {
       let code = '';
       let model = this;
       let tag = model.get('tagName'),
-      sTag = model.get('void');
+        sTag = model.get('void');
 
       // Build the string of attributes
       let strAttr = '';
@@ -112,16 +110,13 @@ export default (editor, opt = {}) => {
         code += model.toHTML();
       });
 
-      if(!sTag)
+      if (!sTag)
         code += `</${tag}>`;
 
       return code;
     },
 
   };
-
-
-
 
 
   // MJML Core view
@@ -140,8 +135,8 @@ export default (editor, opt = {}) => {
 
     getMjmlTemplate() {
       return {
-        start: `<mjml><mj-body>`,
-        end: `</mj-body></mjml>`,
+        start: `<mjml>`,
+        end: `</mjml>`,
       };
     },
 
@@ -152,14 +147,14 @@ export default (editor, opt = {}) => {
       let attr = model.getMjmlAttributes();
       let strAttr = '';
 
-      for(let prop in attr) {
+      for (let prop in attr) {
         let val = attr[prop];
         strAttr += typeof val !== undefined && val !== '' ?
           ' ' + prop + '="' + val + '"' : '';
       }
 
       return {
-        start: `<${tagName} ${strAttr}>`,
+        start: `<${tagName}${strAttr}>`,
         end: `</${tagName}>`,
       };
     },
@@ -189,7 +184,7 @@ export default (editor, opt = {}) => {
      * Render children components
      * @private
      */
-    renderChildren: function(appendChildren) {
+    renderChildren: function (appendChildren) {
       var container = this.getChildrenContainer();
 
       // This trick will help perfs by caching children
@@ -202,17 +197,17 @@ export default (editor, opt = {}) => {
         });
         this.childNodes = this.componentsView.render(container).el.childNodes;
       } else {
-        this.componentsView.parent = container;
+        this.componentsView.parentEl = container;
       }
 
       var childNodes = Array.prototype.slice.call(this.childNodes);
 
-      for (var i = 0, len = childNodes.length ; i < len; i++) {
+      for (var i = 0, len = childNodes.length; i < len; i++) {
         container.appendChild(childNodes.shift());
       }
 
       if (container !== this.el) {
-        var disableNode = function(el) {
+        var disableNode = function (el) {
           var children = Array.prototype.slice.call(el.children);
           children.forEach(function (el) {
             el.style['pointer-events'] = 'none';
@@ -252,26 +247,23 @@ export default (editor, opt = {}) => {
   };
 
 
-
-
-
   // MJML Internal view (for elements inside mj-columns)
   let coreMjmlIntView = Object.assign({}, coreMjmlView);
   const compOpts = {
-      dc, coreMjmlModel, coreMjmlView, opt, sandboxEl, defaultModel, defaultView,
-      textModel, textView, linkModel, linkView, imageModel, imageView
+    dc, coreMjmlModel, coreMjmlView, opt, sandboxEl, defaultModel, defaultView,
+    textModel, textView, linkModel, linkView, imageModel, imageView
   };
 
   loadMjml(editor, compOpts);
   loadHead(editor, compOpts);
   loadBody(editor, compOpts);
-  loadContainer(editor, compOpts);
   loadSection(editor, compOpts);
   loadColumn(editor, compOpts);
   loadButton(editor, compOpts);
   loadText(editor, compOpts);
   loadImage(editor, compOpts);
   loadSocial(editor, compOpts);
+  loadSocialElement(editor, compOpts);
   loadDivider(editor, compOpts);
   loadSpacer(editor, compOpts);
 }
