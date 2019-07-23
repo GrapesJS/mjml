@@ -26,6 +26,11 @@ export default (editor, opt = {}) => {
             { name: 'Bottom', property: 'padding-bottom' },
             { name: 'Left', property: 'padding-left' }
           ],
+        }, {
+          property: 'icon-size',
+          type: 'integer',
+          defaults: '20px',
+          units: ['px', '%']
         }],
       }, {
         name: 'Typography',

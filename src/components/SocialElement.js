@@ -75,10 +75,19 @@ export default (editor, {
       },
 
       getMjmlTemplate() {
-        return {
-          start: `<mjml><mj-body><mj-column><mj-social>`,
-          end: `</mj-social></mj-column></mj-body></mjml`,
-        };
+        let parentView = this.model.parent().view;
+        if (parentView.getInnerMjmlTemplate) {
+          let mjmlSocial = coreMjmlView.getInnerMjmlTemplate.call(parentView);
+          return {
+            start: `<mjml><mj-body><mj-column>${mjmlSocial.start}`,
+            end: `${mjmlSocial.end}</mj-column></mj-body></mjml>`,
+          };
+        } else {
+          return {
+            start: `<mjml><mj-body><mj-column><mj-social>`,
+            end: `</mj-social></mj-column></mj-body></mjml`,
+          };
+        }
       },
 
       getTemplateFromEl(sandboxEl) {
@@ -88,6 +97,7 @@ export default (editor, {
       getChildrenSelector() {
         return 'img';
       }
+
     }),
   });
 }
