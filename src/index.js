@@ -1,9 +1,12 @@
-export default (editor, opts = {}) => {
-  let c = opts || {};
-  let config = editor.getConfig();
-  let pfx = config.stylePrefix;
+import loadBlocks from './blocks';
+import loadComponents from './components';
+import loadCommands from './commands';
+import loadButtons from './buttons';
+import loadStyle from './style';
 
-  let defaults = {
+export default (editor, opt = {}) => {
+  const config = editor.getConfig();
+  const opts = {
     editor,
     cmdBtnMoveLabel: 'Move',
     cmdBtnUndoLabel: 'Undo',
@@ -12,9 +15,9 @@ export default (editor, opts = {}) => {
     cmdBtnTabletLabel: 'Tablet',
     cmdBtnMobileLabel: 'Mobile',
 
-    expTplBtnTitle: c.expTplBtnTitle || 'View Code',
-    fullScrBtnTitle: c.fullScrBtnTitle || 'FullScreen',
-    swichtVwBtnTitle: c.swichtVwBtnTitle || 'View Components',
+    expTplBtnTitle: 'View Code',
+    fullScrBtnTitle: 'FullScreen',
+    swichtVwBtnTitle: 'View Components',
     defaultTemplate: '', // Default template in case the canvas is empty
     categoryLabel: '',
 
@@ -60,17 +63,11 @@ export default (editor, opts = {}) => {
     // Column padding (this way it's easier select columns)
     columnsPadding: '10px 0',
 
-    ...opts,
+    ...opt,
   };
 
   // Change some config
   config.devicePreviewMode = 1;
-
-  // Load defaults
-  for (let name in defaults) {
-    if (!(name in c))
-      c[name] = defaults[name];
-  }
 
   // I need to prevent forced class creation as classes aren't working
   // at the moment
@@ -79,20 +76,13 @@ export default (editor, opts = {}) => {
   // Don't need to create css rules with media
   config.devicePreviewMode = 1;
 
-  // Add Blocks
-  require('./blocks').default(editor, opts);
-
-  // Add Components
-  require('./components').default(editor, opts);
-
-  // Add Commands
-  require('./commands').default(editor, opts);
-
-  // Add Buttons
-  require('./buttons').default(editor, opts);
-
-  // Extend Style Manager
-  require('./style').default(editor, opts);
+  [
+    loadBlocks,
+    loadComponents,
+    loadCommands,
+    loadButtons,
+    loadStyle,
+  ].forEach(module => module(editor, opts))
 
   // Update devices
   if (opts.resetDevices) {
@@ -102,6 +92,4 @@ export default (editor, opts = {}) => {
     dm.add('Mobile', '320px');
     dm.add('Tablet', '820px');
   }
-
-
 };
