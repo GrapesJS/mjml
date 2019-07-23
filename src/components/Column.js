@@ -1,20 +1,17 @@
 // Specs: https://mjml.io/documentation/#mjml-column
-
 import mjml2html from 'mjml4-in-browser';
+import { isComponentType } from './index.js';
 
-export default (editor, {
-  dc, opt, defaultModel, defaultView, coreMjmlModel, coreMjmlView, sandboxEl
-}) => {
+export default (editor, { dc, opt, coreMjmlModel, coreMjmlView, sandboxEl }) => {
   const type = 'mj-column';
   const clmPadd = opt.columnsPadding;
 
   dc.addType(type, {
-    model: defaultModel.extend({
+    isComponent: isComponentType(type),
+    model: {
       ...coreMjmlModel,
-
       defaults: {
-        ...defaultModel.prototype.defaults,
-        'custom-name': 'Column',
+        name: 'Column',
         draggable: '[data-gjs-type=mj-section]',
         stylable: [
           'background-color', 'vertical-align', 'width',
@@ -22,24 +19,13 @@ export default (editor, {
           'border', 'border-width', 'border-style', 'border-color',
         ],
       },
-    }, {
+    },
 
-        isComponent(el) {
-          if (el.tagName === type.toUpperCase()) {
-            return { type };
-          }
-        },
-      }),
-
-
-    view: defaultView.extend({
+    view: {
       ...coreMjmlView,
-
       tagName: 'div',
-
       attributes: {
-        style: 'pointer-events: all;' +
-          (clmPadd ? `padding: ${clmPadd};` : ''),
+        style: 'pointer-events: all;' + (clmPadd ? `padding: ${clmPadd};` : ''),
       },
 
       getTemplateFromMjml() {
@@ -115,6 +101,6 @@ export default (editor, {
       getChildrenSelector() {
         return 'table'
       },
-    }),
+    },
   });
 }
