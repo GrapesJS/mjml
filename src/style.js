@@ -114,34 +114,6 @@ export default (editor, opt = {}) => {
             { name: 'Color', property: 'border-color', type: 'color' },
           ],
         }],
-      }, {
-        name: 'Icons',
-        open: false,
-        properties: [{
-          name: 'Facebook color',
-          property: 'facebook-icon-color',
-          type: 'color',
-        }, {
-          name: 'Twitter color',
-          property: 'twitter-icon-color',
-          type: 'color',
-        }, {
-          name: 'Google color',
-          property: 'google-icon-color',
-          type: 'color',
-        }, {
-          name: 'Instagram color',
-          property: 'instagram-icon-color',
-          type: 'color',
-        }, {
-          name: 'Linkedin color',
-          property: 'linkedin-icon-color',
-          type: 'color',
-        }, {
-          name: 'Pinterest color',
-          property: 'pinterest-icon-color',
-          type: 'color',
-        }],
       }
       ]);
     });
