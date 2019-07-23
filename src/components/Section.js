@@ -1,19 +1,16 @@
 // Specs: https://mjml.io/documentation/#mjml-section
+import { isComponentType } from './index.js';
 
-export default (editor, {
-  dc, defaultModel, defaultView, coreMjmlModel, coreMjmlView
-}) => {
+export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
   const type = 'mj-section';
 
   dc.addType(type, {
+    isComponent: isComponentType(type),
 
-
-    model: defaultModel.extend({
+    model: {
       ...coreMjmlModel,
-
       defaults: {
-        ...defaultModel.prototype.defaults,
-        'custom-name': 'Section',
+        name: 'Section',
         draggable: '[data-gjs-type=mj-body]',
         droppable: '[data-gjs-type=mj-column]',
         'style-default': {
@@ -30,20 +27,15 @@ export default (editor, {
           'border', 'border-width', 'border-style', 'border-color'
         ],
       },
-    }, {
+    },
 
-        isComponent(el) {
-          if (el.tagName === type.toUpperCase()) {
-            return { type };
-          }
-        },
-      }),
-
-
-    view: defaultView.extend({
+    view: {
       ...coreMjmlView,
-
       tagName: 'div',
+      attributes: {
+        style: 'pointer-events: all;',
+        'data-type': 'mj-section',
+      },
 
       getMjmlTemplate() {
         let parentView = this.model.parent().view;
@@ -61,11 +53,6 @@ export default (editor, {
         }
       },
 
-      attributes: {
-        style: 'pointer-events: all;',
-        'data-type': 'mj-section',
-      },
-
       getChildrenSelector() {
         return 'table > tbody > tr > td';
       },
@@ -74,6 +61,6 @@ export default (editor, {
         coreMjmlView.init.call(this);
         this.listenTo(this.model.get('components'), 'add remove', this.render);
       },
-    }),
+    },
   });
 }

@@ -1,19 +1,26 @@
 // Specs: https://mjml.io/documentation/#mjml-text
 
-export default (editor, {
-  dc, opt, textModel, textView, coreMjmlModel, coreMjmlView
-}) => {
+export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
   const type = 'mj-text';
 
   dc.addType(type, {
+    extend: 'text',
+    extendFnView: ['onActive', 'disableEditing'],
 
+    isComponent(el) {
+      if (el.tagName === type.toUpperCase()) {
+        return {
+          type,
+          content: el.innerHTML,
+          components: [],
+        };
+      }
+    },
 
-    model: textModel.extend({
+    model: {
       ...coreMjmlModel,
-
       defaults: {
-        ...textModel.prototype.defaults,
-        'custom-name': 'Text',
+        name: 'Text',
         draggable: '[data-gjs-type=mj-column]',
         highlightable: false,
         stylable: [
@@ -32,25 +39,11 @@ export default (editor, {
           'align': 'left',
         },
       },
-    }, {
+    },
 
-        isComponent(el) {
-          if (el.tagName === type.toUpperCase()) {
-            return {
-              type,
-              content: el.innerHTML,
-              components: [],
-            };
-          }
-        },
-      }),
-
-
-    view: textView.extend({
+    view: {
       ...coreMjmlView,
-
       tagName: 'tr',
-
       attributes: {
         style: 'pointer-events: all; display: table; width: 100%',
       },
@@ -81,14 +74,12 @@ export default (editor, {
        * Need to make text selectable.
        */
       onActive() {
-        textView.prototype.onActive.apply(this, arguments);
         this.getChildrenContainer().style.pointerEvents = 'all';
       },
 
       disableEditing() {
-        textView.prototype.disableEditing.apply(this, arguments);
         this.getChildrenContainer().style.pointerEvents = 'none';
       },
-    }),
+    },
   });
 }
