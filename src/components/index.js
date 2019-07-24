@@ -1,6 +1,7 @@
 import mjml2html from 'mjml4-in-browser';
 import loadMjml from './mjml';
 import loadHead from './Head';
+import loadStyle from './Style';
 import loadBody from './Body';
 import loadSection from './Section';
 import loadColumn from './Column';
@@ -11,6 +12,8 @@ import loadSocial from './Social';
 import loadSocialElement from './SocialElement';
 import loadDivider from './Divider';
 import loadSpacer from './Spacer';
+import loadNavBar from './NavBar';
+import loadNavBarLink from './NavBarLink';
 
 export const isComponentType = type => (el) => el.tagName === type.toUpperCase();
 
@@ -258,6 +261,7 @@ export default (editor, opt = {}) => {
 
   loadMjml(editor, compOpts);
   loadHead(editor, compOpts);
+  loadStyle(editor, compOpts);
   loadBody(editor, compOpts);
   loadSection(editor, compOpts);
   loadColumn(editor, compOpts);
@@ -268,4 +272,6 @@ export default (editor, opt = {}) => {
   loadSocialElement(editor, compOpts);
   loadDivider(editor, compOpts);
   loadSpacer(editor, compOpts);
+  loadNavBar(editor, compOpts);
+  loadNavBarLink(editor, compOpts);
 }

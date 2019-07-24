@@ -16,7 +16,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
           'text-decoration', 'align', 'font-family', 'font-size', 'line-height',
           'padding', 'padding-top', 'padding-left', 'padding-right', 'padding-bottom',
           'border-radius', 'border-top-left-radius', 'border-top-right-radius', 'border-bottom-left-radius', 'border-bottom-right-radius',
-          'container-background-color',
+          'background-color',
           'color',
         ],
         'style-default': {
@@ -64,10 +64,19 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
       },
 
       getMjmlTemplate() {
-        return {
-          start: `<mjml><mj-body><mj-column><mj-social>`,
-          end: `</mj-social></mj-column></mj-body></mjml`,
-        };
+        let parentView = this.model.parent().view;
+        if (parentView.getInnerMjmlTemplate) {
+          let mjmlSocial = coreMjmlView.getInnerMjmlTemplate.call(parentView);
+          return {
+            start: `<mjml><mj-body><mj-column>${mjmlSocial.start}`,
+            end: `${mjmlSocial.end}</mj-column></mj-body></mjml>`,
+          };
+        } else {
+          return {
+            start: `<mjml><mj-body><mj-column><mj-social>`,
+            end: `</mj-social></mj-column></mj-body></mjml`,
+          };
+        }
       },
 
       getTemplateFromEl(sandboxEl) {

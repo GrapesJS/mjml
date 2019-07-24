@@ -75,7 +75,7 @@ export default (editor, opt = {}) => {
     ...allBlocks,
   });
 
-  bm.add('mj-spacer', {
+  bm.add('mj-social-element', {
     label: 'Social Element',
     content: '<mj-social-element name="facebook" />',
     attributes: { class: 'fa fa-share-alt' },
@@ -86,6 +86,25 @@ export default (editor, opt = {}) => {
     label: 'Spacer',
     content: '<mj-spacer/>',
     attributes: { class: 'fa fa-arrows-v' },
+    ...allBlocks,
+  });
+
+  bm.add('mj-navbar', {
+    label: 'NavBar',
+    content: `<mj-navbar>
+    <mj-navbar-link>Getting started</mj-navbar-link>
+    <mj-navbar-link>Try it live</mj-navbar-link>
+    <mj-navbar-link>Templates</mj-navbar-link>
+    <mj-navbar-link>Components</mj-navbar-link>
+    </mj-navbar>`,
+    attributes: { class: 'fa fa-bars' },
+    ...allBlocks,
+  });
+
+  bm.add('mj-navbar-link', {
+    label: 'NavBar Link',
+    content: `<mj-navbar-link>Link 1</mj-navbar-link>`,
+    attributes: { class: 'gjs-fonts gjs-f-button' },
     ...allBlocks,
   });
 
