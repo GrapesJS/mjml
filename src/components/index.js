@@ -12,6 +12,8 @@ import loadSocial from './Social';
 import loadSocialElement from './SocialElement';
 import loadDivider from './Divider';
 import loadSpacer from './Spacer';
+import loadNavBar from './NavBar';
+import loadNavBarLink from './NavBarLink';
 
 export const isComponentType = type => (el) => el.tagName === type.toUpperCase();
 
@@ -270,4 +272,6 @@ export default (editor, opt = {}) => {
   loadSocialElement(editor, compOpts);
   loadDivider(editor, compOpts);
   loadSpacer(editor, compOpts);
+  loadNavBar(editor, compOpts);
+  loadNavBarLink(editor, compOpts);
 }
