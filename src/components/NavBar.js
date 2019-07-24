@@ -18,6 +18,17 @@ export default (editor, {
         stylable: [
           // TODO
         ],
+        traits: [ //FIXME
+          {
+            type: 'select',
+            label: 'Hamburger',
+            name: 'hamburger',
+            options: [
+              { value: 'hamburger', name: 'ON' },
+              { value: '', name: 'OFF' },
+            ]
+          }
+        ],
       },
     }, {
 
@@ -55,7 +66,17 @@ export default (editor, {
       },
 
       getChildrenSelector() {
-        return 'div';
+        return 'div.mj-inline-links';
+      },
+
+      rerender() {
+        coreMjmlView.rerender.call(this);
+        this.model.components().models.forEach((item) => {
+          if (item.attributes.type != "mj-navbar-link") {
+            return;
+          }
+          item.view.rerender();
+        });
       },
     }),
   });
