@@ -1,18 +1,20 @@
+import { isComponentType } from ".";
+
 export default (editor, {
   dc, opt, defaultModel, defaultView, coreMjmlModel, coreMjmlView
 }) => {
   const type = 'mj-navbar-link';
 
   dc.addType(type, {
+    isComponent: isComponentType(type),
     extend: 'link',
-    model: defaultModel.extend({
+    model: {
       ...coreMjmlModel,
 
       defaults: {
-        ...defaultModel.prototype.defaults,
         'custom-name': 'NavBarLink',
-        highlightable: false,
         draggable: '[data-gjs-type=mj-navbar]',
+        highlightable: false,
         'style-default': {
           // TODO
         },
@@ -21,17 +23,10 @@ export default (editor, {
         ],
         traits: ['href'],
       },
-    }, {
-
-        isComponent(el) {
-          if (el.tagName === type.toUpperCase()) {
-            return { type };
-          }
-        },
-      }),
+    },
 
 
-    view: defaultView.extend({
+    view: {
       ...coreMjmlView,
 
       tagName: 'a',
@@ -55,6 +50,12 @@ export default (editor, {
         return 'a,p';
       },
 
-    }),
+      /**
+       * Prevent content repeating
+       */
+      renderChildren() {
+        coreMjmlView.renderChildren.call(this);
+      },
+    },
   });
 }
