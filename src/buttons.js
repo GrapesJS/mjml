@@ -1,17 +1,16 @@
 export default (editor, opt = {}) => {
-
   const tltAttr = 'title';
   const tltPosAttr = 'data-tooltip-pos';
-
-  let updateTooltip = (coll) => {
+  const pnm = editor.Panels;
+  const optPanel = pnm.getPanel('options');
+  const cmdPanel = pnm.getPanel('options');
+  const updateTooltip = (coll) => {
     coll.each((item) => {
       var attrs = item.get('attributes');
       attrs[tltPosAttr] = 'bottom';
       item.set('attributes', attrs);
     });
   };
-
-  let pnm = editor.Panels;
 
 
   pnm.addButton('options', {
@@ -20,24 +19,22 @@ export default (editor, opt = {}) => {
     command: 'mjml-import',
   });
 
-  let optPanel = pnm.getPanel('options');
   if (optPanel) {
     // Fix tooltip position
-    let cmdBtns = optPanel.get('buttons');
+    const cmdBtns = optPanel.get('buttons');
     cmdBtns.each((btn) => {
       const attrs = btn.get('attributes');
       attrs[tltPosAttr] = 'bottom';
       btn.set('attributes', attrs);
     });
     // Remove preview
-    let prvBtn = pnm.addButton('options', 'preview');
+    const prvBtn = pnm.addButton('options', 'preview');
     prvBtn && cmdBtns.remove(prvBtn);
   }
 
   // Clean commands panel
-  let cmdPanel = pnm.getPanel('options');
   if (cmdPanel) {
-    let cmdBtns = cmdPanel.get('buttons');
+    const cmdBtns = cmdPanel.get('buttons');
     // cmdBtns.reset();
     cmdBtns.add([{
       id: 'undo',
@@ -54,10 +51,8 @@ export default (editor, opt = {}) => {
   }
   // Turn off default devices select and create new one
   editor.getConfig().showDevices = 0;
-  let devicePanel = pnm.addPanel({
-    id: 'devices-c'
-  });
-  let deviceBtns = devicePanel.get('buttons');
+  const devicePanel = pnm.addPanel({ id: 'devices-c' });
+  const deviceBtns = devicePanel.get('buttons');
   devicePanel.get('buttons').add([{
     id: 'deviceDesktop',
     command: 'set-device-desktop',

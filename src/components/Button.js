@@ -1,19 +1,17 @@
 // Specs: https://mjml.io/documentation/#mjml-button
+import { isComponentType } from './index.js';
 
-export default (editor, {
-  dc, opt, linkModel, linkView, coreMjmlModel, coreMjmlView
-}) => {
+export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
   const type = 'mj-button';
 
   dc.addType(type, {
+    isComponent: isComponentType(type),
+    extend: 'link',
 
-
-    model: linkModel.extend({
+    model: {
       ...coreMjmlModel,
-
       defaults: {
-        ...linkModel.prototype.defaults,
-        'custom-name': 'Button',
+        name: 'Button',
         draggable: '[data-gjs-type=mj-column]',
         highlightable: false,
         stylable: ['width', 'height',
@@ -39,21 +37,11 @@ export default (editor, {
         traits: ['href'],
         // 'container-background-color', 'inner-padding'
       },
-    }, {
+    },
 
-        isComponent(el) {
-          if (el.tagName === type.toUpperCase()) {
-            return { type };
-          }
-        },
-      }),
-
-
-    view: linkView.extend({
+    view: {
       ...coreMjmlView,
-
       tagName: 'tr',
-
       attributes: {
         style: 'pointer-events: all; display: table; width: 100%',
       },
@@ -79,6 +67,6 @@ export default (editor, {
       renderChildren() {
         coreMjmlView.renderChildren.call(this);
       },
-    }),
+    },
   });
 }

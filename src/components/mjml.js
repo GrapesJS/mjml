@@ -1,25 +1,17 @@
 // Specs: https://mjml.io/documentation/#mjml
+import { isComponentType } from './index.js';
 
-export default (editor, { dc, defaultModel, defaultView }) => {
+export default (editor, { dc }) => {
   const type = 'mjml';
 
   dc.addType(type, {
-
-    model: defaultModel.extend({
+    isComponent: isComponentType(type),
+    model: {
       defaults: {
-        ...defaultModel.prototype.defaults,
         droppable: '[data-gjs-type=mj-head], [data-gjs-type=mj-body]',
         draggable: false,
       },
-    }, {
-        isComponent(el) {
-          if (el.tagName === type.toUpperCase()) {
-            return { type };
-          }
-        },
-      }),
-
-    view: defaultView,
+    }
   });
 
 }

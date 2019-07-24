@@ -1,19 +1,18 @@
 // Specs https://mjml.io/documentation/#mj-body
+import { isComponentType } from './index.js';
 
-export default (editor, { dc, defaultModel, defaultView, coreMjmlModel, coreMjmlView }) => {
+export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
   const type = 'mj-body';
-
   const droppable = [
     'mj-section',
   ].map(tag => `[data-gjs-type=${tag}]`).join(', ');
 
   dc.addType(type, {
+    isComponent: isComponentType(type),
 
-    model: defaultModel.extend({
+    model: {
       ...coreMjmlModel,
-
       defaults: {
-        ...defaultModel.prototype.defaults,
         droppable,
         draggable: false,
         copyable: false,
@@ -25,18 +24,11 @@ export default (editor, { dc, defaultModel, defaultView, coreMjmlModel, coreMjml
           'background-color'
         ],
       },
-    }, {
-        isComponent(el) {
-          if (el.tagName === type.toUpperCase()) {
-            return { type };
-          }
-        },
-      }),
-    view: defaultView.extend({
+    },
+
+    view: {
       ...coreMjmlView,
-
       tagName: 'div',
-
       attributes: {
         style: 'width: 100%; min-height: 100%',
         'data-type': 'mj-body',
@@ -71,8 +63,7 @@ export default (editor, { dc, defaultModel, defaultView, coreMjmlModel, coreMjml
           item.view.rerender();
         });
       },
-
-    }),
+    },
   });
 
 }

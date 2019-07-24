@@ -1,19 +1,17 @@
 // Specs: https://mjml.io/documentation/#mjml-image
+import { isComponentType } from './index.js';
 
-export default (editor, {
-  dc, opt, imageModel, imageView, coreMjmlModel, coreMjmlView
-}) => {
+export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
   const type = 'mj-image';
 
   dc.addType(type, {
+    isComponent: isComponentType(type),
+    extend: 'image',
 
-
-    model: imageModel.extend({
+    model: {
       ...coreMjmlModel,
-
       defaults: {
-        ...imageModel.prototype.defaults,
-        'custom-name': 'Image',
+        name: 'Image',
         resizable: false,
         highlightable: false,
         draggable: '[data-gjs-type=mj-column],[data-gjs-type=mj-section]',
@@ -34,21 +32,11 @@ export default (editor, {
         traits: ['href', 'rel', 'alt', 'title'],
         void: true,
       },
-    }, {
+    },
 
-        isComponent(el) {
-          if (el.tagName === type.toUpperCase()) {
-            return { type };
-          }
-        },
-      }),
-
-
-    view: imageView.extend({
+    view: {
       ...coreMjmlView,
-
       tagName: 'tr',
-
       attributes: {
         style: 'pointer-events: all; display: table; width: 100%; user-select: none;',
       },
@@ -67,6 +55,6 @@ export default (editor, {
       getChildrenSelector() {
         return 'img';
       },
-    }),
+    },
   });
 }

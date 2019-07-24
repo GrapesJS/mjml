@@ -1,17 +1,16 @@
 // Specs: https://mjml.io/documentation/#mjml-social
+import { isComponentType } from './index.js';
 
-export default (editor, {
-  dc, opt, defaultModel, defaultView, coreMjmlModel, coreMjmlView
-}) => {
+export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
   const type = 'mj-social';
 
   dc.addType(type, {
-    model: defaultModel.extend({
-      ...coreMjmlModel,
+    isComponent: isComponentType(type),
 
+    model: {
+      ...coreMjmlModel,
       defaults: {
-        ...defaultModel.prototype.defaults,
-        'custom-name': 'Social',
+        name: 'Social',
         draggable: '[data-gjs-type=mj-column]',
         droppable: '[data-gjs-type=mj-social-element]',
         stylable: [
@@ -39,21 +38,11 @@ export default (editor, {
           }
         ],
       },
-    }, {
+    },
 
-        isComponent(el) {
-          if (el.tagName === type.toUpperCase()) {
-            return { type };
-          }
-        },
-      }),
-
-
-    view: defaultView.extend({
+    view: {
       ...coreMjmlView,
-
       tagName: 'tr',
-
       attributes: {
         style: 'pointer-events: all; display: table; width: 100%',
       },
@@ -87,6 +76,6 @@ export default (editor, {
         coreMjmlView.init.call(this);
         this.listenTo(this.model.get('components'), 'add remove', this.render);
       },
-    }),
+    }
   });
 }

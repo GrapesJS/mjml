@@ -1,16 +1,15 @@
 export default (editor, opt = {}) => {
-
-  let config = editor.getConfig();
-  let codeViewer = editor.CodeManager.getViewer('CodeMirror').clone();
-  let btnImp = document.createElement('button');
-  let container = document.createElement('div');
-  let pfx = config.stylePrefix || '';
+  const config = editor.getConfig();
+  const codeViewer = editor.CodeManager.getViewer('CodeMirror').clone();
+  const btnImp = document.createElement('button');
+  const container = document.createElement('div');
+  const pfx = config.stylePrefix || '';
 
   // Init import button
   btnImp.innerHTML = opt.modalBtnImport;
-  btnImp.className = pfx + 'btn-prim ' + pfx + 'btn-import';
+  btnImp.className = `${pfx}btn-prim ${pfx}btn-import`;
   btnImp.onclick = () => {
-    let code = codeViewer.editor.getValue();
+    const code = codeViewer.editor.getValue();
     editor.DomComponents.getWrapper().set('content', '');
     editor.setComponents(code.trim());
     editor.Modal.close();
@@ -24,23 +23,23 @@ export default (editor, opt = {}) => {
   });
 
   return {
-
     run(editor, sender = {}) {
-      let modal = editor.Modal;
-      let modalContent = modal.getContentEl();
+      const modal = editor.Modal;
       let viewer = codeViewer.editor;
       modal.setTitle(opt.modalTitleImport);
 
       // Init code viewer if not yet instantiated
       if (!viewer) {
-        let txtarea = document.createElement('textarea');
-        let labelImport = opt.modalLabelImport;
+        const txtarea = document.createElement('textarea');
+        const labelImport = opt.modalLabelImport;
+
         if (labelImport) {
           let labelEl = document.createElement('div');
           labelEl.className = pfx + 'import-label';
           labelEl.innerHTML = labelImport;
           container.appendChild(labelEl);
         }
+
         container.appendChild(txtarea);
         container.appendChild(btnImp);
         codeViewer.init(txtarea);

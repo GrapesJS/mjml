@@ -1,13 +1,10 @@
 export default (editor, opt = {}) => {
-  let bm = editor.BlockManager;
-
-  if (opt.resetBlocks) {
-    bm.getAll().reset();
-  }
-
+  const bm = editor.BlockManager;
   const allBlocks = {
     category: opt.categoryLabel,
   };
+
+  opt.resetBlocks && bm.getAll().reset();
 
   bm.add('mj-1-column', {
     label: '1 Column',

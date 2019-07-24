@@ -1,39 +1,27 @@
 // Specs: https://mjml.io/documentation/#mjml-spacer
+import { isComponentType } from './index.js';
 
-export default (editor, {
-  dc, opt, defaultModel, defaultView, coreMjmlModel, coreMjmlView
-}) => {
+export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
   const type = 'mj-spacer';
 
   dc.addType(type, {
+    isComponent: isComponentType(type),
 
-    model: defaultModel.extend({
+    model: {
       ...coreMjmlModel,
-
       defaults: {
-        ...defaultModel.prototype.defaults,
-        'custom-name': 'Spacer',
+        name: 'Spacer',
         draggable: '[data-gjs-type=mj-column]',
         droppable: false,
         'style-default': { height: '20px' },
         stylable: ['height', 'container-background-color'],
         void: true,
       },
-    }, {
+    },
 
-        isComponent(el) {
-          if (el.tagName === type.toUpperCase()) {
-            return { type };
-          }
-        },
-      }),
-
-
-    view: defaultView.extend({
+    view: {
       ...coreMjmlView,
-
       tagName: 'tr',
-
       attributes: {
         style: 'pointer-events: all; display: table; width: 100%;user-select: none;',
       },
@@ -56,7 +44,6 @@ export default (editor, {
       renderChildren() {
         coreMjmlView.renderChildren.call(this);
       }
-
-    }),
+    },
   });
 }
