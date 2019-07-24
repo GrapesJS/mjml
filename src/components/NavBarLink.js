@@ -1,8 +1,6 @@
-import { isComponentType } from ".";
+import { isComponentType } from '.';
 
-export default (editor, {
-  dc, opt, defaultModel, defaultView, coreMjmlModel, coreMjmlView
-}) => {
+export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
   const type = 'mj-navbar-link';
 
   dc.addType(type, {
@@ -12,7 +10,7 @@ export default (editor, {
       ...coreMjmlModel,
 
       defaults: {
-        'custom-name': 'NavBarLink',
+        name: 'NavBarLink',
         draggable: '[data-gjs-type=mj-navbar]',
         highlightable: false,
         stylable: [

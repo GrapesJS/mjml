@@ -1,16 +1,15 @@
 import mjml2html from 'mjml4-in-browser';
-export default (editor, {
-  dc, opt, defaultModel, defaultView, coreMjmlModel, coreMjmlView, sandboxEl
-}) => {
+import { isComponentType } from '.';
+
+export default (editor, { dc, coreMjmlModel, coreMjmlView, sandboxEl }) => {
   const type = 'mj-navbar';
 
   dc.addType(type, {
-    model: defaultModel.extend({
+    isComponent: isComponentType(type),
+    model: {
       ...coreMjmlModel,
-
       defaults: {
-        ...defaultModel.prototype.defaults,
-        'custom-name': 'NavBar',
+        name: 'NavBar',
         draggable: '[data-gjs-type=mj-column]',
         droppable: '[data-gjs-type=mj-navbar-link]',
         'style-default': {
@@ -31,17 +30,9 @@ export default (editor, {
           }
         ],
       },
-    }, {
+    },
 
-        isComponent(el) {
-          if (el.tagName === type.toUpperCase()) {
-            return { type };
-          }
-        },
-      }),
-
-
-    view: defaultView.extend({
+    view: {
       ...coreMjmlView,
 
       tagName: 'tr',
@@ -129,6 +120,6 @@ export default (editor, {
           item.view.rerender();
         });
       },
-    }),
+    },
   });
 }
