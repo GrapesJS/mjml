@@ -68,4 +68,4 @@ export default (editor, opt = {}) => {
   }]);
   updateTooltip(deviceBtns);
 
-}
+};

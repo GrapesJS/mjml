@@ -1,7 +1,7 @@
 // Specs: https://mjml.io/documentation/#mj-style
-import { isComponentType, coreMjmlView } from './index.js';
+import { isComponentType } from './index.js';
 
-export default (editor, { dc }) => {
+export default (editor, { dc, coreMjmlView }) => {
   const type = 'mj-style';
   dc.addType(type, {
     isComponent: isComponentType(type),
@@ -28,4 +28,4 @@ export default (editor, { dc }) => {
     }
   });
 
-}
+};

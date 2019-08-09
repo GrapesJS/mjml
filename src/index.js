@@ -82,7 +82,7 @@ export default (editor, opt = {}) => {
     loadCommands,
     loadButtons,
     loadStyle,
-  ].forEach(module => module(editor, opts))
+  ].forEach(module => module(editor, opts));
 
   // Update devices
   if (opts.resetDevices) {

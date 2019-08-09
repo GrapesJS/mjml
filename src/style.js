@@ -119,4 +119,4 @@ export default (editor, opt = {}) => {
     });
   }
 
-}
+};

@@ -90,5 +90,5 @@ export default (editor, opt = {}) => {
       sender.set && sender.set('active', 0);
     },
 
-  }
-}
+  };
+};

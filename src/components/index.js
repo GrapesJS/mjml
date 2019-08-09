@@ -94,7 +94,7 @@ export default (editor, opt = {}) => {
     /**
      * Rhave to change few things for hte MJML's xml (no id, style, class)
      */
-    toHTML(opts) {
+    toHTML() {
       let code = '';
       let model = this;
       let tag = model.get('tagName'),
@@ -253,7 +253,6 @@ export default (editor, opt = {}) => {
 
 
   // MJML Internal view (for elements inside mj-columns)
-  let coreMjmlIntView = Object.assign({}, coreMjmlView);
   const compOpts = {
     dc, coreMjmlModel, coreMjmlView, opt, sandboxEl, defaultModel, defaultView,
     textModel, textView, linkModel, linkView, imageModel, imageView
@@ -274,4 +273,4 @@ export default (editor, opt = {}) => {
   loadSpacer(editor, compOpts);
   loadNavBar(editor, compOpts);
   loadNavBarLink(editor, compOpts);
-}
+};

@@ -122,4 +122,4 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView, sandboxEl }) => {
       },
     },
   });
-}
+};

@@ -1,12 +1,13 @@
 {
   "name": "grapesjs-mjml",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "MJML Componenets integration in GrapesJS",
   "main": "dist/grapesjs-mjml.min.js",
   "scripts": {
     "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
     "v:patch": "npm version --no-git-tag-version patch",
-    "build": "npm run v:patch && webpack --env.production",
+    "build": "npm run v:patch && webpack",
     "start": "webpack-dev-server --open --progress --colors"
   },
   "repository": {
@@ -19,14 +20,6 @@
     "mjml",
     "wysiwyg"
   ],
-  "babel": {
-    "presets": [
-      "env"
-    ],
-    "plugins": [
-      "transform-object-rest-spread"
-    ]
-  },
   "author": "Artur Arseniev",
   "license": "BSD-3-Clause",
   "peerDependencies": {
@@ -36,15 +29,13 @@
     "mjml4-in-browser": "1.1.2"
   },
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.5",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "eslint": "^4.19.1",
-    "html-webpack-plugin": "^2.30.1",
-    "install-peers": "^1.0.3",
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "babel-loader": "^8.0.6",
+    "eslint": "^6.1.0",
     "node-sass": "^4.12.0",
-    "webpack": "^3.12.0",
-    "webpack-dev-server": "^2.11.5"
+    "webpack": "^4.39.1",
+    "webpack-cli": "^3.3.6",
+    "webpack-dev-server": "^3.7.2"
   }
 }

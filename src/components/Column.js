@@ -99,8 +99,8 @@ export default (editor, { dc, opt, coreMjmlModel, coreMjmlView, sandboxEl }) => 
       },
 
       getChildrenSelector() {
-        return 'table'
+        return 'table';
       },
     },
   });
-}
+};
