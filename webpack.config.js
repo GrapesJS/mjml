@@ -23,7 +23,7 @@ module.exports = {
          }
       ]
    },
-   // minimize breaks grapesjs integration, see
+   // minimize breaks grapesjs integration, see https://github.com/artf/grapesjs-mjml/issues/110
    optimization: {
       minimize: false
    },
