@@ -1,4 +1,4 @@
-import mjml2html from 'mjml4-in-browser';
+import mjml2html from 'mjml';
 import loadMjml from './mjml';
 import loadHead from './Head';
 import loadStyle from './Style';

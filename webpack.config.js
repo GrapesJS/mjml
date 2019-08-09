@@ -1,4 +1,5 @@
 const TerserPlugin = require('terser-webpack-plugin');
+const path = require('path');
 const pkg = require('./package.json');
 const name = pkg.name;
 
@@ -23,6 +24,12 @@ module.exports = {
         }
       }
     ]
+  },
+  resolve: {
+    alias: {
+      'fs': path.resolve(__dirname, 'mocks/fs'),
+      'uglify-js': path.resolve(__dirname, 'mocks/uglify-js'),
+    }
   },
   // make sure to keep_fnames or else it will break grapesjs, see https://github.com/artf/grapesjs-mjml/issues/110
   optimization: {

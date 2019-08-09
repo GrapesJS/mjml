@@ -26,7 +26,7 @@
     "grapesjs": "^0.x"
   },
   "dependencies": {
-    "mjml4-in-browser": "1.1.2"
+    "mjml": "4.4.1"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
