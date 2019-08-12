@@ -108,4 +108,4 @@ export default (editor, opt = {}) => {
     ...allBlocks,
   });
 
-}
+};

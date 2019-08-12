@@ -1,5 +1,5 @@
 // Specs: https://mjml.io/documentation/#mjml-column
-import mjml2html from 'mjml4-in-browser';
+import mjml2html from 'mjml';
 import { isComponentType } from './index.js';
 
 export default (editor, { dc, opt, coreMjmlModel, coreMjmlView, sandboxEl }) => {
@@ -99,8 +99,8 @@ export default (editor, { dc, opt, coreMjmlModel, coreMjmlView, sandboxEl }) => 
       },
 
       getChildrenSelector() {
-        return 'table'
+        return 'table';
       },
     },
   });
-}
+};

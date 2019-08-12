@@ -1,13 +1,13 @@
 import tglImagesCommand from './toggleImagesCommand';
+import importCommand from './command-import-mjml';
+import exportCommand from './command-export-mjml';
 
 export default (editor, opt = {}) => {
   const cmd = editor.Commands;
-  const importCommand = require('./command-import-mjml');
-  const exportCommand = require('./command-export-mjml');
   const exportName = opt.overwriteExport ? 'export-template' : 'mjml-export';
 
-  cmd.add('mjml-import', importCommand.default(editor, opt));
-  cmd.add(exportName, exportCommand.default(editor, opt));
+  cmd.add('mjml-import', importCommand(editor, opt));
+  cmd.add(exportName, exportCommand(editor, opt));
 
   cmd.add(opt.cmdTglImages, tglImagesCommand(opt));
 
@@ -40,4 +40,4 @@ export default (editor, opt = {}) => {
     }
   });
 
-}
+};
