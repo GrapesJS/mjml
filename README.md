@@ -2,7 +2,7 @@
 
 > Requires GrapesJS v0.14.62 or higher
 
-This plugin enables the usage of [MJML](https://mjml.io/) components inside the GrapesJS environment. MJML components are rendered in real-time using a third party compiler ([mjml4-in-browser](https://github.com/bures/mjml4-in-browser)), therefore the result is, almost, the same as using the [MJML Live Editor](https://mjml.io/try-it-live).
+This plugin enables the usage of [MJML](https://mjml.io/) components inside the GrapesJS environment. MJML components are rendered in real-time using the official v4 compiler (+ some mocks to make it run in the browser), therefore the result is, almost, the same as using the [MJML Live Editor](https://mjml.io/try-it-live).
 
 
 [Demo](http://grapesjs.com/demo-mjml.html)
