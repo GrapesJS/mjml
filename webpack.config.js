@@ -55,8 +55,7 @@ module.exports = (env, options) => {
         }),
       ],
     },
-    target: "web",
-    externals: {'grapesjs': 'grapesjs'},
+    target: 'web',
     plugins: plugins
   };
 };
