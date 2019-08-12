@@ -75,7 +75,7 @@ Supported components:
 </script>
 ```
 
-####Or using ESM imports:
+#### Or using ESM imports:
 
 ```js
 import 'grapesjs/dist/css/grapes.min.css'
