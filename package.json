@@ -22,9 +22,6 @@
   ],
   "author": "Artur Arseniev",
   "license": "BSD-3-Clause",
-  "peerDependencies": {
-    "grapesjs": "^0.x"
-  },
   "dependencies": {
     "mjml": "4.4.1"
   },
