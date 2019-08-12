@@ -7,7 +7,7 @@
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
     "v:patch": "npm version --no-git-tag-version patch",
-    "build": "npm run v:patch && webpack",
+    "build": "npm run v:patch && webpack -p",
     "start": "webpack-dev-server --open --progress --colors"
   },
   "repository": {

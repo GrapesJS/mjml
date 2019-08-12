@@ -5,7 +5,7 @@ const name = pkg.name;
 
 module.exports = {
   entry: './src',
-  mode: "production",
+  mode: "development",
   output: {
     filename: `./${name}.min.js`,
     library: name,
