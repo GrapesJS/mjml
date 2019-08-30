@@ -108,4 +108,22 @@ export default (editor, opt = {}) => {
     ...allBlocks,
   });
 
+  bm.add('mj-carousel', {
+    label: 'Carousel',
+    content: `<mj-carousel>
+    <mj-carousel-image src="https://www.mailjet.com/wp-content/uploads/2016/11/ecommerce-guide.jpg"></mj-carousel-image>
+    <mj-carousel-image src="https://www.mailjet.com/wp-content/uploads/2016/09/3@1x.png"></mj-carousel-image>
+    <mj-carousel-image src="https://www.mailjet.com/wp-content/uploads/2016/09/1@1x.png"></mj-carousel-image>
+    </mj-carousel>`,
+    attributes: { class: 'fa fa-images' },
+    allBlocks
+  });
+
+  bm.add('mj-carousel-image', {
+    label: 'Carousel Image',
+    content: '<mj-carousel-image src="http://placehold.it/350x250/78c5d6/fff" ></mj-carousel-image>',
+    attributes: { class: 'fa fa-image' },
+    allBlocks
+  });
+
 };
