@@ -91,14 +91,6 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView, sandboxEl }) => {
         };
       },
 
-      getInnerMjmlTemplate() {
-        let orig = coreMjmlView.getInnerMjmlTemplate.call(this);
-        return {
-          start: `${orig.start}<mj-carousel-image></mj-carousel-image>`,
-          end: `${orig.end}`,
-        };
-      },
-
       getTemplateFromEl(sandboxEl) {
         return sandboxEl.firstChild.querySelector('div.mj-carousel');
       },
