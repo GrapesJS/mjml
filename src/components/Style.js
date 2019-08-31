@@ -1,12 +1,13 @@
 // Specs: https://mjml.io/documentation/#mj-style
 import { isComponentType } from './index.js';
 
-export default (editor, { dc, coreMjmlView }) => {
+export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
   const type = 'mj-style';
   dc.addType(type, {
     isComponent: isComponentType(type),
 
     model: {
+      ...coreMjmlModel,
       defaults: {
         draggable: '[data-gjs-type=mj-head]',
       },
