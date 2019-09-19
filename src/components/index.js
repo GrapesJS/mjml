@@ -2,6 +2,7 @@ import mjml2html from 'mjml';
 import loadMjml from './mjml';
 import loadHead from './Head';
 import loadStyle from './Style';
+import loadFont from './Font';
 import loadBody from './Body';
 import loadSection from './Section';
 import loadColumn from './Column';
@@ -261,6 +262,7 @@ export default (editor, opt = {}) => {
   loadMjml(editor, compOpts);
   loadHead(editor, compOpts);
   loadStyle(editor, compOpts);
+  loadFont(editor, compOpts);
   loadBody(editor, compOpts);
   loadSection(editor, compOpts);
   loadColumn(editor, compOpts);
