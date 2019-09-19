@@ -18,6 +18,8 @@ Supported components:
 `mj-social`
 `mj-divider`
 `mj-spacer`
+`mj-style`
+`mj-font`
 
 
 ## Options
