@@ -14,6 +14,7 @@ import loadDivider from './Divider';
 import loadSpacer from './Spacer';
 import loadNavBar from './NavBar';
 import loadNavBarLink from './NavBarLink';
+import loadWrapper from './Wrapper';
 
 export const isComponentType = type => (el) => el.tagName === type.toUpperCase();
 
@@ -273,4 +274,5 @@ export default (editor, opt = {}) => {
   loadSpacer(editor, compOpts);
   loadNavBar(editor, compOpts);
   loadNavBarLink(editor, compOpts);
+  loadWrapper(editor, compOpts);
 };

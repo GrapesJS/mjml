@@ -6,6 +6,17 @@ export default (editor, opt = {}) => {
 
   opt.resetBlocks && bm.getAll().reset();
 
+  bm.add('mj-wrapper', {
+    label: 'Wrapper',
+    content: `<mj-wrapper>
+        <mj-section>
+        <mj-column><mj-text>Content 1</mj-text></mj-column>
+</mj-section>
+      </mj-wrapper>`,
+    attributes: { class: 'gjs-fonts gjs-f-b1' },
+    ...allBlocks,
+  });
+
   bm.add('mj-1-column', {
     label: '1 Column',
     content: `<mj-section>

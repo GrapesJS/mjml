@@ -3,6 +3,10 @@ import { isComponentType } from './index.js';
 
 export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
   const type = 'mj-section';
+  const draggable = [
+    'mj-body',
+    'mj-wrapper',
+  ].map(tag => `[data-gjs-type=${tag}]`).join(', ');
 
   dc.addType(type, {
     isComponent: isComponentType(type),
@@ -11,7 +15,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
       ...coreMjmlModel,
       defaults: {
         name: 'Section',
-        draggable: '[data-gjs-type=mj-body]',
+        draggable,
         droppable: '[data-gjs-type=mj-column]',
         'style-default': {
           'padding-top': '10px',
@@ -38,19 +42,10 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
       },
 
       getMjmlTemplate() {
-        let parentView = this.model.parent().view;
-        if (parentView.getInnerMjmlTemplate) {
-          let mjmlBody = coreMjmlView.getInnerMjmlTemplate.call(parentView);
-          return {
-            start: `<mjml>${mjmlBody.start}`,
-            end: `${mjmlBody.end}</mjml>`,
-          };
-        } else {
-          return {
-            start: `<mjml><mj-body>`,
-            end: `</mj-body></mjml>`,
-          };
-        }
+        return {
+          start: `<mjml><mj-body>`,
+          end: `</mj-body></mjml>`,
+        };
       },
 
       getChildrenSelector() {
