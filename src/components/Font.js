@@ -36,6 +36,8 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView, sandboxEl }) => {
 
       renderStyle() {},
 
+      renderContent(){},
+
       getTemplateFromMjml() {
         let mjmlTmpl = this.getMjmlTemplate();
         let innerMjml = this.getInnerMjmlTemplate();
