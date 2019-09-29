@@ -42,8 +42,8 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
         if (parentView.getInnerMjmlTemplate) {
           let mjmlBody = coreMjmlView.getInnerMjmlTemplate.call(parentView);
           return {
-            start: `<mjml>${mjmlBody.start}`,
-            end: `${mjmlBody.end}</mjml>`,
+            start: `<mjml><mj-body>${mjmlBody.start}`,
+            end: `${mjmlBody.end}</mj-body></mjml>`,
           };
         } else {
           return {
