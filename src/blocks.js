@@ -108,4 +108,16 @@ export default (editor, opt = {}) => {
     ...allBlocks,
   });
 
+  bm.add('mj-carousel', {
+    label: 'Carousel',
+    content: `
+      <mj-carousel>
+        <mj-carousel-image src="http://placehold.it/350x250/78c5d6/fff></mj-carousel-image>
+        <mj-carousel-image src="http://placehold.it/350x250/ff4500/fff"></mj-carousel-image>
+        <mj-carousel-image src="http://placehold.it/350x250/90ee90/fff></mj-carousel-image>
+      </mj-carousel>
+    `,
+    attributes: { class: 'fa fa-image' },
+    ...allBlocks,
+  });
 };

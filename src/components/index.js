@@ -14,6 +14,8 @@ import loadDivider from './Divider';
 import loadSpacer from './Spacer';
 import loadNavBar from './NavBar';
 import loadNavBarLink from './NavBarLink';
+import loadCarousel from './Carousel';
+import loadCarouselImage from './CarouselImage';
 
 export const isComponentType = type => (el) => el.tagName === type.toUpperCase();
 
@@ -184,6 +186,43 @@ export default (editor, opt = {}) => {
       return this.getTemplateFromEl(sandboxEl);
     },
 
+    getTemplateFromMjmlWithStyle() {
+      let mjmlTmpl = this.getMjmlTemplate();
+      let innerMjml = this.getInnerMjmlTemplate();
+
+      const htmlOutput = mjml2html(`${mjmlTmpl.start}
+        ${innerMjml.start}${innerMjml.end}${mjmlTmpl.end}`);
+      let html = htmlOutput.html;
+
+      // I need styles for responsive columns
+      let styles = [];
+      sandboxEl.innerHTML = html;
+      var styleArr = Array.from(sandboxEl.querySelectorAll('style'));
+      styleArr.forEach((item) => {
+        styles.push(item.innerHTML);
+      });
+
+      let content = html.replace(/<body(.*)>/, '<body>');
+      let start = content.indexOf('<body>') + 6;
+      let end = content.indexOf('</body>');
+      sandboxEl.innerHTML = content.substring(start, end).trim();
+      let componentEl = this.getTemplateFromEl(sandboxEl); // getTemplateFromEl needs to be defined per component basis
+
+      // Copy all rendered attributes (TODO need for all)
+      let attributes = {};
+      const elAttrs = componentEl.attributes;
+
+      for (let elAttr, i = 0, len = elAttrs.length; i < len; i++) {
+        elAttr = elAttrs[i];
+        attributes[elAttr.name] = elAttr.value;
+      }
+
+      return {
+        content: componentEl.innerHTML,
+        style: styles.join(' ')
+      };
+    },
+
 
     /**
      * Render children components
@@ -273,4 +312,6 @@ export default (editor, opt = {}) => {
   loadSpacer(editor, compOpts);
   loadNavBar(editor, compOpts);
   loadNavBarLink(editor, compOpts);
+  loadCarousel(editor, compOpts);
+  loadCarouselImage(editor, compOpts);
 };
