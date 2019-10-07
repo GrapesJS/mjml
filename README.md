@@ -10,6 +10,8 @@ This plugin enables the usage of [MJML](https://mjml.io/) components inside the 
 <br/>
 
 Supported components:
+`mj-wrapper`
+`mj-group`
 `mj-section`
 `mj-column`
 `mj-text`
@@ -18,6 +20,8 @@ Supported components:
 `mj-social`
 `mj-divider`
 `mj-spacer`
+`mj-style`
+`mj-font`
 
 
 ## Options
