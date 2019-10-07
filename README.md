@@ -53,20 +53,25 @@ Supported components:
 <script src="path/to/grapesjs-mjml.min.js"></script>
 
 <div id="gjs">
-  <!-- Your MJML body here -->
-  <mj-container>
-        <mj-section>
-          <mj-column>
-            <mj-text>My Company</mj-text>
-          </mj-column>
-        </mj-section>
-  <mj-container>
+  <mjml>
+    <mj-body>
+      <!-- Your MJML body here -->
+      <mj-container>
+            <mj-section>
+              <mj-column>
+                <mj-text>My Company</mj-text>
+              </mj-column>
+            </mj-section>
+      <mj-container>
+    </mj-body>
+  </mjml>
 </div>
 
 <script type="text/javascript">
   var editor = grapesjs.init({
       fromElement: 1,
       container : '#gjs',
+      avoidInlineStyle : false,
       plugins: ['grapesjs-mjml'],
       pluginsOpts: {
         'grapesjs-mjml': {/* ...options */}
@@ -85,6 +90,7 @@ import grapesJSMJML from 'grapesjs-mjml'
 grapesJS.init({
    fromElement: 1,
    container : '#gjs',
+   avoidInlineStyle : false,
    plugins: [grapesJSMJML],
    pluginsOpts: {
       [grapesJSMJML]: {/* ...options */}
