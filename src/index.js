@@ -76,6 +76,9 @@ export default (editor, opt = {}) => {
   // Don't need to create css rules with media
   config.devicePreviewMode = 1;
 
+  // Doesn't work without inline styling
+  config.avoidInlineStyle = 0;
+
   [
     loadBlocks,
     loadComponents,

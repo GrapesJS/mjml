@@ -60,13 +60,11 @@ Supported components:
   <mjml>
     <mj-body>
       <!-- Your MJML body here -->
-      <mj-container>
-            <mj-section>
-              <mj-column>
-                <mj-text>My Company</mj-text>
-              </mj-column>
-            </mj-section>
-      <mj-container>
+      <mj-section>
+        <mj-column>
+          <mj-text>My Company</mj-text>
+        </mj-column>
+      </mj-section>
     </mj-body>
   </mjml>
 </div>
