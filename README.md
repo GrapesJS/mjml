@@ -73,7 +73,6 @@ Supported components:
   var editor = grapesjs.init({
       fromElement: 1,
       container : '#gjs',
-      avoidInlineStyle : false,
       plugins: ['grapesjs-mjml'],
       pluginsOpts: {
         'grapesjs-mjml': {/* ...options */}
