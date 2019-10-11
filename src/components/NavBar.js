@@ -10,7 +10,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView, sandboxEl }) => {
       ...coreMjmlModel,
       defaults: {
         name: 'NavBar',
-        draggable: '[data-gjs-type=mj-column]',
+        draggable: '[data-gjs-type=mj-column],[data-gjs-type=mj-hero]',
         droppable: '[data-gjs-type=mj-navbar-link]',
         'style-default': {
           // TODO
