@@ -121,4 +121,23 @@ export default (editor, opt = {}) => {
     ...allBlocks,
   });
 
+  bm.add('mj-wrapper', {
+    label: 'Wrapper',
+    content: `<mj-wrapper border="1px solid #000000" padding="50px 30px">
+    <mj-section border-top="1px solid #aaaaaa" border-left="1px solid #aaaaaa" border-right="1px solid #aaaaaa" padding="20px">
+      <mj-column>
+        <mj-image padding="0" src="http://placehold.it/350x250/78c5d6/fff" />
+      </mj-column>
+    </mj-section>
+    <mj-section border-left="1px solid #aaaaaa" border-right="1px solid #aaaaaa" padding="20px" border-bottom="1px solid #aaaaaa">
+      <mj-column border="1px solid #dddddd">
+        <mj-text padding="20px"> First line of text </mj-text>
+        <mj-divider border-width="1px" border-style="dashed" border-color="lightgrey" padding="0 20px" />
+        <mj-text padding="20px"> Second line of text </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-wrapper>`,
+    ...allBlocks,
+  });
+
 };
