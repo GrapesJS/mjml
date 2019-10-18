@@ -74,7 +74,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
         } else {
           return {
             start: `<mjml><mj-body><mj-column><mj-social>`,
-            end: `</mj-social></mj-column></mj-body></mjml`,
+            end: `</mj-social></mj-column></mj-body></mjml>`,
           };
         }
       },
