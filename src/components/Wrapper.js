@@ -12,7 +12,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
       defaults: {
         name: 'Wrapper',
         draggable: '[data-gjs-type=mj-body]',
-        droppable: '[data-gjs-type=mj-wrapper]',
+        droppable: '[data-gjs-type=mj-section]',
       },
     },
 
