@@ -52,7 +52,7 @@ export default (editor, opt = {}) => {
 
   bm.add('mj-image', {
     label: 'Image',
-    content: '<mj-image src="http://placehold.it/350x250/78c5d6/fff">',
+    content: '<mj-image src="http://placehold.it/350x250/78c5d6/fff"/>',
     attributes: { class: 'fa fa-image' },
     ...allBlocks,
   });
