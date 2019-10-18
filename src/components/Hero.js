@@ -3,6 +3,10 @@ import { isComponentType } from './index.js';
 
 export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
   const type = 'mj-hero';
+  const droppable = [
+    'mj-text', 'mj-button', 'mj-image', 'mj-divider', 'mj-navbar', 'mj-social',
+    'mj-spacer',
+  ].map(tag => `[data-gjs-type=${tag}]`).join(', ');
 
   dc.addType(type, {
     isComponent: isComponentType(type),
@@ -12,10 +16,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
       defaults: {
         name: 'Hero',
         draggable: '[data-gjs-type=mj-body]',
-        droppable: '[data-gjs-type=mj-text], [data-gjs-type=mj-button], ' +
-                   '[data-gjs-type=mj-image], [data-gjs-type=mj-divider], ' +
-                   '[data-gjs-type=mj-navbar], [data-gjs-type=mj-social], ' +
-                   '[data-gjs-type=mj-spacer]',
+        droppable,
       },
       stylable: [
         'background-color', 'background-height', 'background-position', 'background-url',
