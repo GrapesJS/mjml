@@ -7,6 +7,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
   dc.addType(type, {
     isComponent: isComponentType(type),
     extend: 'link',
+    extendFnView: ['onActive', 'disableEditing'],
 
     model: {
       ...coreMjmlModel,
@@ -66,6 +67,17 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
        */
       renderChildren() {
         coreMjmlView.renderChildren.call(this);
+      },
+
+      /**
+       * Need to make text selectable.
+       */
+      onActive() {
+        this.getChildrenContainer().style.pointerEvents = 'all';
+      },
+
+      disableEditing() {
+        this.getChildrenContainer().style.pointerEvents = 'none';
       },
     },
   });

@@ -1,9 +1,9 @@
-// Specs: https://mjml.io/documentation/#mj-style
+// Specs: https://mjml.io/documentation/#mj-font
 import mjml2html from 'mjml';
 import { isComponentType } from './index.js';
 
 export default (editor, { dc, coreMjmlModel, coreMjmlView, sandboxEl }) => {
-  const type = 'mj-style';
+  const type = 'mj-font';
   dc.addType(type, {
     isComponent: isComponentType(type),
 
@@ -11,6 +11,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView, sandboxEl }) => {
       ...coreMjmlModel,
       defaults: {
         draggable: '[data-gjs-type=mj-head]',
+        void: true
       },
     },
     view: {
@@ -18,17 +19,24 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView, sandboxEl }) => {
       tagName: "style",
 
       getMjmlTemplate() {
+        const name = this.model.get('attributes').name
+        /*
+         * mjml will omit `<mj-font> definitions which are not actually used.
+         * Therefore we need to have an mj-text that uses our font
+         */
         return {
           start: `<mjml><mj-head>`,
-          end: `</mj-head></mjml>`,
+          end: `</mj-head><mj-body><mj-text font-family="${name}"></mj-text></mj-body></mjml>`,
         };
       },
 
       getTemplateFromEl(sandboxEl) {
-        return sandboxEl.querySelector('style').innerHTML;
+        return sandboxEl.querySelectorAll('style')[1].innerHTML
       },
 
       renderStyle() {},
+
+      renderContent(){},
 
       getTemplateFromMjml() {
         let mjmlTmpl = this.getMjmlTemplate();

@@ -10,6 +10,8 @@ This plugin enables the usage of [MJML](https://mjml.io/) components inside the 
 <br/>
 
 Supported components:
+`mj-wrapper`
+`mj-group`
 `mj-section`
 `mj-column`
 `mj-text`
@@ -18,6 +20,8 @@ Supported components:
 `mj-social`
 `mj-divider`
 `mj-spacer`
+`mj-style`
+`mj-font`
 
 
 ## Options
@@ -53,14 +57,16 @@ Supported components:
 <script src="path/to/grapesjs-mjml.min.js"></script>
 
 <div id="gjs">
-  <!-- Your MJML body here -->
-  <mj-container>
-        <mj-section>
-          <mj-column>
-            <mj-text>My Company</mj-text>
-          </mj-column>
-        </mj-section>
-  <mj-container>
+  <mjml>
+    <mj-body>
+      <!-- Your MJML body here -->
+      <mj-section>
+        <mj-column>
+          <mj-text>My Company</mj-text>
+        </mj-column>
+      </mj-section>
+    </mj-body>
+  </mjml>
 </div>
 
 <script type="text/javascript">
@@ -85,6 +91,7 @@ import grapesJSMJML from 'grapesjs-mjml'
 grapesJS.init({
    fromElement: 1,
    container : '#gjs',
+   avoidInlineStyle : false,
    plugins: [grapesJSMJML],
    pluginsOpts: {
       [grapesJSMJML]: {/* ...options */}
