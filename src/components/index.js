@@ -54,14 +54,16 @@ export default (editor, opt = {}) => {
       this.set('attributes', attrs);
       this.set('style', attrs);
       this.listenTo(this, 'change:style', this.handleStyleChange);
+      this.listenTo(this, 'change:attributes', this.handleAttributeChange);
     },
 
+    handleAttributeChange() {
+      this.set('style', this.get('attributes'));
+    },
 
     handleStyleChange() {
-      const style = { ...this.get('attributes'), ...this.get('style') };
-      this.set('attributes', style);
+      this.set('attributes', this.get('style'));
     },
-
 
     getMjmlAttributes() {
       let attr = this.get('attributes') || {};
