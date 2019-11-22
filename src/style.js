@@ -7,7 +7,7 @@ export default (editor, opt = {}) => {
       sectors.reset();
       sectors.add([{
         name: 'Dimension',
-        open: false,
+        open: true,
         buildProps: ['width', 'height', 'max-width', 'min-height', 'margin', 'padding'],
         properties: [{
           property: 'margin',
@@ -34,7 +34,7 @@ export default (editor, opt = {}) => {
         }],
       }, {
         name: 'Typography',
-        open: false,
+        open: true,
         buildProps: ['font-family', 'font-size', 'font-weight', 'letter-spacing', 'color', 'line-height', 'text-align', 'align', 'text-decoration'],
         properties: [
           { name: 'Font', property: 'font-family' },
@@ -72,7 +72,7 @@ export default (editor, opt = {}) => {
           }],
       }, {
         name: 'Decorations',
-        open: false,
+        open: true,
         buildProps: ['background-color', 'container-background-color', 'background-url', 'background-repeat',
           'background-size', 'border-radius', 'border'],
         properties: [{
