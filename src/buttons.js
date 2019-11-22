@@ -17,6 +17,7 @@ export default (editor, opt = {}) => {
     id: 'mjml-import',
     className: 'fa fa-download',
     command: 'mjml-import',
+    attributes: {title: 'Import MJML'},
   });
 
   if (optPanel) {
@@ -57,14 +58,17 @@ export default (editor, opt = {}) => {
     id: 'deviceDesktop',
     command: 'set-device-desktop',
     className: 'fa fa-desktop',
+    attributes: {title: 'Desktop'},
   }, {
     id: 'deviceTablet',
     command: 'set-device-tablet',
     className: 'fa fa-tablet',
+    attributes: {title: 'Tablet'},
   }, {
     id: 'deviceMobile',
     command: 'set-device-mobile',
     className: 'fa fa-mobile',
+    attributes: {title: 'Mobile'},
   }]);
   updateTooltip(deviceBtns);
 
