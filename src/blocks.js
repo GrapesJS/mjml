@@ -8,7 +8,7 @@ export default (editor, opt = {}) => {
 
   bm.add('mj-1-column', {
     label: '1 Column',
-    content: `<mj-section>
+    content: `<mj-section padding-top="0" padding-right="0" padding-left="0" padding-bottom="0">
         <mj-column><mj-text>Content 1</mj-text></mj-column>
       </mj-section>`,
     attributes: { class: 'gjs-fonts gjs-f-b1' },
@@ -17,7 +17,7 @@ export default (editor, opt = {}) => {
 
   bm.add('mj-2-columns', {
     label: '2 Columns',
-    content: `<mj-section>
+    content: `<mj-section padding-top="0" padding-right="0" padding-left="0" padding-bottom="0">
         <mj-column><mj-text>Content 1</mj-text></mj-column>
         <mj-column><mj-text>Content 2</mj-text></mj-column>
       </mj-section>`,
@@ -27,7 +27,7 @@ export default (editor, opt = {}) => {
 
   bm.add('mj-3-columns', {
     label: '3 Columns',
-    content: `<mj-section>
+    content: `<mj-section padding-top="0" padding-right="0" padding-left="0" padding-bottom="0">
         <mj-column><mj-text>Content 1</mj-text></mj-column>
         <mj-column><mj-text>Content 2</mj-text></mj-column>
         <mj-column><mj-text>Content 3</mj-text></mj-column>
