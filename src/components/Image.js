@@ -23,15 +23,45 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
           'container-background-color', 'align',
         ],
         'style-default': {
-          'padding-top': '10px',
-          'padding-bottom': '10px',
-          'padding-right': '25px',
-          'padding-left': '25px',
+          'padding-top': '0px',
+          'padding-bottom': '0px',
+          'padding-right': '0px',
+          'padding-left': '0px',
           'align': 'center',
         },
         traits: ['href', 'rel', 'alt', 'title'],
-        void: true,
+        void: false,
       },
+      toHTML() {
+        let code = '';
+        let model = this;
+        let tag = model.get('tagName');
+        let sTag = model.get('void');
+
+        // Build the string of attributes
+        let strAttr = '';
+        let attr = this.getAttrToHTML();
+        for (let prop in attr) {
+          let val = attr[prop];
+          strAttr += typeof val !== 'undefined' && val !== '' ? ' ' + prop + '="' + val + '"' : '';
+        }
+
+        code += `<${tag}${strAttr}${sTag ? '/' : ''}>` + model.get('content');
+
+        if (!sTag) code += `</${tag}>`;
+
+        // Add the components after the closing tag.
+        //
+        // This will also fix an issue caused by changing void property value
+        // where an imported template has an mj-image that is not enclosed by a closing tag,
+        // the editor adds the mj-image closing tag right before its parent's closing tag.
+        // Ultimately making all its sibling as its children.
+        model.get('components').each(model => {
+          code += model.toHTML();
+        });
+
+        return code;
+      }
     },
 
     view: {
