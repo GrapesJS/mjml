@@ -22,6 +22,7 @@ Supported components:
 `mj-spacer`
 `mj-style`
 `mj-font`
+`mj-hero`
 
 
 ## Options

@@ -11,7 +11,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
       ...coreMjmlModel,
       defaults: {
         name: 'Social',
-        draggable: '[data-gjs-type=mj-column]',
+        draggable: '[data-gjs-type=mj-column], [data-gjs-type=mj-hero]',
         droppable: '[data-gjs-type=mj-social-element]',
         stylable: [
           'icon-size', 'text-decoration', 'align', 'font-family', 'font-size', 'line-height',
