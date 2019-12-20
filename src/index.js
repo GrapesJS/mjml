@@ -66,9 +66,6 @@ export default (editor, opt = {}) => {
     ...opt,
   };
 
-  // Change some config
-  config.devicePreviewMode = 1;
-
   // I need to prevent forced class creation as classes aren't working
   // at the moment
   config.forceClass = 0;
