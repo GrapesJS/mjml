@@ -47,7 +47,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
       },
 
       renderStyle() {
-        this.el.style = this.el.getAttribute('style') + this.attributes.style;
+        this.el.setAttribute('style', `${this.el.getAttribute('style') + this.attributes.style}`);
       },
 
       renderContent() {
