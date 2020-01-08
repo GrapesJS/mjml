@@ -231,7 +231,7 @@ export default (editor, opt = {}) => {
 
 
     renderStyle() {
-      this.el.style.cssText = this.attributes.style.cssText;
+      this.el.style.cssText = this.attributes.style;
     },
 
 
