@@ -44,7 +44,7 @@ export default (editor, opt = {}) => {
   let coreMjmlModel = {
     init() {
       const attrs = { ...this.get('attributes') };
-      const style = { ...this.get('style') };
+      const style = { ...this.get('style-default'), ...this.get('style') };
 
       for (let prop in style) {
         if (!(prop in attrs)) {
