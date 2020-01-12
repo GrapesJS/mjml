@@ -5,7 +5,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
 
   dc.addType(type, {
     extend: 'text',
-    extendFnView: ['onActive', 'disableEditing'],
+    extendFnView: ['onActive'],
 
     isComponent(el) {
       if (el.tagName === type.toUpperCase()) {
@@ -75,10 +75,6 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
        */
       onActive() {
         this.getChildrenContainer().style.pointerEvents = 'all';
-      },
-
-      disableEditing() {
-        this.getChildrenContainer().style.pointerEvents = 'none';
       },
     },
   });
