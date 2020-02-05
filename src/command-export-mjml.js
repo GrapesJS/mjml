@@ -5,7 +5,8 @@ export default (editor, opt = {}) => {
   const codeViewer = editor.CodeManager.getViewer('CodeMirror').clone();
   const container = document.createElement('div');
   const cmdm = editor.Commands;
-  container.style = 'display: flex; justify-content: space-between;';
+  container.style.display = 'flex';
+  container.style.justifyContent = 'space-between';
 
   // Init code viewer
   codeViewer.set({
@@ -35,7 +36,10 @@ export default (editor, opt = {}) => {
       const cm = ecm.getViewer('CodeMirror').clone();
       const txtarea = document.createElement('textarea');
       const el = document.createElement('div');
-      el.style = 'flex:1 0 auto; padding:5px; max-width:50%; box-sizing:border-box;';
+      el.style.flex = '1 0 auto';
+      el.style.padding = '5px';
+      el.style.maxWidth = '50%';
+      el.style.boxSizing = 'border-box';
 
       const codeEditor = cm.set({
         label: label,
