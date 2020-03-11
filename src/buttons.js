@@ -3,7 +3,7 @@ export default (editor, opt = {}) => {
   const tltPosAttr = 'data-tooltip-pos';
   const pnm = editor.Panels;
   const optPanel = pnm.getPanel('options');
-  const cmdPanel = pnm.getPanel('options');
+  const cmdPanel = pnm.getPanel('commands');
   const updateTooltip = (coll) => {
     coll.each((item) => {
       var attrs = item.get('attributes');
@@ -11,7 +11,6 @@ export default (editor, opt = {}) => {
       item.set('attributes', attrs);
     });
   };
-
 
   pnm.addButton('options', {
     id: 'mjml-import',
@@ -35,7 +34,7 @@ export default (editor, opt = {}) => {
   // Clean commands panel
   if (cmdPanel) {
     const cmdBtns = cmdPanel.get('buttons');
-    // cmdBtns.reset();
+    cmdBtns.reset();
     cmdBtns.add([{
       id: 'undo',
       className: 'fa fa-undo',
@@ -49,6 +48,7 @@ export default (editor, opt = {}) => {
     }]);
     updateTooltip(cmdBtns);
   }
+
   // Turn off default devices select and create new one
   editor.getConfig().showDevices = 0;
   const devicePanel = pnm.addPanel({ id: 'devices-c' });
