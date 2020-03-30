@@ -17,6 +17,7 @@ import loadDivider from './Divider';
 import loadSpacer from './Spacer';
 import loadNavBar from './NavBar';
 import loadNavBarLink from './NavBarLink';
+import loadHero from './Hero';
 
 export const isComponentType = type => (el) => el.tagName === type.toUpperCase();
 
@@ -43,7 +44,7 @@ export default (editor, opt = {}) => {
   let coreMjmlModel = {
     init() {
       const attrs = { ...this.get('attributes') };
-      const style = { ...this.get('style') };
+      const style = { ...this.get('style-default'), ...this.get('style') };
 
       for (let prop in style) {
         if (!(prop in attrs)) {
@@ -230,7 +231,7 @@ export default (editor, opt = {}) => {
 
 
     renderStyle() {
-      this.el.style = this.attributes.style;
+      this.el.style.cssText = this.attributes.style;
     },
 
 
@@ -279,4 +280,5 @@ export default (editor, opt = {}) => {
   loadSpacer(editor, compOpts);
   loadNavBar(editor, compOpts);
   loadNavBarLink(editor, compOpts);
+  loadHero(editor, compOpts);
 };

@@ -4,7 +4,7 @@ import loadCommands from './commands';
 import loadButtons from './buttons';
 import loadStyle from './style';
 
-export default (editor, opt = {}) => {
+const masterPlugin = (editor, opt = {}) => {
   const config = editor.getConfig();
   const opts = {
     editor,
@@ -66,9 +66,6 @@ export default (editor, opt = {}) => {
     ...opt,
   };
 
-  // Change some config
-  config.devicePreviewMode = 1;
-
   // I need to prevent forced class creation as classes aren't working
   // at the moment
   config.forceClass = 0;
@@ -96,3 +93,9 @@ export default (editor, opt = {}) => {
     dm.add('Tablet', '820px');
   }
 };
+export default masterPlugin;
+export const blocksPlugin = masterPlugin.blocksPlugin = loadBlocks;
+export const componentsPlugin = masterPlugin.componentsPlugin = loadComponents;
+export const commandsPlugin = masterPlugin.commandsPlugin =  loadCommands;
+export const buttonsPlugin = masterPlugin.buttonsPlugin = loadButtons;
+export const stylePlugin = masterPlugin.stylePlugin = loadStyle;

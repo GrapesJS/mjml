@@ -11,7 +11,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
       ...coreMjmlModel,
       defaults: {
         name: 'Spacer',
-        draggable: '[data-gjs-type=mj-column]',
+        draggable: '[data-gjs-type=mj-column], [data-gjs-type=mj-hero]',
         droppable: false,
         'style-default': { height: '20px' },
         stylable: ['height', 'container-background-color'],
@@ -29,7 +29,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
       getMjmlTemplate() {
         return {
           start: `<mjml><mj-body><mj-column>`,
-          end: `</mj-column></mj-body></mjml`,
+          end: `</mj-column></mj-body></mjml>`,
         };
       },
 

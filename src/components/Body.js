@@ -4,7 +4,7 @@ import { isComponentType } from './index.js';
 export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
   const type = 'mj-body';
   const droppable = [
-    'mj-section',
+    'mj-section', 'mj-wrapper', 'mj-hero', 
   ].map(tag => `[data-gjs-type=${tag}]`).join(', ');
 
   dc.addType(type, {
@@ -47,7 +47,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
       },
 
       renderStyle() {
-        this.el.style = this.el.getAttribute('style') + this.attributes.style;
+        this.el.setAttribute('style', `${this.el.getAttribute('style') + this.attributes.style}`);
       },
 
       renderContent() {
