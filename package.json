@@ -1,6 +1,6 @@
 {
   "name": "@keethealth/grapesjs-mjml",
-  "version": "0.2.1",
+  "version": "0.2.3",
   "description": "MJML Componenets integration in GrapesJS",
   "main": "dist/grapesjs-mjml.min.js",
   "scripts": {
