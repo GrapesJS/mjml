@@ -6,3 +6,4 @@ node_modules/
 _index.html
 .idea
 package-lock.json
+dist/

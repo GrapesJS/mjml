@@ -2,8 +2,9 @@ const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const fs = require('fs');
+const _ = require('lodash')
 const pkg = require('./package.json');
-const name = pkg.name;
+const name = _.tail(pkg.name.split('/'));
 let plugins = [];
 
 module.exports = (env, options) => {
