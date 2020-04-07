@@ -13,7 +13,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
       ...coreMjmlModel,
       defaults: {
         name: 'Button',
-        draggable: '[data-gjs-type=mj-column]',
+        draggable: '[data-gjs-type=mj-column], [data-gjs-type=mj-hero]',
         highlightable: false,
         stylable: ['width', 'height',
           'background-color', 'container-background-color',

@@ -1,8 +1,12 @@
-// Specs: https://mjml.io/documentation/#mjml-wrapper
+// Specs: https://mjml.io/documentation/#mjml-hero
 import { isComponentType } from './index.js';
 
 export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
-  const type = 'mj-wrapper';
+  const type = 'mj-hero';
+  const droppable = [
+    'mj-text', 'mj-button', 'mj-image', 'mj-divider', 'mj-navbar', 'mj-social',
+    'mj-spacer',
+  ].map(tag => `[data-gjs-type=${tag}]`).join(', ');
 
   dc.addType(type, {
     isComponent: isComponentType(type),
@@ -10,10 +14,15 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
     model: {
       ...coreMjmlModel,
       defaults: {
-        name: 'Wrapper',
+        name: 'Hero',
         draggable: '[data-gjs-type=mj-body]',
-        droppable: '[data-gjs-type=mj-section]',
+        droppable,
       },
+      stylable: [
+        'background-color', 'background-height', 'background-position', 'background-url',
+        'background-width', 'css-class', 'height', 'mode', 'padding', 'padding-top',
+        'padding-left', 'padding-right', 'padding-bottom', 'vertical-align', 'width'
+      ],
     },
 
     view: {

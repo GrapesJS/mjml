@@ -11,7 +11,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
       ...coreMjmlModel,
       defaults: {
         name: 'Divider',
-        draggable: '[data-gjs-type=mj-column]',
+        draggable: '[data-gjs-type=mj-column],[data-gjs-type=mj-hero]',
         droppable: false,
         'style-default': {
           'width': '100%',
@@ -28,6 +28,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
           'width', 'container-background-color',
           'border-detached', 'border-width', 'border-style', 'border-color'
         ],
+        void: true,
       },
     },
 

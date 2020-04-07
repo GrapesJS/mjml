@@ -79,7 +79,7 @@ export default (editor, { dc, opt, coreMjmlModel, coreMjmlView, sandboxEl }) => 
       },
 
       renderStyle() {
-        this.el.style = this.el.getAttribute('style') + this.attributes.style;
+        this.el.setAttribute('style', `${this.el.getAttribute('style') + this.attributes.style}`);
       },
 
       getMjmlTemplate() {
