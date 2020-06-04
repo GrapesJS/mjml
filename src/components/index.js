@@ -1,4 +1,4 @@
-import mjml2html from 'mjml';
+import { mjmlConvert } from './utils';
 import loadMjml from './mjml';
 import loadHead from './Head';
 import loadStyle from './Style';
@@ -18,8 +18,6 @@ import loadSpacer from './Spacer';
 import loadNavBar from './NavBar';
 import loadNavBarLink from './NavBarLink';
 import loadHero from './Hero';
-
-export const isComponentType = type => (el) => el.tagName === type.toUpperCase();
 
 export default (editor, opt = {}) => {
   let domc = editor.DomComponents;
@@ -177,7 +175,7 @@ export default (editor, opt = {}) => {
     getTemplateFromMjml() {
       let mjmlTmpl = this.getMjmlTemplate();
       let innerMjml = this.getInnerMjmlTemplate();
-      const htmlOutput = mjml2html(`${mjmlTmpl.start}
+      const htmlOutput = mjmlConvert(`${mjmlTmpl.start}
         ${innerMjml.start}${innerMjml.end}${mjmlTmpl.end}`);
       let html = htmlOutput.html;
       html = html.replace(/<body(.*)>/, '<body>');

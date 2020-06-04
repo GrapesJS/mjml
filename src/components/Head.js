@@ -1,5 +1,5 @@
 // Specs: https://mjml.io/documentation/#mj-head
-import { isComponentType } from './index.js';
+import { isComponentType } from './utils.js';
 
 export default (editor, { dc }) => {
   const type = 'mj-head';

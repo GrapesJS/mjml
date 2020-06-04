@@ -1,6 +1,5 @@
 // Specs: https://mjml.io/documentation/#mjml-column
-import mjml2html from 'mjml';
-import { isComponentType } from './index.js';
+import { isComponentType, mjmlConvert } from './utils.js';
 
 export default (editor, { dc, opt, coreMjmlModel, coreMjmlView, sandboxEl }) => {
   const type = 'mj-column';
@@ -31,7 +30,7 @@ export default (editor, { dc, opt, coreMjmlModel, coreMjmlView, sandboxEl }) => 
       getTemplateFromMjml() {
         let mjmlTmpl = this.getMjmlTemplate();
         let innerMjml = this.getInnerMjmlTemplate();
-        const htmlOutput = mjml2html(`${mjmlTmpl.start}
+        const htmlOutput = mjmlConvert(`${mjmlTmpl.start}
           ${innerMjml.start}${innerMjml.end}${mjmlTmpl.end}`);
         let html = htmlOutput.html;
 

@@ -1,5 +1,5 @@
 // Specs: https://mjml.io/documentation/#mjml-image
-import { isComponentType } from './index.js';
+import { isComponentType } from './utils.js';
 
 export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
   const type = 'mj-image';

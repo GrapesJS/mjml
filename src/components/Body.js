@@ -1,10 +1,10 @@
 // Specs https://mjml.io/documentation/#mj-body
-import { isComponentType } from './index.js';
+import { isComponentType } from './utils.js';
 
 export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
   const type = 'mj-body';
   const droppable = [
-    'mj-section', 'mj-wrapper', 'mj-hero', 
+    'mj-section', 'mj-wrapper', 'mj-hero',
   ].map(tag => `[data-gjs-type=${tag}]`).join(', ');
 
   dc.addType(type, {

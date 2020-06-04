@@ -1,5 +1,5 @@
 // Specs: https://mjml.io/documentation/#mjml
-import { isComponentType } from './index.js';
+import { isComponentType } from './utils.js';
 
 export default (editor, { dc }) => {
   const type = 'mjml';
