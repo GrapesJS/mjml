@@ -29,6 +29,10 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
           end: `</mj-body></mjml>`,
         };
       },
+
+      getChildrenSelector() {
+        return 'div';
+      },
     }
   });
 };
