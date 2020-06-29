@@ -39,7 +39,8 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
 
       getMjmlTemplate() {
         let parentView = this.model.parent().view;
-        if (parentView.getInnerMjmlTemplate) {
+        let parentTag = this.model.parent().attributes.tagName;
+        if (parentView.getInnerMjmlTemplate && parentTag === 'mj-body') {
           let mjmlBody = coreMjmlView.getInnerMjmlTemplate.call(parentView);
           return {
             start: `<mjml><mj-body>${mjmlBody.start}`,
