@@ -1,4 +1,4 @@
-import mjml2html from 'mjml';
+import { mjmlConvert } from './components/utils.js';
 
 export default (editor, opt = {}) => {
   const config = editor.getConfig();
@@ -16,7 +16,7 @@ export default (editor, opt = {}) => {
 
   const getMjml = () => {
     const mjml = opt.preMjml + editor.getHtml() + opt.postMjml;
-    return mjml2html(mjml);
+    return mjmlConvert(mjml);
   };
 
   // Set the command which could be used outside

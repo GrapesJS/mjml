@@ -1,5 +1,4 @@
-import mjml2html from 'mjml';
-import { isComponentType } from '.';
+import { isComponentType, mjmlConvert } from './utils.js';
 
 export default (editor, { dc, coreMjmlModel, coreMjmlView, sandboxEl }) => {
   const type = 'mj-navbar';
@@ -49,7 +48,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView, sandboxEl }) => {
       getTemplateFromMjml() {
         let mjmlTmpl = this.getMjmlTemplate();
         let innerMjml = this.getInnerMjmlTemplate();
-        const htmlOutput = mjml2html(`${mjmlTmpl.start}
+        const htmlOutput = mjmlConvert(`${mjmlTmpl.start}
           ${innerMjml.start}${innerMjml.end}${mjmlTmpl.end}`);
         let html = htmlOutput.html;
 

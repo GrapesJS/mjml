@@ -1,6 +1,5 @@
 // Specs: https://mjml.io/documentation/#mj-font
-import mjml2html from 'mjml';
-import { isComponentType } from './index.js';
+import { isComponentType, mjmlConvert } from './utils.js';
 
 export default (editor, { dc, coreMjmlModel, coreMjmlView, sandboxEl }) => {
   const type = 'mj-font';
@@ -19,7 +18,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView, sandboxEl }) => {
       tagName: "style",
 
       getMjmlTemplate() {
-        const name = this.model.get('attributes').name
+        const name = this.model.get('attributes').name;
         /*
          * mjml will omit `<mj-font> definitions which are not actually used.
          * Therefore we need to have an mj-text that uses our font
@@ -31,7 +30,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView, sandboxEl }) => {
       },
 
       getTemplateFromEl(sandboxEl) {
-        return sandboxEl.querySelectorAll('style')[1].innerHTML
+        return sandboxEl.querySelectorAll('style')[1].innerHTML;
       },
 
       renderStyle() {},
@@ -41,7 +40,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView, sandboxEl }) => {
       getTemplateFromMjml() {
         let mjmlTmpl = this.getMjmlTemplate();
         let innerMjml = this.getInnerMjmlTemplate();
-        const htmlOutput = mjml2html(`${mjmlTmpl.start}
+        const htmlOutput = mjmlConvert(`${mjmlTmpl.start}
           ${innerMjml.start}${innerMjml.end}${mjmlTmpl.end}`);
         let html = htmlOutput.html;
         let start = html.indexOf('<head>') + 6;
