@@ -118,6 +118,7 @@ export default (editor, opt = {}) => {
         ORDER YOUR TICKET NOW
       </mj-button>
     </mj-hero>`,
+    attributes: { class: 'fa fa-id-card' },
     ...allBlocks,
   });
 
@@ -137,6 +138,7 @@ export default (editor, opt = {}) => {
       </mj-column>
     </mj-section>
   </mj-wrapper>`,
+    attributes: { class: 'fa fa-window-maximize' },
     ...allBlocks,
   });
 
