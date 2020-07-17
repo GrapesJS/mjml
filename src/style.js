@@ -35,7 +35,7 @@ export default (editor, opt = {}) => {
       }, {
         name: 'Typography',
         open: false,
-        buildProps: ['font-family', 'font-size', 'font-weight', 'letter-spacing', 'color', 'line-height', 'text-align', 'align', 'text-decoration'],
+        buildProps: ['font-family', 'font-size', 'font-weight', 'letter-spacing', 'color', 'line-height', 'text-align', 'align', 'text-decoration', 'font-style'],
         properties: [
           { name: 'Font', property: 'font-family' },
           { name: 'Weight', property: 'font-weight' },
@@ -68,6 +68,14 @@ export default (editor, opt = {}) => {
               { value: 'none', name: 'None', className: 'fa fa-times' },
               { value: 'underline', name: 'underline', className: 'fa fa-underline' },
               { value: 'line-through', name: 'Line-through', className: 'fa fa-strikethrough' }
+            ],
+          },{
+            property: 'font-style',
+            type: 'radio',
+            defaults: 'normal',
+            list: [
+              { value: 'normal', name: 'Normal', className: 'fa fa-font'},
+              { value: 'italic', name: 'Italic', className: 'fa fa-italic'}
             ],
           }],
       }, {
