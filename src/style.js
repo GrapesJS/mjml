@@ -96,7 +96,7 @@ export default (editor, opt = {}) => {
           type: 'composite',
           detached: true,
           properties: [
-            { name: 'Width', property: 'border-width', type: 'integer' },
+            { name: 'Width', property: 'border-width', type: 'integer', units: ['px', '%'] },
             {
               name: 'Style', property: 'border-style', type: 'select',
               list: [
