@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
-    "v:patch": "npm version --no-git-tag-version patch",
+    "v:patch": "npm version patch",
     "build": "webpack -p",
     "start": "webpack-dev-server --open --progress --colors"
   },
