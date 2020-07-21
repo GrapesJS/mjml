@@ -124,6 +124,13 @@ Start the dev server
 $ npm start
 ```
 
+## Releasing
+
+1) Run `npm run v:patch` to bump the version in package.json and create a git tag
+2) Push the commit + new tag
+3) Go to github and draft a new release
+4) Select the new tag and add some release notes
+5) Hit publish, the release will automatically publish to npm
 
 ## License
 
