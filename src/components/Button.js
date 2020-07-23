@@ -30,6 +30,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
           'font-weight': '400',
           'color': '#ffffff',
           'vertical-align': 'middle',
+          'padding-top': '10px',
           'padding-bottom': '10px',
           'padding-right': '25px',
           'padding-left': '25px',
