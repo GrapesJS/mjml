@@ -11,7 +11,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
     model: {
       ...coreMjmlModel,
       defaults: {
-        name: 'Image',
+        name: editor.I18n.t('grapesjs-mjml.components.names.image'),
         resizable: false,
         highlightable: false,
         draggable: '[data-gjs-type=mj-column],[data-gjs-type=mj-section], [data-gjs-type=mj-hero]',

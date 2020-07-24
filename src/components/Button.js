@@ -12,7 +12,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
     model: {
       ...coreMjmlModel,
       defaults: {
-        name: 'Button',
+        name: editor.I18n.t('grapesjs-mjml.components.names.button'),
         draggable: '[data-gjs-type=mj-column], [data-gjs-type=mj-hero]',
         highlightable: false,
         stylable: ['width', 'height',

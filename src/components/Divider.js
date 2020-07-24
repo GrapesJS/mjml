@@ -10,7 +10,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
     model: {
       ...coreMjmlModel,
       defaults: {
-        name: 'Divider',
+        name: editor.I18n.t('grapesjs-mjml.components.names.divider'),
         draggable: '[data-gjs-type=mj-column],[data-gjs-type=mj-hero]',
         droppable: false,
         'style-default': {

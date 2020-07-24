@@ -8,7 +8,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView, sandboxEl }) => {
     model: {
       ...coreMjmlModel,
       defaults: {
-        name: 'NavBar',
+        name: editor.I18n.t('grapesjs-mjml.components.names.navBar'),
         draggable: '[data-gjs-type=mj-column],[data-gjs-type=mj-hero]',
         droppable: '[data-gjs-type=mj-navbar-link]',
         'style-default': {

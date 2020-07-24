@@ -11,7 +11,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
       ...coreMjmlModel,
 
       defaults: {
-        name: 'NavBarLink',
+        name: editor.I18n.t('grapesjs-mjml.components.names.navLink'),
         draggable: '[data-gjs-type=mj-navbar]',
         highlightable: false,
         stylable: [

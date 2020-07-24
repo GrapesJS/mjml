@@ -10,7 +10,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
     model: {
       ...coreMjmlModel,
       defaults: {
-        name: 'Group',
+        name: editor.I18n.t('grapesjs-mjml.components.names.group'),
         draggable: '[data-gjs-type=mj-section]',
         droppable: '[data-gjs-type=mj-column]',
       },

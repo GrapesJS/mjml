@@ -10,7 +10,7 @@ export default (editor, { dc, opt, coreMjmlModel, coreMjmlView, sandboxEl }) => 
     model: {
       ...coreMjmlModel,
       defaults: {
-        name: 'Column',
+        name: editor.I18n.t('grapesjs-mjml.components.names.column'),
         draggable: '[data-gjs-type=mj-section]',
         stylable: [
           'background-color', 'vertical-align', 'width',
