@@ -6,7 +6,7 @@ export default (editor, opt = {}) => {
   const pfx = config.stylePrefix || '';
 
   // Init import button
-  btnImp.innerHTML = opt.modalBtnImport;
+  btnImp.innerHTML = editor.I18n.t('grapesjs-mjml.panels.import.button');
   btnImp.className = `${pfx}btn-prim ${pfx}btn-import`;
   btnImp.onclick = () => {
     const code = codeViewer.editor.getValue();
@@ -26,12 +26,12 @@ export default (editor, opt = {}) => {
     run(editor, sender = {}) {
       const modal = editor.Modal;
       let viewer = codeViewer.editor;
-      modal.setTitle(opt.modalTitleImport);
+      modal.setTitle(editor.I18n.t('grapesjs-mjml.panels.import.title'));
 
       // Init code viewer if not yet instantiated
       if (!viewer) {
         const txtarea = document.createElement('textarea');
-        const labelImport = opt.modalLabelImport;
+        const labelImport = editor.I18n.t('grapesjs-mjml.panels.import.label');
 
         if (labelImport) {
           let labelEl = document.createElement('div');

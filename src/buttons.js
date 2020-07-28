@@ -1,4 +1,4 @@
-export default (editor, opt = {}) => {
+export default (editor) => {
   const tltAttr = 'title';
   const tltPosAttr = 'data-tooltip-pos';
   const pnm = editor.Panels;
@@ -17,6 +17,7 @@ export default (editor, opt = {}) => {
     id: 'mjml-import',
     className: 'fa fa-download',
     command: 'mjml-import',
+    attributes: { [tltAttr]: editor.I18n.t('grapesjs-mjml.panels.buttons.import') }
   });
 
   if (optPanel) {
@@ -40,12 +41,12 @@ export default (editor, opt = {}) => {
       id: 'undo',
       className: 'fa fa-undo',
       command: 'undo',
-      attributes: { [tltAttr]: opt.cmdBtnUndoLabel }
+      attributes: { [tltAttr]: editor.I18n.t('grapesjs-mjml.panels.buttons.undo') }
     }, {
       id: 'redo',
       className: 'fa fa-repeat',
       command: 'redo',
-      attributes: { [tltAttr]: opt.cmdBtnRedoLabel }
+      attributes: { [tltAttr]: editor.I18n.t('grapesjs-mjml.panels.buttons.redo') }
     }]);
     updateTooltip(cmdBtns);
   }
@@ -57,14 +58,17 @@ export default (editor, opt = {}) => {
     id: 'deviceDesktop',
     command: 'set-device-desktop',
     className: 'fa fa-desktop',
+    attributes: { [tltAttr]: editor.I18n.t('grapesjs-mjml.panels.buttons.desktop') }
   }, {
     id: 'deviceTablet',
     command: 'set-device-tablet',
     className: 'fa fa-tablet',
+    attributes: { [tltAttr]: editor.I18n.t('grapesjs-mjml.panels.buttons.tablet') }
   }, {
     id: 'deviceMobile',
     command: 'set-device-mobile',
     className: 'fa fa-mobile',
+    attributes: { [tltAttr]: editor.I18n.t('grapesjs-mjml.panels.buttons.mobile') }
   }]);
   updateTooltip(deviceBtns);
 

@@ -3,44 +3,20 @@ import loadComponents from './components';
 import loadCommands from './commands';
 import loadButtons from './buttons';
 import loadStyle from './style';
+import en from './locale/en';
 
 const masterPlugin = (editor, opt = {}) => {
   const config = editor.getConfig();
   const opts = {
     editor,
-    cmdBtnMoveLabel: 'Move',
-    cmdBtnUndoLabel: 'Undo',
-    cmdBtnRedoLabel: 'Redo',
-    cmdBtnDesktopLabel: 'Desktop',
-    cmdBtnTabletLabel: 'Tablet',
-    cmdBtnMobileLabel: 'Mobile',
-
-    expTplBtnTitle: 'View Code',
-    fullScrBtnTitle: 'FullScreen',
-    swichtVwBtnTitle: 'View Components',
-    defaultTemplate: '', // Default template in case the canvas is empty
-    categoryLabel: '',
+    // Default template in case the canvas is empty
+    defaultTemplate: '',
 
     // Code viewer theme
     codeViewerTheme: 'hopscotch',
 
     // Import placeholder MJML
     importPlaceholder: '',
-
-    // Title for the import modal
-    modalTitleImport: 'Import MJML',
-
-    // Test for the import button
-    modalBtnImport: 'Import',
-
-    // Description for the import modal
-    modalLabelImport: '',
-
-    // Title for the export modal
-    modalTitleExport: 'Export MJML',
-
-    // Description for the export modal
-    modalLabelExport: '',
 
     // Overwrite default export command
     overwriteExport: 1,
@@ -63,6 +39,8 @@ const masterPlugin = (editor, opt = {}) => {
     // Column padding (this way it's easier select columns)
     columnsPadding: '10px 0',
 
+    i18n: {},
+
     ...opt,
   };
 
@@ -75,6 +53,12 @@ const masterPlugin = (editor, opt = {}) => {
 
   // Doesn't work without inline styling
   config.avoidInlineStyle = 0;
+
+  // Load i18n files
+  editor.I18n.addMessages({
+    en,
+    ...opts.i18n,
+  });
 
   [
     loadBlocks,

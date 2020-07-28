@@ -10,7 +10,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
     model: {
       ...coreMjmlModel,
       defaults: {
-        name: 'Social',
+        name: editor.I18n.t('grapesjs-mjml.components.names.socialGroup'),
         draggable: '[data-gjs-type=mj-column], [data-gjs-type=mj-hero]',
         droppable: '[data-gjs-type=mj-social-element]',
         stylable: [

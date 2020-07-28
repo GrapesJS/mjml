@@ -1,6 +1,6 @@
 # GrapesJS MJML
 
-> Requires GrapesJS v0.14.62 or higher
+> Requires GrapesJS v0.15.9 or higher
 
 [![build](https://github.com/artf/grapesjs-mjml/workflows/build/badge.svg)](https://github.com/artf/grapesjs-mjml/actions)
 
@@ -31,13 +31,8 @@ Supported components:
 
 |Option|Description|Default|
 |-|-|-
-|`categoryLabel`|Category for blocks|`''`|
 |`importPlaceholder`|Import placeholder MJML|`''`|
-|`modalTitleImport`|Title for the import modal|`Import MJML`|
-|`modalBtnImport`|Test for the import button|`Import`|
-|`modalLabelImport`|Description for the import modal|`''`|
-|`modalTitleExport`|Title for the export modal|`Export MJML`|
-|`modalLabelExport`|Description for the export modal|`''`|
+|`i18n`|I18n object containing language [more info](https://grapesjs.com/docs/modules/I18n.html#configuration)|`{}`|
 |`overwriteExport`|Overwrite default export command|`true`|
 |`preMjml`|String before the MJML in export code|`''`|
 |`postMjml`|String after the MJML in export code|`''`|
@@ -90,6 +85,7 @@ Supported components:
 import 'grapesjs/dist/css/grapes.min.css'
 import grapesJS from 'grapesjs'
 import grapesJSMJML from 'grapesjs-mjml'
+import nl from 'grapesjs-mjml/locale/nl'
 
 grapesJS.init({
    fromElement: 1,
@@ -97,8 +93,11 @@ grapesJS.init({
    avoidInlineStyle : false,
    plugins: [grapesJSMJML],
    pluginsOpts: {
-      [grapesJSMJML]: {/* ...options */}
-   }
+      [grapesJSMJML]: {
+        // Optional options
+        i18n: { nl }
+      }
+   },
 });
 ```
 
