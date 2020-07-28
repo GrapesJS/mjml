@@ -1,10 +1,40 @@
 const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const FileManagerPlugin = require('filemanager-webpack-plugin');
 const path = require('path');
 const fs = require('fs');
 const pkg = require('./package.json');
 const name = pkg.name;
 let plugins = [];
+
+function getLocaleEntries (){
+  return fs.readdirSync('./src/locale/')
+    .map((file) => {
+      const basename = path.basename(file, '.js');
+      return {
+        name: basename,
+        path: `./src/locale/${file}`,
+        from: `./dist/${basename}.min.js`,
+        to: `./locale/${file}`
+      };
+    });
+}
+
+function createLocaleEntries () {
+  return getLocaleEntries().reduce((locale, file) => {
+    locale[file.name] = file.path;
+    return locale;
+  }, {});
+}
+
+function moveLocaleOutput () {
+  return getLocaleEntries().map(file => {
+    return {
+      source: file.from,
+      destination: file.to
+    };
+  });
+}
 
 module.exports = (env, options) => {
   const isProd = (options.mode === 'production');
@@ -13,14 +43,24 @@ module.exports = (env, options) => {
     const indexDev = `_${index}`;
     const template = fs.existsSync(indexDev) ? indexDev : index;
     plugins.push(new HtmlWebpackPlugin({ template }));
+  } else {
+    plugins.push(new FileManagerPlugin({
+      onEnd: {
+        mkdir: ['./locale'],
+        move: moveLocaleOutput()
+      }
+    }));
   }
 
   return {
-    entry: './src',
+    entry: {
+      [name]: './src',
+      ...createLocaleEntries(),
+    },
     mode: isProd ? 'production' : 'development',
     output: {
       path: path.join(__dirname),
-      filename: `dist/${name}.min.js`,
+      filename: `dist/[name].min.js`,
       library: name,
       libraryExport: 'default',
       libraryTarget: 'umd',
