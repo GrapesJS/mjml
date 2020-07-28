@@ -85,7 +85,6 @@ Supported components:
 import 'grapesjs/dist/css/grapes.min.css'
 import grapesJS from 'grapesjs'
 import grapesJSMJML from 'grapesjs-mjml'
-import nl from 'grapesjs-mjml/locale/nl'
 
 grapesJS.init({
    fromElement: 1,
@@ -93,14 +92,39 @@ grapesJS.init({
    avoidInlineStyle : false,
    plugins: [grapesJSMJML],
    pluginsOpts: {
-      [grapesJSMJML]: {
-        // Optional options
-        i18n: { nl }
-      }
+      [grapesJSMJML]: {/* ...options */}
    },
 });
 ```
 
+#### i18n usage:
+
+```js
+import 'grapesjs/dist/css/grapes.min.css'
+import grapesJS from 'grapesjs'
+import nl from 'grapesjs/locale/nl'
+import grapesJSMJML from 'grapesjs-mjml'
+import mjmlNL from 'grapesjs-mjml/locale/nl'
+
+grapesJS.init({
+   fromElement: 1,
+   container : '#gjs',
+   avoidInlineStyle : false,
+   i18n: {
+      // locale: 'en', // default locale
+      // detectLocale: true, // by default, the editor will detect the language
+      // localeFallback: 'en', // default fallback
+      messages: { nl: nl },
+   },
+   plugins: [grapesJSMJML],
+   pluginsOpts: {
+      [grapesJSMJML]: {
+        // Optional options
+        i18n: { nl: mjmlNL }
+      }
+   },
+});
+```
 
 ## Development
 
