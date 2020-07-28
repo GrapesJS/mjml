@@ -10,6 +10,10 @@
     "build": "webpack -p",
     "start": "webpack-dev-server --open --progress --colors"
   },
+  "files":  [
+    "/dist",
+    "/locale"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/artf/grapesjs-mjml.git"
