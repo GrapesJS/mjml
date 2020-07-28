@@ -1,6 +1,6 @@
 {
   "name": "grapesjs-mjml",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "MJML Componenets integration in GrapesJS",
   "main": "dist/grapesjs-mjml.min.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "build": "webpack -p",
     "start": "webpack-dev-server --open --progress --colors"
   },
-  "files":  [
+  "files": [
     "/dist",
     "/locale"
   ],
