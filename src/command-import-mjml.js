@@ -13,6 +13,7 @@ export default (editor, opt = {}) => {
     editor.DomComponents.getWrapper().set('content', '');
     editor.setComponents(code.trim());
     editor.Modal.close();
+    editor.runCommand('mjml-import:change');
   };
 
   // Init code viewer

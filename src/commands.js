@@ -7,6 +7,12 @@ export default (editor, opt = {}) => {
   const exportName = opt.overwriteExport ? 'export-template' : 'mjml-export';
 
   cmd.add('mjml-import', importCommand(editor, opt));
+  cmd.add('mjml-import:change', {
+    run() {
+      const code = editor.getHtml();
+      return code.trim();
+    }
+  });
   cmd.add(exportName, exportCommand(editor, opt));
 
   cmd.add(opt.cmdTglImages, tglImagesCommand(opt));
