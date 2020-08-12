@@ -6,6 +6,7 @@ const fs = require('fs');
 const pkg = require('./package.json');
 const name = pkg.name;
 let plugins = [];
+let localeEntries = [];
 
 function getLocaleEntries (){
   return fs.readdirSync('./src/locale/')
@@ -38,33 +39,39 @@ function moveLocaleOutput () {
 
 module.exports = (env, options) => {
   const isProd = (options.mode === 'production');
-  if (!isProd) {
-    const index = 'index.html';
-    const indexDev = `_${index}`;
-    const template = fs.existsSync(indexDev) ? indexDev : index;
-    plugins.push(new HtmlWebpackPlugin({ template }));
-  } else {
+
+  const output = {
+    path: path.join(__dirname),
+    filename: 'dist/[name].min.js',
+    library: name,
+    libraryExport: 'default',
+    libraryTarget: 'umd',
+  };
+
+  if (isProd) {
     plugins.push(new FileManagerPlugin({
       onEnd: {
         mkdir: ['./locale'],
         move: moveLocaleOutput()
       }
     }));
+    localeEntries = createLocaleEntries();
+  } else if (options.mode === 'development') {
+    output.filename = 'dist/[name].js';
+  } else {
+    const index = 'index.html';
+    const indexDev = `_${index}`;
+    const template = fs.existsSync(indexDev) ? indexDev : index;
+    plugins.push(new HtmlWebpackPlugin({ template }));
   }
 
   return {
     entry: {
       [name]: './src',
-      ...createLocaleEntries(),
+      ...localeEntries,
     },
     mode: isProd ? 'production' : 'development',
-    output: {
-      path: path.join(__dirname),
-      filename: `dist/[name].min.js`,
-      library: name,
-      libraryExport: 'default',
-      libraryTarget: 'umd',
-    },
+    output: output,
     module: {
       rules: [
         {
