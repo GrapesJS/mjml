@@ -31,7 +31,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
             label: 'Icon',
             name: 'name',
             options: [
-              { value: '', name: 'Custom' },
+              { value: 'custom', name: 'Custom' },
               { value: 'facebook', name: 'Facebook' },
               { value: 'twitter', name: 'Twitter' },
               { value: 'google', name: 'Google' },
