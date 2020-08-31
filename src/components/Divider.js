@@ -18,10 +18,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
           'border-width': '4px',
           'border-style': 'solid',
           'border-color': '#000000',
-          'padding-top': '10px',
-          'padding-bottom': '10px',
-          'padding-right': '25px',
-          'padding-left': '25px',
+          'padding': '10px 25px 10px 25px',
         },
         stylable: [
           'padding', 'padding-top', 'padding-left', 'padding-right', 'padding-bottom',
