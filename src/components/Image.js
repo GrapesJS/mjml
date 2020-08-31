@@ -23,10 +23,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
           'container-background-color', 'align',
         ],
         'style-default': {
-          'padding-top': '10px',
-          'padding-bottom': '10px',
-          'padding-right': '25px',
-          'padding-left': '25px',
+          'padding-top': '10px 25px 10px 25px',
           'align': 'center',
         },
         traits: ['href', 'rel', 'alt', 'title'],
