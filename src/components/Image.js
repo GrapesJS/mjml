@@ -40,7 +40,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
 
       getMjmlTemplate() {
         return {
-          start: `<mjml><mj-body><mj-column>`,
+          start: `<mjml><mj-body width="auto"><mj-column>`,
           end: `</mj-column></mj-body></mjml>`,
         };
       },
