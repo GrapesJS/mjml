@@ -1,6 +1,6 @@
 {
   "name": "grapesjs-mjml",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "description": "MJML Componenets integration in GrapesJS",
   "main": "dist/grapesjs-mjml.min.js",
   "scripts": {
