@@ -33,7 +33,13 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
       getChildrenSelector() {
         return 'table tr td';
       },
-
+      init() {
+        coreMjmlView.init.call(this);
+        this.listenTo(this.model.get('components'), 'add remove', function() {
+          this.getChildrenContainer().innerHTML = this.model.get('content');
+          this.renderChildren();
+        });
+      },
     }
   });
 };
