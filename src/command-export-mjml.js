@@ -16,7 +16,7 @@ export default (editor, opt = {}) => {
 
   const getMjml = () => {
     const mjml = opt.preMjml + editor.getHtml() + opt.postMjml;
-    return mjmlConvert(mjml);
+    return mjmlConvert(mjml, opt.fonts);
   };
 
   // Set the command which could be used outside
