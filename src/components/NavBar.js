@@ -1,6 +1,6 @@
 import { isComponentType, mjmlConvert } from './utils.js';
 
-export default (editor, { dc, coreMjmlModel, coreMjmlView, sandboxEl }) => {
+export default (editor, { dc, opt, coreMjmlModel, coreMjmlView, sandboxEl }) => {
   const type = 'mj-navbar';
 
   dc.addType(type, {
@@ -49,7 +49,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView, sandboxEl }) => {
         let mjmlTmpl = this.getMjmlTemplate();
         let innerMjml = this.getInnerMjmlTemplate();
         const htmlOutput = mjmlConvert(`${mjmlTmpl.start}
-          ${innerMjml.start}${innerMjml.end}${mjmlTmpl.end}`);
+          ${innerMjml.start}${innerMjml.end}${mjmlTmpl.end}`, opt.fonts);
         let html = htmlOutput.html;
 
         // I need styles for hamburger

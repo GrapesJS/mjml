@@ -41,6 +41,13 @@ const masterPlugin = (editor, opt = {}) => {
 
     i18n: {},
 
+    // Custom fonts for include on MJML to HTML export options
+    // e.g.: {
+    //  Montserrat: 'https://fonts.googleapis.com/css?family=Montserrat',
+    //  'Open Sans': 'https://fonts.googleapis.com/css?family=Open+Sans'
+    // }
+    fonts: {},
+
     ...opt,
   };
 

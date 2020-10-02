@@ -31,6 +31,7 @@ Supported components:
 
 |Option|Description|Default|
 |-|-|-
+|`fonts`|Custom fonts on exported HTML header [more info](https://github.com/mjmlio/mjml#inside-nodejs)|`{}`|
 |`importPlaceholder`|Import placeholder MJML|`''`|
 |`i18n`|I18n object containing language [more info](https://grapesjs.com/docs/modules/I18n.html#configuration)|`{}`|
 |`overwriteExport`|Overwrite default export command|`true`|
@@ -123,6 +124,47 @@ grapesJS.init({
         i18n: { nl: mjmlNL }
       }
    },
+});
+```
+
+#### fonts usage:
+
+```js
+import 'grapesjs/dist/css/grapes.min.css'
+import grapesJS from 'grapesjs'
+import grapesJSMJML from 'grapesjs-mjml'
+
+let editor = grapesJS.init({
+   fromElement: 1,
+   container : '#gjs',
+   avoidInlineStyle : false,
+   plugins: [grapesJSMJML],
+   pluginsOpts: {
+      [grapesJSMJML]: {
+        // The font imports are included on HTML <head/> when fonts are used on the template
+        fonts: {
+          Montserrat: 'https://fonts.googleapis.com/css?family=Montserrat',
+          'Open Sans': 'https://fonts.googleapis.com/css?family=Open+Sans'
+        }
+      }
+   },
+});
+
+// add custom fonts options on editor's font list
+editor.on('load', () => {  
+  let styleManager = editor.StyleManager;
+  let fontProperty = styleManager.getProperty('typography', 'font-family');
+
+  let list = [];
+  // empty list
+  fontProperty.set('list', list);
+
+  // custom list
+  list.push(fontProperty.addOption({value: 'Montserrat, sans-serif', name: 'Montserrat'}));
+  list.push(fontProperty.addOption({value: 'Open Sans, sans-serif', name: 'Open Sans'}));
+  fontProperty.set('list', list);
+  
+  styleManager.render();
 });
 ```
 
