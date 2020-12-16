@@ -21,7 +21,6 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
         ],
         'style-default': {
           'align': 'center',
-          'icon-size': '20px',
           'font-size': '13px',
           'line-height': '22px',
         },
