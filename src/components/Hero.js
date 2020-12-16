@@ -21,8 +21,8 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
           'background-color', 'background-height', 'background-position', 'background-url',
           'background-width', 'css-class', 'height', 'mode', 'padding', 'padding-top',
           'padding-left', 'padding-right', 'padding-bottom', 'vertical-align', 'width'
-        ]
-      }
+        ],
+      },
     },
 
     view: {
