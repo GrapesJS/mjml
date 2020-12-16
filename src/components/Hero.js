@@ -17,12 +17,12 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
         name: editor.I18n.t('grapesjs-mjml.components.names.hero'),
         draggable: '[data-gjs-type=mj-body]',
         droppable,
-      },
-      stylable: [
-        'background-color', 'background-height', 'background-position', 'background-url',
-        'background-width', 'css-class', 'height', 'mode', 'padding', 'padding-top',
-        'padding-left', 'padding-right', 'padding-bottom', 'vertical-align', 'width'
-      ],
+        stylable: [
+          'background-color', 'background-height', 'background-position', 'background-url',
+          'background-width', 'css-class', 'height', 'mode', 'padding', 'padding-top',
+          'padding-left', 'padding-right', 'padding-bottom', 'vertical-align', 'width'
+        ]
+      }
     },
 
     view: {
