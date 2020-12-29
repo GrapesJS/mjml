@@ -1,4 +1,4 @@
-import mjml2html from 'mjml';
+import mjml2html from 'mjml-browser';
 
 export const isComponentType = type => (el) => el.tagName === type.toUpperCase();
 

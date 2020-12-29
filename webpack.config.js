@@ -1,4 +1,3 @@
-const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const FileManagerPlugin = require('filemanager-webpack-plugin');
 const path = require('path');
@@ -85,22 +84,6 @@ module.exports = (env, options) => {
           }
         }
       ]
-    },
-    resolve: {
-      alias: {
-        'fs': path.resolve(__dirname, 'mocks/fs'),
-        'uglify-js': path.resolve(__dirname, 'mocks/uglify-js'),
-      }
-    },
-    // make sure to keep_fnames or else it will break grapesjs, see https://github.com/artf/grapesjs-mjml/issues/110
-    optimization: {
-      minimizer: [
-        new TerserPlugin({
-          terserOptions: {
-            keep_fnames: true
-          },
-        }),
-      ],
     },
     target: 'web',
     plugins: plugins

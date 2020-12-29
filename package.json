@@ -29,7 +29,7 @@
   "author": "Artur Arseniev",
   "license": "BSD-3-Clause",
   "dependencies": {
-    "mjml": "^4.7.1"
+    "mjml-browser": "^4.8.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
