@@ -142,4 +142,20 @@ export default (editor, opt = {}) => {
     ...allBlocks,
   });
 
+  bm.add('mj-raw', {
+    label: editor.I18n.t('grapesjs-mjml.components.names.raw'),
+    content: `<mj-raw>
+      <div class="container">
+        <img class="item" src="https://source.unsplash.com/random/200x141" alt="Example image">
+        <img class="item" src="https://source.unsplash.com/random/200x142" alt="Example image">
+        <img class="item" src="https://source.unsplash.com/random/200x143" alt="Example image">
+        <img class="item" src="https://source.unsplash.com/random/200x144" alt="Example image"> 
+        <img class="item" src="https://source.unsplash.com/random/200x145" alt="Example image">
+        <img class="item" src="https://source.unsplash.com/random/200x146" alt="Example image">     
+      </div>
+    </mj-raw>`,
+    attributes: { class: 'fa fa-html5' },
+    ...allBlocks,
+  });
+
 };

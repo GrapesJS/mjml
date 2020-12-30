@@ -39,6 +39,7 @@ export default {
         spacer: 'Tussenlaag',
         text: 'Tekst',
         wrapper: 'Wikkellaag',
+        raw: 'Rauwe',
       },
     }
   },
