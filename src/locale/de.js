@@ -39,6 +39,7 @@ export default {
         spacer: 'Abstand',
         text: 'Text',
         wrapper: 'Wrapper',
+        raw: 'Roh',
       },
     }
   },

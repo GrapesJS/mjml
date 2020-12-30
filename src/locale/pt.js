@@ -39,6 +39,7 @@ export default {
         spacer: 'Espaçamento',
         text: 'Texto',
         wrapper: 'Wrapper',
+        raw: 'Cru para',
       },
     }
   },

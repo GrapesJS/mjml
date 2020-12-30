@@ -18,6 +18,7 @@ import loadSpacer from './Spacer';
 import loadNavBar from './NavBar';
 import loadNavBarLink from './NavBarLink';
 import loadHero from './Hero';
+import loadRaw from './Raw';
 
 export default (editor, opt = {}) => {
   let domc = editor.DomComponents;
@@ -175,7 +176,7 @@ export default (editor, opt = {}) => {
     },
 
 
-    getTemplateFromMjml() {
+    getTemplateFromMjml() {     
       let mjmlTmpl = this.getMjmlTemplate();
       let innerMjml = this.getInnerMjmlTemplate();
       const htmlOutput = mjmlConvert(`${mjmlTmpl.start}
@@ -210,11 +211,13 @@ export default (editor, opt = {}) => {
         this.componentsView.parentEl = container;
       }
 
-      var childNodes = Array.prototype.slice.call(this.childNodes);
+      //if (this.childNodes) {
+        var childNodes = Array.prototype.slice.call(this.childNodes);
 
-      for (var i = 0, len = childNodes.length; i < len; i++) {
-        container.appendChild(childNodes.shift());
-      }
+        for (var i = 0, len = childNodes.length; i < len; i++) {
+          container.appendChild(childNodes.shift());
+        }
+      //}
 
       if (container !== this.el) {
         var disableNode = function (el) {
@@ -238,7 +241,7 @@ export default (editor, opt = {}) => {
 
     renderContent() {
       let content = this.model.get('content');
-
+      
       if (content) {
         this.getChildrenContainer().innerHTML = content;
       }
@@ -282,4 +285,5 @@ export default (editor, opt = {}) => {
   loadNavBar(editor, compOpts);
   loadNavBarLink(editor, compOpts);
   loadHero(editor, compOpts);
+  loadRaw(editor, compOpts);
 };

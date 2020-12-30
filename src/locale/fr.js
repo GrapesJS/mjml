@@ -39,6 +39,7 @@ export default {
         spacer: 'Espace',
         text: 'Texte',
         wrapper: 'Conteneur',
+        raw: 'Cru',
       },
     }
   },

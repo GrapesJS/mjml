@@ -39,6 +39,7 @@ export default {
         spacer: 'Spacer',
         text: 'Text',
         wrapper: 'Wrapper',
+        raw: 'Raw',
       },
     }
   },
