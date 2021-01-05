@@ -18,6 +18,7 @@ import loadSpacer from './Spacer';
 import loadNavBar from './NavBar';
 import loadNavBarLink from './NavBarLink';
 import loadHero from './Hero';
+import loadRaw from './Raw';
 
 export default (editor, opt = {}) => {
   let domc = editor.DomComponents;
@@ -282,4 +283,5 @@ export default (editor, opt = {}) => {
   loadNavBar(editor, compOpts);
   loadNavBarLink(editor, compOpts);
   loadHero(editor, compOpts);
+  loadRaw(editor, compOpts);
 };
