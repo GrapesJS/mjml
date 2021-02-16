@@ -22,6 +22,9 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
           'background-width', 'css-class', 'height', 'mode', 'padding', 'padding-top',
           'padding-left', 'padding-right', 'padding-bottom', 'vertical-align', 'width'
         ],
+        'style-default': {
+          'vertical-align': 'top'
+        }
       },
     },
 

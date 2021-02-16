@@ -17,6 +17,9 @@ export default (editor, { dc, opt, coreMjmlModel, coreMjmlView, sandboxEl }) => 
           'border-radius', 'border-top-left-radius', 'border-top-right-radius', 'border-bottom-left-radius', 'border-bottom-right-radius',
           'border', 'border-width', 'border-style', 'border-color',
         ],
+        'style-default': {
+          'vertical-align': 'top'
+        }
       },
     },
 

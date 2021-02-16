@@ -13,6 +13,12 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
         name: editor.I18n.t('grapesjs-mjml.components.names.group'),
         draggable: '[data-gjs-type=mj-section]',
         droppable: '[data-gjs-type=mj-column]',
+        stylable: [
+          'width', 'vertical-align', 'background-color', 'direction',
+        ],
+        'style-default': {
+          'vertical-align': 'top'
+        }
       },
     },
 
