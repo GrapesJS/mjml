@@ -18,11 +18,13 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
           'border-radius', 'border-top-left-radius', 'border-top-right-radius', 'border-bottom-left-radius', 'border-bottom-right-radius',
           'background-color',
           'color',
+          'vertical-align',
         ],
         'style-default': {
           'align': 'center',
           'font-size': '13px',
           'line-height': '22px',
+          'vertical-align': 'middle',
         },
         traits: [
           {

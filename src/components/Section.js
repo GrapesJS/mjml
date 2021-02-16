@@ -15,11 +15,10 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
         droppable: '[data-gjs-type=mj-column]',
         'style-default': {
           'padding': '10px 0 10px 0',
-          'vertical-align': 'top',
           'text-align': 'center',
         },
         stylable: [
-          'vertical-align', 'text-align',
+          'text-align',
           'padding', 'padding-top', 'padding-left', 'padding-right', 'padding-bottom',
           'background-color', 'background-url', 'background-repeat', 'background-size',
           'border-radius', 'border-top-left-radius', 'border-top-right-radius', 'border-bottom-left-radius', 'border-bottom-right-radius',

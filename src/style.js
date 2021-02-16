@@ -8,7 +8,7 @@ export default (editor, opt = {}) => {
       sectors.add([{
         name: 'Dimension',
         open: false,
-        buildProps: ['width', 'height', 'max-width', 'min-height', 'margin', 'padding'],
+        buildProps: ['width', 'height', 'max-width', 'min-height', 'margin', 'padding', 'vertical-align'],
         properties: [{
           property: 'margin',
           properties: [
@@ -31,6 +31,14 @@ export default (editor, opt = {}) => {
           type: 'integer',
           defaults: '20px',
           units: ['px', '%']
+        }, {
+          property: 'vertical-align',
+          type: 'select',
+          list: [
+            { value: 'top' },
+            { value: 'middle' },
+            { value: 'bottom' },
+          ]
         }],
       }, {
         name: 'Typography',
@@ -122,7 +130,7 @@ export default (editor, opt = {}) => {
             { name: 'Color', property: 'border-color', type: 'color' },
           ],
         }],
-      }
+      },
       ]);
     });
   }
