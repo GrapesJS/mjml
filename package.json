@@ -7,10 +7,8 @@
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
     "v:patch": "npm version patch -m \"Release v%s\"",
-    "build": "npm run build-dev && npm run build-prod",
-    "build-dev": "webpack --mode=development",
-    "build-prod": "webpack --mode=production",
-    "start": "webpack-dev-server --open --progress --colors"
+    "build": "grapesjs-cli build",
+    "start": "grapesjs-cli serve -p 8081"
   },
   "files": [
     "/dist",
@@ -29,17 +27,10 @@
   "author": "Artur Arseniev",
   "license": "BSD-3-Clause",
   "dependencies": {
-    "mjml-browser": "^4.8.0"
+    "mjml-browser": "^4.8.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.10",
-    "@babel/preset-env": "^7.12.11",
-    "babel-loader": "^8.2.2",
-    "eslint": "^7.15.0",
-    "filemanager-webpack-plugin": "2.0.5",
-    "html-webpack-plugin": "^4.5.0",
-    "webpack": "^4.44.2",
-    "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0"
+    "eslint": "^7.20.0",
+    "grapesjs-cli": "^1.0.14"
   }
 }
