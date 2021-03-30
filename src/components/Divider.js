@@ -25,7 +25,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
           'width', 'container-background-color',
           'border-detached', 'border-width', 'border-style', 'border-color'
         ],
-        void: true,
+        void: false,
       },
     },
 

@@ -10,7 +10,7 @@ export default (editor, { dc, opt, coreMjmlModel, coreMjmlView, sandboxEl }) => 
       ...coreMjmlModel,
       defaults: {
         draggable: '[data-gjs-type=mj-head]',
-        void: true
+        void: false
       },
     },
     view: {
