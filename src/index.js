@@ -18,6 +18,9 @@ const masterPlugin = (editor, opt = {}) => {
     // Import placeholder MJML
     importPlaceholder: '',
 
+    // Image placeholder source for mj-image block
+    imagePlaceholderSrc: '',
+
     // Overwrite default export command
     overwriteExport: 1,
 

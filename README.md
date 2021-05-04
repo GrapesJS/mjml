@@ -33,6 +33,7 @@ Supported components:
 |-|-|-
 |`fonts`|Custom fonts on exported HTML header [more info](https://github.com/mjmlio/mjml#inside-nodejs)|`{}`|
 |`importPlaceholder`|Import placeholder MJML|`''`|
+|`imagePlaceholderSrc`|Image placeholder source|`'https://via.placeholder.com/350x250/78c5d6/fff'`|
 |`i18n`|I18n object containing language [more info](https://grapesjs.com/docs/modules/I18n.html#configuration)|`{}`|
 |`overwriteExport`|Overwrite default export command|`true`|
 |`preMjml`|String before the MJML in export code|`''`|
