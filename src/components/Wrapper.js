@@ -33,6 +33,11 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
       getChildrenSelector() {
         return 'table tr td';
       },
+
+      renderChildren() {
+        coreMjmlView.renderChildren.call(this);
+      },
+
       init() {
         coreMjmlView.init.call(this);
         this.listenTo(this.model.get('components'), 'add remove', function() {
