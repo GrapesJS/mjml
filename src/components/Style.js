@@ -19,7 +19,7 @@ export default (editor, { dc, opt, coreMjmlModel, coreMjmlView, sandboxEl }) => 
       getMjmlTemplate() {
         return {
           start: `<mjml><mj-head>`,
-          end: `</mj-head></mjml>`,
+          end: `</mj-head><mj-body></mj-body></mjml>`,
         };
       },
 
