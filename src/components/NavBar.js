@@ -42,7 +42,7 @@ export default (editor, { dc, opt, coreMjmlModel, coreMjmlView, sandboxEl }) => 
 
       init() {
         coreMjmlView.init.call(this);
-        this.listenTo(this.model.get('components'), 'add remove', this.render);
+        this.listenTo(this.model.get('components'), 'add remove', this.rerender);
       },
 
       getTemplateFromMjml() {
@@ -83,14 +83,15 @@ export default (editor, { dc, opt, coreMjmlModel, coreMjmlView, sandboxEl }) => 
         };
       },
 
-      render() {
+      render(p, c, opts, appendChildren) {
         this.renderAttributes();
         const mjmlResult = this.getTemplateFromMjml();
         this.el.innerHTML = mjmlResult.content;
         this.$el.attr(mjmlResult.attributes);
         editor.addComponents(`<style>${mjmlResult.style}</style>`);
         this.getChildrenContainer().innerHTML = this.model.get('content');
-        this.renderChildren();
+        this.renderChildren(appendChildren);
+        this.childNodes = this.getChildrenContainer().childNodes;
         this.renderStyle();
         return this;
       },
@@ -110,15 +111,53 @@ export default (editor, { dc, opt, coreMjmlModel, coreMjmlView, sandboxEl }) => 
         return 'div.mj-inline-links';
       },
 
-      rerender() {
-        coreMjmlView.rerender.call(this);
-        this.model.components().models.forEach((item) => {
-          if (item.attributes.type != "mj-navbar-link") {
-            return;
-          }
-          item.view.rerender();
-        });
+      // fix bug: https://github.com/artf/grapesjs-mjml/issues/242
+      
+      // rerender() {
+      //   coreMjmlView.rerender.call(this);
+      //   this.model.components().models.forEach((item) => {
+      //     if (item.attributes.type != "mj-navbar-link") {
+      //       return;
+      //     }
+      //     item.view.rerender();
+      //   });
+      // },
+
+      renderChildren: function (appendChildren) {
+        var container = this.getChildrenContainer();
+        container.innerHTML = ''
+  
+        if (!appendChildren) {
+          this.componentsView = new dc.ComponentsView({
+            collection: this.model.get('components'),
+            config: this.config,
+            defaultTypes: this.opts.defaultTypes,
+            componentTypes: this.opts.componentTypes,
+          });
+          this.childNodes = this.componentsView.render(container).el.childNodes;
+        } else {
+          this.componentsView.parentEl = container;
+        }
+
+        var childNodes = Array.prototype.slice.call(this.childNodes);
+        for (var i = 0, len = childNodes.length; i < len; i++) {
+          container.appendChild(childNodes.shift());
+        }
+  
+        if (container !== this.el) {
+          var disableNode = function (el) {
+            var children = Array.prototype.slice.call(el.children);
+            children.forEach(function (el) {
+              el.style['pointer-events'] = 'none';
+              if (container !== el) {
+                disableNode(el);
+              }
+            });
+          };
+          disableNode(this.el);
+        }
       },
+
     },
   });
 };
