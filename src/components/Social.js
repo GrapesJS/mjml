@@ -62,20 +62,60 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
         return 'td';
       },
 
-      rerender() {
-        coreMjmlView.rerender.call(this);
-        this.model.components().models.forEach((item) => {
-          if (item.attributes.type != "mj-social-element") {
-            return;
-          }
-          item.view.rerender();
-        });
-      },
+      // fix : https://github.com/artf/grapesjs-mjml/issues/182
+      
+      // rerender() {
+      //   coreMjmlView.rerender.call(this);
+      //   this.model.components().models.forEach((item) => {
+      //     if (item.attributes.type != "mj-social-element") {
+      //       return;
+      //     }
+      //     item.view.rerender();
+      //   });
+      // },
 
       init() {
         coreMjmlView.init.call(this);
-        this.listenTo(this.model.get('components'), 'add remove', this.render);
+        this.listenTo(this.model.get('components'), 'add remove', this.rerender);
       },
+
+      renderChildren: function (appendChildren) {
+        var container = this.getChildrenContainer();
+        
+        //clean all child
+        container.innerHTML = ''
+  
+        if (!appendChildren) {
+          this.componentsView = new dc.ComponentsView({
+            collection: this.model.get('components'),
+            config: this.config,
+            defaultTypes: this.opts.defaultTypes,
+            componentTypes: this.opts.componentTypes,
+          });
+          this.childNodes = this.componentsView.render(container).el.childNodes;
+        } else {
+          this.componentsView.parentEl = container;
+        }
+
+        var childNodes = Array.prototype.slice.call(this.childNodes);
+        for (var i = 0, len = childNodes.length; i < len; i++) {
+          container.appendChild(childNodes.shift());
+        }
+  
+        if (container !== this.el) {
+          var disableNode = function (el) {
+            var children = Array.prototype.slice.call(el.children);
+            children.forEach(function (el) {
+              el.style['pointer-events'] = 'none';
+              if (container !== el) {
+                disableNode(el);
+              }
+            });
+          };
+          disableNode(this.el);
+        }
+      },
+
     }
   });
 };
