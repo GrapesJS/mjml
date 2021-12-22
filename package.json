@@ -27,10 +27,10 @@
   "author": "Artur Arseniev",
   "license": "BSD-3-Clause",
   "dependencies": {
-    "mjml-browser": "^4.10.2"
+    "mjml-browser": "^4.11.0"
   },
   "devDependencies": {
-    "eslint": "^7.32.0",
-    "grapesjs-cli": "^1.0.15"
+    "eslint": "^8.5.0",
+    "grapesjs-cli": "^2.0.0"
   }
 }
