@@ -2,7 +2,7 @@
   "name": "grapesjs-mjml",
   "version": "0.5.8",
   "description": "MJML Componenets integration in GrapesJS",
-  "main": "dist/grapesjs-mjml.min.js",
+  "main": "dist/index.js",
   "scripts": {
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
@@ -27,10 +27,10 @@
   "author": "Artur Arseniev",
   "license": "BSD-3-Clause",
   "dependencies": {
-    "mjml-browser": "^4.11.0"
+    "mjml-browser": "^4.12.0"
   },
   "devDependencies": {
-    "eslint": "^8.5.0",
-    "grapesjs-cli": "^2.0.0"
+    "eslint": "^8.9.0",
+    "grapesjs-cli": "^3.0.0"
   }
 }

@@ -6,7 +6,6 @@
   <title>GrapesJS Plugin</title>
   <link href="https://unpkg.com/grapesjs/dist/css/grapes.min.css" rel="stylesheet">
   <script src="https://unpkg.com/grapesjs"></script>
-  <script src="dist/grapesjs-mjml.min.js"></script>
   <style>
     body,
     html {
@@ -106,9 +105,9 @@
             <img class="item" src="https://source.unsplash.com/random/200x141" alt="Example image">
             <img class="item" src="https://source.unsplash.com/random/200x142" alt="Example image">
             <img class="item" src="https://source.unsplash.com/random/200x143" alt="Example image">
-            <img class="item" src="https://source.unsplash.com/random/200x144" alt="Example image"> 
+            <img class="item" src="https://source.unsplash.com/random/200x144" alt="Example image">
             <img class="item" src="https://source.unsplash.com/random/200x145" alt="Example image">
-            <img class="item" src="https://source.unsplash.com/random/200x146" alt="Example image">     
+            <img class="item" src="https://source.unsplash.com/random/200x146" alt="Example image">
           </div>
         </mj-raw>
         <!-- Icons -->
@@ -148,20 +147,21 @@
 
 
   <script type="text/javascript">
-    var editor = grapesjs.init({
-      height: '100%',
-      noticeOnUnload: 0,
-      storageManager: { autoload: 0 },
-      container: '#gjs',
-      fromElement: true,
+    // Wait for the plugin to be injected by the dev server
+    setTimeout(() => {
+      window.editor = grapesjs.init({
+        height: '100%',
+        noticeOnUnload: 0,
+        storageManager: {autoload: 0},
+        container: '#gjs',
+        fromElement: true,
 
-      plugins: ['grapesjs-mjml'],
-      pluginsOpts: {
-        'grapesjs-mjml': {}
-      }
-    });
-
-    window.editor = editor;
+        plugins: ['grapesjs-mjml'],
+        pluginsOpts: {
+          'grapesjs-mjml': {}
+        }
+      });
+    }, 100);
   </script>
 </body>
 
