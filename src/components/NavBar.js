@@ -42,7 +42,7 @@ export default (editor, { dc, opt, coreMjmlModel, coreMjmlView, sandboxEl }) => 
 
       init() {
         coreMjmlView.init.call(this);
-        this.listenTo(this.model.get('components'), 'add remove', this.render);
+        this.listenTo(this.model.get('components'), 'add remove update', this.render);
       },
 
       getTemplateFromMjml() {
