@@ -111,7 +111,7 @@ export default (editor, opt = {}) => {
       let attr = this.getAttrToHTML();
       for (let prop in attr) {
         let val = attr[prop];
-        strAttr += typeof val !== undefined && val !== '' ?
+        strAttr += typeof val !== 'undefined' && val !== '' ?
           ' ' + prop + '="' + val + '"' : '';
       }
 
@@ -160,7 +160,7 @@ export default (editor, opt = {}) => {
 
       for (let prop in attr) {
         let val = attr[prop];
-        strAttr += typeof val !== undefined && val !== '' ?
+        strAttr += typeof val !== 'undefined' && val !== '' ?
           ' ' + prop + '="' + val + '"' : '';
       }
 
