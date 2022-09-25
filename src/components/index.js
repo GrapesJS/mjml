@@ -177,10 +177,10 @@ export default (editor, opt = {}) => {
 
 
     getTemplateFromMjml() {
-      let mjmlTmpl = this.getMjmlTemplate();
-      let innerMjml = this.getInnerMjmlTemplate();
-      const htmlOutput = mjmlConvert(`${mjmlTmpl.start}
-        ${innerMjml.start}${innerMjml.end}${mjmlTmpl.end}`, opt.fonts);
+      const mjmlTmpl = this.getMjmlTemplate();
+      const innerMjml = this.getInnerMjmlTemplate();
+      const mjml = `${mjmlTmpl.start}${innerMjml.start}${innerMjml.end}${mjmlTmpl.end}`;
+      const htmlOutput = mjmlConvert(mjml, opt.fonts);
       let html = htmlOutput.html;
       html = html.replace(/<body(.*)>/, '<body>');
       let start = html.indexOf('<body>') + 6;

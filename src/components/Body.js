@@ -31,7 +31,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
       ...coreMjmlView,
       tagName: 'div',
       attributes: {
-        style: 'width: 100%; min-height: 100%',
+        style: 'width: 100%; min-height: 100vh',
         'data-type': 'mj-body',
       },
 
