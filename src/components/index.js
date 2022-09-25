@@ -264,6 +264,14 @@ export default (editor, opt = {}) => {
     textModel, textView, linkModel, linkView, imageModel, imageView
   };
 
+  editor.Components.addType('wrapper', {
+    model: {
+      toHTML(opts) {
+        return this.getInnerHTML(opts);
+      }
+    }
+  });
+
   loadMjml(editor, compOpts);
   loadHead(editor, compOpts);
   loadStyle(editor, compOpts);
