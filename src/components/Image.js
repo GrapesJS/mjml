@@ -30,7 +30,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
           'align': 'center',
         },
         traits: ['href', 'rel', 'alt', 'title'],
-        void: true,
+        void: false,
       },
     },
 
