@@ -14,7 +14,7 @@ export default (editor: grapesjs.Editor, opts: RequiredPluginOptions) => {
   const { Commands } = editor;
   const exportName = opts.overwriteExport ? 'export-template' : cmdExportMjml;
 
-  Commands.add(exportName, exportCommand(editor, opts));
+  Commands.add(exportName, exportCommand(editor, opts, exportName));
   Commands.add(cmdImportMjml, importCommand(editor, opts));
   Commands.add(cmdGetMjml, (ed) => ed.getHtml().trim());
 
