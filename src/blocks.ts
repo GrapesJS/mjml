@@ -30,14 +30,15 @@ export default (editor: grapesjs.Editor, opts: RequiredPluginOptions) => {
       </mj-section>`,
   });
 
-  bm.add('mj-2-columns', {
+  addBlock('mj-2-columns', {
     label: editor.I18n.t('grapesjs-mjml.components.names.twoColumn'),
+    media: `<svg viewBox="0 0 23 24">
+      <path fill="currentColor" d="M2 20h8V4H2v16Zm-1 0V4a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1ZM13 20h8V4h-8v16Zm-1 0V4a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1h-8a1 1 0 0 1-1-1Z"/>
+    </svg>`,
     content: `<mj-section>
-        <mj-column><mj-text>Content 1</mj-text></mj-column>
-        <mj-column><mj-text>Content 2</mj-text></mj-column>
-      </mj-section>`,
-    attributes: { class: 'gjs-fonts gjs-f-b2' },
-    ...allBlocks,
+      <mj-column><mj-text>Content 1</mj-text></mj-column>
+      <mj-column><mj-text>Content 2</mj-text></mj-column>
+    </mj-section>`,
   });
 
   bm.add('mj-3-columns', {
