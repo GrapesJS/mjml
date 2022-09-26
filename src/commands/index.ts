@@ -7,14 +7,15 @@ export const cmdDeviceDesktop = 'set-device-desktop';
 export const cmdDeviceTablet = 'set-device-tablet';
 export const cmdDeviceMobile = 'set-device-mobile';
 export const cmdImportMjml = 'mjml-import';
+export const cmdExportMjml = 'mjml-export';
 export const cmdGetMjml = 'get-mjml';
 
 export default (editor: grapesjs.Editor, opts: RequiredPluginOptions) => {
   const { Commands } = editor;
-  const exportName = opts.overwriteExport ? 'export-template' : 'mjml-export';
+  const exportName = opts.overwriteExport ? 'export-template' : cmdExportMjml;
 
-  Commands.add(cmdImportMjml, importCommand(editor, opts));
   Commands.add(exportName, exportCommand(editor, opts));
+  Commands.add(cmdImportMjml, importCommand(editor, opts));
   Commands.add(cmdGetMjml, (ed) => ed.getHtml().trim());
 
   // Device commands
