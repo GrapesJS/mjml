@@ -127,11 +127,12 @@ export default (editor: grapesjs.Editor, opts: RequiredPluginOptions) => {
     </mj-navbar>`,
   });
 
-  bm.add('mj-navbar-link', {
+  addBlock('mj-navbar-link', {
     label: editor.I18n.t('grapesjs-mjml.components.names.navLink'),
-    content: `<mj-navbar-link>Link 1</mj-navbar-link>`,
-    attributes: { class: 'gjs-fonts gjs-f-button' },
-    ...allBlocks,
+    media: `<svg viewBox="0 0 24 24">
+        <path fill="currentColor" d="M21,15.61L19.59,17L14.58,12L19.59,7L21,8.39L17.44,12L21,15.61M3,6H16V8H3V6M3,13V11H13V13H3M3,18V16H16V18H3Z" />
+    </svg>`,
+    content: `<mj-navbar-link>Link</mj-navbar-link>`,
   });
 
   bm.add('mj-hero', {
