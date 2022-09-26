@@ -114,16 +114,17 @@ export default (editor: grapesjs.Editor, opts: RequiredPluginOptions) => {
     content: '<mj-spacer/>',
   });
 
-  bm.add('mj-navbar', {
+  addBlock('mj-navbar', {
     label: editor.I18n.t('grapesjs-mjml.components.names.navBar'),
+    media: `<svg viewBox="0 0 24 24">
+        <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+    </svg>`,
     content: `<mj-navbar>
-    <mj-navbar-link>Getting started</mj-navbar-link>
-    <mj-navbar-link>Try it live</mj-navbar-link>
-    <mj-navbar-link>Templates</mj-navbar-link>
-    <mj-navbar-link>Components</mj-navbar-link>
+      <mj-navbar-link>Getting started</mj-navbar-link>
+      <mj-navbar-link>Try it live</mj-navbar-link>
+      <mj-navbar-link>Templates</mj-navbar-link>
+      <mj-navbar-link>Components</mj-navbar-link>
     </mj-navbar>`,
-    attributes: { class: 'fa fa-bars' },
-    ...allBlocks,
   });
 
   bm.add('mj-navbar-link', {
