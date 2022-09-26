@@ -2,7 +2,7 @@ import type grapesjs from 'grapesjs';
 import loadBlocks from './blocks';
 import loadComponents from './components';
 import loadCommands from './commands';
-import loadButtons from './buttons';
+import loadPanels from './panels';
 import loadStyle from './style';
 import en from './locale/en';
 
@@ -153,7 +153,7 @@ const plugin: grapesjs.Plugin<PluginOptions> = (editor, opt = {}) => {
     loadBlocks,
     loadComponents,
     loadCommands,
-    loadButtons,
+    loadPanels,
     loadStyle,
   ].forEach(module => module(editor, opts));
 
