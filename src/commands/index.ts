@@ -1,7 +1,7 @@
 import type grapesjs from 'grapesjs';
 import { RequiredPluginOptions } from '..';
-import importCommand from './command-import-mjml';
-import exportCommand from './command-export-mjml';
+import importCommand from './openImportMjml';
+import exportCommand from './openExportMjml';
 
 export const cmdDeviceDesktop = 'set-device-desktop';
 export const cmdDeviceTablet = 'set-device-tablet';
