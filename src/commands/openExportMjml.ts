@@ -5,19 +5,10 @@ import { mjmlConvert } from '../components/utils.js';
 type CommandInterface = Parameters<grapesjs.Commands["add"]>[1];
 
 export default (editor: grapesjs.Editor, opts: RequiredPluginOptions, cmdId: string): CommandInterface => {
-  const config = editor.getConfig();
-  // @ts-ignore
-  const codeViewer = editor.CodeManager.getViewer('CodeMirror').clone();
   const container = document.createElement('div');
   const cmdm = editor.Commands;
   container.style.display = 'flex';
   container.style.justifyContent = 'space-between';
-
-  // Init code viewer
-  codeViewer.set({
-    codeName: 'htmlmixed',
-    theme: opts.codeViewerTheme,
-  });
 
   const getMjml = () => {
     const mjml = opts.preMjml + editor.getHtml() + opts.postMjml;
