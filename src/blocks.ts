@@ -1,12 +1,24 @@
-export default (editor, opt = {}) => {
+import type grapesjs from 'grapesjs';
+import { RequiredPluginOptions } from '.';
+
+export default (editor: grapesjs.Editor, opts: RequiredPluginOptions) => {
   const bm = editor.BlockManager;
   const allBlocks = {
     category: editor.I18n.t('grapesjs-mjml.category'),
   };
 
-  const imagePlaceholderSrc = opt.imagePlaceholderSrc || 'https://via.placeholder.com/350x250/78c5d6/fff';
+  const imagePlaceholderSrc = opts.imagePlaceholderSrc || 'https://via.placeholder.com/350x250/78c5d6/fff';
 
-  opt.resetBlocks && bm.getAll().reset();
+  opts.resetBlocks && bm.getAll().reset();
+
+  const addBlock = (id: string, def: grapesjs.BlockOptions) => {
+    opts.blocks.indexOf(id)! >= 0 && editor.Blocks.add(id, {
+      select: true,
+      category: 'Basic',
+      ...def,
+      ...opts.block(id),
+    });
+  }
 
   bm.add('mj-1-column', {
     label: editor.I18n.t('grapesjs-mjml.components.names.oneColumn'),
@@ -151,9 +163,9 @@ export default (editor, opt = {}) => {
         <img class="item" src="https://source.unsplash.com/random/200x141" alt="Example image">
         <img class="item" src="https://source.unsplash.com/random/200x142" alt="Example image">
         <img class="item" src="https://source.unsplash.com/random/200x143" alt="Example image">
-        <img class="item" src="https://source.unsplash.com/random/200x144" alt="Example image"> 
+        <img class="item" src="https://source.unsplash.com/random/200x144" alt="Example image">
         <img class="item" src="https://source.unsplash.com/random/200x145" alt="Example image">
-        <img class="item" src="https://source.unsplash.com/random/200x146" alt="Example image">     
+        <img class="item" src="https://source.unsplash.com/random/200x146" alt="Example image">
       </div>
     </mj-raw>`,
     attributes: { class: 'fa fa-html5' },
