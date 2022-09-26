@@ -150,24 +150,25 @@ export default (editor: grapesjs.Editor, opts: RequiredPluginOptions) => {
     </mj-hero>`,
   });
 
-  bm.add('mj-wrapper', {
+  addBlock('mj-wrapper', {
     label: editor.I18n.t('grapesjs-mjml.components.names.wrapper'),
+    media: `<svg viewBox="0 0 24 24">
+        <path fill="currentColor" d="M18 2H6C4.89 2 4 2.9 4 4V20C4 21.11 4.89 22 6 22H18C19.11 22 20 21.11 20 20V4C20 2.9 19.11 2 18 2M18 20H6V16H18V20M18 8H6V4H18V8Z" />
+    </svg>`,
     content: `<mj-wrapper border="1px solid #000000" padding="50px 30px">
-    <mj-section border-top="1px solid #aaaaaa" border-left="1px solid #aaaaaa" border-right="1px solid #aaaaaa" padding="20px">
-      <mj-column>
-        <mj-image padding="0" src="${imagePlaceholderSrc}" />
-      </mj-column>
-    </mj-section>
-    <mj-section border-left="1px solid #aaaaaa" border-right="1px solid #aaaaaa" padding="20px" border-bottom="1px solid #aaaaaa">
-      <mj-column border="1px solid #dddddd">
-        <mj-text padding="20px"> First line of text </mj-text>
-        <mj-divider border-width="1px" border-style="dashed" border-color="lightgrey" padding="0 20px" />
-        <mj-text padding="20px"> Second line of text </mj-text>
-      </mj-column>
-    </mj-section>
-  </mj-wrapper>`,
-    attributes: { class: 'fa fa-window-maximize' },
-    ...allBlocks,
+      <mj-section border-top="1px solid #aaaaaa" border-left="1px solid #aaaaaa" border-right="1px solid #aaaaaa" padding="20px">
+        <mj-column>
+          <mj-image padding="0" src="${imagePlaceholderSrc}" />
+        </mj-column>
+      </mj-section>
+      <mj-section border-left="1px solid #aaaaaa" border-right="1px solid #aaaaaa" padding="20px" border-bottom="1px solid #aaaaaa">
+        <mj-column border="1px solid #dddddd">
+          <mj-text padding="20px"> First line of text </mj-text>
+          <mj-divider border-width="1px" border-style="dashed" border-color="lightgrey" padding="0 20px" />
+          <mj-text padding="20px"> Second line of text </mj-text>
+        </mj-column>
+      </mj-section>
+    </mj-wrapper>`,
   });
 
   bm.add('mj-raw', {
