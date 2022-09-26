@@ -1,8 +1,9 @@
-import tglImagesCommand from './toggleImagesCommand';
+import type grapesjs from 'grapesjs';
+import { RequiredPluginOptions } from '..';
 import importCommand from './command-import-mjml';
 import exportCommand from './command-export-mjml';
 
-export default (editor, opt = {}) => {
+export default (editor: grapesjs.Editor, opt: RequiredPluginOptions) => {
   const cmd = editor.Commands;
   const exportName = opt.overwriteExport ? 'export-template' : 'mjml-export';
 
@@ -15,21 +16,6 @@ export default (editor, opt = {}) => {
   });
   cmd.add(exportName, exportCommand(editor, opt));
 
-  cmd.add(opt.cmdTglImages, tglImagesCommand(opt));
-
-  cmd.add('undo', {
-    run(editor, sender) {
-      sender.set('active', 0);
-      editor.UndoManager.undo(1);
-    }
-  });
-
-  cmd.add('redo', {
-    run(editor, sender) {
-      sender.set('active', 0);
-      editor.UndoManager.redo(1);
-    }
-  });
   cmd.add('set-device-desktop', {
     run(editor) {
       editor.setDevice('Desktop');

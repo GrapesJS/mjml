@@ -1,4 +1,4 @@
-import { mjmlConvert } from './components/utils.js';
+import { mjmlConvert } from '../components/utils.js';
 
 export default (editor, opt = {}) => {
   const config = editor.getConfig();
