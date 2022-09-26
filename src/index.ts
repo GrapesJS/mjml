@@ -68,6 +68,12 @@ export type PluginOptions = {
   resetStyleManager?: boolean;
 
   /**
+   * Clean all previous devices and set a new one for mobile
+   * @default true
+   */
+  resetDevices?: boolean;
+
+  /**
    * Column padding (this way it's easier to select columns)
    * @default '10px 0'
    */
@@ -104,6 +110,7 @@ const plugin: grapesjs.Plugin<PluginOptions> = (editor, opt = {}) => {
     postMjml: '',
     resetBlocks: true,
     resetStyleManager: true,
+    resetDevices: true,
     columnsPadding: '10px 0',
     i18n: {},
     fonts: {},
@@ -116,13 +123,13 @@ const plugin: grapesjs.Plugin<PluginOptions> = (editor, opt = {}) => {
 
   // I need to prevent forced class creation as classes aren't working
   // at the moment
-  config.forceClass = 0;
+  config.forceClass = false;
 
   // Don't need to create css rules with media
-  config.devicePreviewMode = 1;
+  config.devicePreviewMode = true;
 
   // Doesn't work without inline styling
-  config.avoidInlineStyle = 0;
+  config.avoidInlineStyle = false;
 
   // Load i18n files
   editor.I18n.addMessages({
@@ -141,17 +148,12 @@ const plugin: grapesjs.Plugin<PluginOptions> = (editor, opt = {}) => {
   // Update devices
   if (opts.resetDevices) {
     const dm = editor.DeviceManager;
+    // @ts-ignore
     dm.getAll().reset();
-    dm.add('Desktop', '');
-    dm.add('Mobile', '320px');
-    dm.add('Tablet', '820px');
+    dm.add({ id: 'Desktop', width: '' });
+    dm.add({ id: 'Mobile', width: '320px' });
+    dm.add({ id: 'Tablet', width: '820px' });
   }
 };
 
 export default plugin;
-
-export const blocksPlugin = masterPlugin.blocksPlugin = loadBlocks;
-export const componentsPlugin = masterPlugin.componentsPlugin = loadComponents;
-export const commandsPlugin = masterPlugin.commandsPlugin =  loadCommands;
-export const buttonsPlugin = masterPlugin.buttonsPlugin = loadButtons;
-export const stylePlugin = masterPlugin.stylePlugin = loadStyle;
