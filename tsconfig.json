@@ -1,0 +1,4 @@
+{
+    "extends": "./node_modules/grapesjs-cli/src/template/tsconfig.json",
+    "include": ["src"]
+}
