@@ -16,7 +16,7 @@ export type PluginOptions = {
   /**
    * Add custom block options, based on block id.
    * @default (blockId) => ({})
-   * @example (blockId) => blockId === 'mj-hero' ? { attributes: {...} } : {};
+   * @example (blockId) => (blockId === 'mj-hero' ? { attributes: {...} } : {})
    */
   block?: (blockId: string) => ({});
 
