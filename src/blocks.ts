@@ -14,18 +14,20 @@ export default (editor: grapesjs.Editor, opts: RequiredPluginOptions) => {
   const addBlock = (id: string, def: grapesjs.BlockOptions) => {
     opts.blocks.indexOf(id)! >= 0 && editor.Blocks.add(id, {
       select: true,
+      category: editor.I18n.t('grapesjs-mjml.category'),
       ...def,
       ...opts.block(id),
     });
-  }
+  };
 
-  bm.add('mj-1-column', {
+  addBlock('mj-1-column', {
     label: editor.I18n.t('grapesjs-mjml.components.names.oneColumn'),
+    media: `<svg viewBox="0 0 24 24">
+      <path fill="currentColor" d="M2 20h20V4H2v16Zm-1 0V4a1 1 0 0 1 1-1h20a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1Z"/>
+    </svg>`,
     content: `<mj-section>
         <mj-column><mj-text>Content 1</mj-text></mj-column>
       </mj-section>`,
-    attributes: { class: 'gjs-fonts gjs-f-b1' },
-    ...allBlocks,
   });
 
   bm.add('mj-2-columns', {
