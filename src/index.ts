@@ -14,6 +14,13 @@ export type PluginOptions = {
   blocks?: string[];
 
   /**
+   * Add custom block options, based on block id.
+   * @default (blockId) => ({})
+   * @example (blockId) => blockId === 'mj-hero' ? { attributes: {...} } : {};
+   */
+  block?: (blockId: string) => ({});
+
+  /**
    * Default MJML template, in case the canvas is empty.
    * @default ''
    */
@@ -105,6 +112,7 @@ const plugin: grapesjs.Plugin<PluginOptions> = (editor, opt = {}) => {
       'mj-1-column', 'mj-2-columns', 'mj-3-columns', 'mj-text', 'mj-button', 'mj-image', 'mj-divider', 'mj-social-group',
       'mj-social-element', 'mj-spacer', 'mj-navbar', 'mj-navbar-link', 'mj-hero', 'mj-wrapper', 'mj-raw'
     ],
+    block: () => ({}),
     defaultTemplate: '',
     codeViewerTheme: 'hopscotch',
     importPlaceholder: '',

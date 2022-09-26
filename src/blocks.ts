@@ -14,7 +14,6 @@ export default (editor: grapesjs.Editor, opts: RequiredPluginOptions) => {
   const addBlock = (id: string, def: grapesjs.BlockOptions) => {
     opts.blocks.indexOf(id)! >= 0 && editor.Blocks.add(id, {
       select: true,
-      category: 'Basic',
       ...def,
       ...opts.block(id),
     });
