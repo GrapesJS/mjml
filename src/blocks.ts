@@ -100,11 +100,10 @@ export default (editor: grapesjs.Editor, opts: RequiredPluginOptions) => {
       </mj-social>`,
   });
 
-  bm.add('mj-social-element', {
+  addBlock('mj-social-element', {
     label: editor.I18n.t('grapesjs-mjml.components.names.socialElement'),
+    media: socialIcon,
     content: '<mj-social-element name="facebook" />',
-    attributes: { class: 'fa fa-share-alt' },
-    ...allBlocks,
   });
 
   bm.add('mj-spacer', {
