@@ -1,14 +1,15 @@
 import type grapesjs from 'grapesjs';
 import { RequiredPluginOptions } from '.';
+import {
+  cmdDeviceDesktop,
+  cmdDeviceTablet,
+  cmdDeviceMobile,
+  cmdImportMjml,
+} from './commands';
 
 export default (editor: grapesjs.Editor, opts: RequiredPluginOptions) => {
   const { Panels } = editor;
   const iconStyle = 'style="display: block; max-width:22px"';
-
-  const cmdDeviceDesktop = 'set-device-desktop';
-  const cmdDeviceTablet = 'set-device-tablet';
-  const cmdDeviceMobile = 'set-device-mobile';
-  const cmdImportMjml = 'mjml-import';
 
   const getI18nLabel = (label: string) => editor.I18n.t(`grapesjs-mjml.panels.buttons.${label}`);
 
