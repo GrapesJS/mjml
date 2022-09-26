@@ -41,15 +41,16 @@ export default (editor: grapesjs.Editor, opts: RequiredPluginOptions) => {
     </mj-section>`,
   });
 
-  bm.add('mj-3-columns', {
+  addBlock('mj-3-columns', {
     label: editor.I18n.t('grapesjs-mjml.components.names.threeColumn'),
+    media: `<svg viewBox="0 0 23 24">
+      <path fill="currentColor" d="M2 20h4V4H2v16Zm-1 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1ZM17 20h4V4h-4v16Zm-1 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1ZM9.5 20h4V4h-4v16Zm-1 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1Z"/>
+    </svg>`,
     content: `<mj-section>
         <mj-column><mj-text>Content 1</mj-text></mj-column>
         <mj-column><mj-text>Content 2</mj-text></mj-column>
         <mj-column><mj-text>Content 3</mj-text></mj-column>
       </mj-section>`,
-    attributes: { class: 'gjs-fonts gjs-f-b3' },
-    ...allBlocks,
   });
 
   bm.add('mj-text', {
