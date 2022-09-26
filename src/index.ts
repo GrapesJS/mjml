@@ -156,16 +156,6 @@ const plugin: grapesjs.Plugin<PluginOptions> = (editor, opt = {}) => {
     loadPanels,
     loadStyle,
   ].forEach(module => module(editor, opts));
-
-  // Update devices
-  if (opts.resetDevices) {
-    const dm = editor.DeviceManager;
-    // @ts-ignore
-    dm.getAll().reset();
-    dm.add({ id: 'Desktop', width: '' });
-    dm.add({ id: 'Mobile', width: '320px' });
-    dm.add({ id: 'Tablet', width: '820px' });
-  }
 };
 
 export default plugin;
