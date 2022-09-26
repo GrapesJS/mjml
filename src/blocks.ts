@@ -135,8 +135,11 @@ export default (editor: grapesjs.Editor, opts: RequiredPluginOptions) => {
     content: `<mj-navbar-link>Link</mj-navbar-link>`,
   });
 
-  bm.add('mj-hero', {
+  addBlock('mj-hero', {
     label: editor.I18n.t('grapesjs-mjml.components.names.hero'),
+    media: `<svg viewBox="0 0 24 24">
+        <path fill="currentColor" d="M20,20H4A2,2 0 0,1 2,18V6A2,2 0 0,1 4,4H20A2,2 0 0,1 22,6V18A2,2 0 0,1 20,20M4,6V18H20V6H4M6,9H18V11H6V9M6,13H16V15H6V13Z" />
+    </svg>`,
     content: `<mj-hero mode="fixed-height" height="469px" background-width="600px" background-height="469px" background-url="https://cloud.githubusercontent.com/assets/1830348/15354890/1442159a-1cf0-11e6-92b1-b861dadf1750.jpg" background-color="#2a3448" padding="100px 0px">
       <mj-text padding="20px" color="#ffffff" font-family="Helvetica" align="center" font-size="45px" line-height="45px" font-weight="900">
         GO TO SPACE
@@ -145,8 +148,6 @@ export default (editor: grapesjs.Editor, opts: RequiredPluginOptions) => {
         ORDER YOUR TICKET NOW
       </mj-button>
     </mj-hero>`,
-    attributes: { class: 'fa fa-id-card' },
-    ...allBlocks,
   });
 
   bm.add('mj-wrapper', {
