@@ -1,21 +1,9 @@
 import type grapesjs from 'grapesjs';
+import { cmdGetMjml, cmdGetMjmlToHtml } from '.';
 import { RequiredPluginOptions } from '..';
-import { mjmlConvert } from '../components/utils.js';
 
 export default (editor: grapesjs.Editor, opts: RequiredPluginOptions, cmdId: string) => {
   const { Commands } = editor;
-
-  const getMjml = () => {
-    const mjml = opts.preMjml + editor.getHtml() + opts.postMjml;
-    return mjmlConvert(mjml, opts.fonts);
-  };
-
-  // Set the command which could be used outside
-  Commands.add('mjml-get-code', {
-    run() {
-      return getMjml();
-    }
-  });
 
   Commands.add(cmdId, {
     createCodeEditor(label: string) {
@@ -85,18 +73,16 @@ export default (editor: grapesjs.Editor, opts: RequiredPluginOptions, cmdId: str
         })
 
       if (codeEditorMjml) {
-        codeEditorMjml.setContent(opts.preMjml + editor.getHtml() + opts.postMjml);
+        codeEditorMjml.setContent(Commands.run(cmdGetMjml));
         codeEditorMjml.editor.refresh();
       }
 
       if (codeEditorHtml) {
-        const mjml = getMjml();
-        if (mjml.errors.length) {
-          mjml.errors.forEach((err: any) => {
-            console.warn(err.formattedMessage);
-          });
-        }
-        codeEditorHtml.setContent(mjml.html);
+        const mjmlResult = Commands.run(cmdGetMjmlToHtml);
+        mjmlResult.errors?.forEach((err: any) => {
+          console.warn(err.formattedMessage);
+        });
+        codeEditorHtml.setContent(mjmlResult.html);
         codeEditorHtml.editor.refresh();
       }
     },
