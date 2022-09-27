@@ -1,7 +1,7 @@
 import type grapesjs from 'grapesjs';
 import { RequiredPluginOptions } from '..';
-import importCommand from './openImportMjml';
-import exportCommand from './openExportMjml';
+import openImportMjml from './openImportMjml';
+import openExportMjml from './openExportMjml';
 import { mjmlConvert } from '../components/utils';
 
 export const cmdDeviceDesktop = 'set-device-desktop';
@@ -25,8 +25,8 @@ export default (editor: grapesjs.Editor, opts: RequiredPluginOptions) => {
       return mjmlConvert(mjml, opts.fonts);
   });
 
-  exportCommand(editor, opts, cmdOpenExport);
-  Commands.add(cmdImportMjml, importCommand(editor, opts));
+  openExportMjml(editor, opts, cmdOpenExport);
+  openImportMjml(editor, opts, cmdImportMjml);
 
   // Device commands
   Commands.add(cmdDeviceDesktop, {

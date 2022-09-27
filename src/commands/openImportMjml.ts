@@ -1,5 +1,9 @@
-export default (editor, opt = {}) => {
+import type grapesjs from 'grapesjs';
+import { RequiredPluginOptions } from '..';
+
+export default (editor: grapesjs.Editor, opts: RequiredPluginOptions, cmdId: string) => {
   const config = editor.getConfig();
+  // @ts-ignore
   const codeViewer = editor.CodeManager.getViewer('CodeMirror').clone();
   const btnImp = document.createElement('button');
   const container = document.createElement('div');
@@ -19,20 +23,22 @@ export default (editor, opt = {}) => {
   // Init code viewer
   codeViewer.set({
     codeName: 'htmlmixed',
-    theme: opt.codeViewerTheme,
+    theme: opts.codeViewerTheme,
     readOnly: 0
   });
 
-  return {
+  const { Commands } = editor;
+
+  const getI18nLabel = (label: string) => editor.I18n.t(`grapesjs-mjml.panels.import.${label}`)
+
+  Commands.add(cmdId, {
     run(editor, sender = {}) {
-      const modal = editor.Modal;
       let viewer = codeViewer.editor;
-      modal.setTitle(editor.I18n.t('grapesjs-mjml.panels.import.title'));
 
       // Init code viewer if not yet instantiated
       if (!viewer) {
         const txtarea = document.createElement('textarea');
-        const labelImport = editor.I18n.t('grapesjs-mjml.panels.import.label');
+        const labelImport = getI18nLabel('label');
 
         if (labelImport) {
           let labelEl = document.createElement('div');
@@ -47,13 +53,20 @@ export default (editor, opt = {}) => {
         viewer = codeViewer.editor;
       }
 
-      modal.setContent('');
-      modal.setContent(container);
-      codeViewer.setContent(opt.importPlaceholder);
-      modal.open();
+      editor.Modal.open({
+        title: getI18nLabel('title'),
+        content: container
+      }).onceClose(() => {
+        sender.set && sender.set('active', false);
+        editor.stopCommand(cmdId)
+      });
+
+      codeViewer.setContent(opts.importPlaceholder);
       viewer.refresh();
-      sender.set && sender.set('active', 0);
     },
 
-  };
+    stop(editor) {
+      editor.Modal.close();
+    },
+  });
 };
