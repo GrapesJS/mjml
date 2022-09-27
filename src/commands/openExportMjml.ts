@@ -2,13 +2,8 @@ import type grapesjs from 'grapesjs';
 import { RequiredPluginOptions } from '..';
 import { mjmlConvert } from '../components/utils.js';
 
-type CommandInterface = Parameters<grapesjs.Commands["add"]>[1];
-
-export default (editor: grapesjs.Editor, opts: RequiredPluginOptions, cmdId: string): CommandInterface => {
-  const container = document.createElement('div');
-  const cmdm = editor.Commands;
-  container.style.display = 'flex';
-  container.style.justifyContent = 'space-between';
+export default (editor: grapesjs.Editor, opts: RequiredPluginOptions, cmdId: string) => {
+  const { Commands } = editor;
 
   const getMjml = () => {
     const mjml = opts.preMjml + editor.getHtml() + opts.postMjml;
@@ -16,78 +11,72 @@ export default (editor: grapesjs.Editor, opts: RequiredPluginOptions, cmdId: str
   };
 
   // Set the command which could be used outside
-  cmdm.add('mjml-get-code', {
+  Commands.add('mjml-get-code', {
     run() {
       return getMjml();
     }
   });
 
-  let mjmlCodeViewer: any;
-  let htmlCodeViewer: any;
-
-  return {
-    buildEditor(label: string): any {
-      // const ecm = editor.CodeManager;
-      // @ts-ignore
-      // const cm = ecm.getViewer('CodeMirror').clone();
-      // const txtarea = document.createElement('textarea');
+  Commands.add(cmdId, {
+    createCodeEditor(label: string) {
       const el = document.createElement('div');
+      const elLabel = document.createElement('div');
+      const codeEditor = this.createCodeViewer();
+
+      elLabel.innerHTML = label;
       el.style.flex = '1 0 auto';
       el.style.padding = '5px';
       el.style.maxWidth = '50%';
       el.style.boxSizing = 'border-box';
+      el.appendChild(elLabel);
+      el.appendChild(codeEditor.getElement());
 
-      // const codeEditor = cm.set({
-      //   label: label,
-      //   codeName: 'htmlmixed',
-      //   theme: opts.codeViewerTheme,
-      //   input: txtarea,
-      // });
+      return { codeEditor, el };
+    },
+
+    createCodeViewer(): any {
       // @ts-ignore
-      const codeEditor = editor.CodeManager.createViewer({
-        label,
+      return editor.CodeManager.createViewer({
         codeName: 'htmlmixed',
         theme: opts.codeViewerTheme,
       });
+    },
 
-      // @ts-ignore
-      // const elEditor = new ecm.EditorView({ model: codeEditor, config }).render().el;
-      // el.appendChild(elEditor);
-      // codeEditor.init(txtarea);
-      el.appendChild(codeEditor.getElement());
-      return { codeEditor, el };
+    getCodeContainer(): HTMLDivElement {
+      let containerEl = this.containerEl as HTMLDivElement;
 
+      if (!containerEl) {
+        containerEl = document.createElement('div');
+        containerEl.style.display = 'flex';
+        containerEl.style.justifyContent = 'space-between';
+        this.containerEl = containerEl;
+      }
 
-      // const type = !isUndefined(opts.type) ? opts.type : defaultViewer;
-      // const viewer = this.getViewer(type) && this.getViewer(type).clone();
-      // const cont = document.createElement('div');
-      // const txtarea = document.createElement('textarea');
-      // cont.appendChild(txtarea);
-      // viewer.set(opts);
-      // viewer.init(txtarea);
-      // viewer.setElement(cont);
+      return containerEl;
     },
 
     run(editor, sender) {
-      const title = editor.I18n.t('grapesjs-mjml.panels.export.title');
+      const container = this.getCodeContainer();
+      let codeEditorMjml = this.codeEditorMjml as any;
+      let codeEditorHtml = this.codeEditorHtml as any;
 
-      if (!mjmlCodeViewer) {
-        // @ts-ignore
-        const codeViewer = this.buildEditor('MJML');
-        mjmlCodeViewer = codeViewer.codeEditor;
+      if (!codeEditorMjml) {
+        const codeViewer = this.createCodeEditor('MJML');
+        codeEditorMjml = codeViewer.codeEditor;
+        this.codeEditorMjml = codeEditorMjml;
         container.appendChild(codeViewer.el);
       }
 
-      if (!htmlCodeViewer) {
-        // @ts-ignore
-        const codeViewer = this.buildEditor('HTML');
-        htmlCodeViewer = codeViewer.codeEditor;
+      if (!codeEditorHtml) {
+        const codeViewer = this.createCodeEditor('HTML');
+        codeEditorHtml = codeViewer.codeEditor;
+        this.codeEditorHtml = codeEditorHtml;
         container.appendChild(codeViewer.el);
       }
 
       editor.Modal
         .open({
-          title,
+          title: editor.I18n.t('grapesjs-mjml.panels.export.title'),
           content: container
         })
         .onceClose(() => {
@@ -95,25 +84,25 @@ export default (editor: grapesjs.Editor, opts: RequiredPluginOptions, cmdId: str
           editor.stopCommand(cmdId)
         })
 
-      if (mjmlCodeViewer) {
-        mjmlCodeViewer.setContent(opts.preMjml + editor.getHtml() + opts.postMjml);
-        mjmlCodeViewer.editor.refresh();
+      if (codeEditorMjml) {
+        codeEditorMjml.setContent(opts.preMjml + editor.getHtml() + opts.postMjml);
+        codeEditorMjml.editor.refresh();
       }
 
-      if (htmlCodeViewer) {
+      if (codeEditorHtml) {
         const mjml = getMjml();
         if (mjml.errors.length) {
           mjml.errors.forEach((err: any) => {
             console.warn(err.formattedMessage);
           });
         }
-        htmlCodeViewer.setContent(mjml.html);
-        htmlCodeViewer.editor.refresh();
+        codeEditorHtml.setContent(mjml.html);
+        codeEditorHtml.editor.refresh();
       }
     },
 
     stop(editor) {
       editor.Modal.close();
     },
-  };
+  });
 };
