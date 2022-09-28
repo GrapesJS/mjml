@@ -77,6 +77,10 @@ export default (editor, { dc, opt, coreMjmlModel, coreMjmlView, sandboxEl }) => 
         this.getChildrenContainer().innerHTML = this.model.get('content');
         this.renderChildren();
         this.renderStyle();
+
+        // In case mjmlResult.attributes removes necessary stuff
+        this.updateStatus();
+
         return this;
       },
 

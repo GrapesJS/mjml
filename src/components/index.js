@@ -263,7 +263,7 @@ export default (editor, opt = {}) => {
       this.el.innerHTML = this.getTemplateFromMjml();
       this.renderContent();
       this.renderChildren(appendChildren);
-      this.childNodes = this.getChildrenContainer().childNodes;
+      // this.childNodes = this.getChildrenContainer().childNodes;
       this.renderStyle();
 
       return this;
