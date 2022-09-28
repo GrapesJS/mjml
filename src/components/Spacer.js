@@ -40,10 +40,6 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
       getChildrenSelector() {
         return 'td';
       },
-
-      renderChildren() {
-        coreMjmlView.renderChildren.call(this);
-      }
     },
   });
 };

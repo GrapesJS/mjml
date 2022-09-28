@@ -16,3 +16,16 @@ export function mjmlConvert (mjml, fonts) {
 
   return mjml2html(mjml, options);
 }
+
+export function debounce(clb, wait) {
+  let timeout;
+  return function() {
+    const context = this;
+    let args = arguments;
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      clearTimeout(timeout);
+      clb.apply(context, args);
+    }, wait);
+  };
+};

@@ -1,4 +1,4 @@
-import { mjmlConvert } from './utils';
+import { mjmlConvert, debounce } from './utils';
 import loadMjml from './mjml';
 import loadHead from './Head';
 import loadStyle from './Style';
@@ -132,10 +132,10 @@ export default (editor, opt = {}) => {
 
   // MJML Core view
   let coreMjmlView = {
-
     init() {
       this.stopListening(this.model, 'change:style');
       this.listenTo(this.model, 'change:attributes change:src', this.rerender);
+      this.debouncedRender = debounce(this.render.bind(this), 0);
     },
 
 
@@ -195,41 +195,53 @@ export default (editor, opt = {}) => {
      * Render children components
      * @private
      */
-    renderChildren: function (appendChildren) {
-      var container = this.getChildrenContainer();
+    // renderChildren(appendChildren) {
+    //   var container = this.getChildrenContainer();
 
-      // This trick will help perfs by caching children
-      if (!appendChildren) {
-        this.componentsView = new ComponentsView({
-          collection: this.model.get('components'),
-          config: this.config,
-          defaultTypes: this.opts.defaultTypes,
-          componentTypes: this.opts.componentTypes,
-        });
-        this.childNodes = this.componentsView.render(container).el.childNodes;
-      } else {
-        this.componentsView.parentEl = container;
-      }
+    //   // This trick will help perfs by caching children
+    //   if (!appendChildren) {
+    //     this.componentsView = new ComponentsView({
+    //       collection: this.model.get('components'),
+    //       config: this.config,
+    //       componentTypes: this.opts.componentTypes,
+    //     });
+    //     this.childNodes = this.componentsView.render(container).el.childNodes;
+    //     this.componentsView.parentEl = container;
+    //   } else {
+    //     this.componentsView.parentEl = container;
+    //   }
 
-      var childNodes = Array.prototype.slice.call(this.childNodes);
+    //   // if (this.model.getName() === 'Section') {
+    //   //   console.log('render Section', {
+    //   //     childLen: this.model.components().length,
+    //   //     appendChildren,
+    //   //     childNodes: this.childNodes ? [...this.childNodes] : null,
+    //   //     containerLen: container.childNodes.length,
+    //   //     containerHTML: container.innerHTML,
+    //   //   });
+    //   // }
 
-      for (var i = 0, len = childNodes.length; i < len; i++) {
-        container.appendChild(childNodes.shift());
-      }
+    //   var childNodes = Array.prototype.slice.call(this.childNodes);
 
-      if (container !== this.el) {
-        var disableNode = function (el) {
-          var children = Array.prototype.slice.call(el.children);
-          children.forEach(function (el) {
-            el.style['pointer-events'] = 'none';
-            if (container !== el) {
-              disableNode(el);
-            }
-          });
-        };
-        disableNode(this.el);
-      }
-    },
+    //   for (var i = 0, len = childNodes.length; i < len; i++) {
+    //     const node = childNodes.shift();
+    //     container.appendChild(node);
+    //   }
+
+    //   // Shouldn't be necessary
+    //   // if (container !== this.el) {
+    //   //   var disableNode = function (el) {
+    //   //     var children = Array.prototype.slice.call(el.children);
+    //   //     children.forEach(function (el) {
+    //   //       el.style['pointer-events'] = 'none';
+    //   //       if (container !== el) {
+    //   //         disableNode(el);
+    //   //       }
+    //   //     });
+    //   //   };
+    //   //   disableNode(this.el);
+    //   // }
+    // },
 
 
     renderStyle() {
@@ -253,6 +265,7 @@ export default (editor, opt = {}) => {
       this.renderChildren(appendChildren);
       this.childNodes = this.getChildrenContainer().childNodes;
       this.renderStyle();
+
       return this;
     }
   };
