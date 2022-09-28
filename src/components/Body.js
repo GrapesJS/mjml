@@ -34,7 +34,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
       },
 
       getInnerMjmlTemplate() {
-        let orig = coreMjmlView.getInnerMjmlTemplate.call(this);
+        const orig = coreMjmlView.getInnerMjmlTemplate.call(this);
         return {
           start: `${orig.start}<mj-section></mj-section>`,
           end: `${orig.end}`,
@@ -47,12 +47,12 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
 
       rerender() {
         coreMjmlView.rerender.call(this);
-        this.model.components().models.forEach((item) => {
-          if (item.attributes.type != "mj-section" && item.attributes.type != "mj-raw") {
-            return;
-          }
-          item.view.rerender();
-        });
+        // this.model.components().models.forEach((item) => {
+        //   if (item.attributes.type != "mj-section" && item.attributes.type != "mj-raw") {
+        //     return;
+        //   }
+        //   item.view.rerender();
+        // });
       },
     },
   });
