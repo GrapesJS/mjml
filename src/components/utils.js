@@ -17,6 +17,11 @@ export function mjmlConvert (mjml, fonts) {
   return mjml2html(mjml, options);
 }
 
+export const componentsToQuery = (cmps) => {
+  const cmpsArr = Array.isArray(cmps) ? cmps : [cmps];
+  return cmpsArr.map(cmp => `[data-gjs-type="${cmp}"]`).join(', ');
+};
+
 export function debounce(clb, wait) {
   let timeout;
   return function() {

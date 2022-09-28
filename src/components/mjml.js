@@ -1,17 +1,19 @@
 // Specs: https://documentation.mjml.io/#mjml
-import { isComponentType } from './utils.js';
+import { isComponentType, componentsToQuery } from './utils.js';
+
+export const type = 'mjml';
 
 export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
-  const type = 'mjml';
-
   dc.addType(type, {
     isComponent: isComponentType(type),
     model: {
       ...coreMjmlModel,
       defaults: {
-        droppable: '[data-gjs-type=mj-head], [data-gjs-type=mj-body]',
+        droppable: componentsToQuery(['mj-head', 'mj-body']),
         draggable: false,
         stylable: false,
+        copyable: false,
+        removable: false,
         traits: [
           {
             name: 'owa',
