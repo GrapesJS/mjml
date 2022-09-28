@@ -1,5 +1,6 @@
 // Specs: https://documentation.mjml.io/#mjml
 import { isComponentType, componentsToQuery } from './utils.js';
+import { type as typeHead } from './Head';
 
 export const type = 'mjml';
 
@@ -9,7 +10,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
     model: {
       ...coreMjmlModel,
       defaults: {
-        droppable: componentsToQuery(['mj-head', 'mj-body']),
+        droppable: componentsToQuery([typeHead, 'mj-body']),
         draggable: false,
         stylable: false,
         copyable: false,
