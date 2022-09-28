@@ -1,4 +1,4 @@
-// Specs: https://mjml.io/documentation/#mj-head
+// Specs: https://documentation.mjml.io/#mj-head
 import { isComponentType, componentsToQuery } from './utils.js';
 
 export const type = 'mj-head';

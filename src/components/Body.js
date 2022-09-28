@@ -1,20 +1,16 @@
-// Specs https://mjml.io/documentation/#mj-body
-import { isComponentType } from './utils.js';
+// Specs https://documentation.mjml.io/#mj-body
+import { isComponentType, componentsToQuery, getName } from './utils.js';
+
+export const type = 'mj-body';
 
 export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
-  const type = 'mj-body';
-  const droppable = [
-    'mj-section', 'mj-wrapper', 'mj-hero', 'mj-raw',
-  ].map(tag => `[data-gjs-type=${tag}]`).join(', ');
-
   dc.addType(type, {
     isComponent: isComponentType(type),
-
     model: {
       ...coreMjmlModel,
       defaults: {
-        name: editor.I18n.t('grapesjs-mjml.components.names.body'),
-        droppable,
+        name: getName(editor, 'body'),
+        droppable: componentsToQuery(['mj-section', 'mj-wrapper', 'mj-hero', 'mj-raw']),
         draggable: false,
         copyable: false,
         removable: false,

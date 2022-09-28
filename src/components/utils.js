@@ -22,6 +22,10 @@ export const componentsToQuery = (cmps) => {
   return cmpsArr.map(cmp => `[data-gjs-type="${cmp}"]`).join(', ');
 };
 
+export const getName = (editor, name) => {
+  return editor.I18n.t(`grapesjs-mjml.components.names.${name}`);
+};
+
 export function debounce(clb, wait) {
   let timeout;
   return function() {
