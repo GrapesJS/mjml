@@ -249,19 +249,9 @@ export default (editor, opt = {}) => {
     },
 
 
-    renderContent() {
-      let content = this.model.get('content');
-
-      if (content) {
-        this.getChildrenContainer().innerHTML = content;
-      }
-    },
-
-
     render(p, c, opts, appendChildren) {
       this.renderAttributes();
       this.el.innerHTML = this.getTemplateFromMjml();
-      this.renderContent();
       this.renderChildren(appendChildren);
       // this.childNodes = this.getChildrenContainer().childNodes;
       this.renderStyle();

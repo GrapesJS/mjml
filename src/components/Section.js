@@ -35,7 +35,6 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
       tagName: 'div',
       attributes: {
         style: 'pointer-events: all;',
-        'data-type': 'mj-section',
       },
 
       getMjmlTemplate() {

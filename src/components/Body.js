@@ -18,7 +18,6 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
         draggable: false,
         copyable: false,
         removable: false,
-        'style-default': { width: '600px' },
         stylable: [
           // Currently the UX sucks too much with the heavy rendering approach
           'width',
@@ -32,7 +31,6 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
       tagName: 'div',
       attributes: {
         style: 'width: 100%; min-height: 100vh',
-        'data-type': 'mj-body',
       },
 
       getChildrenSelector() {
@@ -49,10 +47,6 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
 
       renderStyle() {
         this.el.setAttribute('style', `${this.el.getAttribute('style') + this.attributes.style}`);
-      },
-
-      renderContent() {
-        this.getChildrenContainer().innerHTML = this.model.get('content');
       },
 
       rerender() {
