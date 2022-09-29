@@ -12,7 +12,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
       defaults: {
         name: editor.I18n.t('grapesjs-mjml.components.names.section'),
         draggable: '[data-gjs-type=mj-body], [data-gjs-type=mj-wrapper]',
-        droppable: '[data-gjs-type=mj-column]',
+        droppable: '[data-gjs-type=mj-column], [data-gjs-type=mj-group]',
         'style-default': {
           'padding-left': '0px',
           'padding-right': '0px',
