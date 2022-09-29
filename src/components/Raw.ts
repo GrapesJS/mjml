@@ -1,24 +1,25 @@
-// Specs: https://mjml.io/documentation/#mjml-wrapper
-import { isComponentType } from './utils.js';
+// Specs: https://documentation.mjml.io/#mj-raw
+import type grapesjs from 'grapesjs';
+import { componentsToQuery, getName, isComponentType } from './utils.js';
+import { type as typeBody } from './Body';
+import { type as typeHead } from './Head';
 
 export const type = 'mj-raw';
 
-export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
-  dc.addType(type, {
+export default (editor: grapesjs.Editor, { coreMjmlModel, coreMjmlView }: any) => {
+  editor.Components.addType(type, {
     isComponent: isComponentType(type),
-
     model: {
       ...coreMjmlModel,
       defaults: {
-        name: editor.I18n.t('grapesjs-mjml.components.names.raw'),
-        draggable: '[data-gjs-type=mj-body], [data-gjs-type=mj-head]',
+        name: getName(editor, 'raw'),
+        draggable: componentsToQuery([typeBody, typeHead]),
         stylable: false,
         'style-default': {},
         'style': {},
         'attributes': {}
       },
     },
-
     view: {
       ...coreMjmlView,
       tagName: 'section',
@@ -27,16 +28,19 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
       },
 
       getMjmlTemplate() {
-        let parentView = this.model.parent().view;
-        let parentTag = this.model.parent().attributes.tagName;
+        const parent = this.model.parent();
+        const parentView = parent?.view;
+        const parentTag = parent?.attributes.tagName;
+        // @ts-ignore
+        const getInnerMjmlTemplate = parentView?.getInnerMjmlTemplate;
 
-        if (parentView.getInnerMjmlTemplate && parentTag === 'mj-body') {
+        if (getInnerMjmlTemplate && parentTag === 'mj-body') {
           let mjmlBody = coreMjmlView.getInnerMjmlTemplate.call(parentView);
           return {
             start: `<mjml>${mjmlBody.start}`,
             end: `${mjmlBody.end}</mjml>`,
           };
-        } else if (parentView.getInnerMjmlTemplate && parentTag === 'mj-head') {
+        } else if (getInnerMjmlTemplate && parentTag === 'mj-head') {
           let mjmlHead = coreMjmlView.getInnerMjmlTemplate.call(parentView);
           return {
             start: `<mjml>${mjmlHead.start}`,
@@ -50,7 +54,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
         }
       },
 
-      getTemplateFromEl(sandboxEl) {
+      getTemplateFromEl(sandboxEl: any) {
         return sandboxEl.innerHTML;
       },
 
