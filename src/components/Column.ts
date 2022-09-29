@@ -1,18 +1,20 @@
-// Specs: https://mjml.io/documentation/#mjml-column
+// Specs: https://documentation.mjml.io/#mj-column
+import type grapesjs from 'grapesjs';
 import { isComponentType, mjmlConvert } from './utils.js';
 
 export const type = 'mj-column';
 
-export default (editor, { dc, opt, coreMjmlModel, coreMjmlView, sandboxEl }) => {
+export default (editor: grapesjs.Editor, { opt, coreMjmlModel, coreMjmlView, sandboxEl }: any) => {
   const clmPadd = opt.columnsPadding;
 
-  dc.addType(type, {
+  editor.Components.addType(type, {
     isComponent: isComponentType(type),
     model: {
       ...coreMjmlModel,
       defaults: {
         name: editor.I18n.t('grapesjs-mjml.components.names.column'),
-        draggable: '[data-gjs-type=mj-section]',
+        // draggable: '[data-gjs-type=mj-section]',
+        // draggable: false,
         stylable: [
           'background-color', 'vertical-align', 'width',
           'border-radius', 'border-top-left-radius', 'border-top-right-radius', 'border-bottom-left-radius', 'border-bottom-right-radius',
@@ -32,29 +34,29 @@ export default (editor, { dc, opt, coreMjmlModel, coreMjmlView, sandboxEl }) => 
       },
 
       getTemplateFromMjml() {
-        let mjmlTmpl = this.getMjmlTemplate();
-        let innerMjml = this.getInnerMjmlTemplate();
+        const mjmlTmpl = this.getMjmlTemplate();
+        const innerMjml = this.getInnerMjmlTemplate();
         const htmlOutput = mjmlConvert(`${mjmlTmpl.start}
           ${innerMjml.start}${innerMjml.end}${mjmlTmpl.end}`, opt.fonts);
-        let html = htmlOutput.html;
+        const html = htmlOutput.html;
 
         // I need styles for responsive columns
-        let styles = [];
+        const styles: string[] = [];
         sandboxEl.innerHTML = html;
-        var styleArr = Array.from(sandboxEl.querySelectorAll('style'));
+        const styleArr: HTMLStyleElement[] = Array.from(sandboxEl.querySelectorAll('style'));
         styleArr.forEach((item) => {
           styles.push(item.innerHTML);
         });
 
 
-        let content = html.replace(/<body(.*)>/, '<body>');
-        let start = content.indexOf('<body>') + 6;
-        let end = content.indexOf('</body>');
+        const content = html.replace(/<body(.*)>/, '<body>');
+        const start = content.indexOf('<body>') + 6;
+        const end = content.indexOf('</body>');
         sandboxEl.innerHTML = content.substring(start, end).trim();
-        let componentEl = this.getTemplateFromEl(sandboxEl);
+        const componentEl = this.getTemplateFromEl(sandboxEl);
 
         // Copy all rendered attributes (TODO need for all)
-        let attributes = {};
+        const attributes: Record<string, any> = {};
         const elAttrs = componentEl.attributes;
 
         for (let elAttr, i = 0, len = elAttrs.length; i < len; i++) {
@@ -103,7 +105,7 @@ export default (editor, { dc, opt, coreMjmlModel, coreMjmlView, sandboxEl }) => 
         };
       },
 
-      getTemplateFromEl(sandboxEl) {
+      getTemplateFromEl(sandboxEl: any) {
         return sandboxEl.firstChild.querySelector('div > table > tbody > tr > td > div');
       },
 
