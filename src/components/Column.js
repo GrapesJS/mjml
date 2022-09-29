@@ -1,8 +1,9 @@
 // Specs: https://mjml.io/documentation/#mjml-column
 import { isComponentType, mjmlConvert } from './utils.js';
 
+export const type = 'mj-column';
+
 export default (editor, { dc, opt, coreMjmlModel, coreMjmlView, sandboxEl }) => {
-  const type = 'mj-column';
   const clmPadd = opt.columnsPadding;
 
   dc.addType(type, {
