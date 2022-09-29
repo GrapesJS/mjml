@@ -1,24 +1,26 @@
-// Specs: https://mjml.io/documentation/#mj-font
-import { isComponentType, mjmlConvert } from './utils.js';
+// Specs: https://documentation.mjml.io/#mj-font
+import type grapesjs from 'grapesjs';
+import { componentsToQuery, isComponentType, mjmlConvert } from './utils.js';
+import { type as typeHead } from './Head';
 
-export default (editor, { dc, opt, coreMjmlModel, coreMjmlView, sandboxEl }) => {
-  const type = 'mj-font';
-  dc.addType(type, {
+export const type = 'mj-font';
+
+export default (editor: grapesjs.Editor, { opt, coreMjmlModel, coreMjmlView, sandboxEl }: any) => {
+  editor.Components.addType(type, {
     isComponent: isComponentType(type),
-
     model: {
       ...coreMjmlModel,
       defaults: {
-        draggable: '[data-gjs-type=mj-head]',
+        draggable: componentsToQuery(typeHead),
         void: true
       },
     },
     view: {
       ...coreMjmlView,
-      tagName: "style",
+      tagName: 'style',
 
       getMjmlTemplate() {
-        const name = this.model.get('attributes').name;
+        const name = this.model.get('attributes')?.name;
         /*
          * mjml will omit `<mj-font> definitions which are not actually used.
          * Therefore we need to have an mj-text that uses our font
@@ -29,7 +31,7 @@ export default (editor, { dc, opt, coreMjmlModel, coreMjmlView, sandboxEl }) => 
         };
       },
 
-      getTemplateFromEl(sandboxEl) {
+      getTemplateFromEl(sandboxEl: any) {
         return sandboxEl.querySelectorAll('style')[1].innerHTML;
       },
 
