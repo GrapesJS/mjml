@@ -1,6 +1,7 @@
 // Specs: https://documentation.mjml.io/#mj-column
 import type grapesjs from 'grapesjs';
-import { isComponentType, mjmlConvert } from './utils.js';
+import { componentsToQuery, getName, isComponentType, mjmlConvert } from './utils.js';
+import { type as typeSection } from './Section';
 
 export const type = 'mj-column';
 
@@ -12,9 +13,8 @@ export default (editor: grapesjs.Editor, { opt, coreMjmlModel, coreMjmlView, san
     model: {
       ...coreMjmlModel,
       defaults: {
-        name: editor.I18n.t('grapesjs-mjml.components.names.column'),
-        // draggable: '[data-gjs-type=mj-section]',
-        // draggable: false,
+        name: getName(editor, 'column'),
+        draggable: componentsToQuery(typeSection),
         stylable: [
           'background-color', 'vertical-align', 'width',
           'border-radius', 'border-top-left-radius', 'border-top-right-radius', 'border-bottom-left-radius', 'border-bottom-right-radius',
@@ -30,7 +30,7 @@ export default (editor: grapesjs.Editor, { opt, coreMjmlModel, coreMjmlView, san
       ...coreMjmlView,
       tagName: 'div',
       attributes: {
-        style: 'pointer-events: all;' + (clmPadd ? `padding: ${clmPadd};` : ''),
+        style: clmPadd ? `padding: ${clmPadd};` : '',
       },
 
       getTemplateFromMjml() {
