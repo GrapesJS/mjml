@@ -1,6 +1,6 @@
 // Specs: https://documentation.mjml.io/#mjml
 import type grapesjs from 'grapesjs';
-import { isComponentType, componentsToQuery } from './utils.js';
+import { isComponentType, componentsToQuery } from './utils';
 import { type as typeHead } from './Head';
 import { type as typeBody } from './Body';
 

@@ -1,5 +1,5 @@
 // Specs: https://mjml.io/documentation/#mjml-social
-import { isComponentType } from './utils.js';
+import { isComponentType } from './utils';
 
 export const type = 'mj-social';
 

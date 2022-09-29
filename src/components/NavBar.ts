@@ -1,6 +1,6 @@
 // Specs https://documentation.mjml.io/#mj-navbar
 import type grapesjs from 'grapesjs';
-import { componentsToQuery, getName, isComponentType, mjmlConvert } from './utils.js';
+import { componentsToQuery, getName, isComponentType, mjmlConvert } from './utils';
 import { type as typeColumn } from './Column';
 import { type as typeHero } from './Hero';
 import { type as typeNavBarLink } from './NavBarLink';

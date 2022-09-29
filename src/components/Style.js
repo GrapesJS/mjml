@@ -1,5 +1,5 @@
 // Specs: https://mjml.io/documentation/#mj-style
-import { isComponentType, mjmlConvert } from './utils.js';
+import { isComponentType, mjmlConvert } from './utils';
 
 export default (editor, { dc, opt, coreMjmlModel, coreMjmlView, sandboxEl }) => {
   const type = 'mj-style';

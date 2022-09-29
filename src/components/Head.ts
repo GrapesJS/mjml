@@ -1,6 +1,6 @@
 // Specs: https://documentation.mjml.io/#mj-head
 import type grapesjs from 'grapesjs';
-import { isComponentType, componentsToQuery } from './utils.js';
+import { isComponentType, componentsToQuery } from './utils';
 
 export const type = 'mj-head';
 

@@ -1,5 +1,5 @@
 // Specs: https://mjml.io/documentation/#mjml-spacer
-import { isComponentType } from './utils.js';
+import { isComponentType } from './utils';
 
 export const type = 'mj-spacer';
 

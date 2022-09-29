@@ -1,6 +1,6 @@
 // Specs: https://documentation.mjml.io/#mj-hero
 import type grapesjs from 'grapesjs';
-import { componentsToQuery, getName, isComponentType } from './utils.js';
+import { componentsToQuery, getName, isComponentType } from './utils';
 import { type as typeBody } from './Body';
 import { type as typeText } from './Text';
 import { type as typeButton } from './Button';

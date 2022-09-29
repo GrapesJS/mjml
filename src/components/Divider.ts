@@ -1,6 +1,6 @@
 // Specs: https://documentation.mjml.io/#mj-divider
 import type grapesjs from 'grapesjs';
-import { componentsToQuery, getName, isComponentType } from './utils.js';
+import { componentsToQuery, getName, isComponentType } from './utils';
 import { type as typeColumn } from './Column';
 import { type as typeHero } from './Hero';
 

@@ -1,6 +1,6 @@
 // Specs: https://documentation.mjml.io/#mj-font
 import type grapesjs from 'grapesjs';
-import { componentsToQuery, isComponentType, mjmlConvert } from './utils.js';
+import { componentsToQuery, isComponentType, mjmlConvert } from './utils';
 import { type as typeHead } from './Head';
 
 export const type = 'mj-font';

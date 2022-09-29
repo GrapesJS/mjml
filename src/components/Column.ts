@@ -1,6 +1,6 @@
 // Specs: https://documentation.mjml.io/#mj-column
 import type grapesjs from 'grapesjs';
-import { componentsToQuery, getName, isComponentType, mjmlConvert } from './utils.js';
+import { componentsToQuery, getName, isComponentType, mjmlConvert } from './utils';
 import { type as typeSection } from './Section';
 
 export const type = 'mj-column';
