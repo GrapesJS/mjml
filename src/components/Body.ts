@@ -1,6 +1,10 @@
 // Specs https://documentation.mjml.io/#mj-body
 import type grapesjs from 'grapesjs';
 import { isComponentType, componentsToQuery, getName } from './utils.js';
+import { type as typeSection } from './Section';
+import { type as typeWrapper } from './Wrapper';
+import { type as typeHero } from './Hero';
+import { type as typeRaw } from './Raw';
 
 export const type = 'mj-body';
 
@@ -11,7 +15,7 @@ export default (editor: grapesjs.Editor, { coreMjmlModel, coreMjmlView }: any) =
       ...coreMjmlModel,
       defaults: {
         name: getName(editor, 'body'),
-        droppable: componentsToQuery(['mj-section', 'mj-wrapper', 'mj-hero', 'mj-raw']),
+        droppable: componentsToQuery([typeSection, typeWrapper, typeHero, typeRaw]),
         draggable: false,
         copyable: false,
         removable: false,
@@ -36,7 +40,7 @@ export default (editor: grapesjs.Editor, { coreMjmlModel, coreMjmlView }: any) =
         const orig = coreMjmlView.getInnerMjmlTemplate.call(this);
         return {
           start: `${orig.start}<mj-section></mj-section>`,
-          end: `${orig.end}`,
+          end: orig.end,
         };
       },
 
@@ -47,7 +51,7 @@ export default (editor: grapesjs.Editor, { coreMjmlModel, coreMjmlView }: any) =
       rerender() {
         coreMjmlView.rerender.call(this);
         this.model.components().models.forEach((item: any) => {
-          if (item.attributes.type != "mj-section" && item.attributes.type != "mj-raw") {
+          if ([typeSection, typeRaw].indexOf(item.attributes.type) < 0) {
             return;
           }
           item.view.rerender();

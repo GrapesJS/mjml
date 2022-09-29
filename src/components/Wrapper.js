@@ -1,9 +1,9 @@
 // Specs: https://mjml.io/documentation/#mjml-wrapper
 import { isComponentType } from './utils.js';
 
-export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
-  const type = 'mj-wrapper';
+export const type = 'mj-wrapper';
 
+export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
   dc.addType(type, {
     isComponent: isComponentType(type),
 

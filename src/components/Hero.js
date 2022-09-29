@@ -1,8 +1,9 @@
 // Specs: https://mjml.io/documentation/#mjml-hero
 import { isComponentType } from './utils.js';
 
+export const type = 'mj-hero';
+
 export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
-  const type = 'mj-hero';
   const droppable = [
     'mj-text', 'mj-button', 'mj-image', 'mj-divider', 'mj-navbar', 'mj-social',
     'mj-spacer',

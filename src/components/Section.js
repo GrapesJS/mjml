@@ -1,9 +1,9 @@
 // Specs: https://mjml.io/documentation/#mjml-section
 import { isComponentType } from './utils.js';
 
-export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
-  const type = 'mj-section';
+export const type = 'mj-section';
 
+export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
   dc.addType(type, {
     isComponent: isComponentType(type),
 
