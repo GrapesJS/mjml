@@ -1,4 +1,4 @@
-// Specs https://documentation.mjml.io/#mj-body
+// Specs: https://documentation.mjml.io/#mj-body
 import type grapesjs from 'grapesjs';
 import { isComponentType, componentsToQuery, getName } from './utils.js';
 import { type as typeSection } from './Section';

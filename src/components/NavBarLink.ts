@@ -1,18 +1,19 @@
-import { isComponentType } from './utils.js';
+// Specs: https://documentation.mjml.io/#mj-navbar-link
+import type grapesjs from 'grapesjs';
+import { componentsToQuery, getName, isComponentType } from './utils.js';
+import { type as typeNavBar } from './NavBar';
 
 export const type = 'mj-navbar-link';
 
-export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
-  dc.addType(type, {
+export default (editor: grapesjs.Editor, { coreMjmlModel, coreMjmlView }: any) => {
+  editor.Components.addType(type, {
     isComponent: isComponentType(type),
     extend: 'link',
-    extendFnView: ['onActive', 'disableEditing'],
     model: {
       ...coreMjmlModel,
-
       defaults: {
-        name: editor.I18n.t('grapesjs-mjml.components.names.navLink'),
-        draggable: '[data-gjs-type=mj-navbar]',
+        name: getName(editor, 'navLink'),
+        draggable: componentsToQuery(typeNavBar),
         highlightable: false,
         stylable: [
           'font-style', 'font-size', 'font-weight', 'font-family', 'color',
@@ -34,16 +35,15 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
 
     view: {
       ...coreMjmlView,
-
       tagName: 'a',
-
       attributes: {
-        style: 'pointer-events: all; float: none; display: inline-table;',
+        style: 'float: none; display: inline-table;',
       },
 
       getMjmlTemplate() {
-        let parentView = this.model.parent().view;
-        if (parentView.getInnerMjmlTemplate) {
+        let parentView = this.model.parent()?.view;
+        // @ts-ignore
+        if (parentView?.getInnerMjmlTemplate) {
           let mjmlNavBar = coreMjmlView.getInnerMjmlTemplate.call(parentView);
           return {
             start: `<mjml><mj-body><mj-column>${mjmlNavBar.start}`,
@@ -57,23 +57,12 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
         }
       },
 
-      getTemplateFromEl(sandboxEl) {
+      getTemplateFromEl(sandboxEl: any) {
         return sandboxEl.querySelector('div').innerHTML;
       },
 
       getChildrenSelector() {
         return 'a,p';
-      },
-
-      /**
-       * Need to make text selectable.
-       */
-      onActive() {
-        this.getChildrenContainer().style.pointerEvents = 'all';
-      },
-
-      disableEditing() {
-        this.getChildrenContainer().style.pointerEvents = 'none';
       },
     },
   });
