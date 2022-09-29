@@ -1,17 +1,20 @@
-// Specs: https://mjml.io/documentation/#mjml-spacer
-import { isComponentType } from './utils';
+// Specs: https://documentation.mjml.io/#mjml-spacer
+import type grapesjs from 'grapesjs';
+import { componentsToQuery, getName, isComponentType } from './utils';
+import { type as typeColumn } from './Column';
+import { type as typeHero } from './Hero';
 
 export const type = 'mj-spacer';
 
-export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
-  dc.addType(type, {
+export default (editor: grapesjs.Editor, { coreMjmlModel, coreMjmlView }: any) => {
+  editor.Components.addType(type, {
     isComponent: isComponentType(type),
 
     model: {
       ...coreMjmlModel,
       defaults: {
-        name: editor.I18n.t('grapesjs-mjml.components.names.spacer'),
-        draggable: '[data-gjs-type=mj-column], [data-gjs-type=mj-hero]',
+        name: getName(editor, 'spacer'),
+        draggable: componentsToQuery([typeColumn, typeHero]),
         droppable: false,
         'style-default': { height: '20px' },
         stylable: ['height', 'container-background-color'],
@@ -23,7 +26,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
       ...coreMjmlView,
       tagName: 'tr',
       attributes: {
-        style: 'pointer-events: all; display: table; width: 100%;user-select: none;',
+        style: 'display: table; width: 100%; user-select: none;',
       },
 
       getMjmlTemplate() {
@@ -33,7 +36,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
         };
       },
 
-      getTemplateFromEl(sandboxEl) {
+      getTemplateFromEl(sandboxEl: any) {
         return sandboxEl.querySelector('tr').innerHTML;
       },
 
