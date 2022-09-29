@@ -15,11 +15,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
         copyable: false,
         removable: false,
         'style-default': { 'width': '600px' },
-        stylable: [
-          // Currently the UX sucks too much with the heavy rendering approach
-          'width',
-          'background-color'
-        ],
+        stylable: [ 'width', 'background-color' ],
       },
     },
 
@@ -48,12 +44,12 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
 
       rerender() {
         coreMjmlView.rerender.call(this);
-        // this.model.components().models.forEach((item) => {
-        //   if (item.attributes.type != "mj-section" && item.attributes.type != "mj-raw") {
-        //     return;
-        //   }
-        //   item.view.rerender();
-        // });
+        this.model.components().models.forEach((item) => {
+          if (item.attributes.type != "mj-section" && item.attributes.type != "mj-raw") {
+            return;
+          }
+          item.view.rerender();
+        });
       },
     },
   });

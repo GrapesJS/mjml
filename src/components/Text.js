@@ -64,6 +64,13 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
       },
 
       /**
+       * Prevent content repeating
+       */
+      rerender() {
+        this.render();
+      },
+
+      /**
        * Need to make text selectable.
        */
       onActive() {

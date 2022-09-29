@@ -195,53 +195,28 @@ export default (editor, opt = {}) => {
      * Render children components
      * @private
      */
-    // renderChildren(appendChildren) {
-    //   var container = this.getChildrenContainer();
+    renderChildren(appendChildren) {
+      this.updateContent();
+      const container = this.getChildrenContainer();
 
-    //   // This trick will help perfs by caching children
-    //   if (!appendChildren) {
-    //     this.componentsView = new ComponentsView({
-    //       collection: this.model.get('components'),
-    //       config: this.config,
-    //       componentTypes: this.opts.componentTypes,
-    //     });
-    //     this.childNodes = this.componentsView.render(container).el.childNodes;
-    //     this.componentsView.parentEl = container;
-    //   } else {
-    //     this.componentsView.parentEl = container;
-    //   }
+      // This trick will help perfs by caching children
+      if (!appendChildren) {
+        this.childrenView = this.childrenView || new ComponentsView({
+          collection: this.model.get('components'),
+          config: this.config,
+          componentTypes: this.opts.componentTypes,
+        });
+        this.childNodes = this.childrenView.render(container).el.childNodes;
+      } else {
+        this.childrenView.parentEl = container;
+      }
 
-    //   // if (this.model.getName() === 'Section') {
-    //   //   console.log('render Section', {
-    //   //     childLen: this.model.components().length,
-    //   //     appendChildren,
-    //   //     childNodes: this.childNodes ? [...this.childNodes] : null,
-    //   //     containerLen: container.childNodes.length,
-    //   //     containerHTML: container.innerHTML,
-    //   //   });
-    //   // }
+      const childNodes = Array.prototype.slice.call(this.childNodes);
 
-    //   var childNodes = Array.prototype.slice.call(this.childNodes);
-
-    //   for (var i = 0, len = childNodes.length; i < len; i++) {
-    //     const node = childNodes.shift();
-    //     container.appendChild(node);
-    //   }
-
-    //   // Shouldn't be necessary
-    //   // if (container !== this.el) {
-    //   //   var disableNode = function (el) {
-    //   //     var children = Array.prototype.slice.call(el.children);
-    //   //     children.forEach(function (el) {
-    //   //       el.style['pointer-events'] = 'none';
-    //   //       if (container !== el) {
-    //   //         disableNode(el);
-    //   //       }
-    //   //     });
-    //   //   };
-    //   //   disableNode(this.el);
-    //   // }
-    // },
+      for (let i = 0, len = childNodes.length; i < len; i++) {
+        container.appendChild(childNodes.shift());
+      }
+    },
 
 
     renderStyle() {
@@ -253,7 +228,7 @@ export default (editor, opt = {}) => {
       this.renderAttributes();
       this.el.innerHTML = this.getTemplateFromMjml();
       this.renderChildren(appendChildren);
-      // this.childNodes = this.getChildrenContainer().childNodes;
+      this.childNodes = this.getChildrenContainer().childNodes;
       this.renderStyle();
 
       return this;
@@ -267,6 +242,7 @@ export default (editor, opt = {}) => {
     textModel, textView, linkModel, linkView, imageModel, imageView
   };
 
+  // Avoid the <body> tag from the default wrapper
   editor.Components.addType('wrapper', {
     model: {
       toHTML(opts) {
