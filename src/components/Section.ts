@@ -1,6 +1,10 @@
 // Specs: https://documentation.mjml.io/#mj-section
 import type grapesjs from 'grapesjs';
-import { isComponentType } from './utils.js';
+import { componentsToQuery, getName, isComponentType } from './utils.js';
+import { type as typeBody } from './Body';
+import { type as typeWrapper } from './Wrapper';
+import { type as typeColumn } from './Column';
+import { type as typeGroup } from './Group';
 
 export const type = 'mj-section';
 
@@ -11,9 +15,9 @@ export default (editor: grapesjs.Editor, { coreMjmlModel, coreMjmlView }: any) =
     model: {
       ...coreMjmlModel,
       defaults: {
-        name: editor.I18n.t('grapesjs-mjml.components.names.section'),
-        draggable: '[data-gjs-type=mj-body], [data-gjs-type=mj-wrapper]',
-        droppable: '[data-gjs-type=mj-column], [data-gjs-type=mj-group]',
+        name: getName(editor, 'section'),
+        draggable: componentsToQuery([typeBody, typeWrapper]),
+        droppable: componentsToQuery([typeColumn, typeGroup]),
         'style-default': {
           'padding-left': '0px',
           'padding-right': '0px',
@@ -45,7 +49,7 @@ export default (editor: grapesjs.Editor, { coreMjmlModel, coreMjmlView }: any) =
         // @ts-ignore
         const getInnerMjmlTemplate = parentView?.getInnerMjmlTemplate;
 
-        if (getInnerMjmlTemplate && parentTag === 'mj-body') {
+        if (getInnerMjmlTemplate && parentTag === typeBody) {
           let mjmlBody = coreMjmlView.getInnerMjmlTemplate.call(parentView);
           return {
             start: `<mjml><mj-body>${mjmlBody.start}`,
