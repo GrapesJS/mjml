@@ -1,8 +1,8 @@
 import { isComponentType } from './utils.js';
 
-export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
-  const type = 'mj-navbar-link';
+export const type = 'mj-navbar-link';
 
+export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
   dc.addType(type, {
     isComponent: isComponentType(type),
     extend: 'link',
