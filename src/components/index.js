@@ -130,7 +130,28 @@ export default (editor, opt = {}) => {
   };
 
 
-  // MJML Core view
+  /**
+   * MJML Core View.
+   * MJML is designed to compile from a valid MJML document therefore any time we update some component
+   * we have to recompile its MJML to HTML.
+   *
+   * To get the proper HTML of our updated component we have to build a new MJML document and here we can
+   * find different helpers to accomplish that (eg. `getMjmlTemplate`, `getInnerMjmlTemplate`).
+   *
+   * Once the MJML is compiled (in `getTemplateFromMjml`) we have to extract its HTML from the
+   * element (`getTemplateFromEl`).
+   *
+   * We should also instruct the editor to understand where new inner components are placed in our compiled
+   * HTML once they are dropped inside, for that case you can rely on `getChildrenSelector` in your
+   * component definition.
+   *
+   * Each MJML element differs in its output HTML structure and might also change based on inner components
+   * (you might need to change `getMjmlTemplate` based on current inner Components).
+   *
+   * One easy way to test the HTML output is to use MJML live editor (https://mjml.io/try-it-live) with the
+   * "View HTML" enabled and check there how it changes in order to override properly provided helpers.
+   *
+   */
   let coreMjmlView = {
     init() {
       this.stopListening(this.model, 'change:style');
@@ -143,7 +164,9 @@ export default (editor, opt = {}) => {
       this.render(null, null, {}, 1);
     },
 
-
+    /**
+     * Get the base MJML template wrapper tags
+     */
     getMjmlTemplate() {
       return {
         start: `<mjml>`,
@@ -151,15 +174,17 @@ export default (editor, opt = {}) => {
       };
     },
 
-
+    /**
+     * Build the MJML of the current component
+     */
     getInnerMjmlTemplate() {
-      const model = this.model;
-      let tagName = model.get('tagName');
-      let attr = model.getMjmlAttributes();
+      const { model } = this;
+      const tagName = model.get('tagName');
+      const attr = model.getMjmlAttributes();
       let strAttr = '';
 
       for (let prop in attr) {
-        let val = attr[prop];
+        const val = attr[prop];
         strAttr += typeof val !== 'undefined' && val !== '' ?
           ' ' + prop + '="' + val + '"' : '';
       }
@@ -170,12 +195,16 @@ export default (editor, opt = {}) => {
       };
     },
 
-
+    /**
+     * Get the proper HTML string from the element containing compiled MJML template.
+     */
     getTemplateFromEl(sandboxEl) {
       return sandboxEl.firstChild.innerHTML;
     },
 
-
+    /**
+     * Get HTML from MJML template.
+     */
     getTemplateFromMjml() {
       const mjmlTmpl = this.getMjmlTemplate();
       const innerMjml = this.getInnerMjmlTemplate();

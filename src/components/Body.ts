@@ -1,10 +1,11 @@
 // Specs https://documentation.mjml.io/#mj-body
+import type grapesjs from 'grapesjs';
 import { isComponentType, componentsToQuery, getName } from './utils.js';
 
 export const type = 'mj-body';
 
-export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
-  dc.addType(type, {
+export default (editor: grapesjs.Editor, { dc, coreMjmlModel, coreMjmlView }: any) => {
+  editor.Components.addType(type, {
     isComponent: isComponentType(type),
     model: {
       ...coreMjmlModel,
@@ -44,7 +45,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
 
       rerender() {
         coreMjmlView.rerender.call(this);
-        this.model.components().models.forEach((item) => {
+        this.model.components().models.forEach((item: any) => {
           if (item.attributes.type != "mj-section" && item.attributes.type != "mj-raw") {
             return;
           }
