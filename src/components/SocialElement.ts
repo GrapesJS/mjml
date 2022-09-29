@@ -1,17 +1,19 @@
-// Specs: https://mjml.io/documentation/#mjml-social
-import { isComponentType } from './utils';
+// Specs: https://documentation.mjml.io/#mjml-social
+import type grapesjs from 'grapesjs';
+import { componentsToQuery, getName, isComponentType } from './utils';
+import { type as typeSocial } from './Social';
 
 export const type = 'mj-social-element';
 
-export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
-  dc.addType(type, {
+export default (editor: grapesjs.Editor, { coreMjmlModel, coreMjmlView }: any) => {
+  editor.Components.addType(type, {
     isComponent: isComponentType(type),
 
     model: {
       ...coreMjmlModel,
       defaults: {
-        name: editor.I18n.t('grapesjs-mjml.components.names.socialElement'),
-        draggable: '[data-gjs-type=mj-social]',
+        name: getName(editor, 'socialElement'),
+        draggable: componentsToQuery(typeSocial),
         stylable: [
           'icon-size', 'text-decoration', 'align', 'font-family', 'font-size', 'line-height',
           'padding', 'padding-top', 'padding-left', 'padding-right', 'padding-bottom',
@@ -61,11 +63,13 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
       ...coreMjmlView,
       tagName: 'table',
       attributes: {
-        style: 'pointer-events: all; float: none; display: inline-table;',
+        style: 'float: none; display: inline-table;',
       },
 
       getMjmlTemplate() {
-        let parentView = this.model.parent().view;
+        let parentView = this.model.parent()?.view;
+
+        // @ts-ignore
         if (parentView.getInnerMjmlTemplate) {
           let mjmlSocial = coreMjmlView.getInnerMjmlTemplate.call(parentView);
           return {
@@ -80,7 +84,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
         }
       },
 
-      getTemplateFromEl(sandboxEl) {
+      getTemplateFromEl(sandboxEl: any) {
         return sandboxEl.querySelector('tr > td > table').innerHTML;
       },
 
