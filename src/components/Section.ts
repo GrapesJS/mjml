@@ -1,10 +1,11 @@
-// Specs: https://mjml.io/documentation/#mjml-section
+// Specs: https://documentation.mjml.io/#mj-section
+import type grapesjs from 'grapesjs';
 import { isComponentType } from './utils.js';
 
 export const type = 'mj-section';
 
-export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
-  dc.addType(type, {
+export default (editor: grapesjs.Editor, { coreMjmlModel, coreMjmlView }: any) => {
+  editor.Components.addType(type, {
     isComponent: isComponentType(type),
 
     model: {
@@ -38,9 +39,13 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
       },
 
       getMjmlTemplate() {
-        let parentView = this.model.parent().view;
-        let parentTag = this.model.parent().attributes.tagName;
-        if (parentView.getInnerMjmlTemplate && parentTag === 'mj-body') {
+        const parent = this.model.parent();
+        const parentView = parent?.view;
+        const parentTag = parent?.attributes.tagName;
+        // @ts-ignore
+        const getInnerMjmlTemplate = parentView?.getInnerMjmlTemplate;
+
+        if (getInnerMjmlTemplate && parentTag === 'mj-body') {
           let mjmlBody = coreMjmlView.getInnerMjmlTemplate.call(parentView);
           return {
             start: `<mjml><mj-body>${mjmlBody.start}`,
