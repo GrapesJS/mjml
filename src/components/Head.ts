@@ -1,10 +1,11 @@
 // Specs: https://documentation.mjml.io/#mj-head
+import type grapesjs from 'grapesjs';
 import { isComponentType, componentsToQuery } from './utils.js';
 
 export const type = 'mj-head';
 
-export default (editor, { dc }) => {
-  dc.addType(type, {
+export default (editor: grapesjs.Editor) => {
+  editor.Components.addType(type, {
     isComponent: isComponentType(type),
     model: {
       defaults: {
