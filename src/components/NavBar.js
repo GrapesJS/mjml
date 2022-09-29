@@ -1,8 +1,8 @@
 import { isComponentType, mjmlConvert } from './utils.js';
 
-export default (editor, { dc, opt, coreMjmlModel, coreMjmlView, sandboxEl }) => {
-  const type = 'mj-navbar';
+export const type = 'mj-navbar';
 
+export default (editor, { dc, opt, coreMjmlModel, coreMjmlView, sandboxEl }) => {
   dc.addType(type, {
     isComponent: isComponentType(type),
     model: {

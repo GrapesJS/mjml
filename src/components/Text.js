@@ -1,8 +1,7 @@
 // Specs: https://mjml.io/documentation/#mjml-text
+export const type = 'mj-text';
 
 export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
-  const type = 'mj-text';
-
   dc.addType(type, {
     extend: 'text',
     extendFnView: ['onActive'],

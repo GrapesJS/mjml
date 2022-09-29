@@ -1,9 +1,9 @@
 // Specs: https://mjml.io/documentation/#mjml-social
 import { isComponentType } from './utils.js';
 
-export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
-  const type = 'mj-social';
+export const type = 'mj-social';
 
+export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
   dc.addType(type, {
     isComponent: isComponentType(type),
 

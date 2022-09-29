@@ -1,9 +1,9 @@
 // Specs: https://mjml.io/documentation/#mjml-image
 import { isComponentType } from './utils.js';
 
-export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
-  const type = 'mj-image';
+export const type = 'mj-image';
 
+export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
   dc.addType(type, {
     isComponent: isComponentType(type),
     extend: 'image',

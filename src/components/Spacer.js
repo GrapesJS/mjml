@@ -1,9 +1,9 @@
 // Specs: https://mjml.io/documentation/#mjml-spacer
 import { isComponentType } from './utils.js';
 
-export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
-  const type = 'mj-spacer';
+export const type = 'mj-spacer';
 
+export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
   dc.addType(type, {
     isComponent: isComponentType(type),
 
