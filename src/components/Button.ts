@@ -1,4 +1,4 @@
-// Specs: https://mjml.io/documentation/#mjml-button
+// Specs: https://documentation.mjml.io/#mj-button
 import type grapesjs from 'grapesjs';
 import { componentsToQuery, getName, isComponentType } from './utils.js';
 import { type as typeColumn } from './Column';
