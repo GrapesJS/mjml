@@ -38,6 +38,9 @@ export default (editor: grapesjs.Editor, { coreMjmlModel, coreMjmlView }: any) =
       ...coreMjmlView,
       tagName: 'div',
       attributes: { style: 'min-height: 100vh' },
+      rerender() {
+        this.render();
+      },
       getTemplateFromMjml() {
         return '';
       }
