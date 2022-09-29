@@ -16,6 +16,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
         stylable: false,
         copyable: false,
         removable: false,
+        highlightable: false,
         traits: [
           {
             name: 'owa',

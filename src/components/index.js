@@ -274,6 +274,9 @@ export default (editor, opt = {}) => {
   // Avoid the <body> tag from the default wrapper
   editor.Components.addType('wrapper', {
     model: {
+      defaults: {
+        highlightable: false,
+      },
       toHTML(opts) {
         return this.getInnerHTML(opts);
       }

@@ -4,7 +4,7 @@ import { isComponentType, componentsToQuery, getName } from './utils.js';
 
 export const type = 'mj-body';
 
-export default (editor: grapesjs.Editor, { dc, coreMjmlModel, coreMjmlView }: any) => {
+export default (editor: grapesjs.Editor, { coreMjmlModel, coreMjmlView }: any) => {
   editor.Components.addType(type, {
     isComponent: isComponentType(type),
     model: {
@@ -15,6 +15,7 @@ export default (editor: grapesjs.Editor, { dc, coreMjmlModel, coreMjmlView }: an
         draggable: false,
         copyable: false,
         removable: false,
+        highlightable: false,
         'style-default': { 'width': '600px' },
         stylable: [ 'width', 'background-color' ],
       },
