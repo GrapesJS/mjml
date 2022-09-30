@@ -48,11 +48,13 @@ export default (editor: grapesjs.Editor, opt: RequiredPluginOptions) => {
     },
 
     handleAttributeChange(m: any, v: any, opts: any) {
-      this.set('style', this.get('attributes'), opts);
+      this.setStyle(this.get('attributes'), opts);
     },
 
     handleStyleChange(m: any, v: any, opts: any) {
-      this.set('attributes', this.get('style'), opts);
+      const style = this.getStyle();
+      delete style.__p;
+      this.set('attributes', style, opts);
     },
 
 
@@ -87,7 +89,7 @@ export default (editor: grapesjs.Editor, opt: RequiredPluginOptions) => {
 
 
     /**
-     * Rhave to change few things for hte MJML's xml (no id, style, class)
+     * Have to change a few things for the MJML's xml (no id, style, class)
      */
     toHTML() {
       const model = this;
