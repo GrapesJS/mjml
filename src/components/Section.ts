@@ -69,7 +69,7 @@ export default (editor: grapesjs.Editor, { coreMjmlModel, coreMjmlView }: any) =
 
       init() {
         coreMjmlView.init.call(this);
-        this.listenTo(this.model.get('components'), 'add remove', this.debouncedRender);
+        this.listenTo(this.model.get('components'), 'add remove', this.render);
       },
     },
   });
