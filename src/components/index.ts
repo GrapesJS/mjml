@@ -57,11 +57,10 @@ export default (editor: grapesjs.Editor, opt: RequiredPluginOptions) => {
 
 
     getMjmlAttributes() {
-      let attr = this.get('attributes') || {};
+      const attr = this.get('attributes') || {};
       delete attr.style;
-      let src = this.get('src');
-      if (src)
-        attr.src = src;
+      const src = this.get('src');
+      if (src) attr.src = src;
       return attr;
     },
 
@@ -91,28 +90,28 @@ export default (editor: grapesjs.Editor, opt: RequiredPluginOptions) => {
      * Rhave to change few things for hte MJML's xml (no id, style, class)
      */
     toHTML() {
+      const model = this;
+      const tag = model.get('tagName');
+      const voidTag = model.get('void');
+      const attr = this.getAttrToHTML();
       let code = '';
-      let model = this;
-      let tag = model.get('tagName'),
-        sTag = model.get('void');
-
-      // Build the string of attributes
       let strAttr = '';
-      let attr = this.getAttrToHTML();
+
       for (let prop in attr) {
-        let val = attr[prop];
-        strAttr += typeof val !== 'undefined' && val !== '' ?
-          ' ' + prop + '="' + val + '"' : '';
+        const val = attr[prop];
+        const hasValue = typeof val !== 'undefined' && val !== '';
+        strAttr += hasValue ? ` ${prop}="${val}"` : '';
       }
 
-      code += `<${tag}${strAttr}${sTag ? '/' : ''}>` + model.get('content');
+      code += `<${tag}${strAttr}${voidTag ? '/' : ''}>` + model.get('content');
 
-      model.get('components').each((model: any) => {
+      model.components().forEach((model: any) => {
         code += model.toHTML();
       });
 
-      if (!sTag)
+      if (!voidTag) {
         code += `</${tag}>`;
+      }
 
       return code;
     },
