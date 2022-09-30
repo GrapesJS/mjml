@@ -1,3 +1,4 @@
+import type grapesjs from 'grapesjs';
 import { mjmlConvert, debounce } from './utils';
 import loadMjml from './mjml';
 import loadHead from './Head';
@@ -19,9 +20,11 @@ import loadNavBar from './NavBar';
 import loadNavBarLink from './NavBarLink';
 import loadHero from './Hero';
 import loadRaw from './Raw';
+import { RequiredPluginOptions } from '..';
 
-export default (editor, opt = {}) => {
+export default (editor: grapesjs.Editor, opt: RequiredPluginOptions) => {
   const { Components  } = editor;
+  // @ts-ignore
   const ComponentsView = Components.ComponentsView;
   const sandboxEl = document.createElement('div');
 
@@ -104,7 +107,7 @@ export default (editor, opt = {}) => {
 
       code += `<${tag}${strAttr}${sTag ? '/' : ''}>` + model.get('content');
 
-      model.get('components').each((model) => {
+      model.get('components').each((model: any) => {
         code += model.toHTML();
       });
 
@@ -114,7 +117,7 @@ export default (editor, opt = {}) => {
       return code;
     },
 
-  };
+  } as any;
 
 
   /**
@@ -185,7 +188,7 @@ export default (editor, opt = {}) => {
     /**
      * Get the proper HTML string from the element containing compiled MJML template.
      */
-    getTemplateFromEl(sandboxEl) {
+    getTemplateFromEl(sandboxEl: any) {
       return sandboxEl.firstChild.innerHTML;
     },
 
@@ -211,7 +214,7 @@ export default (editor, opt = {}) => {
      * Render children components
      * @private
      */
-    renderChildren(appendChildren) {
+    renderChildren(appendChildren: boolean) {
       this.updateContent();
       const container = this.getChildrenContainer();
 
@@ -240,7 +243,7 @@ export default (editor, opt = {}) => {
     },
 
 
-    render(p, c, opts, appendChildren) {
+    render(p: any, c: any, opts: any, appendChildren: boolean) {
       this.renderAttributes();
       this.el.innerHTML = this.getTemplateFromMjml();
       this.renderChildren(appendChildren);
@@ -249,7 +252,7 @@ export default (editor, opt = {}) => {
 
       return this;
     }
-  };
+  } as any;
 
 
   // MJML Internal view (for elements inside mj-columns)
@@ -261,30 +264,33 @@ export default (editor, opt = {}) => {
       defaults: {
         highlightable: false,
       },
-      toHTML(opts) {
+      toHTML(opts: any) {
         return this.getInnerHTML(opts);
       }
     }
   });
 
-  loadMjml(editor, compOpts);
-  loadHead(editor, compOpts);
-  loadStyle(editor, compOpts);
-  loadFont(editor, compOpts);
-  loadBody(editor, compOpts);
-  loadWrapper(editor, compOpts);
-  loadSection(editor, compOpts);
-  loadGroup(editor, compOpts);
-  loadColumn(editor, compOpts);
-  loadButton(editor, compOpts);
-  loadText(editor, compOpts);
-  loadImage(editor, compOpts);
-  loadSocial(editor, compOpts);
-  loadSocialElement(editor, compOpts);
-  loadDivider(editor, compOpts);
-  loadSpacer(editor, compOpts);
-  loadNavBar(editor, compOpts);
-  loadNavBarLink(editor, compOpts);
-  loadHero(editor, compOpts);
-  loadRaw(editor, compOpts);
+  [
+    loadMjml,
+    loadHead,
+    loadStyle,
+    loadFont,
+    loadBody,
+    loadWrapper,
+    loadSection,
+    loadGroup,
+    loadColumn,
+    loadButton,
+    loadText,
+    loadImage,
+    loadSocial,
+    loadSocialElement,
+    loadDivider,
+    loadSpacer,
+    loadNavBar,
+    loadNavBarLink,
+    loadHero,
+    loadRaw,
+  ]
+  .forEach(module => module(editor, compOpts));
 };
