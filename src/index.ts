@@ -87,6 +87,14 @@ export type PluginOptions = {
    hideSelector?: boolean;
 
   /**
+   * Experimental: use XML parser instead of HTML.
+   * This should allow importing void MJML elements (without closing tags) like <mj-image/>.
+   * @default false
+   * @experimental
+   */
+   useXmlParser?: boolean;
+
+  /**
    * Column padding (this way it's easier to select columns)
    * @default '10px 0'
    */
@@ -130,6 +138,7 @@ const plugin: grapesjs.Plugin<PluginOptions> = (editor, opt = {}) => {
     resetStyleManager: true,
     resetDevices: true,
     hideSelector: true,
+    useXmlParser: false,
     columnsPadding: '10px 0',
     i18n: {},
     fonts: {},
@@ -155,6 +164,11 @@ const plugin: grapesjs.Plugin<PluginOptions> = (editor, opt = {}) => {
     const smConfig = editor.SelectorManager.getConfig();
     // @ts-ignore
     smConfig.custom = true;
+  }
+
+  // Use XML Parser
+  if (opts.useXmlParser) {
+    editor.Parser.getConfig().optionsHtml.htmlType = 'text/xml';
   }
 
   // Load i18n files
