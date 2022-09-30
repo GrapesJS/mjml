@@ -81,6 +81,12 @@ export type PluginOptions = {
   resetDevices?: boolean;
 
   /**
+   * Hide the default selector manager
+   * @default true
+   */
+   hideSelector?: boolean;
+
+  /**
    * Column padding (this way it's easier to select columns)
    * @default '10px 0'
    */
@@ -123,6 +129,7 @@ const plugin: grapesjs.Plugin<PluginOptions> = (editor, opt = {}) => {
     resetBlocks: true,
     resetStyleManager: true,
     resetDevices: true,
+    hideSelector: true,
     columnsPadding: '10px 0',
     i18n: {},
     fonts: {},
@@ -142,6 +149,13 @@ const plugin: grapesjs.Plugin<PluginOptions> = (editor, opt = {}) => {
 
   // Doesn't work without inline styling
   config.avoidInlineStyle = false;
+
+  // Hide default selector manager
+  if (opts.hideSelector) {
+    const smConfig = editor.SelectorManager.getConfig();
+    // @ts-ignore
+    smConfig.custom = true;
+  }
 
   // Load i18n files
   editor.I18n.addMessages({
