@@ -1,8 +1,10 @@
+// @ts-ignore
 import mjml2html from 'mjml-browser';
+import type grapesjs from 'grapesjs';
 
-export const isComponentType = type => (el) => el.tagName === type.toUpperCase();
+export const isComponentType = (type: string) => (el: Element) => el.tagName === type.toUpperCase();
 
-export function mjmlConvert (mjml, fonts) {
+export function mjmlConvert (mjml: string, fonts: Record<string, string>) {
   let options = {
     useMjmlConfigOptions: false,
     mjmlConfigPath: null,
@@ -11,30 +13,29 @@ export function mjmlConvert (mjml, fonts) {
 
   // Check that fonts parameter is not empty for add to options
   if (fonts && (Object.keys(fonts).length > 0 && fonts.constructor === Object)) {
+    // @ts-ignore
     options.fonts = fonts;
   }
 
   return mjml2html(mjml, options);
 }
 
-export const componentsToQuery = (cmps) => {
+export const componentsToQuery = (cmps: string | string[]): string => {
   const cmpsArr = Array.isArray(cmps) ? cmps : [cmps];
   return cmpsArr.map(cmp => `[data-gjs-type="${cmp}"]`).join(', ');
 };
 
-export const getName = (editor, name) => {
+export const getName = (editor: grapesjs.Editor, name: string) => {
   return editor.I18n.t(`grapesjs-mjml.components.names.${name}`);
 };
 
-export function debounce(clb, wait) {
-  let timeout;
-  return function() {
-    const context = this;
-    let args = arguments;
+export function debounce<T extends (...params: any) => any>(clb: T, wait: number) {
+  let timeout: NodeJS.Timeout;
+  return function(this: any, ...args: IArguments[]) {
     clearTimeout(timeout);
     timeout = setTimeout(() => {
       clearTimeout(timeout);
-      clb.apply(context, args);
+      clb.apply(this, args);
     }, wait);
-  };
+  } as T;
 };
