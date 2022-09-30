@@ -1,9 +1,12 @@
-export default (editor, opt = {}) => {
+import type grapesjs from 'grapesjs';
+import { RequiredPluginOptions } from '.';
+
+export default (editor: grapesjs.Editor, opt: RequiredPluginOptions) => {
 
   if (opt.resetStyleManager) {
-    const sectors = editor.StyleManager.getSectors();
+    editor.onReady(() => {
+      const sectors = editor.StyleManager.getSectors();
 
-    editor.on('load', () => {
       sectors.reset();
       sectors.add([{
         name: 'Dimension',
