@@ -21,21 +21,8 @@ import loadHero from './Hero';
 import loadRaw from './Raw';
 
 export default (editor, opt = {}) => {
-  let domc = editor.DomComponents;
-  let defaultType = domc.getType('default');
-  let textType = domc.getType('text');
-  let imageType = domc.getType('image');
-  let linkType = domc.getType('link');
-  let defaultModel = defaultType.model;
-  let defaultView = defaultType.view;
-  let textModel = textType.model;
-  let textView = textType.view;
-  let imageModel = imageType.model;
-  let imageView = imageType.view;
-  let linkModel = linkType.model;
-  let linkView = linkType.view;
-  const dc = domc;
-  const ComponentsView = domc.ComponentsView;
+  const { Components  } = editor;
+  const ComponentsView = Components.ComponentsView;
   const sandboxEl = document.createElement('div');
 
 
@@ -266,10 +253,7 @@ export default (editor, opt = {}) => {
 
 
   // MJML Internal view (for elements inside mj-columns)
-  const compOpts = {
-    dc, coreMjmlModel, coreMjmlView, opt, sandboxEl, defaultModel, defaultView,
-    textModel, textView, linkModel, linkView, imageModel, imageView
-  };
+  const compOpts = { coreMjmlModel, coreMjmlView, opt, sandboxEl };
 
   // Avoid the <body> tag from the default wrapper
   editor.Components.addType('wrapper', {
