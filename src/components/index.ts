@@ -47,12 +47,12 @@ export default (editor: grapesjs.Editor, opt: RequiredPluginOptions) => {
       this.listenTo(this, 'change:attributes', this.handleAttributeChange);
     },
 
-    handleAttributeChange() {
-      this.set('style', this.get('attributes'));
+    handleAttributeChange(m: any, v: any, opts: any) {
+      this.set('style', this.get('attributes'), opts);
     },
 
-    handleStyleChange() {
-      this.set('attributes', this.get('style'));
+    handleStyleChange(m: any, v: any, opts: any) {
+      this.set('attributes', this.get('style'), opts);
     },
 
 
