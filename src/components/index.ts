@@ -1,6 +1,6 @@
 import type grapesjs from 'grapesjs';
 import { mjmlConvert, debounce } from './utils';
-import loadMjml from './Mjml';
+import loadMjml from './mjml';
 import loadHead from './Head';
 import loadStyle from './Style';
 import loadFont from './Font';
