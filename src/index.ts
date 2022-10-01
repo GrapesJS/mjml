@@ -151,12 +151,15 @@ const plugin: grapesjs.Plugin<PluginOptions> = (editor, opt = {}) => {
 
   // I need to prevent forced class creation as classes aren't working
   // at the moment
+  // @ts-ignore
   config.forceClass = false;
 
   // Don't need to create css rules with media
+  // @ts-ignore
   config.devicePreviewMode = true;
 
   // Doesn't work without inline styling
+  // @ts-ignore
   config.avoidInlineStyle = false;
 
   // Hide default selector manager
@@ -201,7 +204,7 @@ const plugin: grapesjs.Plugin<PluginOptions> = (editor, opt = {}) => {
     document.head.appendChild(style);
   }
 
-  // Load i18n files
+  // @ts-ignore Load i18n files
   editor.I18n.addMessages({
     en,
     ...opts.i18n,

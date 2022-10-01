@@ -1,3 +1,4 @@
+// @ts-nocheck TODO remove this comment with the next grapesjs release
 import type grapesjs from 'grapesjs';
 import { RequiredPluginOptions } from '.';
 import {

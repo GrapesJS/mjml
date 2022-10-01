@@ -13,12 +13,14 @@ export default (editor: grapesjs.Editor, opts: RequiredPluginOptions) => {
   const addBlock = (id: string, def: grapesjs.BlockOptions) => {
     opts.blocks.indexOf(id)! >= 0 && Blocks.add(id, {
       select: true,
+      // @ts-ignore
       category: editor.I18n.t('grapesjs-mjml.category'),
       ...def,
       ...opts.block(id),
     });
   };
 
+  // @ts-ignore
   const getI18nLabel = (label: string) => editor.I18n.t(`grapesjs-mjml.components.names.${label}`)
 
   addBlock('mj-1-column', {

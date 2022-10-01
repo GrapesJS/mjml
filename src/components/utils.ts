@@ -27,6 +27,7 @@ export const componentsToQuery = (cmps: string | string[]): string => {
 };
 
 export const getName = (editor: grapesjs.Editor, name: string) => {
+  // @ts-ignore
   return editor.I18n.t(`grapesjs-mjml.components.names.${name}`);
 };
 
