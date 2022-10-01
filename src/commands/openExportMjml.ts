@@ -79,8 +79,13 @@ export default (editor: grapesjs.Editor, opts: RequiredPluginOptions, cmdId: str
 
       if (codeEditorHtml) {
         const mjmlResult = Commands.run(cmdGetMjmlToHtml);
-        mjmlResult.errors?.forEach((err: any) => {
-          console.warn(err.formattedMessage);
+        mjmlResult.errors?.forEach((error: any) => {
+          editor.log(error.formattedMessage, {
+            ns: cmdGetMjmlToHtml,
+            level: 'warning',
+            // @ts-ignore
+            error,
+          });
         });
         codeEditorHtml.setContent(mjmlResult.html);
         codeEditorHtml.editor.refresh();
