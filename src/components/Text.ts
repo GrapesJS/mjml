@@ -6,23 +6,11 @@ import { type as typeHero } from './Hero';
 
 export const type = 'mj-text';
 
-const isTextType = isComponentType(type);
-
 export default (editor: grapesjs.Editor, { coreMjmlModel, coreMjmlView }: any) => {
   editor.Components.addType(type, {
     extend: 'text',
     extendFnView: ['onActive'],
-
-    isComponent(el) {
-      if (isTextType(el)) {
-        return {
-          type,
-          content: el.innerHTML,
-          components: [],
-        };
-      }
-      return false;
-    },
+    isComponent: isComponentType(type),
 
     model: {
       ...coreMjmlModel,
