@@ -63,6 +63,13 @@ export default (editor:  grapesjs.Editor, { coreMjmlModel, coreMjmlView }: any) 
       getChildrenSelector() {
         return 'a,p';
       },
+
+      /**
+       * Prevent content repeating
+       */
+       rerender() {
+        this.render();
+      },
     },
   });
 };
