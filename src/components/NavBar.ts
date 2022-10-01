@@ -1,16 +1,21 @@
-import { isComponentType, mjmlConvert } from './utils.js';
+// Specs https://documentation.mjml.io/#mj-navbar
+import type grapesjs from 'grapesjs';
+import { componentsToQuery, getName, isComponentType, mjmlConvert } from './utils';
+import { type as typeColumn } from './Column';
+import { type as typeHero } from './Hero';
+import { type as typeNavBarLink } from './NavBarLink';
 
-export default (editor, { dc, opt, coreMjmlModel, coreMjmlView, sandboxEl }) => {
-  const type = 'mj-navbar';
+export const type = 'mj-navbar';
 
-  dc.addType(type, {
+export default (editor: grapesjs.Editor, { opt, coreMjmlModel, coreMjmlView, sandboxEl }: any) => {
+  editor.Components.addType(type, {
     isComponent: isComponentType(type),
     model: {
       ...coreMjmlModel,
       defaults: {
-        name: editor.I18n.t('grapesjs-mjml.components.names.navBar'),
-        draggable: '[data-gjs-type=mj-column],[data-gjs-type=mj-hero]',
-        droppable: '[data-gjs-type=mj-navbar-link]',
+        name: getName(editor, 'navBar'),
+        draggable: componentsToQuery([typeColumn, typeHero]),
+        droppable: componentsToQuery(typeNavBarLink),
         'style-default': {
           // TODO
         },
@@ -33,9 +38,7 @@ export default (editor, { dc, opt, coreMjmlModel, coreMjmlView, sandboxEl }) => 
 
     view: {
       ...coreMjmlView,
-
       tagName: 'tr',
-
       attributes: {
         style: 'pointer-events: all; display: table; width: 100%',
       },
@@ -46,29 +49,29 @@ export default (editor, { dc, opt, coreMjmlModel, coreMjmlView, sandboxEl }) => 
       },
 
       getTemplateFromMjml() {
-        let mjmlTmpl = this.getMjmlTemplate();
-        let innerMjml = this.getInnerMjmlTemplate();
+        const mjmlTmpl = this.getMjmlTemplate();
+        const innerMjml = this.getInnerMjmlTemplate();
         const htmlOutput = mjmlConvert(`${mjmlTmpl.start}
           ${innerMjml.start}${innerMjml.end}${mjmlTmpl.end}`, opt.fonts);
-        let html = htmlOutput.html;
+        const html = htmlOutput.html;
 
         // I need styles for hamburger
-        let styles = [];
+        const styles: string[] = [];
         sandboxEl.innerHTML = html;
-        var styleArr = Array.from(sandboxEl.querySelectorAll('style'));
+        const styleArr: HTMLStyleElement[] = Array.from(sandboxEl.querySelectorAll('style'));
         styleArr.forEach((item) => {
           styles.push(item.innerHTML);
         });
 
 
-        let content = html.replace(/<body(.*)>/, '<body>');
-        let start = content.indexOf('<body>') + 6;
-        let end = content.indexOf('</body>');
+        const content = html.replace(/<body(.*)>/, '<body>');
+        const start = content.indexOf('<body>') + 6;
+        const end = content.indexOf('</body>');
         sandboxEl.innerHTML = content.substring(start, end).trim();
-        let componentEl = this.getTemplateFromEl(sandboxEl);
+        const componentEl = this.getTemplateFromEl(sandboxEl);
 
         // Copy all rendered attributes (TODO need for all)
-        let attributes = {};
+        const attributes: Record<string, any> = {};
         const elAttrs = componentEl.attributes;
 
         for (let elAttr, i = 0, len = elAttrs.length; i < len; i++) {
@@ -102,7 +105,7 @@ export default (editor, { dc, opt, coreMjmlModel, coreMjmlView, sandboxEl }) => 
         };
       },
 
-      getTemplateFromEl(sandboxEl) {
+      getTemplateFromEl(sandboxEl: any) {
         return sandboxEl.firstChild.querySelector('tr');
       },
 
@@ -112,8 +115,8 @@ export default (editor, { dc, opt, coreMjmlModel, coreMjmlView, sandboxEl }) => 
 
       rerender() {
         coreMjmlView.rerender.call(this);
-        this.model.components().models.forEach((item) => {
-          if (item.attributes.type != "mj-navbar-link") {
+        this.model.components().models.forEach((item: any) => {
+          if (item.attributes.type != typeNavBarLink) {
             return;
           }
           item.view.rerender();

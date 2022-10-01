@@ -1,27 +1,22 @@
-// Specs: https://mjml.io/documentation/#mjml-text
+// Specs: https://documentation.mjml.io/#mjml-text
+import type grapesjs from 'grapesjs';
+import { componentsToQuery, getName, isComponentType } from './utils';
+import { type as typeColumn } from './Column';
+import { type as typeHero } from './Hero';
 
-export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
-  const type = 'mj-text';
+export const type = 'mj-text';
 
-  dc.addType(type, {
+export default (editor: grapesjs.Editor, { coreMjmlModel, coreMjmlView }: any) => {
+  editor.Components.addType(type, {
     extend: 'text',
     extendFnView: ['onActive'],
-
-    isComponent(el) {
-      if (el.tagName === type.toUpperCase()) {
-        return {
-          type,
-          content: el.innerHTML,
-          components: [],
-        };
-      }
-    },
+    isComponent: isComponentType(type),
 
     model: {
       ...coreMjmlModel,
       defaults: {
-        name: editor.I18n.t('grapesjs-mjml.components.names.text'),
-        draggable: '[data-gjs-type=mj-column], [data-gjs-type=mj-hero]',
+        name: getName(editor, 'text'),
+        draggable: componentsToQuery([typeColumn, typeHero]),
         highlightable: false,
         stylable: [
           'height', 'font-style', 'font-size', 'font-weight', 'font-family', 'color',
@@ -55,7 +50,7 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
         };
       },
 
-      getTemplateFromEl(sandboxEl) {
+      getTemplateFromEl(sandboxEl: any) {
         return sandboxEl.querySelector('tr').innerHTML;
       },
 
@@ -66,8 +61,8 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
       /**
        * Prevent content repeating
        */
-      renderChildren() {
-        coreMjmlView.renderChildren.call(this);
+      rerender() {
+        this.render();
       },
 
       /**

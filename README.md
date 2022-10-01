@@ -11,7 +11,10 @@ This plugin enables the usage of [MJML](https://mjml.io/) components inside the 
 <p align="center"><img src="http://grapesjs.com/img/grapesjs-mjml-demo.jpg" alt="GrapesJS" align="center"/></p>
 <br/>
 
-Supported components:
+Supported MJML components:
+`mj-mjml`
+`mj-head`
+`mj-body`
 `mj-wrapper`
 `mj-group`
 `mj-section`
@@ -20,27 +23,39 @@ Supported components:
 `mj-image`
 `mj-button`
 `mj-social`
+`mj-social-element`
 `mj-divider`
 `mj-spacer`
 `mj-style`
 `mj-font`
 `mj-hero`
+`mj-navbar`
+`mj-navbar-link`
+`mj-raw`
 
 
 ## Options
 
 |Option|Description|Default|
 |-|-|-
+|`blocks`|Which blocks to add|(all)|
+|`block`|Add custom block options, based on block id.|`(blockId) => ({})`|
+|`codeViewerTheme`|Code viewer theme.|`hopscotch`|
 |`fonts`|Custom fonts on exported HTML header [more info](https://github.com/mjmlio/mjml#inside-nodejs)|`{}`|
-|`importPlaceholder`|Import placeholder MJML|`''`|
+|`importPlaceholder`|Placeholder MJML template for the import modal|`''`|
 |`imagePlaceholderSrc`|Image placeholder source|`'https://via.placeholder.com/350x250/78c5d6/fff'`|
 |`i18n`|I18n object containing language [more info](https://grapesjs.com/docs/modules/I18n.html#configuration)|`{}`|
 |`overwriteExport`|Overwrite default export command|`true`|
 |`preMjml`|String before the MJML in export code|`''`|
 |`postMjml`|String after the MJML in export code|`''`|
 |`resetBlocks`|Clean all previous blocks if true|`true`|
-|`resetDevices`|Clean all previous devices and set a new one for mobile|`true`|,
-|`resetStyleManager`|Reset the Style Manager and add new properties for MJML|`true`|,
+|`resetDevices`|Clean all previous devices and set a new one for mobile|`true`|
+|`resetStyleManager`|Reset the Style Manager and add new properties for MJML|`true`|
+|`resetDevices`|Clean all previous devices and set a new one for mobile|`true`|
+|`hideSelector`|Hide the default selector manager|`true`|
+|`useXmlParser`|Experimental: use XML parser instead of HTML. This should allow importing void MJML elements (without closing tags) like `<mj-image/>`|`false`|
+|`columnsPadding`|Column padding (this way it's easier to select columns)|`10px 0`|
+|`useCustomTheme`|Load custom preset theme|`true`|
 
 
 ## Download
@@ -70,9 +85,9 @@ Supported components:
 </div>
 
 <script type="text/javascript">
-  var editor = grapesjs.init({
-      fromElement: 1,
-      container : '#gjs',
+  const editor = grapesjs.init({
+      fromElement: true,
+      container: '#gjs',
       plugins: ['grapesjs-mjml'],
       pluginsOpts: {
         'grapesjs-mjml': {/* ...options */}
@@ -89,9 +104,8 @@ import grapesJS from 'grapesjs'
 import grapesJSMJML from 'grapesjs-mjml'
 
 grapesJS.init({
-   fromElement: 1,
-   container : '#gjs',
-   avoidInlineStyle : false,
+   fromElement: true,
+   container: '#gjs',
    plugins: [grapesJSMJML],
    pluginsOpts: {
       [grapesJSMJML]: {/* ...options */}
@@ -109,9 +123,8 @@ import grapesJSMJML from 'grapesjs-mjml'
 import mjmlNL from 'grapesjs-mjml/locale/nl'
 
 grapesJS.init({
-   fromElement: 1,
-   container : '#gjs',
-   avoidInlineStyle : false,
+   fromElement: true,
+   container: '#gjs',
    i18n: {
       // locale: 'en', // default locale
       // detectLocale: true, // by default, the editor will detect the language
@@ -135,10 +148,9 @@ import 'grapesjs/dist/css/grapes.min.css'
 import grapesJS from 'grapesjs'
 import grapesJSMJML from 'grapesjs-mjml'
 
-let editor = grapesJS.init({
-   fromElement: 1,
-   container : '#gjs',
-   avoidInlineStyle : false,
+const editor = grapesJS.init({
+   fromElement: true,
+   container: '#gjs',
    plugins: [grapesJSMJML],
    pluginsOpts: {
       [grapesJSMJML]: {
@@ -152,11 +164,11 @@ let editor = grapesJS.init({
 });
 
 // add custom fonts options on editor's font list
-editor.on('load', () => {  
-  let styleManager = editor.StyleManager;
-  let fontProperty = styleManager.getProperty('typography', 'font-family');
+editor.on('load', () => {
+  const styleManager = editor.StyleManager;
+  const fontProperty = styleManager.getProperty('typography', 'font-family');
 
-  let list = [];
+  const list = [];
   // empty list
   fontProperty.set('list', list);
 
@@ -164,7 +176,7 @@ editor.on('load', () => {
   list.push(fontProperty.addOption({value: 'Montserrat, sans-serif', name: 'Montserrat'}));
   list.push(fontProperty.addOption({value: 'Open Sans, sans-serif', name: 'Open Sans'}));
   fontProperty.set('list', list);
-  
+
   styleManager.render();
 });
 ```

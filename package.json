@@ -1,6 +1,6 @@
 {
   "name": "grapesjs-mjml",
-  "version": "0.6.0",
+  "version": "1.0.0",
   "description": "MJML Componenets integration in GrapesJS",
   "main": "dist/index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "lint:fix": "eslint src --fix",
     "v:patch": "npm version patch -m \"Release v%s\"",
     "build": "grapesjs-cli build --patch=false",
-    "start": "grapesjs-cli serve -p 8081"
+    "start": "grapesjs-cli serve"
   },
   "files": [
     "/dist",
@@ -31,6 +31,7 @@
   },
   "devDependencies": {
     "eslint": "^8.23.0",
+    "grapesjs": "^0.20.1",
     "grapesjs-cli": "^3.0.1"
   }
 }

@@ -1,18 +1,21 @@
-// Specs: https://mjml.io/documentation/#mjml-wrapper
-import { isComponentType } from './utils.js';
+// Specs: https://documentation.mjml.io/#mjml-wrapper
+import type grapesjs from 'grapesjs';
+import { componentsToQuery, getName, isComponentType } from './utils';
+import { type as typeBody } from './Body';
+import { type as typeSection } from './Section';
 
-export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
-  const type = 'mj-wrapper';
+export const type = 'mj-wrapper';
 
-  dc.addType(type, {
+export default (editor: grapesjs.Editor, { coreMjmlModel, coreMjmlView }: any) => {
+  editor.Components.addType(type, {
     isComponent: isComponentType(type),
 
     model: {
       ...coreMjmlModel,
       defaults: {
-        name: editor.I18n.t('grapesjs-mjml.components.names.wrapper'),
-        draggable: '[data-gjs-type=mj-body]',
-        droppable: '[data-gjs-type=mj-section]',
+        name: getName(editor, 'wrapper'),
+        draggable: componentsToQuery(typeBody),
+        droppable: componentsToQuery(typeSection),
       },
     },
 
@@ -34,13 +37,9 @@ export default (editor, { dc, coreMjmlModel, coreMjmlView }) => {
         return 'table tr td';
       },
 
-      renderChildren() {
-        coreMjmlView.renderChildren.call(this);
-      },
-
       init() {
         coreMjmlView.init.call(this);
-        this.listenTo(this.model.get('components'), 'add remove', function() {
+        this.listenTo(this.model.get('components'), 'add remove', () => {
           this.getChildrenContainer().innerHTML = this.model.get('content');
           this.renderChildren();
         });

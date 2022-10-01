@@ -1,20 +1,23 @@
-// Specs: https://mjml.io/documentation/#mj-style
-import { isComponentType, mjmlConvert } from './utils.js';
+// Specs: https://documentation.mjml.io/#mj-style
+import type grapesjs from 'grapesjs';
+import { componentsToQuery, isComponentType, mjmlConvert } from './utils';
+import { type as typeHead } from './Head';
 
-export default (editor, { dc, opt, coreMjmlModel, coreMjmlView, sandboxEl }) => {
-  const type = 'mj-style';
-  dc.addType(type, {
+export const type = 'mj-style';
+
+export default (editor: grapesjs.Editor, { opt, coreMjmlModel, coreMjmlView, sandboxEl }: any) => {
+  editor.Components.addType(type, {
     isComponent: isComponentType(type),
 
     model: {
       ...coreMjmlModel,
       defaults: {
-        draggable: '[data-gjs-type=mj-head]',
+        draggable: componentsToQuery(typeHead),
       },
     },
     view: {
       ...coreMjmlView,
-      tagName: "style",
+      tagName: 'style',
 
       getMjmlTemplate() {
         return {
@@ -23,7 +26,7 @@ export default (editor, { dc, opt, coreMjmlModel, coreMjmlView, sandboxEl }) => 
         };
       },
 
-      getTemplateFromEl(sandboxEl) {
+      getTemplateFromEl(sandboxEl: any) {
         return sandboxEl.querySelector('style').innerHTML;
       },
 
