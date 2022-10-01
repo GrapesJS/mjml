@@ -11,7 +11,10 @@ This plugin enables the usage of [MJML](https://mjml.io/) components inside the 
 <p align="center"><img src="http://grapesjs.com/img/grapesjs-mjml-demo.jpg" alt="GrapesJS" align="center"/></p>
 <br/>
 
-Supported components:
+Supported MJML components:
+`mj-mjml`
+`mj-head`
+`mj-body`
 `mj-wrapper`
 `mj-group`
 `mj-section`
@@ -20,11 +23,15 @@ Supported components:
 `mj-image`
 `mj-button`
 `mj-social`
+`mj-social-element`
 `mj-divider`
 `mj-spacer`
 `mj-style`
 `mj-font`
 `mj-hero`
+`mj-navbar`
+`mj-navbar-link`
+`mj-raw`
 
 
 ## Options
@@ -152,7 +159,7 @@ let editor = grapesJS.init({
 });
 
 // add custom fonts options on editor's font list
-editor.on('load', () => {  
+editor.on('load', () => {
   let styleManager = editor.StyleManager;
   let fontProperty = styleManager.getProperty('typography', 'font-family');
 
@@ -164,7 +171,7 @@ editor.on('load', () => {
   list.push(fontProperty.addOption({value: 'Montserrat, sans-serif', name: 'Montserrat'}));
   list.push(fontProperty.addOption({value: 'Open Sans, sans-serif', name: 'Open Sans'}));
   fontProperty.set('list', list);
-  
+
   styleManager.render();
 });
 ```
