@@ -21,12 +21,6 @@ export type PluginOptions = {
   block?: (blockId: string) => ({});
 
   /**
-   * Default MJML template, in case the canvas is empty.
-   * @default ''
-   */
-  defaultTemplate?: string;
-
-  /**
    * Code viewer theme.
    * @default 'hopscotch'
    */
@@ -133,7 +127,6 @@ const plugin: grapesjs.Plugin<PluginOptions> = (editor, opt = {}) => {
       'mj-social-element', 'mj-spacer', 'mj-navbar', 'mj-navbar-link', 'mj-hero', 'mj-wrapper', 'mj-raw'
     ],
     block: () => ({}),
-    defaultTemplate: '',
     codeViewerTheme: 'hopscotch',
     importPlaceholder: '',
     imagePlaceholderSrc: '',

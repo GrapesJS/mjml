@@ -38,16 +38,24 @@ Supported MJML components:
 
 |Option|Description|Default|
 |-|-|-
+|`blocks`|Which blocks to add|(all)|
+|`block`|Add custom block options, based on block id.|`(blockId) => ({})`|
+|`codeViewerTheme`|Code viewer theme.|`hopscotch`|
 |`fonts`|Custom fonts on exported HTML header [more info](https://github.com/mjmlio/mjml#inside-nodejs)|`{}`|
-|`importPlaceholder`|Import placeholder MJML|`''`|
+|`importPlaceholder`|Placeholder MJML template for the import modal|`''`|
 |`imagePlaceholderSrc`|Image placeholder source|`'https://via.placeholder.com/350x250/78c5d6/fff'`|
 |`i18n`|I18n object containing language [more info](https://grapesjs.com/docs/modules/I18n.html#configuration)|`{}`|
 |`overwriteExport`|Overwrite default export command|`true`|
 |`preMjml`|String before the MJML in export code|`''`|
 |`postMjml`|String after the MJML in export code|`''`|
 |`resetBlocks`|Clean all previous blocks if true|`true`|
-|`resetDevices`|Clean all previous devices and set a new one for mobile|`true`|,
-|`resetStyleManager`|Reset the Style Manager and add new properties for MJML|`true`|,
+|`resetDevices`|Clean all previous devices and set a new one for mobile|`true`|
+|`resetStyleManager`|Reset the Style Manager and add new properties for MJML|`true`|
+|`resetDevices`|Clean all previous devices and set a new one for mobile|`true`|
+|`hideSelector`|Hide the default selector manager|`true`|
+|`useXmlParser`|Experimental: use XML parser instead of HTML. This should allow importing void MJML elements (without closing tags) like `<mj-image/>`|`false`|
+|`columnsPadding`|Column padding (this way it's easier to select columns)|`10px 0`|
+|`useCustomTheme`|Load custom preset theme|`true`|
 
 
 ## Download
