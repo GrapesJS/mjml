@@ -118,6 +118,9 @@ export default (editor: grapesjs.Editor, opt: RequiredPluginOptions) => {
       return code;
     },
 
+    isHidden() {
+      return this.getStyle().display === 'none';
+    }
   } as any;
 
 
@@ -238,9 +241,15 @@ export default (editor: grapesjs.Editor, opt: RequiredPluginOptions) => {
       }
     },
 
+    checkVisibility() {
+      if (this.model.isHidden?.()) {
+        this.el.style.display = 'none';
+      }
+    },
 
     renderStyle() {
       this.el.style.cssText = this.attributes.style;
+      this.checkVisibility();
     },
 
 

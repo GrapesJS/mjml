@@ -91,6 +91,7 @@ export default (editor: grapesjs.Editor, { opt, coreMjmlModel, coreMjmlView, san
         const model_style = this.model.get('style') || {};
         const style = Object.keys(this.model.get('style')).map(attr=>`${attr}:${model_style[attr]};`);
         this.el.setAttribute('style', `${this.attributes.style} ${style.join(' ')} ${this.el.getAttribute('style')}`);
+        this.checkVisibility();
       },
 
       getMjmlTemplate() {
