@@ -20,9 +20,9 @@ export default (editor: grapesjs.Editor, opts: RequiredPluginOptions) => {
       return `${opts.preMjml}${editor.getHtml().trim()}${opts.postMjml}`;
   });
 
-  Commands.add(cmdGetMjmlToHtml, () => {
+  Commands.add(cmdGetMjmlToHtml, (ed, _, opt) => {
       const mjml = Commands.run(cmdGetMjml);
-      return mjmlConvert(mjml, opts.fonts);
+      return mjmlConvert(mjml, opts.fonts, opt);
   });
 
   openExportMjml(editor, opts, cmdOpenExport);

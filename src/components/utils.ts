@@ -4,11 +4,12 @@ import type grapesjs from 'grapesjs';
 
 export const isComponentType = (type: string) => (el: Element) => (el.tagName || '').toLowerCase() === type;
 
-export function mjmlConvert (mjml: string, fonts: Record<string, string>) {
-  let options = {
+export function mjmlConvert (mjml: string, fonts: Record<string, string>, opts: Record<string, any> = {}) {
+  const options = {
     useMjmlConfigOptions: false,
     mjmlConfigPath: null,
-    filePath: null
+    filePath: null,
+    ...opts,
   };
 
   // Check that fonts parameter is not empty for add to options
