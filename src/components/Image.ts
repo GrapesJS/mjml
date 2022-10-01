@@ -33,7 +33,7 @@ export default (editor: grapesjs.Editor, { coreMjmlModel, coreMjmlView }: any) =
           'align': 'center',
         },
         traits: ['href', 'rel', 'alt', 'title'],
-        void: true,
+        void: false,
       },
     },
 

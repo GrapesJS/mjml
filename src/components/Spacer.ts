@@ -18,7 +18,7 @@ export default (editor: grapesjs.Editor, { coreMjmlModel, coreMjmlView }: any) =
         droppable: false,
         'style-default': { height: '20px' },
         stylable: ['height', 'container-background-color'],
-        void: true,
+        void: false,
       },
     },
 

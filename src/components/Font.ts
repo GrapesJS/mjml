@@ -12,7 +12,7 @@ export default (editor: grapesjs.Editor, { opt, coreMjmlModel, coreMjmlView, san
       ...coreMjmlModel,
       defaults: {
         draggable: componentsToQuery(typeHead),
-        void: true
+        void: false
       },
     },
     view: {
