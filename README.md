@@ -85,9 +85,9 @@ Supported MJML components:
 </div>
 
 <script type="text/javascript">
-  var editor = grapesjs.init({
-      fromElement: 1,
-      container : '#gjs',
+  const editor = grapesjs.init({
+      fromElement: true,
+      container: '#gjs',
       plugins: ['grapesjs-mjml'],
       pluginsOpts: {
         'grapesjs-mjml': {/* ...options */}
@@ -104,9 +104,8 @@ import grapesJS from 'grapesjs'
 import grapesJSMJML from 'grapesjs-mjml'
 
 grapesJS.init({
-   fromElement: 1,
-   container : '#gjs',
-   avoidInlineStyle : false,
+   fromElement: true,
+   container: '#gjs',
    plugins: [grapesJSMJML],
    pluginsOpts: {
       [grapesJSMJML]: {/* ...options */}
@@ -124,9 +123,8 @@ import grapesJSMJML from 'grapesjs-mjml'
 import mjmlNL from 'grapesjs-mjml/locale/nl'
 
 grapesJS.init({
-   fromElement: 1,
-   container : '#gjs',
-   avoidInlineStyle : false,
+   fromElement: true,
+   container: '#gjs',
    i18n: {
       // locale: 'en', // default locale
       // detectLocale: true, // by default, the editor will detect the language
@@ -150,10 +148,9 @@ import 'grapesjs/dist/css/grapes.min.css'
 import grapesJS from 'grapesjs'
 import grapesJSMJML from 'grapesjs-mjml'
 
-let editor = grapesJS.init({
-   fromElement: 1,
-   container : '#gjs',
-   avoidInlineStyle : false,
+const editor = grapesJS.init({
+   fromElement: true,
+   container: '#gjs',
    plugins: [grapesJSMJML],
    pluginsOpts: {
       [grapesJSMJML]: {
@@ -168,10 +165,10 @@ let editor = grapesJS.init({
 
 // add custom fonts options on editor's font list
 editor.on('load', () => {
-  let styleManager = editor.StyleManager;
-  let fontProperty = styleManager.getProperty('typography', 'font-family');
+  const styleManager = editor.StyleManager;
+  const fontProperty = styleManager.getProperty('typography', 'font-family');
 
-  let list = [];
+  const list = [];
   // empty list
   fontProperty.set('list', list);
 
