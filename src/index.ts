@@ -116,6 +116,12 @@ export type PluginOptions = {
    * }
    */
   fonts?: Record<string, any>;
+
+  /**
+   * Load custom preset theme.
+   * @default true
+   */
+  useCustomTheme?: boolean;
 };
 
 export type RequiredPluginOptions = Required<PluginOptions>;
@@ -139,6 +145,7 @@ const plugin: grapesjs.Plugin<PluginOptions> = (editor, opt = {}) => {
     resetDevices: true,
     hideSelector: true,
     useXmlParser: false,
+    useCustomTheme: true,
     columnsPadding: '10px 0',
     i18n: {},
     fonts: {},
@@ -169,6 +176,36 @@ const plugin: grapesjs.Plugin<PluginOptions> = (editor, opt = {}) => {
   // Use XML Parser
   if (opts.useXmlParser) {
     editor.Parser.getConfig().optionsHtml.htmlType = 'text/xml';
+  }
+
+  if (opts.useCustomTheme && typeof window !== 'undefined') {
+    const primaryColor = '#2c2e35';
+    const secondaryColor = '#888686';
+    const quaternaryColor = '#f45e43';
+    const prefix = 'gjs-';
+    let cssString = '';
+
+    [
+      ['one', primaryColor],
+      ['two', secondaryColor],
+      ['four', quaternaryColor],
+    ].forEach(([cnum, ccol]) => {
+      cssString += `
+        .${prefix}${cnum}-bg {
+          background-color: ${ccol};
+        }
+        .${prefix}${cnum}-color {
+          color: ${ccol};
+        }
+        .${prefix}${cnum}-color-h:hover {
+          color: ${ccol};
+        }
+      `;
+    });
+
+    const style = document.createElement('style');
+    style.innerText = cssString;
+    document.head.appendChild(style);
   }
 
   // Load i18n files
