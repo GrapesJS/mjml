@@ -1,4 +1,5 @@
 import type grapesjs from 'grapesjs';
+import loadTraits from './traits';
 import loadBlocks from './blocks';
 import loadComponents from './components';
 import loadCommands from './commands';
@@ -211,6 +212,7 @@ const plugin: grapesjs.Plugin<PluginOptions> = (editor, opt = {}) => {
   });
 
   [
+    loadTraits,
     loadBlocks,
     loadComponents,
     loadCommands,

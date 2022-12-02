@@ -16,7 +16,16 @@ export default (editor: grapesjs.Editor, { coreMjmlModel, coreMjmlView }: any) =
         name: getName(editor, 'wrapper'),
         draggable: componentsToQuery(typeBody),
         droppable: componentsToQuery(typeSection),
+        traits:[
+          'id',
+          'title',
+          {
+            type: 'full-width',
+            label: 'Full width',
+          }
+        ],
       },
+      
     },
 
     view: {
@@ -34,7 +43,10 @@ export default (editor: grapesjs.Editor, { coreMjmlModel, coreMjmlView }: any) =
       },
 
       getChildrenSelector() {
-        return 'table tr td';
+        if(this.model.getAttributes()['full-width']){
+          return 'table > tbody > tr > td > div > table > tbody > tr > td';
+        }else
+          return 'table > tbody > tr > td';
       },
 
       init() {
