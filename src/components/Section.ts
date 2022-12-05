@@ -32,6 +32,17 @@ export default (editor: grapesjs.Editor, { coreMjmlModel, coreMjmlView }: any) =
           'border-radius', 'border-top-left-radius', 'border-top-right-radius', 'border-bottom-left-radius', 'border-bottom-right-radius',
           'border', 'border-width', 'border-style', 'border-color'
         ],
+        traits:[
+          'id',
+          'title',
+          {
+            type: 'checkbox',
+            label: 'Full width',
+            name: 'full-width',
+            valueTrue: 'full-width',
+            valueFalse: '',
+         }
+        ],
       },
     },
 
@@ -64,7 +75,11 @@ export default (editor: grapesjs.Editor, { coreMjmlModel, coreMjmlView }: any) =
       },
 
       getChildrenSelector() {
-        return 'table > tbody > tr > td';
+        if(this.model.getAttributes()['full-width']){
+          return 'table > tbody > tr > td > div table > tbody > tr > td';
+        }
+        else
+          return 'table > tbody > tr > td';
       },
 
       init() {

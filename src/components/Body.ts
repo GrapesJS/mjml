@@ -45,6 +45,8 @@ export default (editor: grapesjs.Editor, { coreMjmlModel, coreMjmlView }: any) =
       },
 
       renderStyle() {
+        this.getChildrenContainer().style.maxWidth = 'none';
+        this.getChildrenContainer().style.width = '100%';
         this.el.setAttribute('style', `${this.el.getAttribute('style') + this.attributes.style}`);
       },
 
