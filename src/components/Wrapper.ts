@@ -20,9 +20,12 @@ export default (editor: grapesjs.Editor, { coreMjmlModel, coreMjmlView }: any) =
           'id',
           'title',
           {
-            type: 'full-width',
+            type: 'checkbox',
             label: 'Full width',
-          }
+            name: 'full-width',
+            valueTrue: 'full-width',
+            valueFalse: '',
+         }
         ],
       },
       
