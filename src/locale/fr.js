@@ -22,7 +22,7 @@ export default {
     components: {
       names: {
         body: 'Corps',
-        button: 'Boutton',
+        button: 'Bouton',
         column: 'Colonne',
         oneColumn: '1 Colonne',
         twoColumn: '2 Colonnes',
@@ -32,14 +32,14 @@ export default {
         hero: 'Héro',
         image: 'Image',
         navBar: 'Bar de navigation',
-        navLink: 'Lien - Bar de navitation',
+        navLink: 'Lien - Bar de navigation',
         section: 'Section',
         socialGroup: 'Groupe liens réseaux sociaux',
         socialElement: 'Lien réseau social',
         spacer: 'Espace',
         text: 'Texte',
         wrapper: 'Conteneur',
-        raw: 'Cru',
+        raw: 'Brut',
       },
     }
   },
