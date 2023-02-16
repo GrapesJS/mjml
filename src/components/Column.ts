@@ -19,6 +19,8 @@ export default (editor: grapesjs.Editor, { opt, coreMjmlModel, coreMjmlView, san
           'background-color', 'vertical-align', 'width',
           'border-radius', 'border-top-left-radius', 'border-top-right-radius', 'border-bottom-left-radius', 'border-bottom-right-radius',
           'border', 'border-width', 'border-style', 'border-color',
+          'inner-background-color',
+          'inner-border-radius',
         ],
         'style-default': {
           'vertical-align': 'top'
@@ -111,7 +113,7 @@ export default (editor: grapesjs.Editor, { opt, coreMjmlModel, coreMjmlView, san
       },
 
       getChildrenSelector() {
-        return 'table';
+        return 'table > tbody > tr > td > table';
       },
     },
   });

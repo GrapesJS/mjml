@@ -98,7 +98,19 @@ export default (editor: grapesjs.Editor, opt: RequiredPluginOptions) => {
           name: 'Background color',
           property: 'container-background-color',
           type: 'color',
+        },
+        {
+          name: 'Background color',
+          property: 'inner-background-color',
+          type: 'color',
         }, {
+          name: 'Border radius',
+          property: 'inner-border-radius',
+          type: 'integer',
+          defaults: '0px',
+          units: ['px', '%']
+        },
+         {
           property: 'background-url',
           type: 'file',
         }, {
