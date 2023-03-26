@@ -6,6 +6,7 @@
   <title>GrapesJS Plugin</title>
   <link href="https://unpkg.com/grapesjs/dist/css/grapes.min.css" rel="stylesheet">
   <script src="https://unpkg.com/grapesjs"></script>
+  <script src="./dist/index.js"></script>
   <style>
     body,
     html {
@@ -25,6 +26,20 @@
       border: none !important;
       background: transparent !important;
       box-shadow: none !important;
+    }
+
+    .lbl-custom-label{
+      text-transform: uppercase;
+    }
+
+    .custom-block-cls{
+      transition: all 300ms ease-out;
+    }
+
+    .custom-block-cls:hover{
+      cursor: pointer;
+      border: 1px solid rgb(0,0,4);
+      box-shadow: 0px 0px 16px 16px rgba(0,0,4,0.4);
     }
   </style>
 </head>
@@ -149,6 +164,22 @@
   <script type="text/javascript">
     // Wait for the plugin to be injected by the dev server
     setTimeout(() => {
+
+      const myRawId = "mj-raw-custom";
+      const myRawComponent = {
+      label: 'Images3',
+      media: `<svg viewBox="0 0 24 24">
+          <path fill="currentColor" d="M12,17.56L16.07,16.43L16.62,10.33H9.38L9.2,8.3H16.8L17,6.31H7L7.56,12.32H14.45L14.22,14.9L12,15.5L9.78,14.9L9.64,13.24H7.64L7.93,16.43L12,17.56M4.07,3H19.93L18.5,19.2L12,21L5.5,19.2L4.07,3Z" />
+      </svg>`,
+      content: `<mj-raw>
+        <div class="container">
+          <img class="item" src="https://source.unsplash.com/random/200x141" alt="Example image">
+          <img class="item" src="https://source.unsplash.com/random/200x142" alt="Example image">
+          <img class="item" src="https://source.unsplash.com/random/200x143" alt="Example image">
+        </div>
+      </mj-raw>`,
+  }
+
       window.editor = grapesjs.init({
         height: '100%',
         noticeOnUnload: 0,
@@ -158,9 +189,24 @@
 
         plugins: ['grapesjs-mjml'],
         pluginsOpts: {
-          'grapesjs-mjml': {}
+          'grapesjs-mjml': {
+            colorScheme: {
+              primaryColor: '#FFF',
+              secondaryColor: '#3D3D3D',
+              quaternaryColor: '#0074D9'
+            },
+            customClasses: {
+              blocks: {
+                class: 'custom-block-cls',
+                label: 'lbl-custom-label',
+                vector: 'custom-vec-cls'
+              }
+            }
+          }
         }
       });
+
+      window.editor.Blocks.add(myRawId, myRawComponent);
     }, 100);
   </script>
 </body>

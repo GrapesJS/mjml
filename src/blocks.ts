@@ -15,7 +15,22 @@ export default (editor: grapesjs.Editor, opts: RequiredPluginOptions) => {
       select: true,
       // @ts-ignore
       category: editor.I18n.t('grapesjs-mjml.category'),
-      ...def,
+      label: opts?.customClasses?.blocks?.label 
+              ? `
+              <div class="${opts?.customClasses?.blocks?.label}">
+                ${def.label}
+              </div>` 
+             : def.label,
+      media: opts?.customClasses?.blocks?.vector ?
+              `<div class="${opts?.customClasses?.blocks?.vector}">
+                ${def.media}
+                </div>
+              ` :
+              def.media,
+      content: def.content,
+      attributes: {
+        class: opts?.customClasses?.blocks?.class
+      },
       ...opts.block(id),
     });
   };

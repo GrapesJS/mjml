@@ -111,11 +111,33 @@ export type PluginOptions = {
    */
   fonts?: Record<string, any>;
 
+  // /**
+  //  * Load custom preset theme.
+  //  * @default true
+  //  */
+  // useCustomTheme?: boolean;
+
   /**
-   * Load custom preset theme.
-   * @default true
+   * Custom Color Palette
+   * @default {}
    */
-  useCustomTheme?: boolean;
+  colorScheme?: {
+    primaryColor?: string,
+    secondaryColor?: string,
+    quaternaryColor?: string
+  },
+
+  /**
+   * Custom Class Names
+   * @default {}
+   */
+  customClasses?: {
+    blocks?: {
+      class?: string,
+      vector?: string,
+      label?: string
+    }
+  }
 };
 
 export type RequiredPluginOptions = Required<PluginOptions>;
@@ -138,12 +160,14 @@ const plugin: grapesjs.Plugin<PluginOptions> = (editor, opt = {}) => {
     resetDevices: true,
     hideSelector: true,
     useXmlParser: false,
-    useCustomTheme: true,
+    // useCustomTheme: true,
     columnsPadding: '10px 0',
     i18n: {},
     fonts: {},
     // Export 'mjml', 'html' or both (leave empty) TODO
     // exportOnly: '',
+    colorScheme: {},
+    customClasses: {},
     ...opt,
   };
 
@@ -174,10 +198,10 @@ const plugin: grapesjs.Plugin<PluginOptions> = (editor, opt = {}) => {
     editor.Parser.getConfig().optionsHtml.htmlType = 'text/xml';
   }
 
-  if (opts.useCustomTheme && typeof window !== 'undefined') {
-    const primaryColor = '#2c2e35';
-    const secondaryColor = '#888686';
-    const quaternaryColor = '#f45e43';
+  // if (opts.useCustomTheme && typeof window !== 'undefined') {
+    const primaryColor = opts.colorScheme?.primaryColor || '#2c2e35';
+    const secondaryColor = opts.colorScheme?.secondaryColor || '#888686';
+    const quaternaryColor = opts.colorScheme?.quaternaryColor || '#f45e43';
     const prefix = 'gjs-';
     let cssString = '';
 
@@ -202,7 +226,7 @@ const plugin: grapesjs.Plugin<PluginOptions> = (editor, opt = {}) => {
     const style = document.createElement('style');
     style.innerText = cssString;
     document.head.appendChild(style);
-  }
+  // }
 
   // @ts-ignore Load i18n files
   editor.I18n.addMessages({
