@@ -6,7 +6,6 @@
   <title>GrapesJS Plugin</title>
   <link href="https://unpkg.com/grapesjs/dist/css/grapes.min.css" rel="stylesheet">
   <script src="https://unpkg.com/grapesjs"></script>
-  <script src="./dist/index.js"></script>
   <style>
     body,
     html {
@@ -186,12 +185,6 @@
         storageManager: {autoload: 0},
         container: '#gjs',
         fromElement: true,
-        assetManager: {
-          custom: true,
-          assets: [
-            'https://img.freepik.com/free-vector/giant-check-list_23-2148087771.jpg'
-          ]
-        },
         plugins: ['grapesjs-mjml'],
         pluginsOpts: {
           'grapesjs-mjml': {
@@ -212,28 +205,6 @@
       });
 
       window.editor.Blocks.add(myRawId, myRawComponent);
-
-      function handleAssetsUI(e){
-        if(!e.open) return;
-        
-        const uiElement = document.createElement('div');
-        uiElement.classList.add("custom-assets-ui");
-
-        e.assets.forEach(a => {
-          let imgElem = document.createElement('img');
-          imgElem.src = a.attributes.src
-          imgElem.style.width = '240px'
-          imgElem.style.height = '240px'
-          uiElement.appendChild(imgElem); 
-        })
-        e.container.appendChild(uiElement);
-      }
-
-      window.editor.on('asset:custom', handleAssetsUI);
-
-      window.editor.on("asset:close", () => 
-        window.editor.off('asset:custom', handleAssetsUI)
-      );
     }, 100);
   </script>
 </body>
