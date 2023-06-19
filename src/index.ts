@@ -1,4 +1,4 @@
-import type grapesjs from 'grapesjs';
+import type { Plugin } from 'grapesjs';
 import loadBlocks from './blocks';
 import loadComponents from './components';
 import loadCommands from './commands';
@@ -120,7 +120,7 @@ export type PluginOptions = {
 
 export type RequiredPluginOptions = Required<PluginOptions>;
 
-const plugin: grapesjs.Plugin<PluginOptions> = (editor, opt = {}) => {
+const plugin: Plugin<PluginOptions> = (editor, opt = {}) => {
   const opts: RequiredPluginOptions = {
     blocks: [
       'mj-1-column', 'mj-2-columns', 'mj-3-columns', 'mj-text', 'mj-button', 'mj-image', 'mj-divider', 'mj-social-group',
@@ -171,7 +171,7 @@ const plugin: grapesjs.Plugin<PluginOptions> = (editor, opt = {}) => {
 
   // Use XML Parser
   if (opts.useXmlParser) {
-    editor.Parser.getConfig().optionsHtml.htmlType = 'text/xml';
+    editor.Parser.getConfig().optionsHtml!.htmlType = 'text/xml';
   }
 
   if (opts.useCustomTheme && typeof window !== 'undefined') {
