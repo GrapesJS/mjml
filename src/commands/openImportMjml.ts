@@ -1,16 +1,18 @@
-// @ts-nocheck TODO remove this comment with the next grapesjs release
-import type grapesjs from 'grapesjs';
+import type { Editor } from 'grapesjs';
 import { RequiredPluginOptions } from '..';
 
-export default (editor: grapesjs.Editor, opts: RequiredPluginOptions, cmdId: string) => {
+export default (editor: Editor, opts: RequiredPluginOptions, cmdId: string) => {
   const config = editor.getConfig();
   const pfx = config.stylePrefix || '';
 
   const getI18nLabel = (label: string) => editor.I18n.t(`grapesjs-mjml.panels.import.${label}`);
 
   editor.Commands.add(cmdId, {
+    containerEl: null as HTMLDivElement | null,
+    codeEditorMjml: null as any,
+
     onImport(code: string) {
-      editor.Components.getWrapper().set('content', '');
+      editor.Components.getWrapper()?.set('content', '');
       editor.setComponents(code.trim());
       editor.Modal.close();
     },
@@ -42,8 +44,7 @@ export default (editor: grapesjs.Editor, opts: RequiredPluginOptions, cmdId: str
       return { codeEditor, el };
     },
 
-    createCodeViewer(): any {
-      // @ts-ignore
+    createCodeViewer() {
       return editor.CodeManager.createViewer({
         codeName: 'htmlmixed',
         theme: opts.codeViewerTheme,
@@ -52,7 +53,7 @@ export default (editor: grapesjs.Editor, opts: RequiredPluginOptions, cmdId: str
     },
 
     getCodeContainer(): HTMLDivElement {
-      let containerEl = this.containerEl as HTMLDivElement;
+      let { containerEl } = this;
 
       if (!containerEl) {
         containerEl = document.createElement('div');
@@ -64,7 +65,7 @@ export default (editor: grapesjs.Editor, opts: RequiredPluginOptions, cmdId: str
 
     run(editor, sender = {}) {
       const container = this.getCodeContainer();
-      let codeEditorMjml = this.codeEditorMjml as any;
+      let { codeEditorMjml } = this;
 
       if (!codeEditorMjml) {
         const result = this.createCodeEditor();
