@@ -186,8 +186,8 @@ editor.on('load', () => {
 Clone the repository
 
 ```sh
-$ git clone https://github.com/artf/grapesjs-mjml.git
-$ cd grapesjs-mjml
+$ git clone https://github.com/GrapesJS/mjml.git
+$ cd mjml
 ```
 
 Install it

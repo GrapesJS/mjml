@@ -16,7 +16,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/artf/grapesjs-mjml.git"
+    "url": "https://github.com/GrapesJS/mjml.git"
   },
   "keywords": [
     "grapesjs",
