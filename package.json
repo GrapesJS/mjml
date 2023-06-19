@@ -30,6 +30,7 @@
     "mjml-browser": "^4.13.0"
   },
   "devDependencies": {
+    "ajv": "^8.12.0",
     "eslint": "^8.23.0",
     "grapesjs": "^0.21.2",
     "grapesjs-cli": "^4.1.1"
