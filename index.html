@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>GrapesJS Plugin</title>
+  <title>GrapesJS MJML Plugin</title>
   <link href="https://unpkg.com/grapesjs/dist/css/grapes.min.css" rel="stylesheet">
   <script src="https://unpkg.com/grapesjs"></script>
   <style>
@@ -148,20 +148,20 @@
 
   <script type="text/javascript">
     // Wait for the plugin to be injected by the dev server
-    setTimeout(() => {
+    window.onload = () => {
       window.editor = grapesjs.init({
         height: '100%',
-        noticeOnUnload: 0,
-        storageManager: {autoload: 0},
-        container: '#gjs',
+        noticeOnUnload: false,
+        storageManager: false,
         fromElement: true,
+        container: '#gjs',
 
         plugins: ['grapesjs-mjml'],
         pluginsOpts: {
           'grapesjs-mjml': {}
         }
       });
-    }, 100);
+    }
   </script>
 </body>
 
