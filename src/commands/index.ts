@@ -1,8 +1,8 @@
-import type grapesjs from 'grapesjs';
+import type { Editor } from 'grapesjs';
 import { RequiredPluginOptions } from '..';
-import openImportMjml from './openImportMjml';
-import openExportMjml from './openExportMjml';
 import { mjmlConvert } from '../components/utils';
+import openExportMjml from './openExportMjml';
+import openImportMjml from './openImportMjml';
 
 export const cmdDeviceDesktop = 'set-device-desktop';
 export const cmdDeviceTablet = 'set-device-tablet';
@@ -12,7 +12,7 @@ export const cmdExportMjml = 'mjml-export';
 export const cmdGetMjml = 'mjml-code';
 export const cmdGetMjmlToHtml = 'mjml-code-to-html';
 
-export default (editor: grapesjs.Editor, opts: RequiredPluginOptions) => {
+export default (editor: Editor, opts: RequiredPluginOptions) => {
   const { Commands } = editor;
   const cmdOpenExport = opts.overwriteExport ? 'export-template' : cmdExportMjml;
 

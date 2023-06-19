@@ -1,12 +1,15 @@
-// @ts-nocheck TODO remove this comment with the next grapesjs release
-import type grapesjs from 'grapesjs';
+import type { Editor } from 'grapesjs';
 import { cmdGetMjml, cmdGetMjmlToHtml } from '.';
 import { RequiredPluginOptions } from '..';
 
-export default (editor: grapesjs.Editor, opts: RequiredPluginOptions, cmdId: string) => {
+export default (editor: Editor, opts: RequiredPluginOptions, cmdId: string) => {
   const { Commands } = editor;
 
   Commands.add(cmdId, {
+    containerEl: null as HTMLElement | null,
+    codeEditorMjml: null as any,
+    codeEditorHtml: null as any,
+
     createCodeEditor(label: string) {
       const el = document.createElement('div');
       const elLabel = document.createElement('div');
@@ -23,8 +26,7 @@ export default (editor: grapesjs.Editor, opts: RequiredPluginOptions, cmdId: str
       return { codeEditor, el };
     },
 
-    createCodeViewer(): any {
-      // @ts-ignore
+    createCodeViewer() {
       return editor.CodeManager.createViewer({
         codeName: 'htmlmixed',
         theme: opts.codeViewerTheme,
@@ -46,8 +48,8 @@ export default (editor: grapesjs.Editor, opts: RequiredPluginOptions, cmdId: str
 
     run(editor, sender) {
       const container = this.getCodeContainer();
-      let codeEditorMjml = this.codeEditorMjml as any;
-      let codeEditorHtml = this.codeEditorHtml as any;
+      let codeEditorMjml = this.codeEditorMjml;
+      let codeEditorHtml = this.codeEditorHtml;
 
       if (!codeEditorMjml) {
         const codeViewer = this.createCodeEditor('MJML');
