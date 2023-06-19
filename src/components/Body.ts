@@ -1,14 +1,14 @@
 // Specs: https://documentation.mjml.io/#mj-body
-import type grapesjs from 'grapesjs';
-import { isComponentType, componentsToQuery, getName } from './utils';
-import { type as typeSection } from './Section';
-import { type as typeWrapper } from './Wrapper';
+import type { Editor } from 'grapesjs';
 import { type as typeHero } from './Hero';
 import { type as typeRaw } from './Raw';
+import { type as typeSection } from './Section';
+import { type as typeWrapper } from './Wrapper';
+import { componentsToQuery, getName, isComponentType } from './utils';
 
 export const type = 'mj-body';
 
-export default (editor: grapesjs.Editor, { coreMjmlModel, coreMjmlView }: any) => {
+export default (editor: Editor, { coreMjmlModel, coreMjmlView }: any) => {
   editor.Components.addType(type, {
     isComponent: isComponentType(type),
     model: {

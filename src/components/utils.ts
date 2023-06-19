@@ -1,6 +1,6 @@
 // @ts-ignore
 import mjml2html from 'mjml-browser';
-import type grapesjs from 'grapesjs';
+import type { Editor } from 'grapesjs';
 
 export const isComponentType = (type: string) => (el: Element) => (el.tagName || '').toLowerCase() === type;
 
@@ -26,8 +26,7 @@ export const componentsToQuery = (cmps: string | string[]): string => {
   return cmpsArr.map(cmp => `[data-gjs-type="${cmp}"]`).join(', ');
 };
 
-export const getName = (editor: grapesjs.Editor, name: string) => {
-  // @ts-ignore
+export const getName = (editor: Editor, name: string): string => {
   return editor.I18n.t(`grapesjs-mjml.components.names.${name}`);
 };
 
