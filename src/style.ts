@@ -1,7 +1,7 @@
-import type grapesjs from 'grapesjs';
+import type { Editor } from 'grapesjs';
 import { RequiredPluginOptions } from '.';
 
-export default (editor: grapesjs.Editor, opt: RequiredPluginOptions) => {
+export default (editor: Editor, opt: RequiredPluginOptions) => {
 
   if (opt.resetStyleManager) {
     editor.onReady(() => {
