@@ -1,14 +1,13 @@
-// @ts-nocheck TODO remove this comment with the next grapesjs release
-import type grapesjs from 'grapesjs';
+import type { Editor } from 'grapesjs';
 import { RequiredPluginOptions } from '.';
 import {
   cmdDeviceDesktop,
-  cmdDeviceTablet,
   cmdDeviceMobile,
+  cmdDeviceTablet,
   cmdImportMjml,
 } from './commands';
 
-export default (editor: grapesjs.Editor, opts: RequiredPluginOptions) => {
+export default (editor: Editor, opts: RequiredPluginOptions) => {
   const { Panels } = editor;
   const iconStyle = 'style="display: block; max-width:22px"';
 
@@ -48,7 +47,7 @@ export default (editor: grapesjs.Editor, opts: RequiredPluginOptions) => {
     // Turn off default devices select and create new one
     editor.getConfig().showDevices = false;
 
-    const devicePanel = Panels.addPanel({ id: 'devices-c' });
+    const devicePanel = Panels.addPanel({ id: 'devices-c' } as any);
     const deviceBtns = devicePanel.get('buttons');
     deviceBtns.add([
       {
