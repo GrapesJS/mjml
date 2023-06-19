@@ -24,6 +24,7 @@ export default (editor: Editor, opts: RequiredPluginOptions, cmdId: string) => {
       const labelImport = getI18nLabel('label');
       const btnEl = document.createElement('button');
 
+      btnEl.type = 'button';
       btnEl.innerHTML = getI18nLabel('button');
       btnEl.className = `${pfx}btn-prim ${pfx}btn-import`;
       btnEl.onclick = () => this.onImport(codeEditor.editor.getValue());
