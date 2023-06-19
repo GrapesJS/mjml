@@ -1,7 +1,7 @@
-import type grapesjs from 'grapesjs';
+import type { Editor, BlockProperties } from 'grapesjs';
 import { RequiredPluginOptions } from '.';
 
-export default (editor: grapesjs.Editor, opts: RequiredPluginOptions) => {
+export default (editor: Editor, opts: RequiredPluginOptions) => {
   const { Blocks } = editor;
   const imagePlaceholderSrc = opts.imagePlaceholderSrc || 'https://via.placeholder.com/350x250/78c5d6/fff';
   const socialIcon = `<svg viewBox="0 0 24 24">
@@ -10,10 +10,9 @@ export default (editor: grapesjs.Editor, opts: RequiredPluginOptions) => {
 
   opts.resetBlocks && Blocks.getAll().reset();
 
-  const addBlock = (id: string, def: grapesjs.BlockOptions) => {
+  const addBlock = (id: string, def: BlockProperties) => {
     opts.blocks.indexOf(id)! >= 0 && Blocks.add(id, {
       select: true,
-      // @ts-ignore
       category: editor.I18n.t('grapesjs-mjml.category'),
       ...def,
       ...opts.block(id),
