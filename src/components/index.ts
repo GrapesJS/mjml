@@ -75,6 +75,7 @@ export default (editor: Editor, opt: RequiredPluginOptions) => {
       const attr = { ...this.get('attributes') };
       const style = { ...this.get('style-default') };
       delete attr.style;
+      delete attr.id;
 
       for (let prop in attr) {
         const value = attr[prop];
