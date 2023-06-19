@@ -1,12 +1,12 @@
 // Specs: https://documentation.mjml.io/#mj-raw
-import type grapesjs from 'grapesjs';
+import type { Editor } from 'grapesjs';
 import { componentsToQuery, getName, isComponentType } from './utils';
 import { type as typeBody } from './Body';
 import { type as typeHead } from './Head';
 
 export const type = 'mj-raw';
 
-export default (editor: grapesjs.Editor, { coreMjmlModel, coreMjmlView }: any) => {
+export default (editor: Editor, { coreMjmlModel, coreMjmlView }: any) => {
   editor.Components.addType(type, {
     isComponent: isComponentType(type),
     model: {

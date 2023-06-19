@@ -1,11 +1,11 @@
 // Specs: https://documentation.mjml.io/#mj-font
-import type grapesjs from 'grapesjs';
+import type { Editor } from 'grapesjs';
 import { componentsToQuery, isComponentType, mjmlConvert } from './utils';
 import { type as typeHead } from './Head';
 
 export const type = 'mj-font';
 
-export default (editor: grapesjs.Editor, { opt, coreMjmlModel, coreMjmlView, sandboxEl }: any) => {
+export default (editor: Editor, { opt, coreMjmlModel, coreMjmlView, sandboxEl }: any) => {
   editor.Components.addType(type, {
     isComponent: isComponentType(type),
     model: {

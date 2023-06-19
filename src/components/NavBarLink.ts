@@ -1,11 +1,11 @@
 // Specs: https://documentation.mjml.io/#mj-navbar-link
-import type grapesjs from 'grapesjs';
+import type { Editor } from 'grapesjs';
 import { componentsToQuery, getName, isComponentType } from './utils';
 import { type as typeNavBar } from './NavBar';
 
 export const type = 'mj-navbar-link';
 
-export default (editor: grapesjs.Editor, { coreMjmlModel, coreMjmlView }: any) => {
+export default (editor: Editor, { coreMjmlModel, coreMjmlView }: any) => {
   editor.Components.addType(type, {
     isComponent: isComponentType(type),
     extend: 'link',

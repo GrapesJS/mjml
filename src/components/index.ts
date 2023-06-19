@@ -1,4 +1,4 @@
-import type grapesjs from 'grapesjs';
+import type { Editor } from 'grapesjs';
 import { mjmlConvert, debounce } from './utils';
 import loadMjml from './mjml';
 import loadHead from './Head';
@@ -22,7 +22,7 @@ import loadHero from './Hero';
 import loadRaw from './Raw';
 import { RequiredPluginOptions } from '..';
 
-export default (editor: grapesjs.Editor, opt: RequiredPluginOptions) => {
+export default (editor: Editor, opt: RequiredPluginOptions) => {
   const { Components  } = editor;
   // @ts-ignore
   const ComponentsView = Components.ComponentsView;
@@ -226,6 +226,7 @@ export default (editor: grapesjs.Editor, opt: RequiredPluginOptions) => {
       if (!appendChildren) {
         this.childrenView = this.childrenView || new ComponentsView({
           collection: this.model.get('components'),
+          // @ts-ignore
           config: this.config,
           componentTypes: this.opts.componentTypes,
         });
@@ -275,7 +276,7 @@ export default (editor: grapesjs.Editor, opt: RequiredPluginOptions) => {
         highlightable: false,
       },
       toHTML(opts: any) {
-        return this.getInnerHTML(opts);
+        return this.getInnerHTML(opts)!;
       }
     }
   });

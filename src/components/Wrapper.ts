@@ -1,12 +1,12 @@
 // Specs: https://documentation.mjml.io/#mjml-wrapper
-import type grapesjs from 'grapesjs';
+import type { Editor } from 'grapesjs';
 import { componentsToQuery, getName, isComponentType } from './utils';
 import { type as typeBody } from './Body';
 import { type as typeSection } from './Section';
 
 export const type = 'mj-wrapper';
 
-export default (editor: grapesjs.Editor, { coreMjmlModel, coreMjmlView }: any) => {
+export default (editor: Editor, { coreMjmlModel, coreMjmlView }: any) => {
   editor.Components.addType(type, {
     isComponent: isComponentType(type),
 
@@ -28,7 +28,7 @@ export default (editor: grapesjs.Editor, { coreMjmlModel, coreMjmlView }: any) =
          }
         ],
       },
-      
+
     },
 
     view: {
@@ -55,7 +55,7 @@ export default (editor: grapesjs.Editor, { coreMjmlModel, coreMjmlView }: any) =
       init() {
         coreMjmlView.init.call(this);
         this.listenTo(this.model.get('components'), 'add remove', () => {
-          this.getChildrenContainer().innerHTML = this.model.get('content');
+          this.getChildrenContainer().innerHTML = this.model.get('content')!;
           this.renderChildren();
         });
       },

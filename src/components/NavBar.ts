@@ -1,5 +1,5 @@
 // Specs https://documentation.mjml.io/#mj-navbar
-import type grapesjs from 'grapesjs';
+import type { Editor } from 'grapesjs';
 import { componentsToQuery, getName, isComponentType, mjmlConvert } from './utils';
 import { type as typeColumn } from './Column';
 import { type as typeHero } from './Hero';
@@ -7,7 +7,7 @@ import { type as typeNavBarLink } from './NavBarLink';
 
 export const type = 'mj-navbar';
 
-export default (editor: grapesjs.Editor, { opt, coreMjmlModel, coreMjmlView, sandboxEl }: any) => {
+export default (editor: Editor, { opt, coreMjmlModel, coreMjmlView, sandboxEl }: any) => {
   editor.Components.addType(type, {
     isComponent: isComponentType(type),
     model: {
@@ -92,7 +92,7 @@ export default (editor: grapesjs.Editor, { opt, coreMjmlModel, coreMjmlView, san
         this.el.innerHTML = mjmlResult.content;
         this.$el.attr(mjmlResult.attributes);
         editor.addComponents(`<style>${mjmlResult.style}</style>`);
-        this.getChildrenContainer().innerHTML = this.model.get('content');
+        this.getChildrenContainer().innerHTML = this.model.get('content')!;
         this.renderChildren();
         this.renderStyle();
         return this;
