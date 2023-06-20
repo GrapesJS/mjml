@@ -89,9 +89,16 @@ export default (editor: Editor, { opt, coreMjmlModel, coreMjmlView, sandboxEl }:
       },
 
       renderStyle() {
-        const model_style = this.model.get('style') || {};
-        const style = Object.keys(this.model.get('style')).map(attr=>`${attr}:${model_style[attr]};`);
-        this.el.setAttribute('style', `${this.attributes.style} ${style.join(' ')} ${this.el.getAttribute('style')}`);
+        const { model, attributes, el } = this;
+        const modelStyle = model.get('style') || {};
+        const stylable = model.get('stylable') as string[];
+        const styles = Object.keys(modelStyle)
+          .filter(prop => stylable.indexOf(prop) > -1)
+          .map(prop => `${prop}:${modelStyle[prop]};`);
+        const styleResult = `${attributes.style} ${styles.join(' ')} ${el.getAttribute('style')}`;
+        el.setAttribute('style', styleResult);
+        // #290 Fix double borders
+        el.firstElementChild?.setAttribute('style', '');
         this.checkVisibility();
       },
 
