@@ -57,6 +57,13 @@ export default (editor: Editor, { coreMjmlModel, coreMjmlView }: any) => {
         }
       },
 
+      /**
+       * #305 prevent content repeating
+       */
+      rerender() {
+        this.render();
+      },
+
       getTemplateFromEl(sandboxEl: any) {
         return sandboxEl.querySelector('div').innerHTML;
       },
