@@ -1,6 +1,7 @@
 import type { Plugin } from 'grapesjs';
 import loadBlocks from './blocks';
 import loadComponents from './components';
+import mjml2html, { MjmlParser } from './components/parser';
 import loadCommands from './commands';
 import loadPanels from './panels';
 import loadStyle from './style';
@@ -37,6 +38,12 @@ export type PluginOptions = {
    * @default ''
    */
   imagePlaceholderSrc?: string;
+
+  /**
+   * Custom MJML parser.
+   * @default mjml-browser instance
+   */
+  mjmlParser?: MjmlParser;
 
   /**
    * Overwrite default export command
@@ -130,6 +137,7 @@ const plugin: Plugin<PluginOptions> = (editor, opt = {}) => {
     codeViewerTheme: 'hopscotch',
     importPlaceholder: '',
     imagePlaceholderSrc: '',
+    mjmlParser: mjml2html,
     overwriteExport: true,
     preMjml: '',
     postMjml: '',
