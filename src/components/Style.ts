@@ -1,11 +1,12 @@
 // Specs: https://documentation.mjml.io/#mj-style
 import type { Editor } from 'grapesjs';
+import { ComponentPluginOptions } from '.';
 import { componentsToQuery, isComponentType, mjmlConvert } from './utils';
 import { type as typeHead } from './Head';
 
 export const type = 'mj-style';
 
-export default (editor: Editor, { opt, coreMjmlModel, coreMjmlView, sandboxEl }: any) => {
+export default (editor: Editor, { opt, coreMjmlModel, coreMjmlView, sandboxEl }: ComponentPluginOptions) => {
   editor.Components.addType(type, {
     isComponent: isComponentType(type),
 

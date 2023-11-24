@@ -1,5 +1,5 @@
-import type { Editor } from 'grapesjs';
-import { mjmlConvert, debounce } from './utils';
+import type { Editor, PluginOptions } from 'grapesjs';
+import { mjmlConvert, debounce, componentsToQuery } from './utils';
 import loadMjml from './mjml';
 import loadHead from './Head';
 import loadStyle from './Style';
@@ -21,6 +21,20 @@ import loadNavBarLink from './NavBarLink';
 import loadHero from './Hero';
 import loadRaw from './Raw';
 import { RequiredPluginOptions } from '..';
+
+export type ComponentPluginOptions = {
+  /**
+   * Core model, which can be extended
+   */
+  coreMjmlModel: any;
+  /**
+   * Core view, which can be extended
+   */
+  coreMjmlView: any;
+  opt: Required<PluginOptions>;
+  sandboxEl: HTMLDivElement;
+  componentsToQuery: typeof componentsToQuery,
+}
 
 export default (editor: Editor, opt: RequiredPluginOptions) => {
   const { Components  } = editor;
@@ -266,9 +280,8 @@ export default (editor: Editor, opt: RequiredPluginOptions) => {
     }
   } as any;
 
-
   // MJML Internal view (for elements inside mj-columns)
-  const compOpts = { coreMjmlModel, coreMjmlView, opt, sandboxEl };
+  const compOpts = { coreMjmlModel, coreMjmlView, opt, sandboxEl, componentsToQuery};
 
   // Avoid the <body> tag from the default wrapper
   editor.Components.addType('wrapper', {
@@ -303,6 +316,7 @@ export default (editor: Editor, opt: RequiredPluginOptions) => {
     loadNavBarLink,
     loadHero,
     loadRaw,
+    ...opt.customComponents,
   ]
   .forEach(module => module(editor, compOpts));
 };

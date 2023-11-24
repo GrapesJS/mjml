@@ -1,5 +1,6 @@
 // Specs https://documentation.mjml.io/#mj-navbar
 import type { Editor } from 'grapesjs';
+import { ComponentPluginOptions } from '.';
 import { componentsToQuery, getName, isComponentType, mjmlConvert } from './utils';
 import { type as typeColumn } from './Column';
 import { type as typeHero } from './Hero';
@@ -7,7 +8,7 @@ import { type as typeNavBarLink } from './NavBarLink';
 
 export const type = 'mj-navbar';
 
-export default (editor: Editor, { opt, coreMjmlModel, coreMjmlView, sandboxEl }: any) => {
+export default (editor: Editor, { opt, coreMjmlModel, coreMjmlView, sandboxEl }: ComponentPluginOptions) => {
   editor.Components.addType(type, {
     isComponent: isComponentType(type),
     model: {

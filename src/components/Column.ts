@@ -1,11 +1,13 @@
 // Specs: https://documentation.mjml.io/#mj-column
 import type { Editor } from 'grapesjs';
+import { ComponentPluginOptions } from '.';
 import { componentsToQuery, getName, isComponentType, mjmlConvert } from './utils';
 import { type as typeSection } from './Section';
 
+
 export const type = 'mj-column';
 
-export default (editor: Editor, { opt, coreMjmlModel, coreMjmlView, sandboxEl }: any) => {
+export default (editor: Editor, { opt, coreMjmlModel, coreMjmlView, sandboxEl }: ComponentPluginOptions) => {
   const clmPadd = opt.columnsPadding;
 
   editor.Components.addType(type, {

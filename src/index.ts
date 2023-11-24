@@ -1,6 +1,6 @@
-import type { Plugin } from 'grapesjs';
+import type { Editor, Plugin } from 'grapesjs';
 import loadBlocks from './blocks';
-import loadComponents from './components';
+import loadComponents, { ComponentPluginOptions } from './components';
 import mjml2html, { MjmlParser } from './components/parser';
 import loadCommands from './commands';
 import loadPanels from './panels';
@@ -26,6 +26,13 @@ export type PluginOptions = {
    * @default 'hopscotch'
    */
   codeViewerTheme?: string;
+
+  /**
+   * Add custom MJML components
+   * 
+   * @default []
+   */
+  customComponents?: ((editor: Editor, componentOptions: ComponentPluginOptions) => void)[],
 
   /**
    * Placeholder MJML template for the import modal
@@ -135,6 +142,7 @@ const plugin: Plugin<PluginOptions> = (editor, opt = {}) => {
     ],
     block: () => ({}),
     codeViewerTheme: 'hopscotch',
+    customComponents: [],
     importPlaceholder: '',
     imagePlaceholderSrc: '',
     mjmlParser: mjml2html,
