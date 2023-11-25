@@ -1,12 +1,13 @@
 // Specs: https://documentation.mjml.io/#mjml-text
 import type { Editor } from 'grapesjs';
+import { ComponentPluginOptions } from '.';
 import { componentsToQuery, getName, isComponentType } from './utils';
 import { type as typeColumn } from './Column';
 import { type as typeHero } from './Hero';
 
 export const type = 'mj-text';
 
-export default (editor: Editor, { coreMjmlModel, coreMjmlView }: any) => {
+export default (editor: Editor, { coreMjmlModel, coreMjmlView }: ComponentPluginOptions) => {
   editor.Components.addType(type, {
     extend: 'text',
     extendFnView: ['onActive'],

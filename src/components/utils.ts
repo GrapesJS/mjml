@@ -1,14 +1,14 @@
-// @ts-ignore
-import mjml2html from 'mjml-browser';
 import type { Editor } from 'grapesjs';
+import { MJMLParsingOptions } from "mjml-core";
+import { MjmlParser } from "./parser";
 
 export const isComponentType = (type: string) => (el: Element) => (el.tagName || '').toLowerCase() === type;
 
-export function mjmlConvert (mjml: string, fonts: Record<string, string>, opts: Record<string, any> = {}) {
-  const options = {
+export function mjmlConvert (parser: MjmlParser, mjml: string, fonts: Record<string, string>, opts: Partial<MJMLParsingOptions> = {}) {
+  const options: MJMLParsingOptions = {
     useMjmlConfigOptions: false,
-    mjmlConfigPath: null,
-    filePath: null,
+    mjmlConfigPath: undefined,
+    filePath: undefined,
     ...opts,
   };
 
@@ -18,7 +18,7 @@ export function mjmlConvert (mjml: string, fonts: Record<string, string>, opts: 
     options.fonts = fonts;
   }
 
-  return mjml2html(mjml, options);
+  return parser(mjml, options);
 }
 
 export const componentsToQuery = (cmps: string | string[]): string => {

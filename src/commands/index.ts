@@ -22,7 +22,7 @@ export default (editor: Editor, opts: RequiredPluginOptions) => {
 
   Commands.add(cmdGetMjmlToHtml, (ed, _, opt) => {
       const mjml = Commands.run(cmdGetMjml);
-      return mjmlConvert(mjml, opts.fonts, opt);
+      return mjmlConvert(opts.mjmlParser, mjml, opts.fonts, opt);
   });
 
   openExportMjml(editor, opts, cmdOpenExport);

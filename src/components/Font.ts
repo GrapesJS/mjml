@@ -1,11 +1,12 @@
 // Specs: https://documentation.mjml.io/#mj-font
 import type { Editor } from 'grapesjs';
+import { ComponentPluginOptions } from '.';
 import { componentsToQuery, isComponentType, mjmlConvert } from './utils';
 import { type as typeHead } from './Head';
 
 export const type = 'mj-font';
 
-export default (editor: Editor, { opt, coreMjmlModel, coreMjmlView, sandboxEl }: any) => {
+export default (editor: Editor, { opt, coreMjmlModel, coreMjmlView, sandboxEl }: ComponentPluginOptions) => {
   editor.Components.addType(type, {
     isComponent: isComponentType(type),
     model: {
@@ -40,7 +41,7 @@ export default (editor: Editor, { opt, coreMjmlModel, coreMjmlView, sandboxEl }:
       getTemplateFromMjml() {
         let mjmlTmpl = this.getMjmlTemplate();
         let innerMjml = this.getInnerMjmlTemplate();
-        const htmlOutput = mjmlConvert(`${mjmlTmpl.start}
+        const htmlOutput = mjmlConvert(opt.mjmlParser, `${mjmlTmpl.start}
           ${innerMjml.start}${innerMjml.end}${mjmlTmpl.end}`, opt.fonts);
         let html = htmlOutput.html;
         let start = html.indexOf('<head>') + 6;

@@ -1,11 +1,12 @@
 // Specs: https://documentation.mjml.io/#mjml-social
 import type { Editor } from 'grapesjs';
+import { ComponentPluginOptions } from '.';
 import { componentsToQuery, getName, isComponentType } from './utils';
 import { type as typeSocial } from './Social';
 
 export const type = 'mj-social-element';
 
-export default (editor: Editor, { coreMjmlModel, coreMjmlView }: any) => {
+export default (editor: Editor, { coreMjmlModel, coreMjmlView }: ComponentPluginOptions) => {
   editor.Components.addType(type, {
     isComponent: isComponentType(type),
 
