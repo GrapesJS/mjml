@@ -54,6 +54,11 @@ export default (editor: Editor, opt: RequiredPluginOptions) => {
     handleStyleChange(m: any, v: any, opts: any) {
       const style = this.getStyle();
       delete style.__p;
+      // debugger;
+      //Caso o cliente digite 'auto' no campo de width
+      if (this.attributes.type == 'mj-image' && style.hasOwnProperty('width') && style.width=='auto') {
+        delete style.width;
+      }
       this.set('attributes', style, opts);
     },
 
