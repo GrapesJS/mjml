@@ -30,8 +30,11 @@ export default (editor: Editor, { coreMjmlModel, coreMjmlView }: any) => {
           'padding-right': '25px',
           'padding-left': '25px',
           'font-size': '13px',
-          'line-height': '22px',
+          'line-height': '0px',
           'align': 'left',
+        },
+        style: {
+          "line-height": '22px',
         },
       },
     },
