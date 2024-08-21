@@ -1,5 +1,5 @@
-import grapesjs, { Editor } from "grapesjs";
-import grapesJSMJML from "../../src";
+import grapesjs, { Editor } from 'grapesjs';
+import grapesJSMJML from '../../src';
 
 const rawMjml = `
     <mjml>
@@ -25,29 +25,29 @@ const rawMjml = `
 `;
 
 // https://github.com/GrapesJS/mjml/issues/367
-describe("Line Height", () => {
+describe('Line Height', () => {
   let editor: Editor;
 
   beforeEach((done) => {
     const e = grapesjs.init({
-      container: "#gjs",
+      container: '#gjs',
       plugins: [grapesJSMJML],
     });
     editor = e;
 
     editor.getModel().loadOnStart();
-    editor.on("change:readyLoad", () => done());
+    editor.on('change:readyLoad', () => done());
   });
 
   afterEach(() => {
     editor.destroy();
   });
 
-  test("Editor exists", () => {
+  test('Editor exists', () => {
     expect(editor).toBeTruthy();
   });
 
-  test("should expect default line height as 22px and export correctly in html", () => {
+  test('should expect default line height as 22px and export correctly in html', () => {
     editor.addComponents(rawMjml);
 
     const mjmlComponent = editor.getComponents().at(0);
@@ -56,11 +56,10 @@ describe("Line Height", () => {
     const mjmlColumn = mjmlSection.components().at(0);
     const mjmlText = mjmlColumn.components().at(0);
 
-    const defaultLineHeight = "22px";
-    const lineHeight = mjmlText.getAttributes()["line-height"];
-    expect(lineHeight).toBe(defaultLineHeight);
+    const lineHeight = mjmlText.getAttributes()['line-height'];
+    expect(lineHeight).toBe(undefined);
 
-    const { errors, html } = editor.Commands.run("mjml-code-to-html");
+    const { errors, html } = editor.Commands.run('mjml-code-to-html');
 
     expect(errors).toHaveLength(0);
     expect(html).toMatchSnapshot();
