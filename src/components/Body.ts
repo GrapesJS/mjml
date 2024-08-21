@@ -1,5 +1,6 @@
 // Specs: https://documentation.mjml.io/#mj-body
 import type { Editor } from 'grapesjs';
+import { ComponentPluginOptions } from '.';
 import { type as typeHero } from './Hero';
 import { type as typeRaw } from './Raw';
 import { type as typeSection } from './Section';
@@ -8,7 +9,7 @@ import { componentsToQuery, getName, isComponentType } from './utils';
 
 export const type = 'mj-body';
 
-export default (editor: Editor, { coreMjmlModel, coreMjmlView }: any) => {
+export default (editor: Editor, { coreMjmlModel, coreMjmlView }: ComponentPluginOptions) => {
   editor.Components.addType(type, {
     isComponent: isComponentType(type),
     model: {
