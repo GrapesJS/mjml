@@ -1,11 +1,13 @@
-name: build
+name: Quality
 on:
   push:
     branches:
       - master
   pull_request:
+    branches:
+      - master
 jobs:
-  build:
+  quality:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -15,4 +17,5 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - run: npm ci
       - run: npm run lint
+      - run: npm run test
       - run: npm run build

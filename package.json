@@ -8,7 +8,8 @@
     "lint:fix": "eslint src --fix",
     "v:patch": "npm version patch -m \"Release v%s\"",
     "build": "grapesjs-cli build --patch=false",
-    "start": "grapesjs-cli serve"
+    "start": "grapesjs-cli serve",
+    "test": "jest"
   },
   "files": [
     "/dist",
@@ -30,10 +31,27 @@
     "@types/mjml": "^4.7.4",
     "mjml-browser": "^4.13.0"
   },
+  "babel": {
+    "env": {
+      "test": {
+        "presets": [
+          "@babel/preset-env",
+          "@babel/preset-typescript"
+        ]
+      }
+    }
+  },
   "devDependencies": {
+    "@babel/cli": "^7.15.7",
+    "@babel/preset-typescript": "^7.16.7",
+    "@types/jest": "^29.5.12",
     "ajv": "^8.12.0",
     "eslint": "^8.23.0",
     "grapesjs": "^0.21.2",
-    "grapesjs-cli": "^4.1.1"
+    "grapesjs-cli": "^4.1.1",
+    "jest": "^24.9.0",
+    "regenerator-runtime": "^0.14.1",
+    "underscore": "^1.13.1",
+    "whatwg-fetch": "^3.6.2"
   }
 }
