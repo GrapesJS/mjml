@@ -8,8 +8,6 @@ This plugin enables the usage of [MJML](https://mjml.io/) components inside the 
 
 
 [Demo](http://grapesjs.com/demo-mjml.html)
-<p align="center"><img src="http://grapesjs.com/img/grapesjs-mjml-demo.jpg" alt="GrapesJS" align="center"/></p>
-<br/>
 
 Supported MJML components (using default mjml-browser parser):
 `mj-mjml`

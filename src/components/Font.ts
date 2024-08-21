@@ -13,7 +13,7 @@ export default (editor: Editor, { opt, coreMjmlModel, coreMjmlView, sandboxEl }:
       ...coreMjmlModel,
       defaults: {
         draggable: componentsToQuery(typeHead),
-        void: false
+        void: false,
       },
     },
     view: {
@@ -38,19 +38,24 @@ export default (editor: Editor, { opt, coreMjmlModel, coreMjmlView, sandboxEl }:
 
       renderStyle() {},
 
+      renderChildren() {},
+
       getTemplateFromMjml() {
-        let mjmlTmpl = this.getMjmlTemplate();
-        let innerMjml = this.getInnerMjmlTemplate();
-        const htmlOutput = mjmlConvert(opt.mjmlParser, `${mjmlTmpl.start}
-          ${innerMjml.start}${innerMjml.end}${mjmlTmpl.end}`, opt.fonts);
+        const mjmlTmpl = this.getMjmlTemplate();
+        const innerMjml = this.getInnerMjmlTemplate();
+        const htmlOutput = mjmlConvert(
+          opt.mjmlParser,
+          `${mjmlTmpl.start}
+          ${innerMjml.start}${innerMjml.end}${mjmlTmpl.end}`,
+          opt.fonts,
+        );
         let html = htmlOutput.html;
-        let start = html.indexOf('<head>') + 6;
-        let end = html.indexOf('</head>');
+        const start = html.indexOf('<head>') + 6;
+        const end = html.indexOf('</head>');
         html = html.substring(start, end).trim();
         sandboxEl.innerHTML = html;
         return this.getTemplateFromEl(sandboxEl);
       },
-    }
+    },
   });
-
 };
