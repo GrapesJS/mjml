@@ -1,5 +1,6 @@
 // Specs: https://documentation.mjml.io/#mj-hero
 import type { Editor } from 'grapesjs';
+import { ComponentPluginOptions } from '.';
 import { componentsToQuery, getName, isComponentType } from './utils';
 import { type as typeBody } from './Body';
 import { type as typeText } from './Text';
@@ -12,7 +13,7 @@ import { type as typeSpacer } from './Spacer';
 
 export const type = 'mj-hero';
 
-export default (editor: Editor, { coreMjmlModel, coreMjmlView }: any) => {
+export default (editor: Editor, { coreMjmlModel, coreMjmlView }: ComponentPluginOptions) => {
   editor.Components.addType(type, {
     isComponent: isComponentType(type),
     model: {

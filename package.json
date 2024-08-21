@@ -28,6 +28,7 @@
   "author": "Artur Arseniev",
   "license": "BSD-3-Clause",
   "dependencies": {
+    "@types/mjml": "^4.7.4",
     "mjml-browser": "^4.13.0"
   },
   "babel": {

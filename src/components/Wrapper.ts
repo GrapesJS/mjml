@@ -1,12 +1,13 @@
 // Specs: https://documentation.mjml.io/#mjml-wrapper
 import type { Editor } from 'grapesjs';
+import { ComponentPluginOptions } from '.';
 import { componentsToQuery, getName, isComponentType } from './utils';
 import { type as typeBody } from './Body';
 import { type as typeSection } from './Section';
 
 export const type = 'mj-wrapper';
 
-export default (editor: Editor, { coreMjmlModel, coreMjmlView }: any) => {
+export default (editor: Editor, { coreMjmlModel, coreMjmlView }: ComponentPluginOptions) => {
   editor.Components.addType(type, {
     isComponent: isComponentType(type),
 
