@@ -22,8 +22,8 @@ export default (editor: Editor, { coreMjmlModel, coreMjmlView }: ComponentPlugin
         'style-default': {
           'padding-left': '0px',
           'padding-right': '0px',
-          'padding-top': '10px',
-          'padding-bottom': '10px',
+          'padding-top': '20px',
+          'padding-bottom': '20px',
           'text-align': 'center',
         },
         stylable: [
