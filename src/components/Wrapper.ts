@@ -48,7 +48,7 @@ export default (editor: Editor, { coreMjmlModel, coreMjmlView }: ComponentPlugin
 
       getChildrenSelector() {
         if(this.model.getAttributes()['full-width']){
-          return 'table > tbody > tr > td > div > table > tbody > tr > td';
+          return 'table > tbody > tr > td > div table > tbody > tr > td';
         }else
           return 'table > tbody > tr > td';
       },
