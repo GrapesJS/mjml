@@ -20,8 +20,8 @@ export default (editor: Editor, opts: RequiredPluginOptions) => {
     return `${opts.preMjml}${editor.getHtml().trim()}${opts.postMjml}`;
   });
 
-  Commands.add(cmdGetMjmlToHtml, (ed: any, _: any, opt: CommandOptionsMjmlToHtml = {}) => {
-    const { mjml, ...rest } = opt;
+  Commands.add(cmdGetMjmlToHtml, (ed, _, opt) => {
+    const { mjml, ...rest } = (opt || {}) as CommandOptionsMjmlToHtml;
     const mjmlToParse = mjml || Commands.run(cmdGetMjml);
     return mjmlConvert(opts.mjmlParser, mjmlToParse, opts.fonts, rest);
   });
