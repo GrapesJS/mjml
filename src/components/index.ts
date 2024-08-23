@@ -33,15 +33,14 @@ export type ComponentPluginOptions = {
   coreMjmlView: any;
   opt: Required<PluginOptions>;
   sandboxEl: HTMLDivElement;
-  componentsToQuery: typeof componentsToQuery,
-}
+  componentsToQuery: typeof componentsToQuery;
+};
 
 export default (editor: Editor, opt: RequiredPluginOptions) => {
-  const { Components  } = editor;
+  const { Components } = editor;
   // @ts-ignore
   const ComponentsView = Components.ComponentsView;
   const sandboxEl = document.createElement('div');
-
 
   // MJML Core model
   let coreMjmlModel = {
@@ -71,7 +70,6 @@ export default (editor: Editor, opt: RequiredPluginOptions) => {
       this.set('attributes', style, opts);
     },
 
-
     getMjmlAttributes() {
       const attr = this.get('attributes') || {};
       delete attr.style;
@@ -79,7 +77,6 @@ export default (editor: Editor, opt: RequiredPluginOptions) => {
       if (src) attr.src = src;
       return attr;
     },
-
 
     /**
      * This will avoid rendering default attributes
@@ -101,7 +98,6 @@ export default (editor: Editor, opt: RequiredPluginOptions) => {
 
       return attr;
     },
-
 
     /**
      * Have to change a few things for the MJML's xml (no id, style, class)
@@ -135,9 +131,8 @@ export default (editor: Editor, opt: RequiredPluginOptions) => {
 
     isHidden() {
       return this.getStyle().display === 'none';
-    }
+    },
   } as any;
-
 
   /**
    * MJML Core View.
@@ -168,7 +163,6 @@ export default (editor: Editor, opt: RequiredPluginOptions) => {
       this.debouncedRender = debounce(this.render.bind(this), 0);
     },
 
-
     rerender() {
       this.render(null, null, {}, 1);
     },
@@ -194,8 +188,7 @@ export default (editor: Editor, opt: RequiredPluginOptions) => {
 
       for (let prop in attr) {
         const val = attr[prop];
-        strAttr += typeof val !== 'undefined' && val !== '' ?
-          ' ' + prop + '="' + val + '"' : '';
+        strAttr += typeof val !== 'undefined' && val !== '' ? ' ' + prop + '="' + val + '"' : '';
       }
 
       return {
@@ -228,7 +221,6 @@ export default (editor: Editor, opt: RequiredPluginOptions) => {
       return this.getTemplateFromEl(sandboxEl);
     },
 
-
     /**
      * Render children components
      * @private
@@ -239,12 +231,14 @@ export default (editor: Editor, opt: RequiredPluginOptions) => {
 
       // This trick will help perfs by caching children
       if (!appendChildren) {
-        this.childrenView = this.childrenView || new ComponentsView({
-          collection: this.model.get('components'),
-          // @ts-ignore
-          config: this.config,
-          componentTypes: this.opts.componentTypes,
-        });
+        this.childrenView =
+          this.childrenView ||
+          new ComponentsView({
+            collection: this.model.get('components'),
+            // @ts-ignore
+            config: this.config,
+            componentTypes: this.opts.componentTypes,
+          });
         this.childNodes = this.childrenView.render(container).el.childNodes;
       } else {
         this.childrenView.parentEl = container;
@@ -268,20 +262,20 @@ export default (editor: Editor, opt: RequiredPluginOptions) => {
       this.checkVisibility();
     },
 
-
     render(p: any, c: any, opts: any, appendChildren: boolean) {
       this.renderAttributes();
       this.el.innerHTML = this.getTemplateFromMjml();
       this.renderChildren(appendChildren);
       this.childNodes = this.getChildrenContainer().childNodes;
       this.renderStyle();
+      this.postRender();
 
       return this;
-    }
+    },
   } as any;
 
   // MJML Internal view (for elements inside mj-columns)
-  const compOpts = { coreMjmlModel, coreMjmlView, opt, sandboxEl, componentsToQuery};
+  const compOpts = { coreMjmlModel, coreMjmlView, opt, sandboxEl, componentsToQuery };
 
   // Avoid the <body> tag from the default wrapper
   editor.Components.addType('wrapper', {
@@ -291,8 +285,8 @@ export default (editor: Editor, opt: RequiredPluginOptions) => {
       },
       toHTML(opts: any) {
         return this.getInnerHTML(opts)!;
-      }
-    }
+      },
+    },
   });
 
   [
@@ -317,6 +311,5 @@ export default (editor: Editor, opt: RequiredPluginOptions) => {
     loadHero,
     loadRaw,
     ...opt.customComponents,
-  ]
-  .forEach(module => module(editor, compOpts));
+  ].forEach((module) => module(editor, compOpts));
 };

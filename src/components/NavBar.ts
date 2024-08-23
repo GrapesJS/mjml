@@ -31,8 +31,8 @@ export default (editor: Editor, { opt, coreMjmlModel, coreMjmlView, sandboxEl }:
             options: [
               { value: 'hamburger', name: 'ON' },
               { value: '', name: 'OFF' },
-            ]
-          }
+            ],
+          },
         ],
       },
     },
@@ -52,8 +52,12 @@ export default (editor: Editor, { opt, coreMjmlModel, coreMjmlView, sandboxEl }:
       getTemplateFromMjml() {
         const mjmlTmpl = this.getMjmlTemplate();
         const innerMjml = this.getInnerMjmlTemplate();
-        const htmlOutput = mjmlConvert(opt.mjmlParser, `${mjmlTmpl.start}
-          ${innerMjml.start}${innerMjml.end}${mjmlTmpl.end}`, opt.fonts);
+        const htmlOutput = mjmlConvert(
+          opt.mjmlParser,
+          `${mjmlTmpl.start}
+          ${innerMjml.start}${innerMjml.end}${mjmlTmpl.end}`,
+          opt.fonts,
+        );
         const html = htmlOutput.html;
 
         // I need styles for hamburger
@@ -63,7 +67,6 @@ export default (editor: Editor, { opt, coreMjmlModel, coreMjmlView, sandboxEl }:
         styleArr.forEach((item) => {
           styles.push(item.innerHTML);
         });
-
 
         const content = html.replace(/<body(.*)>/, '<body>');
         const start = content.indexOf('<body>') + 6;
@@ -83,7 +86,7 @@ export default (editor: Editor, { opt, coreMjmlModel, coreMjmlView, sandboxEl }:
         return {
           attributes,
           content: componentEl.innerHTML,
-          style: styles.join(' ')
+          style: styles.join(' '),
         };
       },
 
@@ -96,6 +99,8 @@ export default (editor: Editor, { opt, coreMjmlModel, coreMjmlView, sandboxEl }:
         this.getChildrenContainer().innerHTML = this.model.get('content')!;
         this.renderChildren();
         this.renderStyle();
+        this.postRender();
+
         return this;
       },
 
