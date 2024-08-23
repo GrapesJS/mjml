@@ -1,4 +1,4 @@
-import type { Editor, PluginOptions } from 'grapesjs';
+import type { Editor } from 'grapesjs';
 import { mjmlConvert, debounce, componentsToQuery } from './utils';
 import loadMjml from './mjml';
 import loadHead from './Head';
@@ -20,7 +20,7 @@ import loadNavBar from './NavBar';
 import loadNavBarLink from './NavBarLink';
 import loadHero from './Hero';
 import loadRaw from './Raw';
-import { RequiredPluginOptions } from '..';
+import { RequiredPluginOptions, PluginOptions } from '..';
 
 export type ComponentPluginOptions = {
   /**
