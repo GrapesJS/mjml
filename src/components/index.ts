@@ -64,10 +64,14 @@ export default (editor: Editor, opt: RequiredPluginOptions) => {
       this.setStyle(this.get('attributes'), opts);
     },
 
-    handleStyleChange(m: any, v: any, opts: any) {
-      const style = this.getStyle();
+    getStylesToAttributes() {
+      const style = this.getStyle() || {};
       delete style.__p;
-      this.set('attributes', style, opts);
+      return style;
+    },
+
+    handleStyleChange(m: any, v: any, opts: any) {
+      this.set('attributes', this.getStylesToAttributes(), opts);
     },
 
     getMjmlAttributes() {

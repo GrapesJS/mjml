@@ -20,21 +20,45 @@ export default (editor: Editor, { coreMjmlModel, coreMjmlView }: ComponentPlugin
         name: getName(editor, 'image'),
         draggable: componentsToQuery([typeSection, typeColumn, typeHero]),
         stylable: [
-          'width', 'height',
-          'padding', 'padding-top', 'padding-left', 'padding-right', 'padding-bottom',
-          'border-radius', 'border-top-left-radius', 'border-top-right-radius', 'border-bottom-left-radius', 'border-bottom-right-radius',
-          'border', 'border-width', 'border-style', 'border-color',
-          'container-background-color', 'align',
+          'width',
+          'height',
+          'padding',
+          'padding-top',
+          'padding-left',
+          'padding-right',
+          'padding-bottom',
+          'border-radius',
+          'border-top-left-radius',
+          'border-top-right-radius',
+          'border-bottom-left-radius',
+          'border-bottom-right-radius',
+          'border',
+          'border-width',
+          'border-style',
+          'border-color',
+          'container-background-color',
+          'align',
         ],
         'style-default': {
           'padding-top': '10px',
           'padding-bottom': '10px',
           'padding-right': '25px',
           'padding-left': '25px',
-          'align': 'center',
+          align: 'center',
         },
         traits: ['href', 'rel', 'alt', 'title'],
         void: false,
+      },
+
+      getStylesToAttributes() {
+        const style = coreMjmlModel.getStylesToAttributes.call(this);
+
+        // Fix #339
+        if (style.width === 'auto') {
+          delete style.width;
+        }
+
+        return style;
       },
     },
 
