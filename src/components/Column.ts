@@ -4,7 +4,6 @@ import { ComponentPluginOptions } from '.';
 import { componentsToQuery, getName, isComponentType, mjmlConvert } from './utils';
 import { type as typeSection } from './Section';
 
-
 export const type = 'mj-column';
 
 export default (editor: Editor, { opt, coreMjmlModel, coreMjmlView, sandboxEl }: ComponentPluginOptions) => {
@@ -18,14 +17,27 @@ export default (editor: Editor, { opt, coreMjmlModel, coreMjmlView, sandboxEl }:
         name: getName(editor, 'column'),
         draggable: componentsToQuery(typeSection),
         stylable: [
-          'background-color', 'vertical-align', 'width',
-          'border-radius', 'border-top-left-radius', 'border-top-right-radius', 'border-bottom-left-radius', 'border-bottom-right-radius',
-          'border', 'border-width', 'border-style', 'border-color',
-          'padding', 'padding-top', 'padding-left', 'padding-right', 'padding-bottom',
+          'background-color',
+          'vertical-align',
+          'width',
+          'border-radius',
+          'border-top-left-radius',
+          'border-top-right-radius',
+          'border-bottom-left-radius',
+          'border-bottom-right-radius',
+          'border',
+          'border-width',
+          'border-style',
+          'border-color',
+          'padding',
+          'padding-top',
+          'padding-left',
+          'padding-right',
+          'padding-bottom',
         ],
         'style-default': {
-          'vertical-align': 'top'
-        }
+          'vertical-align': 'top',
+        },
       },
     },
 
@@ -39,8 +51,12 @@ export default (editor: Editor, { opt, coreMjmlModel, coreMjmlView, sandboxEl }:
       getTemplateFromMjml() {
         const mjmlTmpl = this.getMjmlTemplate();
         const innerMjml = this.getInnerMjmlTemplate();
-        const htmlOutput = mjmlConvert(opt.mjmlParser, `${mjmlTmpl.start}
-          ${innerMjml.start}${innerMjml.end}${mjmlTmpl.end}`, opt.fonts);
+        const htmlOutput = mjmlConvert(
+          opt.mjmlParser,
+          `${mjmlTmpl.start}
+          ${innerMjml.start}${innerMjml.end}${mjmlTmpl.end}`,
+          opt.fonts,
+        );
         const html = htmlOutput.html;
 
         // I need styles for responsive columns
@@ -50,7 +66,6 @@ export default (editor: Editor, { opt, coreMjmlModel, coreMjmlView, sandboxEl }:
         styleArr.forEach((item) => {
           styles.push(item.innerHTML);
         });
-
 
         const content = html.replace(/<body(.*)>/, '<body>');
         const start = content.indexOf('<body>') + 6;
@@ -70,7 +85,7 @@ export default (editor: Editor, { opt, coreMjmlModel, coreMjmlView, sandboxEl }:
         return {
           attributes,
           content: componentEl.innerHTML,
-          style: styles.join(' ')
+          style: styles.join(' '),
         };
       },
 
@@ -86,6 +101,7 @@ export default (editor: Editor, { opt, coreMjmlModel, coreMjmlView, sandboxEl }:
 
         // In case mjmlResult.attributes removes necessary stuff
         this.updateStatus();
+        this.postRender();
 
         return this;
       },
@@ -95,8 +111,8 @@ export default (editor: Editor, { opt, coreMjmlModel, coreMjmlView, sandboxEl }:
         const modelStyle = model.get('style') || {};
         const stylable = model.get('stylable') as string[];
         const styles = Object.keys(modelStyle)
-          .filter(prop => stylable.indexOf(prop) > -1)
-          .map(prop => `${prop}:${modelStyle[prop]};`);
+          .filter((prop) => stylable.indexOf(prop) > -1)
+          .map((prop) => `${prop}:${modelStyle[prop]};`);
         const styleResult = `${attributes.style} ${styles.join(' ')} ${el.getAttribute('style')}`;
         el.setAttribute('style', styleResult);
         // #290 Fix double borders
