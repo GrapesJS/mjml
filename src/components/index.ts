@@ -289,9 +289,7 @@ export default (editor: Editor, opt: RequiredPluginOptions) => {
         highlightable: false,
       },
       toHTML(opts: any) {
-        return this.components()
-          .map((cmp) => cmp.toHTML(opts))
-          .join('');
+        return this.getInnerHTML(opts)!;
       },
     },
   });
