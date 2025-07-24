@@ -2,7 +2,6 @@ import type { Plugin } from 'grapesjs';
 import loadBlocks from './blocks';
 import loadCommands from './commands';
 import loadComponents from './components';
-import mjml2html from './components/parser';
 import en from './locale/en';
 import loadPanels from './panels';
 import loadStyle from './style';
@@ -36,7 +35,7 @@ const plugin: Plugin<PluginOptions> = (editor, opt = {}) => {
     customComponents: [],
     importPlaceholder: '',
     imagePlaceholderSrc: '',
-    mjmlParser: mjml2html,
+    mjmlParser: opt.mjmlParser ? opt.mjmlParser : require("./components/parser"),
     overwriteExport: true,
     preMjml: '',
     postMjml: '',
