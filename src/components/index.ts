@@ -1,4 +1,4 @@
-import type { Editor } from 'grapesjs';
+import type { Editor, ToHTMLOptions } from 'grapesjs';
 import { mjmlConvert, debounce, componentsToQuery } from './utils';
 import loadMjml from './mjml';
 import loadHead from './Head';
@@ -106,7 +106,7 @@ export default (editor: Editor, opt: RequiredPluginOptions) => {
     /**
      * Have to change a few things for the MJML's xml (no id, style, class)
      */
-    toHTML() {
+    toHTML(opts: ToHTMLOptions) {
       const model = this;
       const tag = model.get('tagName');
       const voidTag = model.get('void');
@@ -123,7 +123,7 @@ export default (editor: Editor, opt: RequiredPluginOptions) => {
       code += `<${tag}${strAttr}${voidTag ? '/' : ''}>` + model.get('content');
 
       model.components().forEach((model: any) => {
-        code += model.toHTML();
+        code += model.toHTML(opts);
       });
 
       if (!voidTag) {
@@ -237,6 +237,7 @@ export default (editor: Editor, opt: RequiredPluginOptions) => {
       if (!appendChildren) {
         this.childrenView =
           this.childrenView ||
+          // @ts-ignore
           new ComponentsView({
             collection: this.model.get('components'),
             // @ts-ignore

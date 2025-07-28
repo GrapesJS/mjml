@@ -2,7 +2,7 @@
 
 > Requires GrapesJS v0.15.9 or higher
 
-[![build](https://github.com/artf/grapesjs-mjml/workflows/build/badge.svg)](https://github.com/artf/grapesjs-mjml/actions)
+[![build](https://github.com/GrapesJS/mjml/actions/workflows/build.yml/badge.svg)](https://github.com/artf/grapesjs-mjml/actions)
 
 This plugin enables the usage of [MJML](https://mjml.io/) components inside the GrapesJS environment. MJML components are rendered in real-time using the official v4 compiler (+ some mocks to make it run in the browser), therefore the result is, almost, the same as using the [MJML Live Editor](https://mjml.io/try-it-live).
 
