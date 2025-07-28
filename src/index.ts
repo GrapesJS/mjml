@@ -35,7 +35,7 @@ const plugin: Plugin<PluginOptions> = (editor, opt = {}) => {
     customComponents: [],
     importPlaceholder: '',
     imagePlaceholderSrc: '',
-    mjmlParser: opt.mjmlParser ? opt.mjmlParser : require("./components/parser"),
+    mjmlParser: mjml2html,
     overwriteExport: true,
     preMjml: '',
     postMjml: '',
