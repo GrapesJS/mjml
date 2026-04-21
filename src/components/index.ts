@@ -40,7 +40,7 @@ export default (editor: Editor, opt: RequiredPluginOptions) => {
   const { Components } = editor;
   // @ts-ignore
   const ComponentsView = Components.ComponentsView;
-  const sandboxEl = document.createElement('div');
+  const sandboxEl = editor.getConfig().headless ? undefined as unknown as HTMLDivElement : document.createElement('div');
 
   // MJML Core model
   let coreMjmlModel = {
