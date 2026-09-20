@@ -41,7 +41,7 @@ Supported MJML components (using default mjml-browser parser):
 |`codeViewerTheme`|Code viewer theme.|`hopscotch`|
 |`customComponents`|List of components which will be added to default one |`[]` |
 |`importPlaceholder`|Placeholder MJML template for the import modal|`''`|
-|`imagePlaceholderSrc`|Image placeholder source|`'https://via.placeholder.com/350x250/78c5d6/fff'`|
+|`imagePlaceholderSrc`|Image placeholder source|`'https://placeholder.photo/350x250/78c5d6/fff'`|
 |`i18n`|I18n object containing language [more info](https://grapesjs.com/docs/modules/I18n.html#configuration)|`{}`|
 |`mjmlParser`|Custom [mjml-browser](https://www.npmjs.com/package/mjml-browser) instance. Allows to extend MJML functionality or add custom MJML components |`(input: string \| MJMLJsonObject, opt: MJMLParsingOptions) => MJMLParseResults`|
 |`overwriteExport`|Overwrite default export command|`true`|
