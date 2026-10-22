@@ -15,6 +15,7 @@ export default (editor: Editor, { coreMjmlModel, coreMjmlView }: ComponentPlugin
     model: {
       ...coreMjmlModel,
       defaults: {
+        tagName: type,
         name: getName(editor, 'body'),
         droppable: componentsToQuery([typeSection, typeWrapper, typeHero, typeRaw]),
         draggable: false,

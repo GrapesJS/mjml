@@ -15,6 +15,7 @@ export default (editor: Editor, { coreMjmlModel, coreMjmlView }: ComponentPlugin
     model: {
       ...coreMjmlModel,
       defaults: {
+        tagName: type,
         resizable: false,
         highlightable: false,
         name: getName(editor, 'image'),
@@ -48,6 +49,13 @@ export default (editor: Editor, { coreMjmlModel, coreMjmlView }: ComponentPlugin
         },
         traits: ['href', 'rel', 'alt', 'title'],
         void: false,
+      },
+
+      getAttrToHTML() {
+        const attrs = coreMjmlModel.getAttrToHTML.call(this);
+        const src = this.getSrcResult();
+        if (src) attrs.src = src;
+        return attrs;
       },
 
       getStylesToAttributes() {

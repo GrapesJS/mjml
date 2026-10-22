@@ -32,7 +32,8 @@ export type ComponentPluginOptions = {
    */
   coreMjmlView: any;
   opt: Required<PluginOptions>;
-  sandboxEl: HTMLDivElement;
+  /** Rendering sandbox, available only when a DOM is present. */
+  sandboxEl?: HTMLDivElement;
   componentsToQuery: typeof componentsToQuery;
 };
 
@@ -40,7 +41,7 @@ export default (editor: Editor, opt: RequiredPluginOptions) => {
   const { Components } = editor;
   // @ts-ignore
   const ComponentsView = Components.ComponentsView;
-  const sandboxEl = document.createElement('div');
+  const sandboxEl = typeof document !== 'undefined' ? document.createElement('div') : undefined;
 
   // MJML Core model
   let coreMjmlModel = {
@@ -221,7 +222,7 @@ export default (editor: Editor, opt: RequiredPluginOptions) => {
       let start = html.indexOf('<body>') + 6;
       let end = html.indexOf('</body>');
       html = html.substring(start, end).trim();
-      sandboxEl.innerHTML = html;
+      sandboxEl!.innerHTML = html;
       return this.getTemplateFromEl(sandboxEl);
     },
 

@@ -14,6 +14,7 @@ export default (editor:  Editor, { coreMjmlModel, coreMjmlView }: ComponentPlugi
     model: {
       ...coreMjmlModel,
       defaults: {
+        tagName: type,
         name: getName(editor, 'button'),
         draggable: componentsToQuery([typeColumn, typeHero]),
         highlightable: false,
