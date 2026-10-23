@@ -10,7 +10,7 @@
     "build": "grapesjs-cli build --patch=false",
     "start": "grapesjs-cli serve",
     "test": "jest",
-    "typecheck": "tsc --noEmit --project tsconfig.test.json"
+    "typecheck": "tsc --noEmit --project tests/tsconfig.json"
   },
   "files": [
     "/dist",
