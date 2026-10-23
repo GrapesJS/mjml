@@ -1,7 +1,12 @@
 module.exports = {
-  moduleFileExtensions: ["js", "ts"],
   verbose: true,
-  modulePaths: ["<rootDir>/src"],
-  testMatch: ["<rootDir>/tests/specs/**/*.(t|j)s"],
-  setupFiles: ["<rootDir>/tests/setup.js"],
+  testEnvironment: "jsdom",
+  testMatch: ["<rootDir>/tests/specs/**/*.test.[jt]s"],
+  transform: {
+    "^.+\\.[jt]s$": "babel-jest",
+  },
+  snapshotFormat: {
+    escapeString: true,
+    printBasicPrototype: true,
+  },
 };

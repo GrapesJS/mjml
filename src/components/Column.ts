@@ -109,7 +109,7 @@ export default (editor: Editor, { opt, coreMjmlModel, coreMjmlView, sandboxEl }:
 
       renderStyle() {
         const { model, attributes, el } = this;
-        const modelStyle = model.get('style') || {};
+        const modelStyle = model.getStyle();
         const stylable = model.get('stylable') as string[];
         const styles = Object.keys(modelStyle)
           .filter((prop) => stylable.indexOf(prop) > -1)

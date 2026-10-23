@@ -175,6 +175,8 @@ grapesJS.init({
 
 ## Development
 
+Use Node.js 22.13+ or 24+. CI runs the checks on Node.js 22 and 24.
+
 Clone the repository
 
 ```sh
@@ -186,6 +188,14 @@ Install it
 
 ```sh
 $ npm i
+```
+
+Run the checks
+
+```sh
+$ npm run lint
+$ npm run typecheck
+$ npm test
 ```
 
 Start the dev server

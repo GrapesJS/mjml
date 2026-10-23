@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`Headless MJML adds object components and exports MJML and HTML without a DOM: HTML after image update 1`] = `
 "<!doctype html>
