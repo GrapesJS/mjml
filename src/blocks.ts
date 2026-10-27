@@ -177,12 +177,12 @@ export default (editor: Editor, opts: RequiredPluginOptions) => {
     </svg>`,
     content: `<mj-raw>
       <div class="container">
-        <img class="item" src="https://source.unsplash.com/random/200x141" alt="Example image">
-        <img class="item" src="https://source.unsplash.com/random/200x142" alt="Example image">
-        <img class="item" src="https://source.unsplash.com/random/200x143" alt="Example image">
-        <img class="item" src="https://source.unsplash.com/random/200x144" alt="Example image">
-        <img class="item" src="https://source.unsplash.com/random/200x145" alt="Example image">
-        <img class="item" src="https://source.unsplash.com/random/200x146" alt="Example image">
+        <img class="item" src="https://picsum.photos/seed/grapesjs-mjml-1/200/141" alt="Example image">
+        <img class="item" src="https://picsum.photos/seed/grapesjs-mjml-2/200/142" alt="Example image">
+        <img class="item" src="https://picsum.photos/seed/grapesjs-mjml-3/200/143" alt="Example image">
+        <img class="item" src="https://picsum.photos/seed/grapesjs-mjml-4/200/144" alt="Example image">
+        <img class="item" src="https://picsum.photos/seed/grapesjs-mjml-5/200/145" alt="Example image">
+        <img class="item" src="https://picsum.photos/seed/grapesjs-mjml-6/200/146" alt="Example image">
       </div>
     </mj-raw>`,
   });
