@@ -18,6 +18,7 @@ export default (editor: Editor, { coreMjmlModel, coreMjmlView }: ComponentPlugin
         draggable: componentsToQuery([typeColumn, typeHero]),
         droppable: false,
         'style-default': {
+          'align': 'center',
           'width': '100%',
           'border-width': '4px',
           'border-style': 'solid',
@@ -29,7 +30,7 @@ export default (editor: Editor, { coreMjmlModel, coreMjmlView }: ComponentPlugin
         },
         stylable: [
           'padding', 'padding-top', 'padding-left', 'padding-right', 'padding-bottom',
-          'width', 'container-background-color',
+          'width', 'container-background-color', 'align',
           'border-detached', 'border-width', 'border-style', 'border-color'
         ],
         void: false,
