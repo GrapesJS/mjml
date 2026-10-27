@@ -1,15 +1,15 @@
-import grapesjs, { Editor } from 'grapesjs';
+import { Editor } from 'grapesjs';
 import grapesJSMJML from '../../src';
+import { createTestEditor } from '../utils';
 
 describe('Divider alignment', () => {
   let editor: Editor;
 
   beforeEach((done) => {
     document.body.innerHTML = '<div id="gjs"></div>';
-    editor = grapesjs.init({
+    editor = createTestEditor({
       container: '#gjs',
       plugins: [grapesJSMJML],
-      storageManager: false,
     });
     editor.onReady(() => {
       jest.useFakeTimers();
