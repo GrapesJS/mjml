@@ -1,9 +1,9 @@
 import type { Editor } from 'grapesjs';
-import type { MJMLParsingOptions } from 'mjml-core';
 import { ComponentPluginOptions } from './components';
 import { MjmlParser } from './components/parser';
+import type { MjmlOptions, MjmlPreset } from './mjml';
 
-export interface CommandOptionsMjmlToHtml extends MJMLParsingOptions {
+export interface CommandOptionsMjmlToHtml extends MjmlOptions {
   mjml?: string;
 }
 
@@ -28,7 +28,7 @@ export type PluginOptions = {
   codeViewerTheme?: string;
 
   /**
-   * Add custom MJML components
+   * Register custom GrapesJS component types for MJML tags.
    *
    * @default []
    */
@@ -48,9 +48,16 @@ export type PluginOptions = {
 
   /**
    * Custom MJML parser.
-   * @default mjml-browser instance
+   * @default bundled MJML v4 browser compiler
    */
   mjmlParser?: MjmlParser;
+
+  /**
+   * MJML components and validation dependencies used by every preview and export.
+   * These presets are scoped to this editor.
+   * @default []
+   */
+  mjmlPresets?: MjmlPreset[];
 
   /**
    * Overwrite default export command

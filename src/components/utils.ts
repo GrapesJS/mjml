@@ -1,11 +1,11 @@
 import type { Editor } from 'grapesjs';
-import { MJMLParsingOptions } from "mjml-core";
+import type { MjmlOptions } from '../mjml';
 import { MjmlParser } from "./parser";
 
 export const isComponentType = (type: string) => (el: Element) => (el.tagName || '').toLowerCase() === type;
 
-export function mjmlConvert (parser: MjmlParser, mjml: string, fonts: Record<string, string>, opts: Partial<MJMLParsingOptions> = {}) {
-  const options: MJMLParsingOptions = {
+export function mjmlConvert (parser: MjmlParser, mjml: string, fonts: Record<string, string>, opts: MjmlOptions = {}) {
+  const options: MjmlOptions = {
     useMjmlConfigOptions: false,
     mjmlConfigPath: undefined,
     filePath: undefined,

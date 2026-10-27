@@ -5,6 +5,11 @@ module.exports = {
   transform: {
     "^.+\\.[jt]s$": "babel-jest",
   },
+  transformIgnorePatterns: ['/node_modules/', '<rootDir>/dist/'],
+  setupFiles: ['<rootDir>/tests/mjml.setup.ts'],
+  moduleNameMapper: {
+    '^juice$': 'juice/client.js',
+  },
   snapshotFormat: {
     escapeString: true,
     printBasicPrototype: true,
