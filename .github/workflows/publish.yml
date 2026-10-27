@@ -1,0 +1,33 @@
+name: Publish
+on:
+  push:
+    branches: [master]
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    if: >-
+      startsWith(github.event.head_commit.message, 'Release grapesjs-mjml rc:') ||
+      startsWith(github.event.head_commit.message, 'Release grapesjs-mjml latest:')
+    runs-on: ubuntu-latest
+    env:
+      NPM_TAG: ${{ startsWith(github.event.head_commit.message, 'Release grapesjs-mjml rc:') && 'rc' || 'latest' }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24.x'
+          registry-url: 'https://registry.npmjs.org'
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test -- --runInBand --ci
+      - run: npm run build
+      - run: npm run test:bundle -- --ci
+      - name: Publish to npm
+        run: npm publish --access public --tag "$NPM_TAG"
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.ORG_NPM_TOKEN }}

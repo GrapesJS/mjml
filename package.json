@@ -6,7 +6,8 @@
   "scripts": {
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
-    "v:patch": "npm version patch -m \"Release v%s\"",
+    "release:core": "node --experimental-strip-types --experimental-default-type=module scripts/release.ts latest",
+    "release:rc": "node --experimental-strip-types --experimental-default-type=module scripts/release.ts rc",
     "build": "grapesjs-cli build --patch=false",
     "start": "grapesjs-cli serve",
     "test": "jest",

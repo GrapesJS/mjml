@@ -295,11 +295,27 @@ $ npm start
 
 ## Releasing
 
-1) Run `npm run v:patch` to bump the version in package.json and create a git tag
-2) Push the commit + new tag
-3) Go to github and draft a new release
-4) Select the new tag and add some release notes
-5) Hit publish, the release will automatically publish to npm
+Start with a clean working tree, then prepare a stable release or release candidate:
+
+```sh
+$ npm run release:core
+$ npm run release:rc
+```
+
+These commands update `package.json` and
+`package-lock.json`, create a `release-v<version>` branch, and commit the version
+change. The stable command bumps the patch version, or promotes the current
+prerelease to its stable version. The RC command increments the current RC, or
+starts the next patch at `-rc.0`.
+
+Push the release branch and open a PR targeting `master`. Keep the generated
+commit message when merging (use it as the squash commit title):
+`Release grapesjs-mjml rc: v<version>` or
+`Release grapesjs-mjml latest: v<version>`.
+
+The publish workflow runs the checks, builds the package, and publishes to npm
+with the matching `rc` or `latest` tag. A GitHub release is optional and does not
+trigger publishing.
 
 ## License
 
