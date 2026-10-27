@@ -13,6 +13,7 @@ export default (editor: Editor, { coreMjmlModel, coreMjmlView }: ComponentPlugin
     model: {
       ...coreMjmlModel,
       defaults: {
+        tagName: type,
         droppable: componentsToQuery([typeHead, typeBody]),
         draggable: false,
         stylable: false,

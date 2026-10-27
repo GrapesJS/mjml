@@ -56,12 +56,12 @@ describe("mjml tests", () => {
   beforeEach((done) => {
     const e = grapesjs.init({
       container: "#gjs",
+      storageManager: false,
       plugins: [grapesJSMJML],
     });
     editor = e;
 
-    editor.getModel().loadOnStart();
-    editor.on("change:readyLoad", () => done());
+    editor.once("change:readyLoad", () => done());
   });
 
   afterEach(() => {

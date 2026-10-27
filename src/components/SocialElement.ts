@@ -13,6 +13,7 @@ export default (editor: Editor, { coreMjmlModel, coreMjmlView }: ComponentPlugin
     model: {
       ...coreMjmlModel,
       defaults: {
+        tagName: type,
         name: getName(editor, 'socialElement'),
         draggable: componentsToQuery(typeSocial),
         stylable: [

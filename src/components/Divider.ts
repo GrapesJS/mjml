@@ -13,6 +13,7 @@ export default (editor: Editor, { coreMjmlModel, coreMjmlView }: ComponentPlugin
     model: {
       ...coreMjmlModel,
       defaults: {
+        tagName: type,
         name: getName(editor, 'divider'),
         draggable: componentsToQuery([typeColumn, typeHero]),
         droppable: false,

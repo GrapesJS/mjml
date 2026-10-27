@@ -9,6 +9,7 @@ import loadStyle from './style';
 import { PluginOptions } from './types';
 
 export * from './types';
+export * from './mjml';
 
 export type RequiredPluginOptions = Required<PluginOptions>;
 
@@ -37,6 +38,7 @@ const plugin: Plugin<PluginOptions> = (editor, opt = {}) => {
     importPlaceholder: '',
     imagePlaceholderSrc: '',
     mjmlParser: mjml2html,
+    mjmlPresets: [],
     overwriteExport: true,
     preMjml: '',
     postMjml: '',
@@ -53,6 +55,14 @@ const plugin: Plugin<PluginOptions> = (editor, opt = {}) => {
     // exportOnly: '',
     ...opt,
   };
+
+  if (opts.mjmlPresets.length) {
+    const parser = opts.mjmlParser;
+    opts.mjmlParser = (input, options) => parser(input, {
+      ...options,
+      presets: [...opts.mjmlPresets, ...(options?.presets || [])],
+    });
+  }
 
   const config = editor.getConfig();
 

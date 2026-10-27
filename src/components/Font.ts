@@ -12,6 +12,7 @@ export default (editor: Editor, { opt, coreMjmlModel, coreMjmlView, sandboxEl }:
     model: {
       ...coreMjmlModel,
       defaults: {
+        tagName: type,
         draggable: componentsToQuery(typeHead),
         void: false,
       },
@@ -53,7 +54,7 @@ export default (editor: Editor, { opt, coreMjmlModel, coreMjmlView, sandboxEl }:
         const start = html.indexOf('<head>') + 6;
         const end = html.indexOf('</head>');
         html = html.substring(start, end).trim();
-        sandboxEl.innerHTML = html;
+        sandboxEl!.innerHTML = html;
         return this.getTemplateFromEl(sandboxEl);
       },
     },

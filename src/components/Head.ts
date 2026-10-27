@@ -9,6 +9,7 @@ export default (editor: Editor) => {
     isComponent: isComponentType(type),
     model: {
       defaults: {
+        tagName: type,
         draggable: false,
         droppable: componentsToQuery([
           'mj-preview',

@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`Line Height should expect default line height as 22px and export correctly in html 1`] = `
 "<!doctype html>

@@ -14,6 +14,7 @@ export default (editor: Editor, { opt, coreMjmlModel, coreMjmlView, sandboxEl }:
     model: {
       ...coreMjmlModel,
       defaults: {
+        tagName: type,
         name: getName(editor, 'column'),
         draggable: componentsToQuery(typeSection),
         stylable: [
@@ -61,8 +62,8 @@ export default (editor: Editor, { opt, coreMjmlModel, coreMjmlView, sandboxEl }:
 
         // I need styles for responsive columns
         const styles: string[] = [];
-        sandboxEl.innerHTML = html;
-        const styleArr: HTMLStyleElement[] = Array.from(sandboxEl.querySelectorAll('style'));
+        sandboxEl!.innerHTML = html;
+        const styleArr: HTMLStyleElement[] = Array.from(sandboxEl!.querySelectorAll('style'));
         styleArr.forEach((item) => {
           styles.push(item.innerHTML);
         });
@@ -70,7 +71,7 @@ export default (editor: Editor, { opt, coreMjmlModel, coreMjmlView, sandboxEl }:
         const content = html.replace(/<body(.*)>/, '<body>');
         const start = content.indexOf('<body>') + 6;
         const end = content.indexOf('</body>');
-        sandboxEl.innerHTML = content.substring(start, end).trim();
+        sandboxEl!.innerHTML = content.substring(start, end).trim();
         const componentEl = this.getTemplateFromEl(sandboxEl);
 
         // Copy all rendered attributes (TODO need for all)
@@ -108,7 +109,7 @@ export default (editor: Editor, { opt, coreMjmlModel, coreMjmlView, sandboxEl }:
 
       renderStyle() {
         const { model, attributes, el } = this;
-        const modelStyle = model.get('style') || {};
+        const modelStyle = model.getStyle();
         const stylable = model.get('stylable') as string[];
         const styles = Object.keys(modelStyle)
           .filter((prop) => stylable.indexOf(prop) > -1)

@@ -16,6 +16,7 @@ export default (editor: Editor, { coreMjmlModel, coreMjmlView }: ComponentPlugin
     model: {
       ...coreMjmlModel,
       defaults: {
+        tagName: type,
         name: getName(editor, 'text'),
         draggable: componentsToQuery([typeColumn, typeHero]),
         highlightable: false,

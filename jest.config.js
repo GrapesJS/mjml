@@ -1,7 +1,17 @@
 module.exports = {
-  moduleFileExtensions: ["js", "ts"],
   verbose: true,
-  modulePaths: ["<rootDir>/src"],
-  testMatch: ["<rootDir>/tests/specs/**/*.(t|j)s"],
-  setupFiles: ["<rootDir>/tests/setup.js"],
+  testEnvironment: "jsdom",
+  testMatch: ["<rootDir>/tests/specs/**/*.test.[jt]s"],
+  transform: {
+    "^.+\\.[jt]s$": "babel-jest",
+  },
+  transformIgnorePatterns: ['/node_modules/', '<rootDir>/dist/'],
+  setupFiles: ['<rootDir>/tests/mjml.setup.ts'],
+  moduleNameMapper: {
+    '^juice$': 'juice/client.js',
+  },
+  snapshotFormat: {
+    escapeString: true,
+    printBasicPrototype: true,
+  },
 };
