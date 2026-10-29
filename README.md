@@ -308,14 +308,14 @@ change. The stable command bumps the patch version, or promotes the current
 prerelease to its stable version. The RC command increments the current RC, or
 starts the next patch at `-rc.0`.
 
-Push the release branch and open a PR targeting `master`. Keep the generated
-commit message when merging (use it as the squash commit title):
-`Release grapesjs-mjml rc: v<version>` or
-`Release grapesjs-mjml latest: v<version>`.
+Push the release branch and open a PR targeting `master`. Merging a
+`release-v<version>` branch from this repository triggers publishing. The branch
+version must match `package.json`; PR titles and commit messages do not affect
+publishing.
 
 The publish workflow runs the checks, builds the package, and publishes to npm
-with the matching `rc` or `latest` tag. A GitHub release is optional and does not
-trigger publishing.
+with the matching `rc` or `latest` tag based on the package version. A GitHub
+release is optional and does not trigger publishing.
 
 ## License
 
