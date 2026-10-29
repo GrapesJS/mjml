@@ -106,8 +106,8 @@ export default (editor: Editor, opt: RequiredPluginOptions) => {
           properties: [
             { name: 'Top', property: 'border-top-left-radius' },
             { name: 'Right', property: 'border-top-right-radius' },
-            { name: 'Bottom', property: 'border-bottom-left-radius' },
-            { name: 'Left', property: 'border-bottom-right-radius' }
+            { name: 'Bottom', property: 'border-bottom-right-radius' },
+            { name: 'Left', property: 'border-bottom-left-radius' }
           ],
         }, {
           property: 'border-detached',
