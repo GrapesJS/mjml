@@ -53,7 +53,7 @@ function prepareRelease() {
   run('git', ['commit', '--allow-empty', '-m', `Release ${name} ${tag}: v${version}`]);
 
   console.log(`Release prepared! Push release-v${version} and open a PR targeting master.`);
-  console.log(`Merge with the release commit message intact to publish ${name}@${version} to npm's ${tag} tag.`);
+  console.log(`Merging the release branch publishes ${name}@${version} to npm's ${tag} tag.`);
 }
 
 try {
