@@ -59,6 +59,8 @@ export default (editor: Editor, { coreMjmlModel, coreMjmlView }: ComponentPlugin
         this.listenTo(this.model.get('components'), 'add remove', () => {
           this.getChildrenContainer().innerHTML = this.model.get('content')!;
           this.renderChildren();
+          // Keep track of the rendered children, so the next rerender can move them
+          this.childNodes = this.getChildrenContainer().childNodes;
         });
       },
     }
